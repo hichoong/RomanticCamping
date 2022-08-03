@@ -14,7 +14,7 @@ public class EJServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		System.out.println("ÀÛµ¿µÊ..");
+		System.out.println("ì‘ë™ë¨..!");
 	
 	}
 }
