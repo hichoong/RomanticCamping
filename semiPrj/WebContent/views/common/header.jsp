@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%
+	String contextPath = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,17 +73,17 @@
 
   <nav class="navbar navbar-expand-sm nav-border">
     <div class="container-fluid">          
-      <a class="navbar-brand title-text" href="#">낭만캠핑</a>
+      <a class="navbar-brand title-text" href="<%=contextPath%>">&#x26FA 낭만캠핑</a>
       
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link menu-text" href="#">캠핑장</a>
+          <a class="nav-link menu-text" href="<%=contextPath%>">캠핑장</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link menu-text" href="#">자유게시판</a>
+          <a class="nav-link menu-text" href="<%=contextPath%>">자유게시판</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link menu-text" href="#">고객센터</a>
+          <a class="nav-link menu-text" href="<%=contextPath%>">고객센터</a>
         </li>
       </ul>
     
@@ -90,9 +94,9 @@
         &#128512;
       </button>
       <ul class="dropdown-menu dropdown-menu-end">
-        <li><a class="dropdown-item" href="#">로그인/회원가입</a></li>
-        <li><a class="dropdown-item" href="#">예약확인/취소</a></li>
-        <li><a class="dropdown-item" href="#">수정할내용</a></li>
+        <li><a class="dropdown-item" href="<%=contextPath%>">로그인/회원가입</a></li>
+        <li><a class="dropdown-item" href="<%=contextPath%>">예약확인/취소</a></li>
+        <li><a class="dropdown-item" href="<%=contextPath%>">수정할내용</a></li>
       </ul>
     </div>
   </nav>
