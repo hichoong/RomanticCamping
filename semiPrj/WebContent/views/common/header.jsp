@@ -94,8 +94,8 @@
         &#128512;
       </button>
       <ul class="dropdown-menu dropdown-menu-end">
-        <li><a class="dropdown-item" href="<%=contextPath%>">로그인/회원가입</a></li>
-        <li><a class="dropdown-item" href="<%=contextPath%>">예약확인/취소</a></li>
+        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/loginForm.jsp">로그인</a></li>
+        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/joinForm.jsp">회원가입</a></li>
         <li><a class="dropdown-item" href="<%=contextPath%>">수정할내용</a></li>
       </ul>
     </div>
