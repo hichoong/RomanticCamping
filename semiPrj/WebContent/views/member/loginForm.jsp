@@ -57,6 +57,10 @@
         text-align: end;
     }
 
+    h3 {
+        color: #E64A19;
+    }
+
 </style>
 </head>
 <body>
@@ -66,6 +70,9 @@
     <div class="outer-wrapper">
 
         <div class="loginBox">
+
+            <h3 class="mb-4">로그인</h3>
+
             <form action="" method="post">
                 <div class="mb-4 mt-4">
                   <label for="id" class="form-label">아이디:</label>
