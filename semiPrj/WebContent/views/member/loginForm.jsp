@@ -76,11 +76,11 @@
             <form action="" method="post">
                 <div class="mb-4 mt-4">
                   <label for="id" class="form-label">아이디:</label>
-                  <input type="text" class="form-control" id="id" placeholder="Enter email" name="email">
+                  <input type="text" class="form-control" id="id" placeholder="아이디를 입력하세요." name="id">
                 </div>
                 <div class="mb-3">
                   <label for="pwd" class="form-label">비밀번호:</label>
-                  <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+                  <input type="password" class="form-control" id="pwd" placeholder="비밀번호를 입력하세요." name="pwd">
                 </div>
                 <div class="form-check mb-3">
                   <label class="form-check-label">
