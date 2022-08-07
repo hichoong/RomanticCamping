@@ -48,12 +48,12 @@
         color: #FF5722;
     }
 
-    #sub-btn-list {
+    .sub-btn-list {
         padding-top: 30px;
         text-align: center;
     }
 
-    .btn-right {
+    .location-right {
         text-align: end;
     }
 
@@ -87,10 +87,10 @@
                     <input class="form-check-input" type="checkbox" name="remember"> 아이디 저장
                   </label>
                 </div>
-                <div class="btn-right">
+                <div class="location-right">
                     <button type="submit" class="btn-basic">로그인</button>
                 </div>
-                <div id="sub-btn-list">
+                <div class="sub-btn-list">
                     <a href="" class="a-basic">아이디 찾기</a> |
                     <a href="" class="a-basic">비밀번호 찾기</a> |
                     <a href="" class="a-basic">회원가입</a>
