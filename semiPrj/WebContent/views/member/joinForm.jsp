@@ -6,9 +6,46 @@
 <meta charset="UTF-8">
 <title>낭만캠핑</title>
 <style>
-    .btn-right {
+
+    .outer-wrapper {
+        width: 80%;
+        margin: auto;
+    }
+
+    .location-right {
         text-align: end;
     }
+
+    .joinBox {
+        width: 700px;
+        margin: auto;
+        margin-top: 100px;
+        padding: 50px;
+        display: flex;
+        justify-content: space-evenly; 
+    }
+
+    .introBox {
+        width: 700px;
+        margin: auto;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .big-btn {
+        width: 200px;
+        height: 200px;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        border: 1px solid transparent;  
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.25rem;
+        background-color: #F57C00;
+        border-color: #F57C00;
+        color: white;
+    }
+
 </style>
 </head>
 <body>
@@ -18,8 +55,14 @@
     <div class="outer-wrapper">
 
         <div class="joinBox">
-            <button type="button" class="" data-bs-toggle="modal" data-bs-target="#PersonJoin">일반 회원 가입</button>
-            <button type="button" class="" data-bs-toggle="modal" data-bs-target="#BusinessJoin">사업자 회원 가입</button>
+            <button type="button" class="big-btn" data-bs-toggle="modal" data-bs-target="#PersonJoin">일반 회원 가입</button>
+            <button type="button" class="big-btn" data-bs-toggle="modal" data-bs-target="#BusinessJoin">사업자 회원 가입</button>
+        </div>
+
+        <div class="introBox">
+            <p> 캠핑장 예약 및 물품 대여를 이용하실 고객은 일반 회원 가입을 선택하시면 됩니다.</p>
+            <p> 캠핑장을 등록하실 고객은 사업자 회원 가입을 선택하시면 됩니다.</p>
+
         </div>
 
     </div>
@@ -32,7 +75,6 @@
                 </div>
             
                 <div class="modal-body">
-                    일반 회원 가입 내용~~
                     <form action="" method="post">
                         <div class="mb-4 mt-4">
                           <label for="id" class="form-label">* 아이디:</label>
@@ -68,7 +110,7 @@
                             <label><input type="radio" name="gender" value="F"> 여자</label>
                           </div>
 
-                        <div class="btn-right">
+                        <div class="location-right">
                             <button type="submit" class="btn btn-success" data-bs-dismiss="modal">회원가입</button>
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">취소</button>
                         </div>
@@ -83,11 +125,40 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">사업자 회원 가입</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
             
                 <div class="modal-body">
-                    사업자 회원 가입 내용~~
+                    <form action="" method="post">
+                        <div class="mb-4 mt-4">
+                          <label for="id" class="form-label">* 아이디:</label>
+                          <input type="text" class="form-control" id="id" placeholder="Enter id" name="id" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="pwd" class="form-label">* 비밀번호:</label>
+                          <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="pwdCheck" class="form-label">* 비밀번호 확인:</label>
+                            <input type="password" class="form-control" id="pwdCheck" placeholder="Enter password" name="pwdCheck" required>
+                          </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">* 이름:</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" required>
+                          </div>
+                          <div class="mb-3">
+                            <label for="phone" class="form-label">* 휴대폰번호:</label>
+                            <input type="text" class="form-control" id="phone" placeholder="ex) 01000000000" name="phone" required>
+                          </div>
+                          <div class="mb-3">
+                            <label for="email" class="form-label">* 이메일:</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                          </div>
+
+                        <div class="location-right">
+                            <button type="submit" class="btn btn-success" data-bs-dismiss="modal">회원가입</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">취소</button>
+                        </div>
+                      </form>
                 </div>
             </div>
         </div>
