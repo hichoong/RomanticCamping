@@ -1,0 +1,493 @@
+*{
+        box-sizing: border-box;
+    }
+
+
+    /* 전체적인 크기 잡기 */
+    #detail-outer{
+        width: 1500px;
+        height: 4500px;
+        border: 1px solid red;
+        margin-left: 500px;
+    }
+
+    #detail-outer>header{
+        height: 60px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    #detail-outer>div, #detail-outer>header{
+        border: 2px solid black; /*- 틀잡기 확인용 */
+        width: 1200px;
+    }
+
+    #d1, #d6{
+        height: 800px;
+        /* border-bottom: 10px solid rgb(241, 208, 125); */
+    }
+
+    #d2, #d3, #d4 {
+        height: 500px;
+        /* border-bottom: 10px solid rgb(241, 208, 125); */
+    }
+
+
+    #d5, #d7, #d8{
+        height: 400px;
+        /* border-bottom: 10px solid rgb(241, 208, 125); */
+    }
+
+
+    /* 헤더 크기 잡기 */
+    #detail-outer>header>div{
+        height: 80%;
+        border: 1px solid green;
+    }
+
+    #detail-outer>header>#cd-back{
+        margin-left: 50px;
+        width: 100px;
+    }
+
+    #detail-outer>header>#cd-name{
+        margin-left: 25px;
+        margin-right: 25px;
+        width: 850px;
+    }
+
+    #detail-outer>header>#cd-name2{
+        margin-right: 50px;
+        width: 100px;
+    }
+
+
+
+    /* 1번째 div 크기 잡기 */
+
+
+    #d1{
+        padding-top: 20px;
+    }
+
+    /* #d1-1d{
+        border: 1px solid red;
+        display: flex;
+        height: 500px;
+        width: 1100px;
+        margin: 30px 50px 30px 50px;
+    }
+
+    #d1-d>div{
+        border: 2px solid darkred;
+        height: 500px;
+    }
+
+    #d1-1, #d1-3{
+        width: 100px;
+    }
+
+    #d1-2{
+        margin-left: 25px;
+        margin-right: 25px;
+        width: 850px;
+    }
+
+
+    #d1-2d{
+        margin : 30px 50px 30px 50px;
+        height : 200px;
+        width: 1100px;
+        border: 3px solid red;
+    } */
+
+
+    /* 2번째 div - 캠핑장소개 크기 잡기 */
+
+    #d2-d{
+        border: 1px solid red;
+        /* display: flex; */
+        height: 440px;
+        width: 1100px;
+        margin: 30px 50px 30px 50px;
+    }
+
+    #d2-d>div{
+        border: 3px solid blue;
+        width: 98%;
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+
+    #d2-1{
+        height: 60px;
+        margin-bottom: 20px;
+    }
+
+    #d2-2{
+        height: 200px;
+    }
+
+    #d2-3{
+        height: 140px;
+        margin-top: 20px;
+    }
+
+
+    /* 3번째 div - 캠핑장기본정보 크기 잡기 */
+
+    #d3-d{
+        border: 1px solid red;
+        /* display: flex; */
+        height: 440px;
+        width: 1100px;
+        margin: 30px 50px 30px 50px;
+    }
+
+    #d3-d>div{
+        border: 3px solid blue;
+        width: 98%;
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+
+    #d3-1{
+        height: 60px;
+        margin-bottom: 20px;
+    }
+
+    #d3-2{
+        height: 360px;
+    }
+
+
+
+
+     /* 4번째 div - 캠핑장시설소개 크기 잡기 */
+     #d4-d{
+        border: 1px solid red;
+        /* display: flex; */
+        height: 440px;
+        width: 1100px;
+        margin: 30px 50px 30px 50px;
+    }
+
+    #d4-d>div{
+        border: 3px solid blue;
+        width: 98%;
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+
+    #d4-1{
+        height: 60px;
+        margin-bottom: 20px;
+    }
+
+    #d4-2{
+        height: 360px;
+    }
+
+    #d4-2-1{
+        border: 3px dashed darkkhaki;
+        width: 100%;
+        height: 180px;
+        display: flex;
+    }
+
+   
+
+    #d4-2-2{
+        border: 3px dashed darkkhaki;
+        width: 100%;
+        height: 180px;
+        display: flex;
+    }
+
+
+    /* 5번째 div - 캠핑장 운영정책 크기 잡기 */
+    #d5-d{
+        border: 1px solid red;
+        /* display: flex; */
+        height: 340px;
+        width: 1100px;
+        margin: 30px 50px 30px 50px;
+    }
+
+    #d5-d>div{
+        border: 3px solid blue;
+        width: 98%;
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+
+    #d5-1{
+        height: 60px;
+        margin-bottom: 20px;
+    }
+
+    #d5-2{
+        height: 260px;
+    }
+
+    #d5-2-1{
+        border: 3px dashed darkkhaki;
+        width: 100%;
+        height: 120px;
+    }
+
+    #d5-2-2{
+        border: 3px dashed darkkhaki;
+        width: 100%;
+        height: 130px;
+    }
+
+    /* 6번째 div - 캠핑장 구역상세 크기 잡기 */
+    #d6-d{
+        border: 1px solid red;
+        display: flex;
+        height: 640px;
+        width: 1100px;
+        margin: 30px 50px 30px 50px;
+    }
+
+    #d6-d>div{
+        border: 2px solid darkred;
+        height: 640px;
+    }
+
+    #d6-1, #d6-3{
+        width: 100px;
+    }
+
+    #d6-2{
+        margin-left: 25px;
+        margin-right: 25px;
+        width: 850px;
+    }
+
+
+    #d6-2d{
+        margin : 30px 50px 30px 50px;
+        height : 60px;
+        width: 1100px;
+        border: 3px solid red;
+    }
+
+    /* 7번째 div - 캠핑장 예약 크기 잡기 */
+    #d7-d{
+        border: 1px solid red;
+        /* display: flex; */
+        height: 340px;
+        width: 1100px;
+        margin: 30px 50px 30px 50px;
+    }
+
+    #d7-d>div{
+        border: 3px solid blue;
+        width: 98%;
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+
+    #d7-1{
+        height: 60px;
+        margin-bottom: 20px;
+    }
+
+    #d7-2{
+        height: 260px;
+    }
+
+    #d7-2-1{
+        border: 3px dashed darkkhaki;
+        width: 100%;
+        height: 120px;
+    }
+
+    #d7-2-2{
+        border: 3px dashed darkkhaki;
+        width: 100%;
+        height: 130px;
+    }
+    
+    /* 8번째 div - 캠핑장 예약 크기 잡기 */
+    #d8-d{
+        border: 1px solid red;
+        /* display: flex; */
+        height: 340px;
+        width: 1100px;
+        margin: 30px 50px 30px 50px;
+    }
+
+    #d8-d>div{
+        border: 3px solid blue;
+        width: 98%;
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+
+    #d8-1{
+        height: 60px;
+        margin-bottom: 20px;
+    }
+
+    #d8-2{
+        height: 260px;
+    }
+
+    #d8-2-1{
+        border: 3px dashed darkkhaki;
+        width: 100%;
+        height: 120px;
+    }
+
+    #d8-2-2{
+        border: 3px dashed darkkhaki;
+        width: 100%;
+        height: 130px;
+    }
+
+    /* ////////////////////////////////////////////////////// */
+
+    /* 헤더 부분 채우기 */
+
+    #btn-back{
+        width: 100%;
+        height: 100%;
+        font-size: 2rem;
+        height : 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #mainPic{
+        width: 100%;
+        height: 50%;
+    }
+
+    #cd-name>p{
+        font-size: 2rem;
+        height : 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* 캠핑장 소개 */
+    #d2-3{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .d2-3-sp{
+        padding: 6px 10px;
+        margin: 4px 4px 0px 0px;
+        background-color: burlywood;
+        border-radius: 20px;
+        font-size: 1.2rem;
+    }
+
+    /*캠핑장기본정보*/
+
+    ol, ul, li{
+        list-style: none;
+        
+    }
+
+    #d3-2>ul>li{
+        display: flex;
+        margin-bottom: 5px;
+    }
+
+    .info-title{
+        font: inherit;
+        font-size: 1.5rem;
+        color: brown;
+        font-weight: 800;
+        width: 150px;
+        height: 60px;
+        border: 1px solid red;
+        
+    }
+
+    .info-content{
+        width: 800px;
+        font: inherit;
+        font-size: 1.5rem;
+        color: black;
+        display: flex;
+        flex-wrap: nowrap;
+        height: 60px;
+        margin: 0px 0px 0px 10px;
+        padding: 0px;
+        border: 1px solid red;
+    }
+
+
+    /*캠핑장 시설소개*/
+   
+
+    .fac-content-outer{
+        display: flex;
+        border: 1px solid black;
+        width: 100%;
+        flex-wrap: wrap;
+        width: 90%;
+    }
+
+    .fac-content{
+        width: 25%;
+        margin-bottom: 10px;
+        text-align: center;
+        font-size: 1.1rem;
+    }
+
+    /* 캠핑장 운영정책 */
+
+    #d5-2-2{
+        border-radius: 8px;
+        box-sizing: border-box;
+        font-size: 2rem;
+        border: 1px solid rgb(212,217,214);
+    }
+
+    /* 캠핑장 예약하기 */
+
+    #d7-2-2{
+        border-radius: 8px;
+        box-sizing: border-box;
+        font-size: 2rem;
+        border: 1px solid rgb(212,217,214);
+    }
+
+    /* 캠핑장 로그보기 */
+
+    #d8-2-2{
+        border-radius: 8px;
+        box-sizing: border-box;
+        font-size: 2rem;
+        border: 1px solid rgb(212,217,214);
+    }
+
+    /* 폰트 */
+    .display-5{
+        color: brown;
+    }
+
+    .d2-2-campInfo{
+        color: darkgray;
+        font-size: 1.5rem;
+
+    }
+
+
+
+    .carousel-inner{
+        width: 100%;
+        height: 100%;
+    }
