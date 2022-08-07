@@ -96,7 +96,10 @@
       <ul class="dropdown-menu dropdown-menu-end">
         <li><a class="dropdown-item" href="<%=contextPath%>/views/member/loginForm.jsp">로그인</a></li>
         <li><a class="dropdown-item" href="<%=contextPath%>/views/member/joinForm.jsp">회원가입</a></li>
-        <li><a class="dropdown-item" href="<%=contextPath%>">수정할내용</a></li>
+        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/myPage.jsp">마이페이지</a></li>
+        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/campReservationList.jsp">캠핑 예약확인</a></li>
+        <li><a class="dropdown-item" href="<%=contextPath%>">찜목록</a></li>
+        <li><a class="dropdown-item" href="<%=contextPath%>">내가 쓴 글</a></li>
       </ul>
     </div>
   </nav>
