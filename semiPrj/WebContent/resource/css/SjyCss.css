@@ -1,1 +1,218 @@
 @charset "UTF-8";
+
+
+/*campInsert || campDetailInfo  CSS*/
+
+/* common */
+*{
+    padding: 0;
+    margin: 0
+}
+
+li {
+    list-style: none
+}
+
+
+
+	main {
+
+		/* background-color: #212121; */
+		/* position: relative; */
+		/* border: 3px solid rgba(201, 201, 201, 0.486); */
+		/* background-color: aquamarine; */
+		/* display: block; */
+		width: 70%;
+		margin-left: 10%;
+		margin-right: 10%;
+		
+        margin-bottom: 20px;
+		height: 900px;
+		z-index: 999;
+		box-shadow: 0 0 3px gray;
+	}
+
+	
+	#side {
+
+		/* position: relative; */
+		/* border:1px solid rgb(0, 153, 204); */
+		background-color: #bc5100b9;
+		float: left;
+		margin-left: 5%;
+		height: 900px;
+		width: 15%;
+	}
+
+	#sidebar {
+		/* position: relative; */
+		/* border: 1px dotted black; */
+		width: 100%;
+		height: 20%;
+
+		box-sizing: border-box;
+
+		margin: auto;
+		margin-top: 50%;
+
+	}
+
+	/* 사이드(<-)메뉴 */
+	.menu {
+		width: 100%;
+		overflow: hidden;
+		margin: auto;
+		padding-left: 0;
+	}
+
+	.menu>ul li {
+		padding-left: 0;
+	}
+
+	.menu>li {
+		width: 90%;
+		margin-left: 5%;
+		text-align: center;
+		line-height: 40px;
+		/* background-color: rgb(132, 166, 192); */
+
+	}
+
+	.menu>li :hover{ 
+		color: #bc5100;
+	}
+
+	.menu a {
+		color: #fff;
+		text-decoration: none;
+	}
+
+	.submenu>li {
+		line-height: 50px;
+		border-bottom: 2px solid rgba(68, 68, 68, 0.1);
+		background-color: rgba(153, 153, 153, 0.178);
+	}
+
+	.submenu {
+		height: 0;
+		overflow: hidden;
+	}
+
+	.menu>li:hover {
+		padding-left: 0;
+		transition-duration: 0.5s;
+	}
+
+	.menu>li:hover .submenu {
+		height: 150px;
+		/*서브메뉴 li한개의 높이 50*5*/
+		
+		transition-duration: 1.5s;
+	}
+
+	/*  */
+	#content {
+    /* position: relative; */
+    /* border:1px solid rgba(51, 204, 0); */
+    /* float: left; */
+    height: 100%;
+    width: 90%;
+
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+    
+}
+	#content_box{
+    position: relative;
+    
+    border: 3px solid rgba(97, 97, 97, 0.589);
+    
+    width: 100%;
+    height: 90vh;
+
+    
+    justify-content: center;
+    
+	}
+	
+	form div{
+		padding-bottom: 10px;
+	}
+
+	/* 등록버튼 */
+	#end{
+		text-align: end;
+		
+	}
+	#center{
+		text-align: center;
+	}
+
+/* Insert->등록버튼 */
+	#send{
+		text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        padding: 1%;
+        background-color: white;
+        border-color: #bc5100b9;
+        color: #bc5100;
+	}
+	#send:hover{
+		background-color: #bc5100b9;
+		color: white;
+	}
+
+/*info -> 수정/삭제버튼 */
+#upDate{
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 3px 3px #999;
+}
+#upDate:hover {background-color: #3e8e41}
+
+#upDate:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+#delete{
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+	/* border: 3px solid #ca7f1d ; */
+    background-color: #d82f2f;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 3px 3px #999;
+}
+#delete:hover {background-color: #b12727}
+
+#delete:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+tr:hover{
+	cursor: pointer;
+}
+tr>th:hover{
+	cursor: default; 
+}

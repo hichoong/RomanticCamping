@@ -6,7 +6,6 @@
 <%
 	//오늘 날짜 구하기
 	Date today = new Date();
-	System.out.println(today);
 	
 	SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 	SimpleDateFormat time = new SimpleDateFormat("HH:mm");
@@ -15,171 +14,13 @@
 	
 	//등록일 기본값 세팅
 	String toDay = d+"T"+t;
-	System.out.println(toDay);
-	
 %>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<link rel="stylesheet" href="../../resource/css/SjyCss.css">
 
 <style type="text/css">
-
-*{
-    padding: 0;
-    margin: 0
-}
-
-li {
-    list-style: none
-}
-
-
-
-	main {
-
-		/* background-color: #212121; */
-		/* position: relative; */
-		/* border: 3px solid rgba(201, 201, 201, 0.486); */
-		/* background-color: aquamarine; */
-		/* display: block; */
-		width: 80%;
-		margin-left: 10%;
-		margin-right: 10%;
-		
-        margin-bottom: 20px;
-		height: 900px;
-		z-index: 999;
-		box-shadow: 0 0 3px gray;
-	}
-
-	
-	#side {
-
-		/* position: relative; */
-		/* border:1px solid rgb(0, 153, 204); */
-		background-color: #bc5100b9;
-		/* border: 1px solid #bc5100; */
-		float: left;
-		height: 100%;
-		width: 25%;
-	}
-
-	#sidebar {
-		/* position: relative; */
-		/* border: 1px dotted black; */
-		width: 100%;
-		height: 20%;
-
-		box-sizing: border-box;
-
-		margin: auto;
-		margin-top: 50%;
-
-	}
-
-	/* 사이드(<-)메뉴 */
-	.menu {
-		width: 100%;
-		overflow: hidden;
-		margin: auto;
-		padding-left: 0;
-	}
-
-	.menu>ul li {
-		padding-left: 0;
-	}
-
-	.menu>li {
-		width: 90%;
-		margin-left: 5%;
-		text-align: center;
-		line-height: 40px;
-		/* background-color: rgb(132, 166, 192); */
-
-	}
-
-	.menu>li :hover{ 
-		color: #BC5100;
-	}
-
-	.menu a {
-		color: #fff;
-		text-decoration: none;
-	}
-
-	.submenu>li {
-		line-height: 50px;
-		
-		border-bottom: 2px solid rgba(68, 68, 68, 0.1);
-	}
-
-	.submenu {
-		height: 0;
-		overflow: hidden;
-	}
-
-	.menu>li:hover {
-		padding-left: 0;
-		/* background-color: rgb(132, 166, 192); */
-		
-		background-color: rgb(209, 160, 68);
-		transition-duration: 0.5s;
-	}
-
-	.menu>li:hover .submenu {
-		height: 150px;
-		/*서브메뉴 li한개의 높이 50*5*/
-		
-		transition-duration: 1.5s;
-	}
-
-	/*  */
-	#content {
-    /* position: relative; */
-    /* border:1px solid rgba(51, 204, 0); */
-    /* float: left; */
-    height: 100%;
-    width: 75%;
-
-    display: flex;
-    flex-direction: column;
-    margin: 50px;
-    
-}
-	#content_box{
-    position: relative;
-    
-    border: 3px solid rgba(97, 97, 97, 0.589);
-    
-    width: 100%;
-    height: 90vh;
-
-    
-    justify-content: center;
-    
-	}
-	
-	form div{
-		padding-bottom: 10px;
-	}
-
-	/* 등록버튼 */
-	#end{
-		text-align: end;
-		
-	}
-	#send{
-		text-align: center;
-        vertical-align: middle;
-        cursor: pointer;
-        padding: 1%;
-        background-color: white;
-        border-color: #bc5100b9;
-        color: #bc5100;
-	}
-	#send:hover{
-		background-color: #bc5100b9;
-		color: white;
-	}
-
 	
 </style>
 	<meta charset="UTF-8">
@@ -188,33 +29,8 @@ li {
 
 <body>
 	<%@ include file="/views/common/header.jsp" %>
+	<%@ include file="../../views/buisness/sidebar.jsp" %>
 		<main class="navbar navbar-expand-sm ">
-			<div id="side" class="container">
-				<div id="sidebar" class="col">
-
-					<div style="margin-left: 10%; font-size: 20px; color: white;">캠핑장 관리</div>
-					<ul class="menu">
-						<li>
-							<a href="#">등록/조회</a>
-							<ul class="submenu">
-								<li><a href="<%=contextPath%>/views/buisness/campInsertForm.jsp">캠핑장 등록</a></li>
-								<li><a href="<%=contextPath%>/views/buisness/campSerchForm.jsp">캠핑장 조회</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="#">예약관리</a>
-							<ul class="submenu">
-								<li><a href="#">예약 승인</a></li>
-								<li><a href="#">예약 조회</a></li>
-							</ul>
-						</li>
-						<li>
-
-					</ul>
-
-				</div>
-
-			</div>
 			
 			<div id="content" >
 				
@@ -227,11 +43,16 @@ li {
 							<input type="text" class="form-control" id="campName" placeholder="캠핑장 이름 입력" name="campName" required>
 						</div>
 
-						<div class="md-3" >
+						<div class="md-3 " >
 							<label for="campAdd" class="form-label">* 주소:</label>
-							<select name="addSido1" id="addSido1"></select>
-							<select name="addGugun1" id="addGugun1"></select>				
+						
+								<select name="addSido1"  class="form-select" id="addSido1"></select>
+						
+						
+								<select name="addGugun1"  class="form-select" id="addGugun1"></select>    
 						</div>
+										
+				
 
 						<div class="md-3" >
 							<label for="campDetailAdd">상세주소:</label>
@@ -248,10 +69,7 @@ li {
 							<input type="text" class="form-control" id="campIntro" placeholder="시설소개" name="campIntro" required>
 						</div>
 
-						<div class="md-3" >
-							<label for="" class="form-label">* 등록일:</label>
-							<input type="datetime-local" class="form-control" id="" placeholder="등록일" name="" required  value="<%=toDay%>" disabled>
-						</div>
+
 
 						<div class="md-3" >
 							<label for="campRefund" class="form-label">* 환불규정:</label>
@@ -263,6 +81,10 @@ li {
 							<input class="form-control" type="file" name="campRepImg" id="campRepImg">
 						</div>
 					
+						<div class="md-3" >
+							<label for="" class="form-label">* 등록일:</label>
+							<input type="datetime-local" class="form-control" id="" placeholder="등록일" name="" required  value="<%=toDay%>" disabled>
+						</div>
 					
 						<div id="end"> 
 							<input type="submit" value="등록" id="send" class="rounded">
