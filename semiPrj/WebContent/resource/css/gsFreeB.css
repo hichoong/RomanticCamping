@@ -40,6 +40,14 @@
 		border: 1px solid purple;
 	}
 	
+	#fb1-2>input{
+		width: 100%;
+		height: 100%;
+		font-size: 3rem;
+		border-bottom-left-radius: 2rem;
+		border-bottom-right-radius: 2rem;
+	}
+
 	#fb2{
 		width: 1900px;
 		height: 1700px;
@@ -70,23 +78,31 @@
 		border: 1px solid purple;
 	}
 
+	#fb2-2>input{
+		width: 100%;
+		height: 100%;
+		font-size: 3rem;
+		border-bottom-left-radius: 2rem;
+		border-bottom-right-radius: 2rem;
+	}
+
 
 	/* 꾸미기 시작 */
 
 
-	#menu-items{
+	.menu-items{
 		width: 30%;
 		height: 30%;
 		border: 5px solid darkblue;
 	}
 
-	#menu-items>a{
+	.menu-items>a{
 		text-decoration: none;
 		color: black;
 		border: 1px solid seagreen;
 	}
 
-	#menu-items>a:hover{
+	.menu-items>a:hover{
 		text-decoration: black;
 	}
 	
