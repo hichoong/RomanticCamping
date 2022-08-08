@@ -87,14 +87,7 @@
                   </ul>
 
                 </div>
-
-                <!-- <script>
-                  $(function(){
-                    $('input').click(function(){$(this).css('background',rgb(255, 218, 153))});
-                  });
-                </script> -->
                 
-
 
                 <input type="submit" value="search" class="btn btn-warning">
               
