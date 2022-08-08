@@ -23,42 +23,42 @@
         padding-left: 10px;
       }
 
-        .title-text {
-          color: #BC5100;
-          font-size: 32px;
-          font-weight: bold;
-        }
+      .title-text {
+        color: #BC5100;
+        font-size: 32px;
+        font-weight: bold;
+      }
 
-        .title-text:hover {
-          color: #BC5100;
-        }
+      .title-text:hover {
+        color: #BC5100;
+      }
 
-        .menu-text {
-          color: #E64A19;
-          font-size: 24px;
-        }
+      .menu-text {
+        color: #E64A19;
+        font-size: 24px;
+      }
 
-        .menu-text:hover {
-          color: #FF5722;
-          font-weight: bold;
-        }
+      .menu-text:hover {
+        color: #FF5722;
+        font-weight: bold;
+      }
 
-        .user-btn {
-          padding-left: 30px;
-          padding-right: 30px;
-        }
+      .user-btn {
+        padding-left: 30px;
+        padding-right: 30px;
+      }
 
-        .container-fluid {
-          width: 90%;
-        }
+      .container-fluid {
+        width: 90%;
+      }
 
-        .nav-border {
-          margin-top: 20px;
-          margin-bottom: 20px;
-          /* border-top: 1px solid #FFA000; */
-          /* border-bottom: 1px solid #FFA000; */
-          box-shadow: 0 0 6px #FFA000;
-        }
+      .nav-border {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        /* border-top: 1px solid #FFA000; */
+        /* border-bottom: 1px solid #FFA000; */
+        box-shadow: 0 0 6px #FFA000;
+      }
 
     </style>
 </head>
@@ -97,9 +97,10 @@
         <li><a class="dropdown-item" href="<%=contextPath%>/views/member/loginForm.jsp">로그인</a></li>
         <li><a class="dropdown-item" href="<%=contextPath%>/views/member/joinForm.jsp">회원가입</a></li>
         <li><a class="dropdown-item" href="<%=contextPath%>/views/member/myPage.jsp">마이페이지</a></li>
-        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/campReservationList.jsp">캠핑 예약확인</a></li>
-        <li><a class="dropdown-item" href="<%=contextPath%>">찜목록</a></li>
-        <li><a class="dropdown-item" href="<%=contextPath%>">내가 쓴 글</a></li>
+        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/myReservationPage.jsp">캠핑 예약확인</a></li>
+        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/wishListPage.jsp">찜목록</a></li>
+        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/myBoardList.jsp">내가 쓴 글</a></li>
+        <li><a class="dropdown-item" href="<%=contextPath%>">내 쿠폰함</a></li>
       </ul>
     </div>
   </nav>
