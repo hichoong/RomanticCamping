@@ -17,168 +17,12 @@
 	String toDay = d+"T"+t;
 	System.out.println(toDay);
 	
+	String data = "데이터가져오기";
 %>
 <head>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="../../resource/css/SjyCss.css">
 <style type="text/css">
-
-*{
-    padding: 0;
-    margin: 0
-}
-
-li {
-    list-style: none
-}
-
-
-
-	main {
-
-		/* background-color: #212121; */
-		/* position: relative; */
-		/* border: 3px solid rgba(201, 201, 201, 0.486); */
-		/* background-color: aquamarine; */
-		/* display: block; */
-		width: 80%;
-		margin-left: 10%;
-		margin-right: 10%;
-		
-        margin-bottom: 20px;
-		height: 900px;
-		z-index: 999;
-		box-shadow: 0 0 3px gray;
-	}
-
-	
-	#side {
-
-		/* position: relative; */
-		/* border:1px solid rgb(0, 153, 204); */
-		background-color: #bc5100b9;
-		/* border: 1px solid #bc5100; */
-		float: left;
-		height: 100%;
-		width: 25%;
-	}
-
-	#sidebar {
-		/* position: relative; */
-		/* border: 1px dotted black; */
-		width: 100%;
-		height: 20%;
-
-		box-sizing: border-box;
-
-		margin: auto;
-		margin-top: 50%;
-
-	}
-
-	/* 사이드(<-)메뉴 */
-	.menu {
-		width: 100%;
-		overflow: hidden;
-		margin: auto;
-		padding-left: 0;
-	}
-
-	.menu>ul li {
-		padding-left: 0;
-	}
-
-	.menu>li {
-		width: 90%;
-		margin-left: 5%;
-		text-align: center;
-		line-height: 40px;
-		/* background-color: rgb(132, 166, 192); */
-
-	}
-
-	.menu>li :hover{ 
-		color: #BC5100;
-	}
-
-	.menu a {
-		color: #fff;
-		text-decoration: none;
-	}
-
-	.submenu>li {
-		line-height: 50px;
-		
-		border-bottom: 2px solid rgba(68, 68, 68, 0.1);
-	}
-
-	.submenu {
-		height: 0;
-		overflow: hidden;
-	}
-
-	.menu>li:hover {
-		padding-left: 0;
-		/* background-color: rgb(132, 166, 192); */
-		
-		background-color: rgb(209, 160, 68);
-		transition-duration: 0.5s;
-	}
-
-	.menu>li:hover .submenu {
-		height: 150px;
-		/*서브메뉴 li한개의 높이 50*5*/
-		
-		transition-duration: 1.5s;
-	}
-
-	/*  */
-	#content {
-    /* position: relative; */
-    /* border:1px solid rgba(51, 204, 0); */
-    /* float: left; */
-    height: 100%;
-    width: 75%;
-
-    display: flex;
-    flex-direction: column;
-    margin: 50px;
-    
-}
-	#content_box{
-    position: relative;
-    
-    border: 3px solid rgba(97, 97, 97, 0.589);
-    
-    width: 100%;
-    height: 90vh;
-
-    
-    justify-content: center;
-    
-	}
-	
-	form div{
-		padding-bottom: 10px;
-	}
-
-	/* 등록버튼 */
-	#end{
-		text-align: end;
-		
-	}
-	#send{
-		text-align: center;
-        vertical-align: middle;
-        cursor: pointer;
-        padding: 1%;
-        background-color: white;
-        border-color: #bc5100b9;
-        color: #bc5100;
-	}
-	#send:hover{
-		background-color: #bc5100b9;
-		color: white;
-	}
 
 	
 </style>
@@ -188,43 +32,18 @@ li {
 
 <body>
 	<%@ include file="/views/common/header.jsp" %>
+	<%@ include file="../../views/buisness/sidebar.jsp" %>
 		<main class="navbar navbar-expand-sm ">
-			<div id="side" class="container">
-				<div id="sidebar" class="col">
-
-					<div style="margin-left: 10%; font-size: 20px; color: white;">캠핑장 관리</div>
-					<ul class="menu">
-						<li>
-							<a href="#">등록/조회</a>
-							<ul class="submenu">
-								<li><a href="<%=contextPath%>/views/buisness/campInsertForm.jsp">캠핑장 등록</a></li>
-								<li><a href="<%=contextPath%>/views/buisness/campSerchForm.jsp">캠핑장 조회</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="#">예약관리</a>
-							<ul class="submenu">
-								<li><a href="#">예약 승인</a></li>
-								<li><a href="#">예약 조회</a></li>
-							</ul>
-						</li>
-						<li>
-
-					</ul>
-
-				</div>
-
-			</div>
 			
 			<div id="content" >
 				
 
 					<form action="" method="post">
-						<h2>캠핑장 등록</h2>
+						<h2>상세조회</h2>
 						<hr>
                         <div class="md-3" >
 							<label for="campName" class="form-label">* 이름:</label>
-							<input type="text" class="form-control" id="campName" placeholder="캠핑장 이름 입력" name="campName" required value="%=%데이터가져오기">
+							<input type="text" class="form-control" id="campName" placeholder="캠핑장 이름 입력" name="campName" required value="<%=data%>">
 						</div>
 
 						<div class="md-3" >
@@ -235,17 +54,17 @@ li {
 
 						<div class="md-3" >
 							<label for="campDetailAdd">상세주소:</label>
-							<textarea class="form-control" rows="3" id="campDetailAdd" placeholder="상세주소 입력" name="campDetailAdd" >value="%=%데이터가져오기"</textarea>
+							<textarea class="form-control" rows="3" id="campDetailAdd" placeholder="상세주소 입력" name="campDetailAdd" ><%=data%></textarea>
 						</div>
 
 						<div class="md-3" >
 							<label for="phoneNum" class="form-label">* 연락처:</label>
-							<input type="text" class="form-control" id="phoneNum" placeholder="캠핑장 연락처 입력" name="phoneNum" required value="%=%데이터가져오기">
+							<input type="text" class="form-control" id="phoneNum" placeholder="캠핑장 연락처 입력" name="phoneNum" required value="<%=data%>">
 						</div>
 
 						<div class="md-3" >
 							<label for="campIntro" class="form-label">* 시설소개:</label>
-							<input type="text" class="form-control" id="campIntro" placeholder="시설소개" name="campIntro" required value="%=%데이터가져오기">
+							<input type="text" class="form-control" id="campIntro" placeholder="시설소개" name="campIntro" required value="<%=data%>">
 						</div>
 
 						<div class="md-3" >
@@ -255,18 +74,18 @@ li {
 
 						<div class="md-3" >
 							<label for="campRefund" class="form-label">* 환불규정:</label>
-							<input type="text" class="form-control" id="campRefund" placeholder="환불규정" name="campRefund" required>
+							<input type="text" class="form-control" id="campRefund" placeholder="환불규정" name="campRefund" required value="<%=data%>">
 						</div>
 
 						<div class="mb-3">
 							<label for="campRepImg" class="form-label">* 대표이미지:</label>
-							<input class="form-control" type="file" name="campRepImg" id="campRepImg">
+							<input class="form-control" type="file" name="campRepImg" id="campRepImg" value="<%=data%>">
 						</div>
 					
 					
 						<div id="end"> 
-							<button  id="send" class="rounded">수정하기</button>
-							<button   onclick="locaton.href='#'">삭제하기</button>
+							<button  id="upDate" >수정하기</button>
+							<button id="delete"  onclick="locaton.href='#'">삭제하기</button>
 						</div>
 
 
