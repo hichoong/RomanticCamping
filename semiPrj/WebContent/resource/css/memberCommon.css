@@ -3,7 +3,7 @@
     margin: auto;
 }
 
-.btn-basic {
+.basic-btn {
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
@@ -15,18 +15,36 @@
     color: #F57C00;
 }
 
-.btn-basic:hover {
+.basic-btn:hover {
     background-color: #F57C00;
     color: white;
 }
 
-.a-basic {
+.reversed-btn {
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;  
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.25rem;
+    background-color: #F57C00;
+    border-color: #F57C00;
+    color: white;
+}
+
+.reversed-btn:hover {
+    background-color: #E64A19;
+    border-color: #E64A19;
+    color: white;
+}
+
+.basic-a {
     text-decoration: none;
     color: black;
     padding: 5px;
 }
 
-.a-basic:hover {
+.basic-a:hover {
     color: #FF5722;
 }
 
@@ -36,4 +54,8 @@
 
 .location-right {
     text-align: end;
+}
+
+h3 {
+    color: #E64A19;
 }

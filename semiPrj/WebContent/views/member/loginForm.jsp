@@ -5,12 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>낭만캠핑</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/memberCommon.css" type="text/css">
 <style>
-
-    .outer-wrapper {
-        width: 80%;
-        margin: auto;
-    }
 
     .loginBox {
         width: 600px;
@@ -21,44 +17,9 @@
         padding: 50px;
     }
 
-    .btn-basic {
-        text-align: center;
-        vertical-align: middle;
-        cursor: pointer;
-        border: 1px solid transparent;  
-        padding: 0.375rem 0.75rem;
-        border-radius: 0.25rem;
-        background-color: white;
-        border-color: #F57C00;
-        color: #F57C00;
-    }
-
-    .btn-basic:hover {
-        background-color: #F57C00;
-        color: white;
-    }
-
-    .a-basic {
-        text-decoration: none;
-        color: black;
-        padding: 5px;
-    }
-
-    .a-basic:hover {
-        color: #FF5722;
-    }
-
     .sub-btn-list {
         padding-top: 30px;
         text-align: center;
-    }
-
-    .location-right {
-        text-align: end;
-    }
-
-    h3 {
-        color: #E64A19;
     }
 
 </style>
@@ -88,12 +49,12 @@
                   </label>
                 </div>
                 <div class="location-right">
-                    <button type="submit" class="btn-basic">로그인</button>
+                    <button type="submit" class="basic-btn">로그인</button>
                 </div>
                 <div class="sub-btn-list">
-                    <a href="" class="a-basic">아이디 찾기</a> |
-                    <a href="" class="a-basic">비밀번호 찾기</a> |
-                    <a href="" class="a-basic">회원가입</a>
+                    <a href="" class="basic-a">아이디 찾기</a> |
+                    <a href="" class="basic-a">비밀번호 찾기</a> |
+                    <a href="" class="basic-a">회원가입</a>
                 </div>
               </form>
         </div>

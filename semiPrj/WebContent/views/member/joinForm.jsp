@@ -5,17 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>낭만캠핑</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/memberCommon.css" type="text/css">
 <style>
-
-    .outer-wrapper {
-        width: 80%;
-        margin: auto;
-    }
-
-    .location-right {
-        text-align: end;
-    }
-
     .joinBox {
         width: 700px;
         margin: auto;
@@ -35,15 +26,6 @@
     .big-btn {
         width: 200px;
         height: 200px;
-        text-align: center;
-        vertical-align: middle;
-        cursor: pointer;
-        border: 1px solid transparent;  
-        padding: 0.375rem 0.75rem;
-        border-radius: 0.25rem;
-        background-color: #F57C00;
-        border-color: #F57C00;
-        color: white;
     }
 
 </style>
@@ -55,8 +37,8 @@
     <div class="outer-wrapper">
 
         <div class="joinBox">
-            <button type="button" class="big-btn" data-bs-toggle="modal" data-bs-target="#PersonJoin">일반 회원 가입</button>
-            <button type="button" class="big-btn" data-bs-toggle="modal" data-bs-target="#BusinessJoin">사업자 회원 가입</button>
+            <button type="button" class="big-btn reversed-btn" data-bs-toggle="modal" data-bs-target="#PersonJoin">일반 회원 가입</button>
+            <button type="button" class="big-btn reversed-btn" data-bs-toggle="modal" data-bs-target="#BusinessJoin">사업자 회원 가입</button>
         </div>
 
         <div class="introBox">

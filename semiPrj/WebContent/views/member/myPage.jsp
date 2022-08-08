@@ -5,60 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>낭만캠핑</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/memberCommon.css" type="text/css">
 <style>
-
-    .outer-wrapper {
-        width: 80%;
-        margin: auto;
-    }
-
-    .loginBox {
-        width: 600px;
-        margin: auto;
-        margin-top: 100px;
-        border: 1px solid #FFA000;
-        border-radius: 0.5rem;
-        padding: 50px;
-    }
-
-    .btn-basic {
-        text-align: center;
-        vertical-align: middle;
-        cursor: pointer;
-        border: 1px solid transparent;  
-        padding: 0.375rem 0.75rem;
-        border-radius: 0.25rem;
-        background-color: white;
-        border-color: #F57C00;
-        color: #F57C00;
-    }
-
-    .btn-basic:hover {
-        background-color: #F57C00;
-        color: white;
-    }
-
-    .a-basic {
-        text-decoration: none;
-        color: black;
-        padding: 5px;
-    }
-
-    .a-basic:hover {
-        color: #FF5722;
-    }
-
-    .location-center {
-        text-align: center;
-    }
-
-    .location-right {
-        text-align: end;
-    }
-
-    h3 {
-        color: #E64A19;
-    }
 
 </style>
 </head>
@@ -95,14 +43,14 @@
                 </div>
 
                 <div class="location-center">
-                    <button type="reset" class="btn-basic">초기화</button>
-                    <button type="submit" class="btn-basic">수정완료</button>
+                    <button type="reset" class="basic-btn">초기화</button>
+                    <button type="submit" class="basic-btn">수정완료</button>
                 </div>
                 <div class="location-right mt-3">
-                    <button type="reset" class="btn-basic" data-bs-toggle="modal" data-bs-target="#ChangePwd">비밀번호 변경하기</button>
+                    <button type="reset" class="reversed-btn" data-bs-toggle="modal" data-bs-target="#ChangePwd">비밀번호 변경하기</button>
                 </div>
                 <div class="location-right mt-4">
-                    <a href="" class="a-basic" data-bs-toggle="modal" data-bs-target="#CheckForm">회원탈퇴</a>
+                    <a href="" class="basic-a" data-bs-toggle="modal" data-bs-target="#CheckForm">회원탈퇴</a>
                 </div>
             </form>
         </div>
