@@ -1,0 +1,66 @@
+*{  
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    /* border: 1px solid gray; */
+}
+
+.container{
+    width: 1500px;
+    padding: 0;
+}
+
+.review-title{
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
+.camp-review-result{
+    display: flex;
+    flex-direction: row;
+    height: 200px;
+    justify-content: left;
+    align-items: center
+}
+
+.camp-review-scope{
+    font-size: 2rem;
+    margin-right: 10px;
+}
+
+.camp-review-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: auto;
+    
+}
+
+/* .camp-review>*{
+    margin: 3px;
+} */
+.camp-review{
+    width: 90%;
+    margin: 5px;
+    border-bottom: 3px solid rgb(220, 230, 235);
+}
+.star-scope{
+    width: 150px;
+}
+.name-date{
+    width: 150px;
+}
+.star, .star-scope{
+    color: rgb(251, 136, 22);
+}
+.review-text{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

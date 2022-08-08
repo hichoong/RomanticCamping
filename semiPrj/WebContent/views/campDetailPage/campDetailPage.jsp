@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <style>
     <%@ include file="/resource/css/gsCampD.css" %>
+    <%@ include file="/resource/css/gsCampReview.css" %>
 </style>
 
 </head>
@@ -16,7 +17,7 @@
 
 	<%@ include file="/views/common/header.jsp" %>
 
-	<h1>여기다가 이제 상세 페이지</h1>
+	<h1>여기다가 이제 상세 페이지123</h1>
 	
 	
 	
@@ -44,7 +45,7 @@
                     </div>
                         
                     <!-- The slideshow/carousel -->
-                    <div class="carousel-inner" style="width: 1100px;">
+                    <div class="carousel-inner" style="width: 1150px; " >
                         <div class="carousel-item active">
                                 <img src="/semiPrj/resource/img/gsTest1.jpg" class="img-thumbnail" alt="Los Angeles" class="d-block" style="width:100%; height: 100%;">
                         </div>
@@ -158,43 +159,31 @@
         <div id="d6">
             <div id="d6-2d" class="display-5"> 캠핑장 구역상세</div>
             
-                <div id="d6-d">
-                    <!-- Carousel -->
-                    <div id="demo" class="carousel slide" data-bs-ride="carousel">
-
-                        <!-- Indicators/dots -->
-                        <div class="carousel-indicators" >
-                            <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-                            <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-                            <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-                        </div>
-                    
-                        <!-- The slideshow/carousel -->
-                        <div  class="carousel-inner" style="width: 1100px;" >
-
-                            <div class="carousel-item active" >
-                                <img src="/semiPrj/resource/img/gsTest1.jpg" alt="Los Angeles" class="d-block w-100">
-                                <div class="carousel-caption">
-                                    <h3 style="margin-bottom: 50px;">구역이름</h3>
-                                </div>
-                            </div>
-
-                            <div class="carousel-item">
-                                <img src="/semiPrj/resource/img/gsTest2.jpg" alt="Chicago" class="d-block w-100">
-                                <div class="carousel-caption">
-                                    <h3 style="margin-bottom: 50px;">구역이름</h3>
-                                </div>
-                            </div>
-
-                            <div class="carousel-item">
-                                <img src="/semiPrj/resource/img/gsTest3.jpg" alt="New York" class="d-block w-100">
-                                <div class="carousel-caption">
-                                    <h3 style="margin-bottom: 50px;">구역이름</h3>
-                            </div>
-                        </div>
-                    
+            <div id="d6-d">
+                
+                <!-- Carousel -->
+                <div id="demo" class="carousel " data-bs-ride="carousel">
+        
+                    <!-- Indicators/dots -->
+                    <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
                     </div>
-
+                        
+                    <!-- The slideshow/carousel -->
+                    <div class="carousel-inner" style="width: 1100px;">
+                        <div class="carousel-item active">
+                                <img src="/semiPrj/resource/img/gsTest1.jpg" class="img-thumbnail" alt="Los Angeles" class="d-block" style="width:100%; height: 100%;">
+                        </div>
+                        <div class="carousel-item">
+                                <img  src="/semiPrj/resource/img/gsTest2.jpg" class="img-thumbnail" alt="Chicago" class="d-block" style="width:100%">
+                        </div>
+                        <div class="carousel-item">
+                                <img  src="/semiPrj/resource/img/gsTest3.jpg" class="img-thumbnail" alt="New York" class="d-block" style="width:100%">
+                        </div>
+                    </div>
+                        
                     <!-- Left and right controls/icons -->
                     <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon"></span>
@@ -203,7 +192,6 @@
                     <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
                         <span class="carousel-control-next-icon"></span>
                     </button>
-
                 </div>
 
             </div>
@@ -243,7 +231,85 @@
 
 
 
+		
+	<!-- 리뷰페이지 -->
+    <div id="d9">
+    <div class="container">
+        
+        <div class="review-title">
+            review
+        </div>
 
+        <section>
+                
+            <div class="camp-review-result">
+                <div class="camp-review-scope">
+                    <span class="star">★</span>
+                    <span class="star-scope-avg">4.16</span>
+                </div>
+                <div>리뷰 수</div>
+            </div>
+
+            <div class="camp-review-list">
+                <div class="camp-review">
+                    <div class="star-scope">
+                        ★★★★★
+                    </div>
+                    <div class="name-date">
+                        김 **  2022.08.07
+                    </div>
+                    <div class="review-text">
+                        캠핑장이 좋네요 짱짱 굿 
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="camp-review-list">
+                <div class="camp-review">
+                    <div class="star-scope">
+                        ★★★★★
+                    </div>
+                    <div class="name-date">
+                        김 **  2022.08.07
+                    </div>
+                    <div class="review-text">
+                        캠핑장이 좋네요 짱짱 굿 
+                    </div>
+                </div>
+            </div>
+            <div class="camp-review-list">
+                <div class="camp-review">
+                    <div class="star-scope">
+                        ★★★★★
+                    </div>
+                    <div class="name-date">
+                        김 **  2022.08.07
+                    </div>
+                    <div class="review-text">
+                        캠핑장이 좋네요 짱짱 굿 
+                    </div>
+                </div>
+            </div>
+            <div class="camp-review-list">
+                <div class="camp-review">
+                    <div class="star-scope">
+                        ★★★★★
+                    </div>
+                    <div class="name-date">
+                        김 **  2022.08.07
+                    </div>
+                    <div class="review-text">
+                        캠핑장이 좋네요 짱짱 굿 
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+	</div>
+		
 
 
 

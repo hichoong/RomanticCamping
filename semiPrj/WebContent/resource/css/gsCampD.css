@@ -28,6 +28,7 @@
         /* border-bottom: 10px solid rgb(241, 208, 125); */
     }
 
+
     #d2, #d3, #d4 {
         height: 500px;
         /* border-bottom: 10px solid rgb(241, 208, 125); */
@@ -68,7 +69,16 @@
 
 
     #d1{
-        padding-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 1200px;
+        height: 700px;
+    }
+
+    #d1>div{
+        border: 2px solid darkred;
+        height: 640px;
     }
 
     /* #d1-1d{
@@ -257,7 +267,7 @@
         height: 640px;
     }
 
-    #d6-1, #d6-3{
+    /* #d6-1, #d6-3{
         width: 100px;
     }
 
@@ -265,7 +275,7 @@
         margin-left: 25px;
         margin-right: 25px;
         width: 850px;
-    }
+    } */
 
 
     #d6-2d{
