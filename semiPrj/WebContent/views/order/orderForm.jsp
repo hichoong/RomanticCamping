@@ -3,36 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.84.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <title>상품 예약</title>
-    <!-- Bootstrap core CSS -->
-	<link href="../../resource/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-    <!-- Custom styles for this template -->
-    <link href="../../resource/css/form-validation.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </head>
 <body>
 	<!--헤더  -->
 	<%@ include file="/views/common/header.jsp" %>
+	
 	<!--전체 컨테이너  -->
 	<div class="container alert-secondary" >
 		<main>
@@ -40,8 +18,6 @@
 		      <h1>결제하기</h1>
 		      <p class="lead"></p>
 		    </div>
-		
-		<form class="needs-validation" novalidate>
 		    <div class="row g-5">
 		      <div class="col-md-5 col-lg-4 order-md-last">
 		        <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -91,56 +67,11 @@
 		        </form>
 		      
 		       <hr class="my-4">
-		      
-		          <div class="my-3 alert-light">
-		      		<h4 class="mb-3" >결제방법</h4>
-		            <div class="form-check">
-		              <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
-		              <label class="form-check-label" for="credit">카드결제</label>
-		            </div>
-		            <div class="form-check">
-		              <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
-		              <label class="form-check-label" for="debit">계좌이체</label>
-		            </div>  
-		          </div>
-					<hr>
-		          <div class="row gy-3 ">
-		            <div class="col-md-6">
-		              <label for="cc-name" class="form-label">Name on card</label>
-		              <input type="text" class="form-control" id="cc-name" placeholder="" required>
-		              <small class="text-muted">Full name as displayed on card</small>
-		              <div class="invalid-feedback">
-		                Name on card is required
-		              </div>
-		            </div>
-		
-		            <div class="col-md-6">
-		              <label for="cc-number" class="form-label">Credit card number</label>
-		              <input type="text" class="form-control" id="cc-number" placeholder="" required>
-		              <div class="invalid-feedback">
-		                Credit card number is required
-		              </div>
-		            </div>
-		
-		            <div class="col-md-3">
-		              <label for="cc-expiration" class="form-label">Expiration</label>
-		              <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-		              <div class="invalid-feedback">
-		                Expiration date required
-		              </div>
-		            </div>
-		
-		            <div class="col-md-3">
-		              <label for="cc-cvv" class="form-label">CVV</label>
-		              <input type="text" class="form-control" id="cc-cvv" placeholder="" required >
-		              <div class="invalid-feedback">
-		                Security code required
-		              </div>
-		            </div>
-		          </div>  
+		 
 		      </div>
 		      <!--사용자 정보  -->
 		      <div class="col-md-7 col-lg-8" >
+		     	 <form class="needs-validation" novalidate>
 		          <div class="row g-3 alert-light">
 		        	<h4 class="mb-3 " >사용자 정보</h4>
 		            <div class="col-12">
@@ -212,6 +143,53 @@
 		              </div>
 		          </div>
 		
+					<div class="my-3 alert-light">
+		      		<h4 class="mb-3" >결제방법</h4>
+		            <div class="form-check">
+		              <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+		              <label class="form-check-label" for="credit">카드결제</label>
+		            </div>
+		            <div class="form-check">
+		              <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
+		              <label class="form-check-label" for="debit">계좌이체</label>
+		            </div>  
+		          </div>
+					<hr>
+		          <div class="row gy-3 ">
+		            <div class="col-md-6">
+		              <label for="cc-name" class="form-label">Name on card</label>
+		              <input type="text" class="form-control" id="cc-name" placeholder="" required>
+		              <small class="text-muted">Full name as displayed on card</small>
+		              <div class="invalid-feedback">
+		                Name on card is required
+		              </div>
+		            </div>
+		
+		            <div class="col-md-6">
+		              <label for="cc-number" class="form-label">Credit card number</label>
+		              <input type="text" class="form-control" id="cc-number" placeholder="" required>
+		              <div class="invalid-feedback">
+		                Credit card number is required
+		              </div>
+		            </div>
+		
+		            <div class="col-md-3">
+		              <label for="cc-expiration" class="form-label">Expiration</label>
+		              <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+		              <div class="invalid-feedback">
+		                Expiration date required
+		              </div>
+		            </div>
+		
+		            <div class="col-md-3">
+		              <label for="cc-cvv" class="form-label">CVV</label>
+		              <input type="text" class="form-control" id="cc-cvv" placeholder="" required >
+		              <div class="invalid-feedback">
+		                Security code required
+		              </div>
+		            </div>
+		          </div>  
+		          
 		          <hr class="my-4">
 		
 		          <button class="w-100 btn btn-primary btn-lg btn btn-danger" type="submit" >결제하기</button>
