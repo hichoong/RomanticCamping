@@ -1,6 +1,22 @@
 .outer-wrapper {
     width: 80%;
     margin: auto;
+    min-height: 60vh;
+}
+
+.outer {
+  padding-left: 150px;
+  min-height: 60vh;
+}
+
+.contentBox {
+    width: 80%;
+    min-width: 600px;
+    margin: auto;
+    margin-top: 30px;
+    border: 1px solid #FFA000;
+    border-radius: 0.5rem;
+    padding: 20px;
 }
 
 .basic-btn {

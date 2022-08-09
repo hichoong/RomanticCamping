@@ -32,28 +32,27 @@
 
         <div class="loginBox">
 
-            <h3 class="mb-4">로그인</h3>
+            <h3 class="mb-4">비밀번호 찾기</h3>
 
             <form action="" method="post">
-                <div class="mb-4 mt-4">
-                  <label for="id" class="form-label">아이디:</label>
-                  <input type="text" class="form-control" id="id" placeholder="아이디를 입력하세요." name="id">
-                </div>
-                <div class="mb-3">
-                  <label for="pwd" class="form-label">비밀번호:</label>
-                  <input type="password" class="form-control" id="pwd" placeholder="비밀번호를 입력하세요." name="pwd">
-                </div>
-                <div class="form-check mb-3">
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" name="remember"> 아이디 저장
-                  </label>
-                </div>
+              <div class="mb-4 mt-4">
+                <label for="name" class="form-label">이름:</label>
+                <input type="text" class="form-control" id="name" placeholder="이름를 입력하세요." name="name">
+              </div>
+              <div class="mb-3">
+                <label for="id" class="form-label">아이디:</label>
+                <input type="text" class="form-control" id="text" placeholder="아이디를 입력하세요." name="phone">
+              </div>
+              <div class="mb-3">
+                <label for="phone" class="form-label">핸드폰 번호:</label>
+                <input type="tel" class="form-control" id="phone" placeholder="핸드폰 번호를 입력하세요." name="phone">
+              </div>
                 <div class="location-right">
-                    <button type="submit" class="basic-btn">로그인</button>
+                    <button type="submit" class="basic-btn">비밀번호 찾기</button>
                 </div>
                 <div class="sub-btn-list">
                     <a href="<%=contextPath%>/views/member/findIdForm.jsp" class="basic-a">아이디 찾기</a> |
-                    <a href="<%=contextPath%>/views/member/findPwdForm.jsp" class="basic-a">비밀번호 찾기</a> |
+                    <a href="<%=contextPath%>/views/member/loginForm.jsp" class="basic-a">로그인하기</a> |
                     <a href="<%=contextPath%>/views/member/joinForm.jsp" class="basic-a">회원가입</a>
                 </div>
               </form>

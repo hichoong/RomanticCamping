@@ -35,7 +35,6 @@
     <%@ include file="/views/common/header.jsp" %>
 
     <div class="outer-wrapper">
-
         <div class="joinBox">
             <button type="button" class="big-btn reversed-btn" data-bs-toggle="modal" data-bs-target="#PersonJoin">일반 회원 가입</button>
             <button type="button" class="big-btn reversed-btn" data-bs-toggle="modal" data-bs-target="#BusinessJoin">사업자 회원 가입</button>
@@ -46,7 +45,6 @@
             <p> 캠핑장을 등록하실 고객은 사업자 회원 가입을 선택하시면 됩니다.</p>
 
         </div>
-
     </div>
 
     <div class="modal fade" id="PersonJoin" data-bs-backdrop="static" data-bs-keyboard="false">
@@ -145,6 +143,8 @@
             </div>
         </div>
     </div>
+
+    <%@ include file="/views/common/footer.jsp" %>
 
 </body>
 </html>
