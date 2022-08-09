@@ -52,14 +52,16 @@
                     <button type="submit" class="basic-btn">로그인</button>
                 </div>
                 <div class="sub-btn-list">
-                    <a href="" class="basic-a">아이디 찾기</a> |
-                    <a href="" class="basic-a">비밀번호 찾기</a> |
-                    <a href="" class="basic-a">회원가입</a>
+                    <a href="<%=contextPath%>/views/member/findIdForm.jsp" class="basic-a">아이디 찾기</a> |
+                    <a href="<%=contextPath%>/views/member/findPwdForm.jsp" class="basic-a">비밀번호 찾기</a> |
+                    <a href="<%=contextPath%>/views/member/joinForm.jsp" class="basic-a">회원가입</a>
                 </div>
               </form>
         </div>
 
     </div>
+
+    <%@ include file="/views/common/footer.jsp" %>
 
 </body>
 </html>

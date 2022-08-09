@@ -7,16 +7,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/memberCommon.css" type="text/css">
 <title>낭만캠핑</title>
 <style>
-    .contentBox {
-        width: 80%;
-        min-width: 600px;
-        margin: auto;
-        border: 1px solid #FFA000;
-        border-radius: 0.5rem;
-        padding: 20px;
-        margin-bottom: 15px;
-    }
-
+    
     .testImg {
         width: 150px;
         height: 150px;
@@ -99,6 +90,7 @@
         </div>
     </div>
 
-
+    <%@ include file="/views/common/footer.jsp" %>
+    
 </body>
 </html>
