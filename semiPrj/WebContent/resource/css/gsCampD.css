@@ -6,25 +6,21 @@
         margin-top: 30px;
     }
 
-    #detail-outer{
-        width: 1500px;
-        height: 4500px;
-        margin-left: 100px;
-        /* border: 1px solid red; */
-    }
+ 
 
     /* 전체적인 크기 잡기 */
     #detail-outer{
         width: 1500px;
         height: 4500px;
-        margin-left: 100px;
+        margin-left: 100px; 
         /* border: 3px solid brown; */
     }
 
     .cdetail-top-line{
-        width: 1500px;
+        width: 1200px;
         height: 8px;
         border-top: 15px solid rgb(240, 225, 203); /*- 틀잡기 확인용*/
+        margin-bottom: 50px;
     }
 
 
