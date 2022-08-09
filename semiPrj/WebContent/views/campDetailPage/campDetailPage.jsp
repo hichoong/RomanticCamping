@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,12 +25,12 @@
 	
 	
 	
-    <div class="cdetail-top-line"></div>
 
     <div id="detail-outer">
 
+	    <div class="cdetail-top-line"></div>
         <header>
-            <div id="cd-back"><button type="button" id="btn-back" name="btn-back" class="btn btn-outline-warning" ><</button></div>
+            <div id="cd-back"><button type="button" id="btn-back" name="btn-back" class="btn btn-outline-warning" onclik="history.back()" ><</button></div>
             <div id="cd-name"><p class="btn btn-outline-warning" >낭 만 캠 핑</p></div>
             <div id="cd-name2"></div>
         </header>
@@ -47,13 +51,13 @@
                     <!-- The slideshow/carousel -->
                     <div class="carousel-inner" style="width: 1150px; " >
                         <div class="carousel-item active">
-                                <img src="/semiPrj/resource/img/gsTest1.jpg" class="img-thumbnail" alt="Los Angeles" class="d-block" style="width:100%; height: 100%;">
+                                <img src="<%=contextPath %>/resource/img/gsTest1.jpg" class="img-thumbnail" alt="Los Angeles" class="d-block" style="width:100%; height: 100%;">
                         </div>
                         <div class="carousel-item">
-                                <img  src="/semiPrj/resource/img/gsTest2.jpg" class="img-thumbnail" alt="Chicago" class="d-block" style="width:100%">
+                                <img  src="<%=contextPath %>/resource/img/gsTest2.jpg" class="img-thumbnail" alt="Chicago" class="d-block" style="width:100%">
                         </div>
                         <div class="carousel-item">
-                                <img  src="/semiPrj/resource/img/gsTest3.jpg" class="img-thumbnail" alt="New York" class="d-block" style="width:100%">
+                                <img  src="<%=contextPath %>/resource/img/gsTest3.jpg" class="img-thumbnail" alt="New York" class="d-block" style="width:100%">
                         </div>
                     </div>
                         
@@ -118,22 +122,22 @@
                     <div id="d4-2-1">
                         <div class="info-title">기본시설</div>
                         <div class="fac-content-outer">
-                            <li class="fac-content"><img width="50" height="50" src="" alt=""><br>화장실</li>
-                            <li class="fac-content"><img width="50" height="50" src="" alt=""><br>화장실</li>
-                            <li class="fac-content"><img width="50" height="50" src="" alt=""><br>화장실</li>
-                            <li class="fac-content"><img width="50" height="50" src="" alt=""><br>화장실</li>
-                            <li class="fac-content"><img width="50" height="50" src="" alt=""><br>화장실</li>
+                            <li class="fac-content"><img width="50" height="50" src="<%=contextPath %>/resource/img/gsTest1.jpg" alt=""><br>화장실</li>
+                            <li class="fac-content"><img width="50" height="50" src="<%=contextPath %>/resource/img/gsTest1.jpg" alt=""><br>화장실</li>
+                            <li class="fac-content"><img width="50" height="50" src="<%=contextPath %>/resource/img/gsTest1.jpg" alt=""><br>화장실</li>
+                            <li class="fac-content"><img width="50" height="50" src="<%=contextPath %>/resource/img/gsTest1.jpg" alt=""><br>화장실</li>
+                            <li class="fac-content"><img width="50" height="50" src="<%=contextPath %>/resource/img/gsTest1.jpg" alt=""><br>화장실</li>
                         </div>
                     </div>
                     <div style="border-top: 5px dashed darkkhaki; margin-bottom:20px;"></div>
                     <div id="d4-2-2">
                         <div class="info-title">부가시설</div>
                         <div class="fac-content-outer">
-                            <li class="fac-content"><img width="50" height="50" src="" alt=""><br>화장실</li>
-                            <li class="fac-content"><img width="50" height="50" src="" alt=""><br>화장실</li>
-                            <li class="fac-content"><img width="50" height="50" src="" alt=""><br>화장실</li>
-                            <li class="fac-content"><img width="50" height="50" src="" alt=""><br>화장실</li>
-                            <li class="fac-content"><img width="50" height="50" src="" alt=""><br>화장실</li>
+                            <li class="fac-content"><img width="50" height="50" src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""><br>화장실</li>
+                            <li class="fac-content"><img width="50" height="50" src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""><br>화장실</li>
+                            <li class="fac-content"><img width="50" height="50" src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""><br>화장실</li>
+                            <li class="fac-content"><img width="50" height="50" src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""><br>화장실</li>
+                            <li class="fac-content"><img width="50" height="50" src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""><br>화장실</li>
                         </div>
                     </div>
                 </div>
@@ -175,13 +179,13 @@
                     <!-- The slideshow/carousel -->
                     <div class="carousel-inner" style="width: 1100px;">
                         <div class="carousel-item active">
-                                <img src="/semiPrj/resource/img/gsTest1.jpg" class="img-thumbnail" alt="Los Angeles" class="d-block" style="width:100%; height: 100%;">
+                                <img  src="<%=contextPath %>/resource/img/gsTest1.jpg" class="img-thumbnail" alt="Los Angeles" class="d-block" style="width:100%; height: 100%;">
                         </div>
                         <div class="carousel-item">
-                                <img  src="/semiPrj/resource/img/gsTest2.jpg" class="img-thumbnail" alt="Chicago" class="d-block" style="width:100%">
+                                <img  src="<%=contextPath %>/resource/img/gsTest2.jpg" class="img-thumbnail" alt="Chicago" class="d-block" style="width:100%">
                         </div>
                         <div class="carousel-item">
-                                <img  src="/semiPrj/resource/img/gsTest3.jpg" class="img-thumbnail" alt="New York" class="d-block" style="width:100%">
+                                <img  src="<%=contextPath %>/resource/img/gsTest3.jp" class="img-thumbnail" alt="New York" class="d-block" style="width:100%">
                         </div>
                     </div>
                         
@@ -312,14 +316,23 @@
         </div>
 		
 
+	
 
 
 
+		<div class="cdetail-top-line"></div>
+
+
+    </div><!-- 아우터 끝  -->
+
+	<%@include file="/views/common/footer.jsp" %>
 
 
 
-    </div>
-
+	
+	
+	
+	
 	<!-- The Modal -->
 	<div class="modal" id="camp-policy">
 	  <div class="modal-dialog modal-xl">
@@ -352,7 +365,8 @@
 	    </div>
 	  </div>
 	</div>
-
+	
+	
 
 </body>
 </html>

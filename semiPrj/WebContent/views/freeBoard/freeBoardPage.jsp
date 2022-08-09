@@ -6,7 +6,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>자유게시판</title>
 <style>
 	
 	 <%@ include file="/resource/css/gsFreeB.css" %>
@@ -15,6 +15,8 @@
 </head>
 <body>
 	<%@ include file="/views/common/header.jsp" %>
+	
+	<h1>여기다가 자유게시판 </h1>
 	
 	<div id="freeboard-outer">
 
@@ -25,7 +27,7 @@
 
 				<div class ="menu-items">
 					<a href="누르면 연결될 상세페이지">
-						<div id="fb1-img-outer"><img src="상품이미지" alt=""></div>
+						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest3.jpg" alt=""></div>
 						<div id="fb1-comment-outer" >
 							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
 							<p id="fb1-subtitle1">서울 종로구 관철동</p>
@@ -36,7 +38,7 @@
 
 				<div class ="menu-items">
 					<a href="누르면 연결될 상세페이지">
-						<div id="fb1-img-outer"><img src="상품이미지" alt=""></div>
+						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""></div>
 						<div>
 							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
 							<p id="fb1-subtitle1">서울 종로구 관철동</p>
@@ -47,7 +49,7 @@
 
 				<div class ="menu-items">
 					<a href="누르면 연결될 상세페이지">
-						<div id="fb1-img-outer"><img src="상품이미지" alt=""></div>
+						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""></div>
 						<div>
 							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
 							<p id="fb1-subtitle1">서울 종로구 관철동</p>
@@ -58,7 +60,7 @@
 
 				<div class ="menu-items">
 					<a href="누르면 연결될 상세페이지">
-						<div id="fb1-img-outer"><img src="상품이미지" alt=""></div>
+						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest1.jpg" alt=""></div>
 						<div>
 							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
 							<p id="fb1-subtitle1">서울 종로구 관철동</p>
@@ -69,7 +71,7 @@
 
 				<div class ="menu-items">
 					<a href="누르면 연결될 상세페이지">
-						<div id="fb1-img-outer"><img src="상품이미지" alt=""></div>
+						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest3.jpg" alt=""></div>
 						<div>
 							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
 							<p id="fb1-subtitle1">서울 종로구 관철동</p>
@@ -80,7 +82,7 @@
 
 				<div class ="menu-items">
 					<a href="누르면 연결될 상세페이지">
-						<div id="fb1-img-outer"><img src="상품이미지" alt=""></div>
+						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest1.jpg" alt=""></div>
 						<div>
 							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
 							<p id="fb1-subtitle1">서울 종로구 관철동</p>
@@ -91,7 +93,7 @@
 
 				<div class ="menu-items">
 					<a href="누르면 연결될 상세페이지">
-						<div id="fb1-img-outer"><img src="상품이미지" alt=""></div>
+						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""></div>
 						<div>
 							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
 							<p id="fb1-subtitle1">서울 종로구 관철동</p>
@@ -102,7 +104,7 @@
 
 				<div class ="menu-items">
 					<a href="누르면 연결될 상세페이지">
-						<div id="fb1-img-outer"><img src="상품이미지" alt=""></div>
+						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""></div>
 						<div>
 							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
 							<p id="fb1-subtitle1">서울 종로구 관철동</p>
@@ -113,7 +115,7 @@
 
 				<div class ="menu-items">
 					<a href="누르면 연결될 상세페이지">
-						<div id="fb1-img-outer"><img src="상품이미지" alt=""></div>
+						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""></div>
 						<div>
 							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
 							<p id="fb1-subtitle1">서울 종로구 관철동</p>
@@ -212,7 +214,7 @@
 	
 	<!-- 중고거래 작성 모달 The Modal -->
 	<div class="modal" id="tradeWrite" data-bs-backdrop="static" data-bs-keyboard="false">
-	  <div class="modal-dialog  modal-xl">
+	  <div class="modal-dialog modal-xl modal-dialog-centered">
 	    <div class="modal-content">
 	
 	      <!-- Modal Header -->
@@ -265,7 +267,7 @@
 	
 	<!-- 자유게시판 작성 모달 The Modal -->
 	<div class="modal" id="freeBoardWrite" data-bs-backdrop="static" data-bs-keyboard="false">
-	  <div class="modal-dialog  modal-xl">
+	  <div class="modal-dialog modal-xl modal-dialog-centered">
 	    <div class="modal-content">
 	
 	      <!-- Modal Header -->
