@@ -7,24 +7,35 @@
 <title>고객센터</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 <style>
-	h2 {
+	h2, h3 {
 		text-align: center;
 		padding-bottom: 30px;
 	}
-	h3 {
-		text-align: center;
-		padding: 30px;
-	}
-	table {
+	#board {
 		text-align : center;
 		background-color: white;
 		margin: auto;
-		padding: auto;
-		}
-		#section1, #section2{
+		width: 900px;
+	}
+	#section1, #section2{
 			background-color: #f8f8f8;
 			padding: 30px;
-		}
+			margin: auto;
+			width: 80%;
+			height: 80%;
+
+	}
+	#accordionExample{
+		margin: auto;
+		width: 700px;
+		
+	}
+	#btn{
+	position: relative;
+	top: 10px;
+	left: 830px;
+	}
+	
       
 </style>
 </head>
@@ -37,6 +48,7 @@
 	<div id="section1">
 
 		<h3>자주 묻는 질문</h3>
+		
 		<!-- 아코디언 -->
 		<div class="accordion" id="accordionExample">
 			<div class="accordion-item">
@@ -84,7 +96,7 @@
 		</div>
 
 		<div id="section2">
-			<table class="table table-hover">
+			<table class="table table-hover" id="board">
 					<thead>
 					<tr>
 						<th>번호</th>
@@ -132,9 +144,10 @@
 					</tr>
 					</tbody>
 			</table>
+			<button type="button" class="btn btn-warning" id="btn">작성하기</button>
 		</div>
 	
-	<button type="button" class="btn btn-warning" style="position: absolute; right: 0;">작성하기</button>
+	
 	
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 	
