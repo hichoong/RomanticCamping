@@ -18,7 +18,7 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<link rel="stylesheet" href="../../resource/css/SjyCss.css">
+<link rel="stylesheet" href="/resource/css/SjyCss.css">
 
 <style type="text/css">
 	
@@ -28,72 +28,101 @@
 </head>
 
 <body>
-	<%@ include file="/views/common/header.jsp" %>
-	<%@ include file="../../views/buisness/sidebar.jsp" %>
+	<%@ include file="/views/buisness/bsHeader.jsp" %>
+	<%@ include file="/views/buisness/sidebar.jsp" %>
 		<main class="navbar navbar-expand-sm ">
-			
-			<div id="content" >
-				
-
-					<form action="" method="post">
-						<h2>캠핑장 등록</h2>
-						<hr>
-                        <div class="md-3" >
+		
+			<div id="content">
+		
+		
+				<form action="<%=contextPath %>/business/insert" method="post">
+					<h2>캠핑장 등록</h2>
+					<hr>
+					<div style="overflow-x: hidden; width: 100%; height: 60%;">
+		
+						<div class="md-3">
 							<label for="campName" class="form-label">* 이름:</label>
-							<input type="text" class="form-control" id="campName" placeholder="캠핑장 이름 입력" name="campName" required>
+							<input type="text" class="form-control" id="campName" placeholder="캠핑장 이름 입력" name="campName"
+								required>
 						</div>
-
-						<div class="md-3 " >
+		
+						<div class="md-3 ">
 							<label for="campAdd" class="form-label">* 주소:</label>
-						
-								<select name="addSido1"  class="form-select" id="addSido1"></select>
-						
-						
-								<select name="addGugun1"  class="form-select" id="addGugun1"></select>    
+		
+							<select name="addSido1" class="form-select" id="addSido1"></select>
+							<select name="addGugun1" class="form-select" id="addGugun1"></select>
 						</div>
-										
-				
-
-						<div class="md-3" >
+		
+		
+		
+						<div class="md-3">
 							<label for="campDetailAdd">상세주소:</label>
-							<textarea class="form-control" rows="3" id="campDetailAdd" placeholder="상세주소 입력" name="campDetailAdd"></textarea>
+							<textarea class="form-control" rows="3" id="campDetailAdd" placeholder="상세주소 입력"
+								name="campDetailAdd"></textarea>
 						</div>
-
-						<div class="md-3" >
+		
+						<div class="md-3">
 							<label for="phoneNum" class="form-label">* 연락처:</label>
-							<input type="text" class="form-control" id="phoneNum" placeholder="캠핑장 연락처 입력" name="phoneNum" required>
+							<input type="text" class="form-control" id="phoneNum" placeholder="캠핑장 연락처 입력" name="phoneNum"
+								required>
 						</div>
-
-						<div class="md-3" >
+		
+						<div class="md-3">
 							<label for="campIntro" class="form-label">* 시설소개:</label>
 							<input type="text" class="form-control" id="campIntro" placeholder="시설소개" name="campIntro" required>
 						</div>
 
-
-
-						<div class="md-3" >
-							<label for="campRefund" class="form-label">* 환불규정:</label>
-							<input type="text" class="form-control" id="campRefund" placeholder="환불규정" name="campRefund" required>
+						<div class="md-3">
+							<label for="campIntro" class="form-label">* 시설현황:</label>
+							<input type="text" class="form-control" id="campIntro"
+							placeholder="와이파이 전기 온수 반려견동반 매점 장작판매 운동자 산책로 물놀이장" name="campIntro" required>
 						</div>
 
+						<div class="md-3">
+							<label for="campIntro" class="form-label">* 테마:</label>
+							<input type="text" class="form-control" id="campIntro" 
+							placeholder="해변 숲 섬 호수 도심 계곡 산 강" name="campIntro" required>
+						</div>
+		
+						<div class="md-3">
+							<label for="campRefund" class="form-label">* 환불규정:</label>
+							<input type="text" class="form-control" id="campRefund" placeholder="환불규정" name="campRefund"
+								required>
+						</div>
+		
 						<div class="mb-3">
 							<label for="campRepImg" class="form-label">* 대표이미지:</label>
 							<input class="form-control" type="file" name="campRepImg" id="campRepImg">
 						</div>
-					
-						<div class="md-3" >
+		
+						<div class="mb-3">
+							<label for="formFileMultiple" class="form-label">구역 이미지(※최대 _개)</label>
+							<input class="form-control" type="file" id="formFileMultiple" multiple>
+						</div>
+						<div class="md-3">
 							<label for="" class="form-label">* 등록일:</label>
-							<input type="datetime-local" class="form-control" id="" placeholder="등록일" name="" required  value="<%=toDay%>" disabled>
+							<input type="datetime-local" class="form-control" id="" placeholder="등록일" name="" required
+								value="<%=toDay%>" disabled>
 						</div>
-					
-						<div id="end"> 
-							<input type="submit" value="등록" id="send" class="rounded">
+						<div class="md-3">
+							<label for="" class="form-label">* 등록일:</label>
+							<input type="datetime-local" class="form-control" id="" placeholder="등록일" name="" required
+								value="<%=toDay%>" disabled>
 						</div>
-
-
-						</form>
-				</div>
-			
+						<div class="md-3">
+							<label for="" class="form-label">* 등록일:</label>
+							<input type="datetime-local" class="form-control" id="" placeholder="등록일" name="" required
+								value="<%=toDay%>" disabled>
+						</div>
+		
+						<div id="end">
+							<input type="submit" value="등록요청" id="send" class="rounded">
+						</div>
+					</div>
+		
+				</form>
+			</div>
+		
 		</main>
 
 		<%@ include file="/views/common/footer.jsp" %>
