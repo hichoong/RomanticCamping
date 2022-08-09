@@ -65,7 +65,10 @@
                     </span>
                 </div>
 
-                <input type="submit" value="리뷰 등록하기" id="review-insert" class="btn btn-warning">
+                <div id="review-update-buttons">
+                    <input type="submit" value="리뷰 수정하기" id="review-update" class="btn btn-warning">
+                    <button class="btn btn-warning" id="review-delete">삭제하기</button>
+                </div>
                 
             </form>
 
