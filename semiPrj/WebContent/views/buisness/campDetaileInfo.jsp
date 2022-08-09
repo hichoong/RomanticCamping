@@ -6,7 +6,7 @@
 <%
 	//오늘 날짜 구하기
 	Date today = new Date();
-	System.out.println(today);
+	
 	
 	SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 	SimpleDateFormat time = new SimpleDateFormat("HH:mm");
@@ -15,13 +15,13 @@
 	
 	//등록일 기본값 세팅
 	String toDay = d+"T"+t;
-	System.out.println(toDay);
+	
 	
 	String data = "데이터가져오기";
 %>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link rel="stylesheet" href="../../resource/css/SjyCss.css">
+<link rel="stylesheet" href="/resource/css/SjyCss.css">
 <style type="text/css">
 
 	
@@ -31,8 +31,8 @@
 </head>
 
 <body>
-	<%@ include file="/views/common/header.jsp" %>
-	<%@ include file="../../views/buisness/sidebar.jsp" %>
+	<%@ include file="/views/buisness/bsHeader.jsp" %>
+	<%@ include file="/views/buisness/sidebar.jsp" %>
 		<main class="navbar navbar-expand-sm ">
 			
 			<div id="content" >
@@ -84,8 +84,8 @@
 					
 					
 						<div id="end"> 
-							<button  id="upDate" >수정하기</button>
-							<button id="delete"  onclick="locaton.href='#'">삭제하기</button>
+							<button  id="upDate" >수정요청</button>
+							<button id="delete"  onclick="locaton.href='#'">삭제요청</button>
 						</div>
 
 
