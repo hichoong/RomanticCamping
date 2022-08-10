@@ -26,17 +26,17 @@
 	
 	
 
-    <div id="detail-outer">
+    <div id="detail-outer container">
 
-	    <div class="cdetail-top-line"></div>
-        <header>
+	    <div class="cdetail-top-line container"></div>
+        <header class="container">
             <div id="cd-back"><button type="button" id="btn-back" name="btn-back" class="btn btn-outline-warning" onclik="history.back()" ><</button></div>
             <div id="cd-name"><p class="btn btn-outline-warning" >낭 만 캠 핑</p></div>
             <div id="cd-name2"></div>
         </header>
 
         <!-- 1. 대표이미지 부분 -->
-        <div id="d1">
+        <div id="d1" class="container">
             
                 <!-- Carousel -->
                 <div id="demo" class="carousel " data-bs-ride="carousel">
@@ -77,9 +77,9 @@
 
 
 
-        <div class="cdetail-top-line"></div>
+        <div class="cdetail-top-line container"></div>
         <!-- 2. 캠핑장 소개 부분 -->
-        <div id="d2">
+        <div id="d2" class="container">
             <div id="d2-d">
                 <div id="d2-1"  class="display-5">캠핑장 소개</div>
                 <div id="d2-2" ><p class="display-6">캠핑장 이름 -( CAMP-NAME )</p><br><p class="d2-2-campInfo">캠핑장설명 - ( CAMP-INTRO ) 사랑이 넘치는 우리의 보금자리 합천 꿈꾸는 캠핑장</p></div>
@@ -96,9 +96,9 @@
 
 
 
-        <div class="cdetail-top-line"></div>
+        <div class="cdetail-top-line container"></div>
         <!-- 3. 캠핑장 기본정보 부분 -->
-        <div id="d3">
+        <div id="d3" class="container">
             <div id="d3-d">
                 <div id="d3-1" class="display-5">캠핑장 기본정보</div>
                 <div id="d3-2" class="menu-content">
@@ -113,9 +113,9 @@
             </div>    
         </div>
 
-        <div class="cdetail-top-line"></div>
+        <div class="cdetail-top-line container"></div>
         <!-- 4. 캠핑장 시설소개 부분 -->
-        <div id="d4">
+        <div id="d4" class="container">
             <div id="d4-d">
                 <div id="d4-1" class="display-5">캠핑장 시설소개</div>
                 <div id="d4-2" class="menu-content">
@@ -144,9 +144,9 @@
             </div>  
         </div>
         
-        <div class="cdetail-top-line"></div>
+        <div class="cdetail-top-line container"></div>
         <!-- 5. 캠핑장 운영정책 부분 -->
-        <div id="d5">
+        <div id="d5" class="container ">
             <div id="d5-d">
                 <div id="d5-1" class="display-5">캠핑장 운영정책</div>
                 <div id="d5-2" class="menu-content">
@@ -159,9 +159,9 @@
             </div>  
         </div>
 
-        <div class="cdetail-top-line"></div>
+        <div class="cdetail-top-line container"></div>
         <!-- 6. 캠핑장 구역상세 부분 -->
-        <div id="d6">
+        <div id="d6" class="container">
             <div id="d6-2d" class="display-5"> 캠핑장 구역상세</div>
             
             <div id="d6-d">
@@ -204,9 +204,9 @@
             
         </div>
 
-        <div class="cdetail-top-line"></div>
+        <div class="cdetail-top-line container"></div>
         <!-- 7. 캠핑장 예약 -->
-        <div id="d7">
+        <div id="d7" class="container">
             <div id="d7-d">
                 <div id="d7-1" class="display-5">캠핑장 예약</div>
                 <div id="d7-2">
@@ -219,9 +219,11 @@
             </div>  
         </div>
         
-        <div class="cdetail-top-line"></div>
+        <div class="cdetail-top-line container"></div>
+        
+        
         <!-- 8. 캠핑로그 -->
-        <div id="d8">
+        <div id="d8" class="container">
             <div id="d8-d">
                 <div id="d8-1" class="display-5">캠핑로그</div>
                 <div id="d8-2">
@@ -236,9 +238,9 @@
 
 
 
-        <div class="cdetail-top-line"></div>	
+        <div class="cdetail-top-line container"></div>	
         <!-- 9. 리뷰페이지 -->
-        <div id="d9">
+        <div id="d9" class="container">
             <div class="container">
                 
                 <div class="review-title">
@@ -320,7 +322,7 @@
 
 
 
-		<div class="cdetail-top-line"></div>
+		<div class="cdetail-top-line container"></div>
 
 
     </div><!-- 아우터 끝  -->

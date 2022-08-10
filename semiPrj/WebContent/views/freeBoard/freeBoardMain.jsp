@@ -18,11 +18,16 @@
 	
 	<h1>여기다가 자유게시판 </h1>
 	
-	<div id="freeboard-outer">
+	<div id="freeboard-outer" class="container">
 
-		<div id="fb1">
+		<div id="fb1" class="container">
 			<p class="fb1-title">중고거래</p>
-			<div id="fb1-1">
+			
+			
+			<p>중고거래 최신글 목록</p>
+			
+			
+			<div id="fb1-1" class="container">
 				
 
 				<div class ="menu-items">
@@ -128,16 +133,21 @@
 				
 			</div>
 
-			<div id="fb1-2" onclick=""><input class="btn btn-outline-success" type="button" value="중고거래 글 작성하기" data-bs-toggle="modal" data-bs-target="#tradeWrite"></div>
+			<div id="fb1-2" onclick=""><input class="btn btn-outline-success" type="button" value="중고거래 더보기" data-bs-toggle="modal" data-bs-target="#tradeWrite"></div>
 
 		</div>
 		
 
 
-
-		<div id="fb2">
+		
+		<!-- 자유게시판 이동 -->
+		
+		<div id="fb2" class="container">
 			<p class="fb1-title" >자유게시판</p>
-			<div id="fb2-1">
+			
+			<p> 자유게시판 인기글 목록 </p>
+			
+			<div id="fb2-1" class="container">
 
 
 				<div class="fb2-1-story">
@@ -195,7 +205,7 @@
 
 			</div>
 
-			<div id="fb2-2" onclick=""><input class="btn btn-outline-success" type="button" value="자유게시판 글 작성하기" data-bs-toggle="modal" data-bs-target="#freeBoardWrite"></div>
+			<div id="fb2-2" onclick=""><input class="btn btn-outline-success" type="button" value="자유게시판 더보기" data-bs-toggle="modal" data-bs-target="#freeBoardWrite"></div>
 			
 			
 		</div>
