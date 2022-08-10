@@ -19,20 +19,23 @@ section{
 }
 #search-box{
     width: 25%;
-    
-    padding-top: 40px;
     margin: 0 auto;
+    padding-top: 70px;
+    height: auto;
 }
-#search-box form{
+.search-form{
     width: 100%;
     height: 100%;
-    
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
 }
+.search-form > div{
+    margin-bottom: 20px;
+}
+
 #search-box form input[type=search],input[type=submit],button,select{
     height: 50px;
+    margin-bottom: 20px;
 }
 #search-addr{
     display: flex;
@@ -40,6 +43,7 @@ section{
 }
 .hashtag button{
     width: 50%;
+    margin-bottom: 5;
 }
 table{
     width: 170px;
@@ -59,18 +63,21 @@ section .camp-list{
     align-items: center;
 }
 .card-img{
-    width: 100%;
-    height: 100%;
+
 }
+
 .hashtag-list{
+    justify-self: center;
+    position: sticky;
     width: 100%;
-    height: 300px;
+    height: 320px;
+    margin-bottom: 10px;
 }
 .tag-ul{
+    background-color: rgb(255, 250, 224);
     list-style-type: none;
     margin: 0;
     padding: 0;
-    border: 1px solid blue;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -88,8 +95,11 @@ section .camp-list{
     border-radius: 15px;
     border-color: rgb(255, 218, 153);
     background-color: rgb(255, 218, 153);
+    box-shadow: none;
 }
-
+.hide{
+    display: none;
+}
 
 
     
