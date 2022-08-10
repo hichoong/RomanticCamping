@@ -6,38 +6,7 @@
 <meta charset="UTF-8">
 <title>고객센터</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-<style>
-	h2, h3 {
-		text-align: center;
-		padding-bottom: 30px;
-	}
-	#board {
-		text-align : center;
-		background-color: white;
-		margin: auto;
-		width: 900px;
-	}
-	#section1, #section2{
-			background-color: #f8f8f8;
-			padding: 30px;
-			margin: auto;
-			width: 80%;
-			height: 80%;
-
-	}
-	#accordionExample{
-		margin: auto;
-		width: 700px;
-		
-	}
-	#btn{
-	position: relative;
-	top: 10px;
-	left: 830px;
-	}
-	
-      
-</style>
+<link rel="stylesheet" href="../../resource/css/qestionBoard.css">
 </head>
 <body>
 	

@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+h2, h3 {
+		text-align: center;
+		padding-bottom: 30px;
+	}
+	#board {
+		text-align : center;
+		background-color: white;
+		margin: auto;
+		width: 900px;
+	}
+	#section1, #section2{
+			background-color: #f8f8f8;
+			padding: 30px;
+			margin: auto;
+			width: 80%;
+			height: 80%;
+
+	}
+	#accordionExample{
+		margin: auto;
+		width: 700px;
+		
+	}
+	#btn{
+	position: relative;
+	top: 10px;
+	left: 830px;
+	}
+	
