@@ -19,83 +19,121 @@
     <div class="container">
         <section>
             <div id="search-box">
-                
-              <form class="form-inline my-2 my-lg-0" action="" method="get">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword" >
-                <div id="search-addr">
-                  <select name="sido1" id="sido1"></select>
-                  <select name="gugun1" id="gugun1"></select>
-                </div>
-                
               
-                <div class="check-theme">
+              <form class="search-form" action="" method="get">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword" >
+                  <div id="search-addr">
+                    <select name="sido1" id="sido1"></select>
+                    <select name="gugun1" id="gugun1"></select>
+                  </div>
                   
-                  <table>
-                    <tr>
-                      <td><h4>테마</h4></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <input type="checkbox" name="theme" value="beach" id="beach"><label for="beach">해변</label><br>
-                        <input type="checkbox" name="theme" value="island" id="island"><label for="island">섬</label><br>
-                        <input type="checkbox" name="theme" value="downtown" id="downtown"><label for="downtown">도심</label><br>
-                        <input type="checkbox" name="theme" value="mountain" id="mountain"><label for="mountain">산</label>
-                      </td>
-                      <td>
-                        <input type="checkbox" name="theme" value="forest" id="forest"><label for="forest">숲</label><br>
-                        <input type="checkbox" name="theme" value="lake" id="lake"><label for="lake">호수</label><br>
-                        <input type="checkbox" name="theme" value="valley" id="valley"><label for="valley">계곡</label><br> 
-                        <input type="checkbox" name="theme" value="river" id="river"><label for="river">강</label>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-              
-                <div class="hashtag">
-                  <button type="button" class="btn btn-warning">+해시태그</button>
-                </div>
                 
-                <!-- 해시태그 노출 진행중 -->
+                  <div class="check-theme">
+                    
+                    <table>
+                      <tr>
+                        <td><h4>테마</h4></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <input type="checkbox" name="theme" value="beach" id="beach"><label for="beach">해변</label><br>
+                          <input type="checkbox" name="theme" value="island" id="island"><label for="island">섬</label><br>
+                          <input type="checkbox" name="theme" value="downtown" id="downtown"><label for="downtown">도심</label><br>
+                          <input type="checkbox" name="theme" value="mountain" id="mountain"><label for="mountain">산</label>
+                        </td>
+                        <td>
+                          <input type="checkbox" name="theme" value="forest" id="forest"><label for="forest">숲</label><br>
+                          <input type="checkbox" name="theme" value="lake" id="lake"><label for="lake">호수</label><br>
+                          <input type="checkbox" name="theme" value="valley" id="valley"><label for="valley">계곡</label><br> 
+                          <input type="checkbox" name="theme" value="river" id="river"><label for="river">강</label>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
                 
 
-                <div class="hashtag-list">
-                  <ul class="tag-ul">
-                    <li><input type="button" value="#반려견동반"></li>
-                    <li><input type="button" value="#둘레길"></li>
-                    <li><input type="button" value="#여유있는"></li>
-                    <li><input type="button" value="#봄"></li>
-                    <li><input type="button" value="#겨울"></li>
-                    <li><input type="button" value="#여름"></li>
-                    <li><input type="button" value="#가을"></li>
-                    <li><input type="button" value="#가족"></li>
-                    <li><input type="button" value="#연인"></li>
-                    <li><input type="button" value="#익스트림"></li>
-                    <li><input type="button" value="#힐링"></li>
-                    <li><input type="button" value="#편한"></li>
-                    <li><input type="button" value="#별"></li>
-                    <li><input type="button" value="#물"></li>
-                    <li><input type="button" value="#문화"></li>
-                    <li><input type="button" value="#캠핑카"></li>
-                    <li><input type="button" value="#물놀이"></li>
-                    <li><input type="button" value="#그늘"></li>
-                    <li><input type="button" value="#생태교육"></li>
-                    <li><input type="button" value="#바다가"></li>
-                    <li><input type="button" value="#축제"></li>
-                    <li><input type="button" value="#수영장"></li>
-                    <li><input type="button" value="#자전거"></li>
-                    <li><input type="button" value="#산책"></li>
-                  </ul>
+                    <div class="hashtag">
+                      <button type="button" class="btn btn-warning">+해시태그</button>
+                    </div>
+                    
+                    <div class="hashtag-list hide">
+                      <ul class="tag-ul">
+                        <input type="hidden" name="hashtag-value" value="">
 
-                </div>
-                
-
-                <input type="submit" value="search" class="btn btn-warning">
-              
+                        <li><input class="tag-btn" type="button" name="hashtag" value="#반려견동반"></li>
+                        <li><input class="tag-btn" type="button" name="hashtag" value="#둘레길"></li>
+                        <li><input class="tag-btn" type="button" name="hashtag" value="#여유있는"></li>
+                        <li><input class="tag-btn" type="button" name="hashtag" value="#봄"></li>
+                        <li><input class="tag-btn" type="button" name="hashtag" value="#겨울"></li>
+                        <li><input class="tag-btn" type="button" name="hashtag" value="#여름"></li>
+                        <li><input class="tag-btn" type="button" name="hashtag" value="#가을"></li>
+                        <li><input class="tag-btn" type="button" name="hashtag" value="#가족"></li>
+                        <li><input class="tag-btn" type="button" name="hashtag" value="#연인"></li>
+                        <li><input class="tag-btn" type="button" name="hashtag" value="#익스트림"></li>
+                        <li><input class="tag-btn" type="button" name="hashtag" value="#힐링"></li>
+                        <li><input class="tag-btn" type="button" name="hashtag" value="#편한"></li>
+                        <li><input class="tag-btn" type="button" name="hashtag" value="#별"></li>
+                        <li><input class="tag-btn" type="button" name="hashtag" value="#물"></li>
+                        <li><input class="tag-btn" type="button" name="hashtag" value="#문화"></li>
+                        <li><input class="tag-btn" type="button" name="hashtag" value="#캠핑카"></li>
+                        <li><input class="tag-btn" type="button" name="hashtag" value="#물놀이"></li>
+                        <li><input class="tag-btn" type="button" name="hashtag" value="#그늘"></li>
+                        <li><input class="tag-btn" type="button" name="hashtag" value="#생태교육"></li>
+                        <li><input class="tag-btn" type="button" name="hashtag" value="#바닷가"></li>
+                        <li><input class="tag-btn" type="button" name="hashtag" value="#축제"></li>
+                        <li><input class="tag-btn" type="button" name="hashtag" value="#수영장"></li>
+                        <li><input class="tag-btn" type="button" name="hashtag" value="#자전거"></li>
+                        <li><input class="tag-btn" type="button" name="hashtag" value="#산책"></li>
+                      </ul>
+                    </div>
+  
+                    <input type="submit" value="search" class="btn btn-warning">
               
               </form>
-
                 
             </div>
+
+            <script>
+
+              //해시태그 리스트 show/hide
+              $(function(){
+                $('.hashtag').click(function(){
+
+                  $('.hashtag-list').slideToggle();
+                })
+              })
+
+
+              //--------------수정중-----------------------------------
+              //input type=button 값 넘기기
+              //또는 저거보다 상위요소에 이벤트 걸어서 버블링 으로 처리하셔도 됩니다 ㅎㅎ - 강사님 피드백
+              $(function (){
+                let tagBtn = $('.tag-ul>li>input');
+                let url = location.href;
+
+                
+                tagBtn.click(function hashtagValue(){
+                  var result = (this).val();
+
+                  console.log(result);
+                  // $('input[name=hashtag-value]').attr('value',result);
+                  // String.join?
+                  return result;
+                })
+                //--------------수정중-----------------------------------
+                
+                
+              })
+              
+
+
+              
+              
+            
+          </script>
+
+
+
 
             <div class="camp-list">
                
