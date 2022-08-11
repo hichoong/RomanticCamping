@@ -1,0 +1,58 @@
+@charset "UTF-8";
+*{  
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;    
+}
+/* div,section,label {
+    border: 1px solid gray;
+} */
+.container{
+    padding: 0;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+section{
+    display: flex;
+    flex-direction: row;
+}
+#info-box{
+    width: 25%;
+    margin: 0 auto;
+    padding-top: 70px;
+}
+#info-box *{
+    margin: 10px 0;
+}
+section .camp-list{
+    width: 70%;
+    height: auto;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.card.mb-3{
+    width: 100%;
+}
+.card.mb-3:hover{
+    cursor: pointer;
+    border: 1px solid rgb(255, 218, 153);
+}
+.camp-name{
+    font-size: 1.7rem;
+    font-weight: 700;
+    text-align: center;
+}
+#camp-zone-img{
+    width: 100%;
+}
+#camp-addr{
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+
