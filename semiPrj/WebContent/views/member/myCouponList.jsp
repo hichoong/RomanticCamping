@@ -53,7 +53,7 @@
 
     <%@ include file="/views/common/header.jsp" %>
 
-    <div class="outer-wrapper">
+    <div class="container">
 
         <h3 class="mb-4">보유쿠폰</h3>
 

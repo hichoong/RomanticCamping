@@ -10,8 +10,6 @@
     #sub-nav {
         width: 120px;
         float: left;
-        margin-left: 10px;
-        margin-top: 5px;
         position: fixed;
     }
 
@@ -48,7 +46,7 @@
 <body>
     <%@ include file="/views/common/header.jsp" %>
 
-    <div>
+    <div class="container">
         <ul id="sub-nav" class="list-group">
             <a href="#" class="list-group-item list-group-item-action">게시글</a>
             <a href="#" class="list-group-item list-group-item-action">캠핑 리뷰</a>

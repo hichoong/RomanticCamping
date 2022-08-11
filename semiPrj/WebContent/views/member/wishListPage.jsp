@@ -31,7 +31,7 @@
 
     <%@ include file="/views/common/header.jsp" %>
 
-    <div class="outer-wrapper">
+    <div class="container">
 
         <h3 class="mb-4">찜목록</h3>
 
