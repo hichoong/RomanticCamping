@@ -22,9 +22,9 @@ li {
 		/* border: 3px solid rgba(201, 201, 201, 0.486); */
 		/* background-color: aquamarine; */
 		/* display: block; */
-		width: 70%;
-		margin-left: 10%;
-		margin-right: 10%;
+		width: 80%;
+		/* margin-left: 10%;
+		margin-right: 10%; */
 		
         margin-bottom: 20px;
 		height: 900px;
@@ -39,21 +39,22 @@ li {
 		/* border:1px solid rgb(0, 153, 204); */
 		background-color: #bc5100b9;
 		float: left;
-		margin-left: 5%;
+		margin-left: auto;
 		height: 900px;
-		width: 15%;
+		width: 21%;
+		
 	}
 
 	#sidebar {
 		/* position: relative; */
 		/* border: 1px dotted black; */
 		width: 100%;
-		height: 20%;
+		height: 50%;
 
 		box-sizing: border-box;
 
-		margin: auto;
-		margin-top: 50%;
+		/* margin: auto; */
+		margin-top: 30%;
 
 	}
 
@@ -121,7 +122,7 @@ li {
     /* position: relative; */
     /* border:1px solid rgba(51, 204, 0); */
     /* float: left; */
-    height: 100%;
+    height: 90%;
     width: 90%;
 
     display: flex;
@@ -221,4 +222,8 @@ tr:hover{
 }
 tr>th:hover{
 	cursor: default; 
+}
+
+a{
+	display: block;
 }

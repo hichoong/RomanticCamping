@@ -14,8 +14,8 @@
 </head>
 <body>
 	<%@ include file="/views/buisness/bsHeader.jsp" %>
+	<main class="navbar navbar-expand-sm container">
 	<%@ include file="/views/buisness/sidebar.jsp" %>
-		<main class="navbar navbar-expand-sm ">
 			
 			<div id="content" >
 				

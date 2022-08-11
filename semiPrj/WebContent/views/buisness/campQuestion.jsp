@@ -14,7 +14,8 @@
 </head>
 <body>
 	<%@ include file="/views/buisness/bsHeader.jsp" %>
-    <div id="side" class="container">
+	<main class="navbar navbar-expand-sm container">
+    <div id="side"  class="shadow">
         <div id="sidebar" class="col">
 
             <div style="margin-left: 10%; font-size: 20px; color: white;">문의 사항</div>
@@ -32,7 +33,6 @@
         </div>
 
     </div>
-		<main class="navbar navbar-expand-sm ">
 			
 			<div id="content" >
 				
