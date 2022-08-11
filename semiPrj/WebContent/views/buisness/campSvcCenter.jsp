@@ -16,16 +16,17 @@
 </head>
 <body>
 	<%@ include file="/views/buisness/bsHeader.jsp" %>
-    <div id="side" class="container">
+	<main class="navbar navbar-expand-sm container">
+    <div id="side"  class="shadow">
         <div id="sidebar" class="col">
 
             <div style="margin-left: 10%; font-size: 20px; color: white;">고객센터</div>
             <ul class="menu">
                 <li>
-                    <a href="#">문의</a>
+                    <a href="#">나의 문의내역</a>
                     <ul class="submenu">
                         
-                        <li style="font-size: 14px;"><a href="<%=contextPath%>/views/buisness/campSvcCenter.jsp">문의 내역조회</a></li>
+                        <li style="font-size: 14px;"><a href="<%=contextPath%>/views/buisness/campSvcCenter.jsp">조회</a></li>
                     </ul>
                 </li>
 
@@ -34,7 +35,6 @@
         </div>
 
     </div>
-		<main class="navbar navbar-expand-sm ">
 			
 			<div id="content" >
 				

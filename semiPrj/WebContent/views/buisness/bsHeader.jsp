@@ -77,7 +77,7 @@
       
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link menu-text" href="<%=contextPath%>/views/buisness/campSerchForm.jsp">캠핑장</a>
+          <a class="nav-link menu-text" href="<%=contextPath%>/views/buisness/campSearchForm.jsp">캠핑장</a>
         </li>
         <li class="nav-item">
           <a class="nav-link menu-text" href="<%=contextPath%>/views/buisness/campQuestion.jsp">문의사항</a>
@@ -95,11 +95,12 @@
       </button>
       <ul class="dropdown-menu dropdown-menu-end">
         <li><a class="dropdown-item" href="<%=contextPath%>/views/buisness/campRsvForm.jsp">예약 확인</a></li>
-        <li><a class="dropdown-item" href="<%=contextPath%>/views/buisness/campSerchForm.jsp">내 캠핑장</a></li>
+        <li><a class="dropdown-item" href="<%=contextPath%>/views/buisness/campSearchForm.jsp">내 캠핑장</a></li>
+        <li><a class="dropdown-item" href="#">마이페이지</a></li>
         <li><a class="dropdown-item" href="<%=contextPath%>/views/buisness/logout">로그아웃</a></li>
         <hr>
         <li><a class="dropdown-item" href="<%=contextPath%>/views/buisness/bsMainForm.jsp">메인으로</a></li>
-        <li><a class="dropdown-item" href="<%=contextPath%>/views/buisness/campInsertForm.jsp">캠핑장 등록</a></li>
+        <li><a class="dropdown-item" href="<%=contextPath%>/views/buisness/campQuestion.jsp">캠핑장 문의사항</a></li>
         <li><a class="dropdown-item" href="<%=contextPath%>/views/buisness/campSvcCenter.jsp">고객센터 Q&A</a></li>
         
       </ul>

@@ -21,7 +21,16 @@
 <link rel="stylesheet" href="/resource/css/SjyCss.css">
 
 <style type="text/css">
-	
+	table{
+		flex-direction: row;
+		
+		
+		width: 100%;
+	}
+	div table>tr>td{
+		justify-content: space-evenly;
+
+	}
 </style>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
@@ -29,16 +38,16 @@
 
 <body>
 	<%@ include file="/views/buisness/bsHeader.jsp" %>
-	<%@ include file="/views/buisness/sidebar.jsp" %>
-		<main class="navbar navbar-expand-sm ">
-		
-			<div id="content">
+	<main class="navbar navbar-expand-sm container">
+			<%@ include file="/views/buisness/sidebar.jsp" %>
+			
+			<div id="content" >
 		
 		
 				<form action="<%=contextPath %>/business/insert" method="post">
 					<h2>캠핑장 등록</h2>
 					<hr>
-					<div style="overflow-x: hidden; width: 100%; height: 60%;">
+					<div style="overflow-x: hidden; width: 100%; height: 700px;">
 		
 						<div class="md-3">
 							<label for="campName" class="form-label">* 이름:</label>
@@ -73,15 +82,57 @@
 						</div>
 
 						<div class="md-3">
-							<label for="campIntro" class="form-label">* 시설현황:</label>
-							<input type="text" class="form-control" id="campIntro"
-							placeholder="와이파이 전기 온수 반려견동반 매점 장작판매 운동자 산책로 물놀이장" name="campIntro" required>
+							<label for="camp" class="form-label">* 시설현황:</label>
+							<input type="text" class="form-control" id="camp" placeholder="와이파이 전기 온수 반려견동반 매점 장작판매 운동자 산책로 물놀이장" name="camp" disabled>
 						</div>
 
 						<div class="md-3">
-							<label for="campIntro" class="form-label">* 테마:</label>
-							<input type="text" class="form-control" id="campIntro" 
-							placeholder="해변 숲 섬 호수 도심 계곡 산 강" name="campIntro" required>
+							<label for="campTheme" class="form-label">* 테마:(테마를 선택해주세요)</label>
+							<!-- <input type="text" class="form-control" id="camp"  placeholder="해변 숲 섬 호수 도심 계곡 산 강" name="camp" disabled> -->
+							<table >
+								<tr>
+									<td>
+										<input type="checkbox" class="btn-check" id="beach" autocomplete="off" name="theme">
+										<label class="btn btn-outline-success" for="beach">해변</label><br>
+									</td>
+
+									<td>
+										<input type="checkbox" class="btn-check" id="forest" autocomplete="off" name="theme">
+										<label class="btn btn-outline-success" for="forest">숲</label><br>
+										</td>
+
+									<td>
+										<input type="checkbox" class="btn-check" id="island" autocomplete="off" name="theme">
+										<label class="btn btn-outline-success" for="island">섬</label><br>
+									</td>
+
+									<td>
+										<input type="checkbox" class="btn-check" id="lake" autocomplete="off" name="theme">
+										<label class="btn btn-outline-success" for="lake">호수</label><br>
+									</td>
+
+									<td>
+										<input type="checkbox" class="btn-check" id="downtown" autocomplete="off" name="theme">
+										<label class="btn btn-outline-success" for="downtown">도심</label><br>
+									</td>
+
+									<td>
+										<input type="checkbox" class="btn-check" id="valley" autocomplete="off" name="theme">
+										<label class="btn btn-outline-success" for="valley">계곡</label><br>
+										</td>
+
+									<td>
+										<input type="checkbox" class="btn-check" id="mountain" autocomplete="off" name="theme">
+										<label class="btn btn-outline-success" for="mountain">산</label><br>
+									</td>
+
+									<td>
+										<input type="checkbox" class="btn-check" id="river" autocomplete="off" name="theme">
+										<label class="btn btn-outline-success" for="river">강</label><br>
+									</td>
+									
+			
+							</table>
 						</div>
 		
 						<div class="md-3">
@@ -95,30 +146,28 @@
 							<input class="form-control" type="file" name="campRepImg" id="campRepImg">
 						</div>
 		
+						
+
 						<div class="mb-3">
-							<label for="formFileMultiple" class="form-label">구역 이미지(※최대 _개)</label>
-							<input class="form-control" type="file" id="formFileMultiple" multiple>
+							<label for="" class="form-label">구역 추가하기</label>
+							<button type="button" class="btn btn-success btnAdd" onclick="addArea(); " >추가</button>
+							<div class="addInput"></div>
+							
 						</div>
+
+
+
 						<div class="md-3">
 							<label for="" class="form-label">* 등록일:</label>
-							<input type="datetime-local" class="form-control" id="" placeholder="등록일" name="" required
-								value="<%=toDay%>" disabled>
+							<input type="datetime-local" class="form-control" id="" placeholder="등록일" name=""value="<%=toDay%>" disabled>
 						</div>
-						<div class="md-3">
-							<label for="" class="form-label">* 등록일:</label>
-							<input type="datetime-local" class="form-control" id="" placeholder="등록일" name="" required
-								value="<%=toDay%>" disabled>
-						</div>
-						<div class="md-3">
-							<label for="" class="form-label">* 등록일:</label>
-							<input type="datetime-local" class="form-control" id="" placeholder="등록일" name="" required
-								value="<%=toDay%>" disabled>
+		
 						</div>
 		
 						<div id="end">
 							<input type="submit" value="등록요청" id="send" class="rounded">
 						</div>
-					</div>
+					</div><!--content-->
 		
 				</form>
 			</div>
@@ -184,6 +233,37 @@
 
 </script>
 
+<script> 
+    $(document).ready (function(){
+        $('.btnAdd').click(function(){
+            $('.addInput').append(
+                '<hr><div class="mb-3">\
+							<label for="campRepImgMulti" class="form-label">구역 이미지(※최대 _개)</label>\
+							<input class="form-control" type="file" id="campRepImgMulti" multiple>\
+						</div>\
+						<hr><div class="mb-3">\
+							<label for="campRepImgMulti" class="form-label">구역 이미지(※최대 _개)</label>\
+							<input class="form-control" type="file" id="campRepImgMulti" multiple>\
+						</div>\
+                <button type="button" class="btn btn-danger btnRemove">삭제</button><br><br>'
+                );
+            $('.btnRemove').on('click',function(){
+                $(this).prev().remove();
+				$(this).prev().remove();
+				$(this).prev().remove();
+                $(this).next().remove();
+				$(this).next().remove();
+                $(this).remove();
 
+				// $(document.getElementsByClassName('addInput')).children().remove();
+            })
+        })
+    })
+</script>
+
+<!-- <div class="mb-3">
+	<label for="" class="form-label">구역 추가하기</label>
+	<button type="button" class="btn btn-success" onclick="addArea()">추가</button>
+</div> -->
 
 </html>
