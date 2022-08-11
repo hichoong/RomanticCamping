@@ -10,7 +10,31 @@
 <style>
 	
 	 <%@ include file="/resource/css/gsFreeB.css" %>
+	
+				
+	#fb1-3{
+		width: 100%;
+		/* margin: 0 auto; */
+		padding-top : 50px;
+		padding-bottom : 50px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-wrap : wrap;
+		text-align: center;
 
+		flex-direction: column;
+	}
+
+	#fb-table-main{
+		border: 1px solid white;
+		width: 100%;
+	}
+
+	#fb-table-main>tbody tr:hover{
+		background-color: darkgray;
+		cursor:pointer;
+	}
 </style>
 </head>
 <body>
@@ -24,12 +48,12 @@
 			<p class="fb1-title">중고거래</p>
 			
 			
-			<p>중고거래 최신글 목록</p>
+			<p class="fb1-title-2">중고거래 최신글 </p>
 			
 			
 			<div id="fb1-1" class="container">
 				
-
+				
 				<div class ="menu-items">
 					<a href="누르면 연결될 상세페이지">
 						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest3.jpg" alt=""></div>
@@ -95,43 +119,62 @@
 						</div>
 					</a>
 				</div>
-
-				<div class ="menu-items">
-					<a href="누르면 연결될 상세페이지">
-						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""></div>
-						<div>
-							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
-							<p id="fb1-subtitle1">서울 종로구 관철동</p>
-							<p id="fb1-subtitle2">130만원</p>
-						</div>
-					</a>
-				</div>
-
-				<div class ="menu-items">
-					<a href="누르면 연결될 상세페이지">
-						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""></div>
-						<div>
-							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
-							<p id="fb1-subtitle1">서울 종로구 관철동</p>
-							<p id="fb1-subtitle2">130만원</p>
-						</div>
-					</a>
-				</div>
-
-				<div class ="menu-items">
-					<a href="누르면 연결될 상세페이지">
-						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""></div>
-						<div>
-							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
-							<p id="fb1-subtitle1">서울 종로구 관철동</p>
-							<p id="fb1-subtitle2">130만원</p>
-						</div>
-					</a>
-				</div>
-
 				
-				
+
+
 			</div>
+
+
+			<div id="fb1-3" class="container">
+				
+				<table id="fb-table-main" class="container">
+
+					<thead>
+						<tr>
+							<td>글번호</td>
+							<td>글제목</td>
+							<td>작성자</td>
+							<td>조회수</td>
+							<td>작성일</td>
+						</tr>
+					</thead>
+
+					<tbody>
+						
+							<tr>
+								<td>B_NO</td>
+								<td>B_TITLE</td>
+								<td>B_CONTENT</td>
+								<td>BOARD_WRITER</td>
+								<td>UPDATE_DATE</td>
+							</tr>
+						
+					</tbody>
+					<tbody>
+						
+						<tr>
+							<td>B_NO</td>
+							<td>B_TITLE</td>
+							<td>B_CONTENT</td>
+							<td>BOARD_WRITER</td>
+							<td>UPDATE_DATE</td>
+						</tr>
+					
+				</tbody>
+				<tbody>
+						
+					<tr>
+						<td>B_NO</td>
+						<td>B_TITLE</td>
+						<td>B_CONTENT</td>
+						<td>BOARD_WRITER</td>
+						<td>UPDATE_DATE</td>
+					</tr>
+				
+			</tbody>
+				</table>
+			</div>
+
 
 			<div id="fb1-2" onclick=""><input class="btn btn-outline-success" type="button" value="중고거래 더보기" data-bs-toggle="modal" data-bs-target="#tradeWrite"></div>
 
@@ -145,7 +188,7 @@
 		<div id="fb2" class="container">
 			<p class="fb1-title" >자유게시판</p>
 			
-			<p> 자유게시판 인기글 목록 </p>
+			<p class="fb1-title-2"> 자유게시판 인기글 목록 </p>
 			
 			<div id="fb2-1" class="container">
 
@@ -204,6 +247,57 @@
 
 
 			</div>
+
+			<div id="fb1-3" class="container">
+				
+				<table id="fb-table-main" class="container">
+
+					<thead>
+						<tr>
+							<td>글번호</td>
+							<td>글제목</td>
+							<td>작성자</td>
+							<td>조회수</td>
+							<td>작성일</td>
+						</tr>
+					</thead>
+
+					<tbody>
+						
+							<tr>
+								<td>B_NO</td>
+								<td>B_TITLE</td>
+								<td>B_CONTENT</td>
+								<td>BOARD_WRITER</td>
+								<td>UPDATE_DATE</td>
+							</tr>
+						
+					</tbody>
+					<tbody>
+						
+						<tr>
+							<td>B_NO</td>
+							<td>B_TITLE</td>
+							<td>B_CONTENT</td>
+							<td>BOARD_WRITER</td>
+							<td>UPDATE_DATE</td>
+						</tr>
+					
+				</tbody>
+				<tbody>
+						
+					<tr>
+						<td>B_NO</td>
+						<td>B_TITLE</td>
+						<td>B_CONTENT</td>
+						<td>BOARD_WRITER</td>
+						<td>UPDATE_DATE</td>
+					</tr>
+				
+			</tbody>
+				</table>
+			</div>
+
 
 			<div id="fb2-2" onclick=""><input class="btn btn-outline-success" type="button" value="자유게시판 더보기" data-bs-toggle="modal" data-bs-target="#freeBoardWrite"></div>
 			

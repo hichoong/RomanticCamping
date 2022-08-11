@@ -26,7 +26,7 @@
 	
 	
 
-    <div id="detail-outer container">
+    <div id="detail-outer" class="container">
 
 	    <div class="cdetail-top-line container"></div>
         <header class="container">
@@ -87,9 +87,7 @@
                     <span class="d2-3-sp">##캠핑장 코드(CAMP_INFO)와 해시태그(HASHTAG_MAPPING) 맵핑</span>
                     <span class="d2-3-sp">##CAMP_CODE 와 HT_CODE JOIN HASGTAG 테이블에서 HT_NAME가져오기</span>
                     <span class="d2-3-sp">#합천꿈꾸는캠핑장</span>
-                    <span class="d2-3-sp">#합천꿈꾸는캠핑장</span>
-                    <span class="d2-3-sp">#합천꿈꾸는캠핑장</span>
-                    <span class="d2-3-sp">#합천꿈꾸는캠핑장</span>
+                    
                 </div>
             </div>    
         </div>
@@ -185,7 +183,7 @@
                                 <img  src="<%=contextPath %>/resource/img/gsTest2.jpg" class="img-thumbnail" alt="Chicago" class="d-block" style="width:100%">
                         </div>
                         <div class="carousel-item">
-                                <img  src="<%=contextPath %>/resource/img/gsTest3.jp" class="img-thumbnail" alt="New York" class="d-block" style="width:100%">
+                                <img  src="<%=contextPath %>/resource/img/gsTest3.jpg" class="img-thumbnail" alt="New York" class="d-block" style="width:100%">
                         </div>
                     </div>
                         
