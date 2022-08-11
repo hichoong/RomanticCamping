@@ -62,13 +62,15 @@
 		        <form class="card p-2">
 		          <div class="input-group">
 		            <input type="text" class="form-control" placeholder="프로모션 코드">
-		            <button type="submit" class="btn btn-secondary">제출</button>
+		            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+						제출
+					  </button>
 		          </div>
 		        </form>
+		      </div>
 		      
 		       <hr class="my-4">
 		 
-		      </div>
 		      <!--사용자 정보  -->
 		      <div class="col-md-7 col-lg-8" >
 		     	 <form class="needs-validation" novalidate>
@@ -192,26 +194,44 @@
 		          
 		          <hr class="my-4">
 		
-		          <button class="w-100 btn btn-primary btn-lg btn btn-danger" type="submit" >결제하기</button>
+		          <button class="w-100 btn btn-primary btn-lg btn btn-danger" type="submit" onclick="location.href='<%=contextPath%>/views/order/orderSuccess.jsp'" >결제하기</button>
 		        </form>
 		      </div>
 		    </div>
 	  </main>
-
-	  <footer class="my-5 pt-5 text-muted text-center text-small">
-	    <p class="mb-1">&copy; 2017–2021 Company Name</p>
-	    <ul class="list-inline">
-	      <li class="list-inline-item"><a href="#">Privacy</a></li>
-	      <li class="list-inline-item"><a href="#">Terms</a></li>
-	      <li class="list-inline-item"><a href="#">Support</a></li>
-	    </ul>
-	  </footer>
 	</div>
 
 
-	<script src="../../resource/js/bootstrap.bundle.min.js"></script>
-	<script src="../../resource/js/form-validation.js"></script>
+	
+
+	<!-- Button trigger modal -->
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<!--modal header  -->
+		<div class="modal-header">
+		  <h5 class="modal-title" id="exampleModalLabel">쿠폰 찾기</h5>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		<!--modal body  -->
+		</div>
+		<form action="" method="post">
+		<div class="modal-body">
+		  쿠폰 : <input type="text" name="user-coupon">
+		</div>
+		<!-- modal footer -->
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">창 닫기</button>
+		  <button type="submit" class="btn btn-primary">쿠폰 적용하기</button>
+		</div>
+		</form>
+	  </div>
+	</div>
+  </div>
+  <script src="../../resource/js/form-validation.js"></script>
 	
 	<%@ include file="/views/common/footer.jsp" %>
+
+	
 </body>
 </html>
