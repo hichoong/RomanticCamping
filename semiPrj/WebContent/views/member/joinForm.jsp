@@ -34,7 +34,7 @@
 
     <%@ include file="/views/common/header.jsp" %>
 
-    <div class="outer-wrapper">
+    <div class="container">
         <div class="joinBox">
             <button type="button" class="big-btn reversed-btn" data-bs-toggle="modal" data-bs-target="#PersonJoin">일반 회원 가입</button>
             <button type="button" class="big-btn reversed-btn" data-bs-toggle="modal" data-bs-target="#BusinessJoin">사업자 회원 가입</button>

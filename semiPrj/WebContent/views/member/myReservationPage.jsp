@@ -9,8 +9,6 @@
 <style>
     #sub-nav {
         width: 130px;
-        margin-left: 10px;
-        margin-top: 10px;
         position: fixed;
     }
 
@@ -24,7 +22,7 @@
 
     <%@ include file="/views/common/header.jsp" %>
 
-    <div>
+    <div class="container">
         <ul id="sub-nav" class="list-group">
             <a href="#" class="list-group-item list-group-item-action">예약완료</a>
             <a href="#" class="list-group-item list-group-item-action">이용완료</a>

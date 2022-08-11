@@ -13,7 +13,7 @@
 <body>
 	<%@ include file="/views/common/header.jsp" %>
 
-    <div class="outer-wrapper">
+    <div class="container">
 
         <div class="contentBox">
 
