@@ -30,7 +30,7 @@
 
 	    <div class="cdetail-top-line container"></div>
         <header class="container">
-            <div id="cd-back"><button type="button" id="btn-back" name="btn-back" class="btn btn-outline-warning" onclik="history.back()" ><</button></div>
+            <div id="cd-back"><button type="button" id="btn-back" name="btn-back" class="btn btn-outline-warning" onclik="history.back()" >&lg;</button></div>
             <div id="cd-name"><p class="btn btn-outline-warning" >낭 만 캠 핑</p></div>
             <div id="cd-name2"></div>
         </header>
@@ -39,7 +39,7 @@
         <div id="d1" class="container">
             
                 <!-- Carousel -->
-                <div id="demo" class="carousel " data-bs-ride="carousel">
+                <div id="demo" class="carousel container" data-bs-ride="carousel">
         
                     <!-- Indicators/dots -->
                     <div class="carousel-indicators">
@@ -49,7 +49,7 @@
                     </div>
                         
                     <!-- The slideshow/carousel -->
-                    <div class="carousel-inner" style="width: 1150px; " >
+                    <div class="carousel-inner"  >
                         <div class="carousel-item active">
                                 <img src="<%=contextPath %>/resource/img/gsTest1.jpg" class="img-thumbnail" alt="Los Angeles" class="d-block" style="width:100%; height: 100%;">
                         </div>
@@ -81,13 +81,16 @@
         <!-- 2. 캠핑장 소개 부분 -->
         <div id="d2" class="container">
             <div id="d2-d">
-                <div id="d2-1"  class="display-5">캠핑장 소개</div>
-                <div id="d2-2" ><p class="display-6">캠핑장 이름 -( CAMP-NAME )</p><br><p class="d2-2-campInfo">캠핑장설명 - ( CAMP-INTRO ) 사랑이 넘치는 우리의 보금자리 합천 꿈꾸는 캠핑장</p></div>
+                <div id="d2-1"  class="display-5 display-5-gplus">캠핑장 소개</div>
+                <div id="d2-2" >
+                    <p class="display-6">캠핑장 이름 -( CAMP-NAME )</p>
+                    <br>
+                    <p class="d2-2-campInfo">캠핑장설명 - ( CAMP-INTRO ) 사랑이 넘치는 우리의 보금자리 합천 꿈꾸는 캠핑장</p>
+                </div>
                 <div id="d2-3">
                     <span class="d2-3-sp">##캠핑장 코드(CAMP_INFO)와 해시태그(HASHTAG_MAPPING) 맵핑</span>
                     <span class="d2-3-sp">##CAMP_CODE 와 HT_CODE JOIN HASGTAG 테이블에서 HT_NAME가져오기</span>
                     <span class="d2-3-sp">#합천꿈꾸는캠핑장</span>
-                    
                 </div>
             </div>    
         </div>
@@ -98,7 +101,7 @@
         <!-- 3. 캠핑장 기본정보 부분 -->
         <div id="d3" class="container">
             <div id="d3-d">
-                <div id="d3-1" class="display-5">캠핑장 기본정보</div>
+                <div id="d3-1" class="display-5 display-5-gplus">캠핑장 기본정보</div>
                 <div id="d3-2" class="menu-content">
                     <ul>
                         <li><div class="info-title">캠핑장 이름</div><p class="info-content">CAMP_NAME</p></li>
@@ -115,12 +118,11 @@
         <!-- 4. 캠핑장 시설소개 부분 -->
         <div id="d4" class="container">
             <div id="d4-d">
-                <div id="d4-1" class="display-5">캠핑장 시설소개</div>
+                <div id="d4-1" class="display-5 display-5-gplus">캠핑장 시설소개</div>
                 <div id="d4-2" class="menu-content">
                     <div id="d4-2-1">
                         <div class="info-title">기본시설</div>
                         <div class="fac-content-outer">
-                            <li class="fac-content"><img width="50" height="50" src="<%=contextPath %>/resource/img/gsTest1.jpg" alt=""><br>화장실</li>
                             <li class="fac-content"><img width="50" height="50" src="<%=contextPath %>/resource/img/gsTest1.jpg" alt=""><br>화장실</li>
                             <li class="fac-content"><img width="50" height="50" src="<%=contextPath %>/resource/img/gsTest1.jpg" alt=""><br>화장실</li>
                             <li class="fac-content"><img width="50" height="50" src="<%=contextPath %>/resource/img/gsTest1.jpg" alt=""><br>화장실</li>
@@ -135,7 +137,6 @@
                             <li class="fac-content"><img width="50" height="50" src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""><br>화장실</li>
                             <li class="fac-content"><img width="50" height="50" src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""><br>화장실</li>
                             <li class="fac-content"><img width="50" height="50" src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""><br>화장실</li>
-                            <li class="fac-content"><img width="50" height="50" src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""><br>화장실</li>
                         </div>
                     </div>
                 </div>
@@ -146,7 +147,7 @@
         <!-- 5. 캠핑장 운영정책 부분 -->
         <div id="d5" class="container ">
             <div id="d5-d">
-                <div id="d5-1" class="display-5">캠핑장 운영정책</div>
+                <div id="d5-1" class="display-5 display-5-gplus">캠핑장 운영정책</div>
                 <div id="d5-2" class="menu-content">
                     <div id="d5-2-1">
                         <div class="info-title" style="width: 100%;">행복한 캠핑을 위해서 필독 후 이용 부탁드립니다.</div>
@@ -157,82 +158,25 @@
             </div>  
         </div>
 
+        
+
         <div class="cdetail-top-line container"></div>
-        <!-- 6. 캠핑장 구역상세 부분 -->
-        <div id="d6" class="container">
-            <div id="d6-2d" class="display-5"> 캠핑장 구역상세</div>
-            
+        <!-- 6. 캠핑장 구역상세 -->
+        <div id="d6" class="container ">
             <div id="d6-d">
-                
-                <!-- Carousel -->
-                <div id="demo" class="carousel " data-bs-ride="carousel">
-        
-                    <!-- Indicators/dots -->
-                    <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-                    <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-                    <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+                <div id="d6-1" class="display-5 display-5-gplus">캠핑장 구역상세</div>
+                <div id="d6-2" class="menu-content">
+                    <div id="d6-2-1">
+                        <div class="info-title" style="width: 100%;">캠핑장이 마음에 들었다면 상세구역을 확인해보세요</div>
+                        <div class="info-content" style="width: 100%; margin:0px;">상세구역 확인을 통해 예약신청을 진행할 수 있습니다.</div>
                     </div>
-                        
-                    <!-- The slideshow/carousel -->
-                    <div class="carousel-inner" style="width: 1100px;">
-                        <div class="carousel-item active">
-                                <img  src="<%=contextPath %>/resource/img/gsTest1.jpg" class="img-thumbnail" alt="Los Angeles" class="d-block" style="width:100%; height: 100%;">
-                        </div>
-                        <div class="carousel-item">
-                                <img  src="<%=contextPath %>/resource/img/gsTest2.jpg" class="img-thumbnail" alt="Chicago" class="d-block" style="width:100%">
-                        </div>
-                        <div class="carousel-item">
-                                <img  src="<%=contextPath %>/resource/img/gsTest3.jpg" class="img-thumbnail" alt="New York" class="d-block" style="width:100%">
-                        </div>
-                    </div>
-                        
-                    <!-- Left and right controls/icons -->
-                    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                    </button>
-
-                    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                    </button>
-                </div>
-
-            </div>
-
-            
-        </div>
-
-        <div class="cdetail-top-line container"></div>
-        <!-- 7. 캠핑장 예약 -->
-        <div id="d7" class="container">
-            <div id="d7-d">
-                <div id="d7-1" class="display-5">캠핑장 예약</div>
-                <div id="d7-2">
-                    <div id="d7-2-1">
-                        <div class="info-title" style="width: 100%;">망설이지 말고 지금 예약해보세요</div>
-                        <div  class="info-content" style="width: 100%; margin:0px;">고민은 시간낭비일 뿐 지금바로 예약해보세요</div>
-                    </div>
-                    <button type="button"  id="d7-2-2" class="btn btn-outline-success"><span>캠핑장 예약하기</span></button>
+                    <button type="button" id="d6-2-2" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#camp-policy"><span>캠핑장 구역상세 더보기</span></button>
                 </div>
             </div>  
         </div>
         
-        <div class="cdetail-top-line container"></div>
         
         
-        <!-- 8. 캠핑로그 -->
-        <div id="d8" class="container">
-            <div id="d8-d">
-                <div id="d8-1" class="display-5">캠핑로그</div>
-                <div id="d8-2">
-                    <div id="d8-2-1">
-                        <div class="info-title" style="width: 100%;">캠핑장을 이용한 이용자들의 로그를 확인해 보세요</div>
-                        <div class="info-content" style="width: 100%; margin:0px;">캠핑장 이용자들의 생생한 캠핑로그를 확인하고 체험해보세요</div>
-                    </div>
-                    <button type="button"  id="d8-2-2" class="btn btn-outline-success"><span>캠핑장 로그보기</span></button>
-                </div>
-            </div>  
-        </div>
 
 
 
@@ -320,7 +264,6 @@
 
 
 
-		<div class="cdetail-top-line container"></div>
 
 
     </div><!-- 아우터 끝  -->
