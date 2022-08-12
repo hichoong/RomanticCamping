@@ -113,7 +113,60 @@
 					</tr>
 					</tbody>
 			</table>
-			<button type="button" class="btn btn-warning" id="btn">작성하기</button>
+			
+			<!-- 작성하기 버튼 -->
+			<button type="button" id="btn" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+			  작성하기
+			</button>
+			
+			<!-- (Modal) -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel">문의글 작성하기</h5>
+			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			      </div>
+			      
+			      <div class="modal-body">
+			        
+			        <!-- 분류 선택 -->
+					<select class="form-select" aria-label="Default select example">
+						<option selected>문의 카테고리 선택</option>
+						<option value="1">예약</option>
+						<option value="2">회원</option>
+						<option value="3">결제</option>
+						<option value="3">기타</option>
+					</select>
+					
+					<!-- 글 제목 / 글 내용 입력-->
+					<div class="mb-3">
+						<label for="exampleFormControlInput1" class="form-label">제목 : </label>
+						<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="문의합니다.">
+					  </div>
+					  <div class="mb-3">
+						<label for="exampleFormControlTextarea1" class="form-label">내용 : </label>
+						<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+					  </div>
+		
+					<!-- 파일 첨부 -->
+					  <div class="mb-3">
+						<label for="formFile" class="form-label"></label>
+						<input class="form-control" type="file" id="formFile">
+					  </div>
+			        
+			      </div>
+			      
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-warning">작성하기</button>
+			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+						
+	
+			
 		</div>
 	
 	
