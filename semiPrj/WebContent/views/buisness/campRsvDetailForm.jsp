@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String no = (String)request.getParameter("no");
+	String num = (String)request.getParameter("num");
+	
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resource/css/SjyCss.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/resource/css/SjyCss.css">
 </head>
 <body>
 	<%@ include file="/views/buisness/bsHeader.jsp" %>
@@ -21,7 +22,7 @@
 					<h2>상세조회</h2>
 						<hr>
                         
-                        <div><%=no %>번 예약자</div>
+                        <div><%=num %>번 예약자</div>
 						<div>여기는 예약 내용</div>
 
 

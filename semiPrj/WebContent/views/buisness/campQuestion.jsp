@@ -41,7 +41,7 @@
 					<span style="color:gray">&nbsp;&Tab;-&nbsp;내 캠핑장 문의조회</span>
 						<hr>
                         
-						<table class="table">
+						<table class="table" id="table-main">
 							<thead class="table-light">
 								<tr>
 									<th scope="col">#</th>
@@ -52,10 +52,9 @@
 							</thead>
 							<tbody>
 								<!-- 예약상세보기 페이지를 요청하는 서블릿으로 이동 -->
-								<tr onclick="location.href='campQuestionDeatil.jsp?&<%="no=1" %>'" style="cursor:hand">
+								<tr>
 									<input type="hidden" value="예약자의 회원번호">
 									<th scope="row">1</th>
-									
 									<td>Mark</td>
 									<td>캠핑...</td>
 									<td>캠핑장 조회 할때...</td>
@@ -87,5 +86,20 @@
 		</main>
 	
 		<%@ include file="/views/common/footer.jsp" %>
+		<script>
+		$(function(){
+			$('#table-main>tbody>tr').click(function(){
+				//행 클릭 되었을때, 동작할 내용
+
+				//글번호 가져오기
+				const num = $(this).children().eq(1).text();
+				
+				//해당 번호로 요청 보내기
+				location.href='<%=contextPath%>/views/buisness/campQuestionDeatil.jsp?num=' + num;
+				
+			});
+		})
+	</script>
+		
 </body>
 </html>

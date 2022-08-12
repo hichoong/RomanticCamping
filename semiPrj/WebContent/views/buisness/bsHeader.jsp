@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="<%=request.getContextPath() %>/resource/css/SjyCss.css">
     <!-- Latest compiled and minified CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Latest compiled JavaScript -->
@@ -61,6 +62,7 @@
       }
 
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 

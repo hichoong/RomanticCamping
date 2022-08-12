@@ -172,6 +172,7 @@ li {
 	}
 
 /*info -> 수정/삭제버튼 */
+/* 수정버튼 */
 #upDate{
     display: inline-block;
     padding: 10px 20px;
@@ -193,7 +194,7 @@ li {
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
-
+/* 삭제하기버튼 */
 #delete{
     display: inline-block;
     padding: 10px 20px;
@@ -227,3 +228,22 @@ tr>th:hover{
 a{
 	display: block;
 }
+
+/* 등록하기 테마 테이블 css */
+#tdTheme table{
+	border-spacing: 10px;
+	border-collapse: separate;	
+}
+
+/* 테이블 css*/
+	#table-main{
+		
+		
+		width: 95%;
+		margin-top: 50px;
+	}
+
+	#table-main tbody>tr:hover{
+		background-color: darkgray;
+		cursor: pointer;
+	}
