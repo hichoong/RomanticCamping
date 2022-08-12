@@ -38,7 +38,7 @@
 
 
 	#d8-d{
-        height: 20%;
+        height: 35%;
         margin: 0 auto;
 		padding: 0px;
         border: 1px solid red;
@@ -47,7 +47,7 @@
 
 	#d9-d{
 		display: flex;
-        height: 35%;
+        height: 20%;
         border: 1px solid red;
     }
 
@@ -98,6 +98,27 @@
         margin-top: 1%;
 	}
 
+
+	/*  */
+	.fb2-1-story-outer{
+		position: relative;
+		overflow: hidden;
+		border: 1px solid red;
+	}
+		
+	.fb2-story-date{
+		font-size: 2rem;
+		margin-top: 6px;
+		color: darkgray;
+		height: 8%;
+		border: 1px solid red;
+	}
+
+	.fb2-story-content{
+		height: 50%;
+		width: 100%;
+	}
+		
 </style>
 </head>
 <body>
@@ -109,7 +130,6 @@
 
 
 		<div id="d6-d" class="container">
-                
 			<!-- Carousel -->
 			<div id="demo" class="carousel container " data-bs-ride="carousel">
 	
@@ -175,13 +195,15 @@
 
 		<div id="d8-d" class="container">
 
-			<h1>글제목</h1>
+
+					<p style="font-size: 3rem;">글제목 보여주는 곳</p>
+					<textarea style="font-size: 2rem;" class="fb2-story-content" name="" id="" >글 내용 보여주는 곳 durldp이렇게 엔터키를 치면 어캐보이는지? 
+					</textarea>
+					<p class="fb2-story-date">작성시간 :</p>
+					<p class="fb2-story-date">조회 수 :</p>
+					<p class="fb2-story-date">등등</p>
 			
 			
-			<p>글내용</p>
-			<p>작성시간</p>
-			<p>조회수</p>
-			<p>등등</p>
 
 		</div>
 

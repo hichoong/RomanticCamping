@@ -35,6 +35,13 @@
 		background-color: darkgray;
 		cursor:pointer;
 	}
+	
+	#fb-page-area{
+		width: 80%;
+		text-align: center;
+		margin: auto;
+	}
+	
 </style>
 </head>
 <body>
@@ -160,19 +167,53 @@
 							<td>UPDATE_DATE</td>
 						</tr>
 					
-				</tbody>
-				<tbody>
-						
-					<tr>
-						<td>B_NO</td>
-						<td>B_TITLE</td>
-						<td>B_CONTENT</td>
-						<td>BOARD_WRITER</td>
-						<td>UPDATE_DATE</td>
-					</tr>
-				
-			</tbody>
+					</tbody>
+					<tbody>
+							
+						<tr>
+							<td>B_NO</td>
+							<td>B_TITLE</td>
+							<td>B_CONTENT</td>
+							<td>BOARD_WRITER</td>
+							<td>UPDATE_DATE</td>
+						</tr>
+					
+					</tbody>
+					<tbody>
+							
+						<tr>
+							<td>B_NO</td>
+							<td>B_TITLE</td>
+							<td>B_CONTENT</td>
+							<td>BOARD_WRITER</td>
+							<td>UPDATE_DATE</td>
+						</tr>
+					
+					</tbody>
+					<tbody>
+							
+						<tr>
+							<td>B_NO</td>
+							<td>B_TITLE</td>
+							<td>B_CONTENT</td>
+							<td>BOARD_WRITER</td>
+							<td>UPDATE_DATE</td>
+						</tr>
+					
+					</tbody>
+
+
 				</table>
+			</div>
+
+			<div id="fb-page-area">
+
+				<a class="btn btn-primary" href="">1</a>
+				<a class="btn btn-primary" href="">1</a>
+				<a class="btn btn-primary" href="">1</a>
+				<a class="btn btn-primary" href="">1</a>
+				<a class="btn btn-primary" href="">1</a>
+
 			</div>
 
 
@@ -283,19 +324,55 @@
 							<td>UPDATE_DATE</td>
 						</tr>
 					
-				</tbody>
-				<tbody>
-						
-					<tr>
-						<td>B_NO</td>
-						<td>B_TITLE</td>
-						<td>B_CONTENT</td>
-						<td>BOARD_WRITER</td>
-						<td>UPDATE_DATE</td>
-					</tr>
-				
-			</tbody>
+					</tbody>
+					<tbody>
+							
+						<tr>
+							<td>B_NO</td>
+							<td>B_TITLE</td>
+							<td>B_CONTENT</td>
+							<td>BOARD_WRITER</td>
+							<td>UPDATE_DATE</td>
+						</tr>
+					
+					</tbody>
+					<tbody>
+							
+						<tr>
+							<td>B_NO</td>
+							<td>B_TITLE</td>
+							<td>B_CONTENT</td>
+							<td>BOARD_WRITER</td>
+							<td>UPDATE_DATE</td>
+						</tr>
+					
+					</tbody>
+					<tbody>
+							
+						<tr>
+							<td>B_NO</td>
+							<td>B_TITLE</td>
+							<td>B_CONTENT</td>
+							<td>BOARD_WRITER</td>
+							<td>UPDATE_DATE</td>
+						</tr>
+					
+					</tbody>
+
+
 				</table>
+			</div>
+
+
+
+			<div id="fb-page-area">
+
+				<a class="btn btn-primary" href="">1</a>
+				<a class="btn btn-primary" href="">1</a>
+				<a class="btn btn-primary" href="">1</a>
+				<a class="btn btn-primary" href="">1</a>
+				<a class="btn btn-primary" href="">1</a>
+
 			</div>
 
 
