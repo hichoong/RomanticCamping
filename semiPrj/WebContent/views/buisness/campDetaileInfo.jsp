@@ -38,60 +38,131 @@
 			<div id="content" >
 				
 
-					<form action="" method="post">
-						<h2>상세조회</h2>
-						<hr>
-                        <div class="md-3" >
+				<form action="<%=contextPath %>/business/insert" method="post">
+					<h2>캠핑장 상세정보</h2>
+					<hr>
+					<div style="overflow-x: hidden; width: 100%; height: 700px;">
+		
+						<div class="md-3">
 							<label for="campName" class="form-label">* 이름:</label>
-							<input type="text" class="form-control" id="campName" placeholder="캠핑장 이름 입력" name="campName" required value="<%=data%>">
+							<input type="text" class="form-control" id="campName" placeholder="캠핑장 이름 입력" name="campName"
+								required>
 						</div>
-
-						<div class="md-3" >
+		
+						<div class="md-3 ">
 							<label for="campAdd" class="form-label">* 주소:</label>
-							<select name="addSido1" id="addSido1"></select>
-							<select name="addGugun1" id="addGugun1"></select>				
+		
+							<select name="addSido1" class="form-select" id="addSido1"></select>
+							<select name="addGugun1" class="form-select" id="addGugun1"></select>
 						</div>
-
-						<div class="md-3" >
+		
+		
+		
+						<div class="md-3">
 							<label for="campDetailAdd">상세주소:</label>
-							<textarea class="form-control" rows="3" id="campDetailAdd" placeholder="상세주소 입력" name="campDetailAdd" ><%=data%></textarea>
+							<textarea class="form-control" rows="3" id="campDetailAdd" placeholder="상세주소 입력"
+								name="campDetailAdd"></textarea>
 						</div>
-
-						<div class="md-3" >
+		
+						<div class="md-3">
 							<label for="phoneNum" class="form-label">* 연락처:</label>
-							<input type="text" class="form-control" id="phoneNum" placeholder="캠핑장 연락처 입력" name="phoneNum" required value="<%=data%>">
+							<input type="text" class="form-control" id="phoneNum" placeholder="캠핑장 연락처 입력" name="phoneNum"
+								required>
 						</div>
-
-						<div class="md-3" >
+		
+						<div class="md-3">
 							<label for="campIntro" class="form-label">* 시설소개:</label>
-							<input type="text" class="form-control" id="campIntro" placeholder="시설소개" name="campIntro" required value="<%=data%>">
+							<input type="text" class="form-control" id="campIntro" placeholder="시설소개" name="campIntro" required>
 						</div>
 
-						<div class="md-3" >
-							<label for="" class="form-label">* 등록일:</label>
-							<input type="datetime-local" class="form-control" id="" placeholder="등록일" name="" required  value="2022-08-08T18:30" disabled>
+						<div class="md-3">
+							<label for="camp" class="form-label">* 시설현황:</label>
+							<input type="text" class="form-control" id="camp" placeholder="와이파이 전기 온수 반려견동반 매점 장작판매 운동자 산책로 물놀이장" name="camp" disabled>
 						</div>
 
-						<div class="md-3" >
+						<div class="md-3" id="tdTheme">
+							<label for="campTheme" class="form-label">* 테마:(테마를 선택해주세요)</label>
+							<!-- <input type="text" class="form-control" id="camp"  placeholder="해변 숲 섬 호수 도심 계곡 산 강" name="camp" disabled> -->
+							<table >
+								<tr>
+									<td>
+										<input type="checkbox" class="btn-check" id="beach" autocomplete="off" name="theme">
+										<label class="btn btn-outline-success" for="beach">해변</label><br>
+									</td>
+
+									<td>
+										<input type="checkbox" class="btn-check" id="forest" autocomplete="off" name="theme">
+										<label class="btn btn-outline-success" for="forest">숲</label><br>
+										</td>
+
+									<td>
+										<input type="checkbox" class="btn-check" id="island" autocomplete="off" name="theme">
+										<label class="btn btn-outline-success" for="island">섬</label><br>
+									</td>
+
+									<td>
+										<input type="checkbox" class="btn-check" id="lake" autocomplete="off" name="theme">
+										<label class="btn btn-outline-success" for="lake">호수</label><br>
+									</td>
+
+									<td>
+										<input type="checkbox" class="btn-check" id="downtown" autocomplete="off" name="theme">
+										<label class="btn btn-outline-success" for="downtown">도심</label><br>
+									</td>
+
+									<td>
+										<input type="checkbox" class="btn-check" id="valley" autocomplete="off" name="theme">
+										<label class="btn btn-outline-success" for="valley">계곡</label><br>
+										</td>
+
+									<td>
+										<input type="checkbox" class="btn-check" id="mountain" autocomplete="off" name="theme">
+										<label class="btn btn-outline-success" for="mountain">산</label><br>
+									</td>
+
+									<td>
+										<input type="checkbox" class="btn-check" id="river" autocomplete="off" name="theme">
+										<label class="btn btn-outline-success" for="river">강</label><br>
+									</td>
+									
+			
+							</table>
+						</div>
+		
+						<div class="md-3">
 							<label for="campRefund" class="form-label">* 환불규정:</label>
-							<input type="text" class="form-control" id="campRefund" placeholder="환불규정" name="campRefund" required value="<%=data%>">
+							<input type="text" class="form-control" id="campRefund" placeholder="환불규정" name="campRefund"
+								required>
 						</div>
-
+		
 						<div class="mb-3">
 							<label for="campRepImg" class="form-label">* 대표이미지:</label>
-							<input class="form-control" type="file" name="campRepImg" id="campRepImg" value="<%=data%>">
+							<input class="form-control" type="file" name="campRepImg" id="campRepImg">
 						</div>
-					
-					
-						<div id="end"> 
-							<button  id="upDate" >수정요청</button>
-							<button id="delete"  onclick="locaton.href='#'">삭제요청</button>
+		
+						
+
+						<div class="mb-3">
+							<label for="" class="form-label">구역 정보보기</label>
+							<button type="button" class="btn btn-success btnAdd" onclick="addArea(); " >보기(현재 등록된 구역)</button>
+							<div class="addInput"></div>	
 						</div>
 
-
-						</form>
-				</div>
-			
+							<div class="md-3">
+							<label for="" class="form-label">* 등록일:</label>
+							<input type="datetime-local" class="form-control" id="" placeholder="등록일" name=""value="<%=toDay%>" disabled>
+						</div>
+		
+						</div>
+		
+						<div id="end">
+							<input type="submit" value="등록요청" id="send" class="rounded">
+						</div>
+					</div><!--content-->
+		
+				</form>
+			</div>
+		
 		</main>
 
 		<%@ include file="/views/common/footer.jsp" %>

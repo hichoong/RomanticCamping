@@ -21,16 +21,7 @@
 <link rel="stylesheet" href="/resource/css/SjyCss.css">
 
 <style type="text/css">
-	table{
-		flex-direction: row;
-		
-		
-		width: 100%;
-	}
-	div table>tr>td{
-		justify-content: space-evenly;
 
-	}
 </style>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
@@ -86,12 +77,12 @@
 							<input type="text" class="form-control" id="camp" placeholder="와이파이 전기 온수 반려견동반 매점 장작판매 운동자 산책로 물놀이장" name="camp" disabled>
 						</div>
 
-						<div class="md-3">
+						<div class="md-3" id="tdTheme">
 							<label for="campTheme" class="form-label">* 테마:(테마를 선택해주세요)</label>
 							<!-- <input type="text" class="form-control" id="camp"  placeholder="해변 숲 섬 호수 도심 계곡 산 강" name="camp" disabled> -->
 							<table >
 								<tr>
-									<td>
+									<td >
 										<input type="checkbox" class="btn-check" id="beach" autocomplete="off" name="theme">
 										<label class="btn btn-outline-success" for="beach">해변</label><br>
 									</td>
@@ -155,9 +146,7 @@
 							
 						</div>
 
-
-
-						<div class="md-3">
+							<div class="md-3">
 							<label for="" class="form-label">* 등록일:</label>
 							<input type="datetime-local" class="form-control" id="" placeholder="등록일" name=""value="<%=toDay%>" disabled>
 						</div>
@@ -237,18 +226,30 @@
     $(document).ready (function(){
         $('.btnAdd').click(function(){
             $('.addInput').append(
-                '<hr><div class="mb-3">\
+                '<hr>\
+					<div class="mb-3">\
+								<label for="campAreaName" class="form-label">구역이름</label>\
+								<input class="form-control" type="text" id="campAreaName" >\
+							</div>\
+					<div class="mb-3">\
+								<label for="maxGusests" class="form-label">최대 숙박인원</label>\
+								<input class="form-control" type="text" id="maxGusests" >\
+							</div>\
+							<div class="mb-3">\
+								<label for="campAreaPrice" class="form-label">가격</label>\
+								<input class="form-control" type="text" id="campAreaPrice" >\
+					</div>\
+					<div class="mb-3">\
 							<label for="campRepImgMulti" class="form-label">구역 이미지(※최대 _개)</label>\
 							<input class="form-control" type="file" id="campRepImgMulti" multiple>\
-						</div>\
-						<hr><div class="mb-3">\
-							<label for="campRepImgMulti" class="form-label">구역 이미지(※최대 _개)</label>\
-							<input class="form-control" type="file" id="campRepImgMulti" multiple>\
-						</div>\
-                <button type="button" class="btn btn-danger btnRemove">삭제</button><br><br>'
+					</div>\
+				<button type="button" class="btn btn-danger btnRemove">삭제</button><br><br>'
                 );
             $('.btnRemove').on('click',function(){
                 $(this).prev().remove();
+				$(this).prev().remove();
+				$(this).prev().remove();
+				$(this).prev().remove();
 				$(this).prev().remove();
 				$(this).prev().remove();
                 $(this).next().remove();
@@ -264,6 +265,27 @@
 <!-- <div class="mb-3">
 	<label for="" class="form-label">구역 추가하기</label>
 	<button type="button" class="btn btn-success" onclick="addArea()">추가</button>
+</div> -->
+
+<!-- <hr><div class="mb-3">
+	<label for="maxGusests" class="form-label">최대 숙박인원</label>
+	<input class="form-control" type="text" id="maxGusests" >
+</div>
+
+<div class="mb-3">
+	<label for="campAreaPrice" class="form-label">가격</label>
+	<input class="form-control" type="text" id="campAreaPrice" >
+</div>
+
+<div class="mb-3">
+	<label for="campAreaName" class="form-label">구역이름</label>
+	<input class="form-control" type="text" id="campAreaName" >
+</div>
+
+
+<div class="mb-3">
+	<label for="campRepImgMulti" class="form-label">구역 이미지(※최대 _개)</label>
+	<input class="form-control" type="file" id="campRepImgMulti" multiple>
 </div> -->
 
 </html>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String no = (String)request.getParameter("no");
+	String num = (String)request.getParameter("num");
 %>
 <!DOCTYPE html>
 <html>
@@ -40,8 +40,9 @@
 			<div id="content" >
 				<h2>문의 상세 조회</h2>
 				<hr>
+				<div>게시글 번호: <%=num %>번</div>
 				<label for="">작성자: </label>
-                <div>작성자이름</div>
+                
                 <br><br>
                 <label for="">내용:  </label>
                 <div>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur mollitia ducimus dolore in minus, consectetur sed? Vero aperiam vitae, itaque repellendus laboriosam hic quasi odio eius dolore ipsa beatae dignissimos?</div>
