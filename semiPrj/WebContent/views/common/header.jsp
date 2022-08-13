@@ -55,8 +55,6 @@
       .nav-border {
         margin-top: 20px;
         margin-bottom: 20px;
-        /* border-top: 1px solid #FFA000; */
-        /* border-bottom: 1px solid #FFA000; */
         box-shadow: 0 0 6px #FFA000;
       }
 
@@ -83,7 +81,7 @@
           <a class="nav-link menu-text" href="<%=contextPath%>/views/freeBoard/freeBoardPage.jsp">자유게시판</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link menu-text" href="<%=contextPath%>">고객센터</a>
+          <a class="nav-link menu-text" href="<%=contextPath%>/views/board/qestionBoard.jsp">고객센터</a>
         </li>
       </ul>
     
