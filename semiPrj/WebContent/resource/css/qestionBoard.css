@@ -1,31 +1,63 @@
 @charset "UTF-8";
 
-h2, h3 {
-		text-align: center;
-		padding-bottom: 30px;
-	}
-	#board {
-		text-align : center;
-		background-color: white;
-		margin: auto;
-		width: 900px;
-	}
-	#section1, #section2{
-			background-color: #f8f8f8;
-			padding: 30px;
-			margin: auto;
-			width: 80%;
-			height: 80%;
-
-	}
-	#accordionExample{
-		margin: auto;
-		width: 700px;
-		
-	}
-	#btn{
-	position: relative;
-	top: 10px;
-	left: 830px;
-	}
 	
+        h2, h3 {
+            text-align: center;
+            padding: 30px;    
+        }
+
+        #accordionExample{
+            margin: auto;
+            width: 700px;
+            text-align: center;
+        }
+
+
+        #outer{
+           margin: auto;
+           background-color: white;
+           width: 900px;
+           height: 500px;
+
+        }
+        
+        #board{
+            background-color: #fcc15a;
+            margin: auto;
+            width: 900px;
+            height: 300px;
+            text-align: center;
+        }
+
+        tbody tr:hover{
+            background-color: white;
+            cursor: pointer;
+        }
+
+        #search{
+            float: right;
+            margin-top: 70px;
+            margin-bottom: 30px;
+        }
+        
+        #btn{
+            float: right;
+            margin-bottom: 100px;
+        }
+
+        .pagination {
+            margin-top: 30px;
+            align-items: center;
+            justify-content: center;
+        }
+        .pagination > li > a {
+            color: #ffb330;
+            border: 1px solid #ffb330;
+        }
+        .pagination > li > a:hover {
+            color: white;
+            border: 1px solid #ffb330;
+            background-color: #ffb330;
+        }
+
+  
