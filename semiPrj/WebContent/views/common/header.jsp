@@ -75,7 +75,7 @@
       
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link menu-text" href="<%=contextPath%>/views/camp/campList.jsp">캠핑장</a>
+          <a class="nav-link menu-text" href="<%=contextPath%>/camp/campList">캠핑장</a>
         </li>
         <li class="nav-item">
           <a class="nav-link menu-text" href="<%=contextPath%>/views/freeBoard/freeBoardPage.jsp">자유게시판</a>

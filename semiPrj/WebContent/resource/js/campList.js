@@ -53,12 +53,20 @@ $('document').ready(function() {
   })
 
 	$(function() {
-		$('.tag-btn').click(function() {
-			$(this).css('background-color','#FFA000');
+		$('.tag-btn').click(function(e) {
+			let inputHash = $("input[hashTagKey='" +  $(this).attr('hashTagKey') + "']");
+						
+			if(inputHash.attr("disabled") == 'disabled'){
+   			 $(this).css('background-color','#FFA000');
+   			 inputHash.removeAttr("disabled");
+			} else{
+	      	 $(this).css('background-color', '');
+	      	 inputHash.attr("disabled","disabled");
+	      	}
 		})
 	})
 	  
-
+	
 
 });
 
