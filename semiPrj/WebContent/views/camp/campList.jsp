@@ -1,16 +1,21 @@
+<%@page import="java.util.List"%>
+<%@page import="com.kh.camplist.hashtag.vo.HashTagVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%
+	
+	List<HashTagVo> hashTagList = (List<HashTagVo>) request.getAttribute("hashTagList");
+	List<String> checkedHashCodes = (List<String>) request.getAttribute("checkedHashCodes");
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
-	 <!-- Latest compiled and minified CSS -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-	<!-- Latest compiled JavaScript -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<meta charset="UTF-8">
 	<title>낭만캠핑</title>
-	<link rel="stylesheet" href="../../resource/css/campList.css">
+	<link rel="stylesheet" href="/semiPrj/resource/css/campList.css">
 </head>
 <body>
 	
@@ -20,7 +25,7 @@
         <section>
             <div id="search-box">
               
-              <form class="search-form" action="" method="get">
+              <form class="search-form" action="<%=contextPath %>/camp/campList" method="get">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword" >
                   <div id="search-addr">
                     <select name="sido1" id="sido1"></select>
@@ -58,62 +63,13 @@
                     
                     <div class="hashtag-list hide">
                       <ul class="tag-ul">
-
-                        <li><input id="pet" type="hidden" name="hashtag" disabled value="반려견동반"></li>
-                        <li><input id="trail" type="hidden" name="hashtag" disabled value="둘레길"></li>
-                        <li><input id="relax" type="hidden" name="hashtag" disabled value="여유있는"></li>
-                        <li><input id="spring" type="hidden" name="hashtag" disabled value="봄"></li>
-                        <li><input id="winter" type="hidden" name="hashtag" disabled value="겨울"></li>
-                        <li><input id="summer" type="hidden" name="hashtag" disabled value="여름"></li>
-                        <li><input id="fall" type="hidden" name="hashtag" disabled value="가을"></li>
-                        <li><input id="family" type="hidden" name="hashtag" disabled value="가족"></li>
-                        <li><input id="couple" type="hidden" name="hashtag" disabled value="연인"></li>
-                        <li><input id="extreme" type="hidden" name="hashtag" disabled value="익스트림"></li>
-                        <li><input id="healing" type="hidden" name="hashtag" disabled value="힐링"></li>
-                        <li><input id="comfy" type="hidden" name="hashtag" disabled value="편한"></li>
-                        <li><input id="star" type="hidden" name="hashtag" disabled value="별"></li>
-                        <li><input id="water" type="hidden" name="hashtag" disabled value="물"></li>
-                        <li><input id="culture" type="hidden" name="hashtag" disabled value="문화"></li>
-                        <li><input id="camper" type="hidden" name="hashtag" disabled value="캠핑카"></li>
-                        <li><input id="waterplay" type="hidden" name="hashtag" disabled value="물놀이"></li>
-                        <li><input id="shade" type="hidden" name="hashtag" disabled value="그늘"></li>
-                        <li><input id="ecology" type="hidden" name="hashtag" disabled value="생태교육"></li>
-                        <li><input id="beach" type="hidden" name="hashtag" disabled value="바닷가"></li>
-                        <li><input id="festival" type="hidden" name="hashtag" disabled value="축제"></li>
-                        <li><input id="pool" type="hidden" name="hashtag" disabled value="수영장"></li>
-                        <li><input id="bicycle" type="hidden" name="hashtag" disabled value="자전거"></li>
-                        <li><input id="walk" type="hidden" name="hashtag" disabled value="산책"></li>
-
-                        <li><button type="button" class="tag-btn" id="pet">#반려견동반</button></li>
-                        <li><button type="button" class="tag-btn" id="trail">#둘레길</button></li>
-                        <li><button type="button" class="tag-btn" id="relax">#여유있는</button></li>
-                        <li><button type="button" class="tag-btn" id="spring">#봄</button></li>
-                        <li><button type="button" class="tag-btn" id="winter">#겨울</button></li>
-                        <li><button type="button" class="tag-btn" id="summer">#여름</button></li>
-                        <li><button type="button" class="tag-btn" id="fall">#가을</button></li>
-                        <li><button type="button" class="tag-btn" id="family">#가족</button></li>
-                        <li><button type="button" class="tag-btn" id="couple">#연인</button></li>
-                        <li><button type="button" class="tag-btn" id="extreme">#익스트림</button></li>
-                        <li><button type="button" class="tag-btn" id="healing">#힐링</button></li>
-                        <li><button type="button" class="tag-btn" id="comfy">#편한</button></li>
-                        <li><button type="button" class="tag-btn" id="star">#별</button></li>
-                        <li><button type="button" class="tag-btn" id="water">#물</button></li>
-                        <li><button type="button" class="tag-btn" id="culture">#문화</button></li>
-                        <li><button type="button" class="tag-btn" id="camper">#캠핑카</button></li>
-                        <li><button type="button" class="tag-btn" id="waterplay">#물놀이</button></li>
-                        <li><button type="button" class="tag-btn" id="shade">#그늘</button></li>
-                        <li><button type="button" class="tag-btn" id="ecology">#생태교육</button></li>
-                        <li><button type="button" class="tag-btn" id="beach">#바닷가</button></li>
-                        <li><button type="button" class="tag-btn" id="festival">#축제</button></li>
-                        <li><button type="button" class="tag-btn" id="pool">#수영장</button></li>
-                        <li><button type="button" class="tag-btn" id="bicycle">#자전거</button></li>
-                        <li><button type="button" class="tag-btn" id="walk">#산책</button></li>
-
+						<%for(HashTagVo vo : hashTagList) { %>
+							<li><input hashTagKey="<%=vo.getHtCode()%>" type="hidden" name="hashTag" disabled="disabled" value="<%=vo.getHtCode()%>"></li>
+							<li><button hashTagKey="<%=vo.getHtCode()%>" type="button" class="tag-btn" ><%=vo.getHtName()%></button></li>
+						<%} %>
                       </ul>
                     </div>
-  
                     <input type="submit" value="search" class="btn btn-warning">
-              
               </form>
                 
             </div>
@@ -212,6 +168,6 @@
     
     <%@include file="/views/common/footer.jsp" %>
 
-  	<script src="../../resource/js/campList.js"></script>
+  	<script src="<%=contextPath %>/resource/js/campList.js"></script>
 </body>
 </html>
