@@ -156,7 +156,8 @@
 						</div>
 		
 						<div id="end">
-							<input type="submit" value="등록요청" id="send" class="rounded">
+							<button  id="upDate" >수정</button>
+							<button id="delete"  onclick="locaton.href='#'">삭제</button>
 						</div>
 					</div><!--content-->
 		

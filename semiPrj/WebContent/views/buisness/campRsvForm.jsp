@@ -23,7 +23,7 @@
 					<h2>예약 조회</h2>
 						<hr>
                         
-						<table class="table" id="table-main"">
+						<table class="table" id="table-main">
 							<thead class="table-light">
 								<tr>
 									<th scope="col">#</th>
