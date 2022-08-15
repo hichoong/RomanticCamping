@@ -247,3 +247,32 @@ a{
 		background-color: darkgray;
 		cursor: pointer;
 	}
+	
+		/*시설현황*/
+input[class="facility"] + label {
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	border: 2px solid #bcbcbc;
+	cursor: pointer;
+		margin: auto;
+	margin-bottom: 10px;
+	
+}
+input[class="facility"]:checked + label {
+	background-color: #666666;
+    color:white;
+    
+}
+input[class="facility"] {
+	display: none;
+}
+input[class="facility"]+label{
+	
+	background: url("/resource/img/facility.png") no-repeat 0 0px / contain;	
+}
+	
+
+input[class="facility"]:checked+label{
+	background: url('https://placehold.jp/200x200.png') no-repeat 0 0px / contain;
+}
