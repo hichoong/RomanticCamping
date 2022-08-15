@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <title>상품 예약</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -12,7 +12,7 @@
 	<%@ include file="/views/common/header.jsp" %>
 	
 	<!--전체 컨테이너  -->
-	<div class="container alert-secondary" >
+	<div class="container alert-warning" >
 		<main>
 		    <div class="py-5 text-center ">
 		      <h1>결제하기</h1>
@@ -21,31 +21,20 @@
 		    <div class="row g-5">
 		      <div class="col-md-5 col-lg-4 order-md-last">
 		        <h4 class="d-flex justify-content-between align-items-center mb-3">
-		          <span class="text-danger" >예약상품</span>
-		          <span class="badge bg-danger rounded-pill">3</span>
+		          <span class="text-danger" >예약할 캠핑장</span>
+		          <span class="badge bg-danger rounded-pill">1</span>
 		        </h4>
 		        <ul class="list-group mb-3">
 		          <li class="list-group-item d-flex justify-content-between lh-sm">
 		            <div>
-		              <h6 class="my-0">첫번째 상품</h6>
-		              <small class="text-muted">Brief description</small>
+		              <h6 class="my-0">하늘캠핑장</h6>
+		              <small class="text-muted"> 날짜 : 2022.08.14~22.08.15</small>
+		              <small class="text-muted">숙박 인원 : 5명 </small>
+		              
 		            </div>
 		            <span class="text-muted">120,000</span>
 		          </li>
-		          <li class="list-group-item d-flex justify-content-between lh-sm">
-		            <div>
-		              <h6 class="my-0">두번째 상품</h6>
-		              <small class="text-muted">Brief description</small>
-		            </div>
-		            <span class="text-muted">180,000</span>
-		          </li>
-		          <li class="list-group-item d-flex justify-content-between lh-sm">
-		            <div>
-		              <h6 class="my-0">세번째 상품</h6>
-		              <small class="text-muted">Brief description</small>
-		            </div>
-		            <span class="text-muted">200,000</span>
-		          </li>
+		          
 		          <li class="list-group-item d-flex justify-content-between bg-light">
 		            <div class="text-success">
 		              <h6 class="my-0">쿠폰 이름</h6>
@@ -62,9 +51,7 @@
 		        <form class="card p-2">
 		          <div class="input-group">
 		            <input type="text" class="form-control" placeholder="프로모션 코드">
-		            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-						제출
-					  </button>
+		            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#selectCoupon">제출</button>
 		          </div>
 		        </form>
 		      </div>
@@ -80,7 +67,7 @@
 		              <label for="username" class="form-label">이름</label>
 		              <div class="input-group has-validation">
 		                <span class="input-group-text">*</span>
-		                <input type="text" class="form-control" id="username" placeholder="Username" required>
+		                <input type="text" class="form-control" id="username"  value="김충희" placeholder="예약자명" required>
 		              <div class="invalid-feedback">
 		                  이름 작성 필수.
 		                </div>
@@ -91,7 +78,7 @@
 		              <label for="email" class="form-label">이메일<span class="text-muted">(선택사항)</span></label>
 		              <input type="email" class="form-control" id="email" placeholder="you@naver.com">
 		              <div class="invalid-feedback">
-		                Please enter a valid email address for shipping updates.
+		                연락처를 입력해 주세요.
 		              </div>
 		            </div>
 		
@@ -157,37 +144,45 @@
 		            </div>  
 		          </div>
 					<hr>
+		          
 		          <div class="row gy-3 ">
 		            <div class="col-md-6">
-		              <label for="cc-name" class="form-label">Name on card</label>
-		              <input type="text" class="form-control" id="cc-name" placeholder="" required>
-		              <small class="text-muted">Full name as displayed on card</small>
-		              <div class="invalid-feedback">
-		                Name on card is required
-		              </div>
+		              <label for="cc-name" class="form-label">카드사</label>
+		             <select class="form-select" aria-label="Default select example" name="카드사">
+						  <option selected>BC카드</option>
+						  <option value="1">KB국민카드</option>
+						  <option value="2">삼성카드</option>
+						  <option value="3">신한카드</option>
+						  <option value="3">우리카드</option>
+						  <option value="3">하나카드</option>
+						  <option value="3">롯데카드</option>
+						  <option value="3">현대카드</option>
+						  <option value="3">NH농협카드</option>
+						</select>
+		              <small class="text-muted">카드사를 선택해주세요.</small>
 		            </div>
 		
 		            <div class="col-md-6">
-		              <label for="cc-number" class="form-label">Credit card number</label>
+		              <label for="cc-number" class="form-label">카드번호</label>
 		              <input type="text" class="form-control" id="cc-number" placeholder="" required>
 		              <div class="invalid-feedback">
-		                Credit card number is required
+		                카드 번호를 입력해 주세요.
 		              </div>
 		            </div>
 		
 		            <div class="col-md-3">
-		              <label for="cc-expiration" class="form-label">Expiration</label>
+		              <label for="cc-expiration" class="form-label">만료일</label>
 		              <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
 		              <div class="invalid-feedback">
-		                Expiration date required
+		               기간 만료일을 기입해 주세요.
 		              </div>
 		            </div>
 		
 		            <div class="col-md-3">
-		              <label for="cc-cvv" class="form-label">CVV</label>
+		              <label for="cc-cvv" class="form-label">CVV번호</label>
 		              <input type="text" class="form-control" id="cc-cvv" placeholder="" required >
 		              <div class="invalid-feedback">
-		                Security code required
+		                CVV번호 3자를 입력해 주세요.
 		              </div>
 		            </div>
 		          </div>  
@@ -202,22 +197,26 @@
 	</div>
 
 
-	
-
 	<!-- Button trigger modal -->
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="selectCoupon" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 	  <div class="modal-content">
 		<!--modal header  -->
 		<div class="modal-header">
-		  <h5 class="modal-title" id="exampleModalLabel">쿠폰 찾기</h5>
+		  <h5 class="modal-title" id="exampleModalLabel">내가 가진 쿠폰 찾기</h5>
 		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		<!--modal body  -->
 		</div>
 		<form action="" method="post">
 		<div class="modal-body">
-		  쿠폰 : <input type="text" name="user-coupon">
+		  소유한 쿠폰 : 
+				<select name="job">
+				   	<option value="">없음</option>
+				    <option value="비 성수기 시즌">비 성수기 시즌</option>
+				    <option value="생일 쿠폰">생일 쿠폰</option>
+				    <option value="첫 회원가입 쿠폰">첫 회원가입 쿠폰</option>
+				</select>
 		</div>
 		<!-- modal footer -->
 		<div class="modal-footer">
