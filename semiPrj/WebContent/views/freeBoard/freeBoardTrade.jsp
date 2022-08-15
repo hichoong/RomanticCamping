@@ -3,8 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
@@ -47,8 +45,10 @@
 
 	#d9-d{
 		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
         height: 20%;
-        border: 1px solid red;
+        border: 3px solid blue;
     }
 
 	/* 2차 틀 */
@@ -118,6 +118,19 @@
 		height: 50%;
 		width: 100%;
 	}
+
+	/* 리플창 */
+	.select-reple{
+		width: 100%;
+		height: 50%;
+		border: 1px solid pink;
+	}
+
+	.make-reple{
+		width: 100%;
+		height: 50%;
+		border: 1px solid pink;
+	}
 		
 </style>
 </head>
@@ -135,9 +148,9 @@
 	
 				<!-- Indicators/dots -->
 				<div class="carousel-indicators container">
-				<button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-				<button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-				<button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+					<button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+					<button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+					<button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
 				</div>
 					
 				<!-- The slideshow/carousel -->
@@ -187,7 +200,6 @@
 
 			</div>
 
-
 		</div>
 
 		<!-- 선추가 -->
@@ -213,46 +225,35 @@
 
 		<div id="d9-d" class="container">
 
-	
+			<!-- 작성된 댓글 가져와서 보여주기 -->
+			<div class="select-reple">
 
+				<div class="reple-id"><p >작성자 id</p></div>
+				<div class="reple-comment"><p >작성내용 </p></div>
+				<div class="reple-sub"><span>작성일자</span> <a>답글쓰기</a></div>
 
+			</div>
+			<div class="select-reple">
+
+				<div class="reple-id"><p >작성자 id</p></div>
+				<div class="reple-comment"><p >작성내용 </p></div>
+				<div class="reple-sub"><span>작성일자</span> <a>답글쓰기</a></div>
+
+			</div>
+			
+		
+			<!-- 선추가 -->
+			<div class="fbt-top-line"></div>
+			<!-- 내가 댓글작성하기 -->
+			<div class="make-reple"><p>내가 댓글작성하는 공간</p></div>
 			
 		</div>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		
 	</div>
-
-
-
-
-
-
-	</div>
-
-
-
-
 
 
 

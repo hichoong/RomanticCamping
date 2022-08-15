@@ -21,7 +21,7 @@
 
 	<%@ include file="/views/common/header.jsp" %>
 
-	<h1>여기다가 이제 상세 페이지123</h1>
+	<h1>여기다가 이제 구역 상세 페이지123</h1>
 	
 	
 	
@@ -35,7 +35,7 @@
             <div id="cd-name2"></div>
         </header>
 
-        <!-- 1. 대표이미지 부분 -->
+        <!-- 1. 구역상세이미지 부분 -->
         <div id="d1" class="container">
             
                 <!-- Carousel -->
@@ -164,13 +164,13 @@
         <!-- 6. 캠핑장 구역상세 -->
         <div id="d6" class="container ">
             <div id="d6-d">
-                <div id="d6-1" class="display-5 display-5-gplus">캠핑장 구역상세</div>
+                <div id="d6-1" class="display-5 display-5-gplus">캠핑장 예약하기</div>
                 <div id="d6-2" class="menu-content">
                     <div id="d6-2-1">
-                        <div class="info-title" style="width: 100%;">캠핑장이 마음에 들었다면 상세구역을 확인해보세요</div>
-                        <div class="info-content" style="width: 100%; margin:0px;">상세구역 확인을 통해 예약신청을 진행할 수 있습니다.</div>
+                        <div class="info-title" style="width: 100%;">캠핑장이 마음에 들었다면 예약을 진행해보세요</div>
+                        <div class="info-content" style="width: 100%; margin:0px;">예약하기버튼을 통해 예약가능날짜 확인 및 세부사항을 확인하고 진행할 수 있습니다.</div>
                     </div>
-                    <button type="button" id="d6-2-2" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#camp-policy"><span>캠핑장 구역상세 더보기</span></button>
+                    <button type="button" id="d6-2-2" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#camp-policy"><span>캠핑장 예약하기</span></button>
                 </div>
             </div>  
         </div>
@@ -268,8 +268,8 @@
 
     </div><!-- 아우터 끝  -->
 
-	<%@include file="/views/common/footer.jsp" %>
 
+	<%@include file="/views/common/footer.jsp" %>
 
 
 	

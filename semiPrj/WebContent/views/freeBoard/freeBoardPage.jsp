@@ -12,34 +12,51 @@
 	 <%@ include file="/resource/css/gsFreeB.css" %>
 	
 				
-	#fb1-3{
+	.fb1-3{
 		width: 100%;
-		/* margin: 0 auto; */
-		padding-top : 50px;
-		padding-bottom : 50px;
+		padding-top : 5px;
+		padding-bottom : 10px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		flex-wrap : wrap;
 		text-align: center;
+		margin-bottom:2%;
+		border-top: 1px solid rgb(241, 216, 177);
 
-		flex-direction: column;
 	}
 
 	#fb-table-main{
-		border: 1px solid white;
 		width: 100%;
+		margin-top: 5%;
 	}
 
 	#fb-table-main>tbody tr:hover{
-		background-color: darkgray;
+		background-color: rgb(241, 216, 177);
 		cursor:pointer;
 	}
 	
-	#fb-page-area{
+	.fb-page-area{
 		width: 80%;
 		text-align: center;
 		margin: auto;
+		margin-bottom: 5%;
+	}
+	
+	.fb-page-area a {
+		margin :0px 0px 5px 0px;
+	}
+
+
+	thead {
+		margin-top : 10%;
+	}
+
+	thead tr {
+		color: black;
+		font-weight: 800;
+		font-size: 2rem;
+		border-bottom: 1px dashed lightgoldenrodyellow;
 	}
 	
 </style>
@@ -49,20 +66,22 @@
 	
 	<h1>여기다가 자유게시판 </h1>
 	
+	<!-- href링크는 게시글 번호로 그 번호에 맞는 상세페이지로 이동시키기 -->
+	
 	<div id="freeboard-outer" class="container">
 
 		<div id="fb1" class="container">
 			<p class="fb1-title">중고거래</p>
 			
 			
-			<p class="fb1-title-2">중고거래 최신글 </p>
+			<p class="fb1-title-2">중고거래 인기글 </p>
 			
 			
 			<div id="fb1-1" class="container">
 				
 				
 				<div class ="menu-items">
-					<a href="누르면 연결될 상세페이지">
+					<a href="<%=contextPath %>/views/freeBoard/freeBoardTrade.jsp">
 						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest3.jpg" alt=""></div>
 						<div id="fb1-comment-outer" >
 							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
@@ -73,7 +92,7 @@
 				</div>
 
 				<div class ="menu-items">
-					<a href="누르면 연결될 상세페이지">
+					<a href="<%=contextPath %>/views/freeBoard/freeBoardTrade.jsp">
 						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""></div>
 						<div>
 							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
@@ -84,7 +103,7 @@
 				</div>
 
 				<div class ="menu-items">
-					<a href="누르면 연결될 상세페이지">
+					<a href="<%=contextPath %>/views/freeBoard/freeBoardTrade.jsp">
 						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""></div>
 						<div>
 							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
@@ -95,7 +114,7 @@
 				</div>
 
 				<div class ="menu-items">
-					<a href="누르면 연결될 상세페이지">
+					<a href="<%=contextPath %>/views/freeBoard/freeBoardTrade.jsp">
 						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest1.jpg" alt=""></div>
 						<div>
 							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
@@ -106,7 +125,7 @@
 				</div>
 
 				<div class ="menu-items">
-					<a href="누르면 연결될 상세페이지">
+					<a href="<%=contextPath %>/views/freeBoard/freeBoardTrade.jsp">
 						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest3.jpg" alt=""></div>
 						<div>
 							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
@@ -117,7 +136,7 @@
 				</div>
 
 				<div class ="menu-items">
-					<a href="누르면 연결될 상세페이지">
+					<a href="<%=contextPath %>/views/freeBoard/freeBoardTrade.jsp">
 						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest1.jpg" alt=""></div>
 						<div>
 							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
@@ -128,21 +147,20 @@
 				</div>
 				
 
-
 			</div>
 
 
-			<div id="fb1-3" class="container">
+			<div class="fb1-3" class="container">
 				
 				<table id="fb-table-main" class="container">
 
 					<thead>
 						<tr>
-							<td>글번호</td>
-							<td>글제목</td>
-							<td>작성자</td>
-							<td>조회수</td>
-							<td>작성일</td>
+							<th>글번호</th>
+							<th>글제목</th>
+							<th>작성자</th>
+							<th>조회수</th>
+							<th>작성일</th>
 						</tr>
 					</thead>
 
@@ -204,20 +222,22 @@
 
 
 				</table>
-			</div>
-
-			<div id="fb-page-area">
-
-				<a class="btn btn-primary" href="">1</a>
-				<a class="btn btn-primary" href="">1</a>
-				<a class="btn btn-primary" href="">1</a>
-				<a class="btn btn-primary" href="">1</a>
-				<a class="btn btn-primary" href="">1</a>
-
+				
+			
 			</div>
 
 
-			<div id="fb1-2" onclick=""><input class="btn btn-outline-success" type="button" value="중고거래 더보기" data-bs-toggle="modal" data-bs-target="#tradeWrite"></div>
+			<div class="fb-page-area">
+
+				<a class="btn btn-outline-success btn-sm" href="">1</a>
+				<a class="btn btn-outline-success btn-sm" href="">1</a>
+				<a class="btn btn-outline-success btn-sm" href="">1</a>
+				<a class="btn btn-outline-success btn-sm" href="">1</a>
+				<a class="btn btn-outline-success btn-sm" href="">1</a>
+
+			</div>
+
+			<div id="fb1-2" onclick=""><input class="btn btn-outline-success" type="button" value="중고거래 글 작성하기" data-bs-toggle="modal" data-bs-target="#tradeWrite"></div>
 
 		</div>
 		
@@ -235,7 +255,7 @@
 
 
 				<div class="fb2-1-story">
-					<a href="" class="fb2-1-story-outer">
+					<a href="<%=contextPath %>/views/freeBoard/freeBoardFreeBoard.jsp" class="fb2-1-story-outer">
 						<p style="font-size: 3rem;">글내용작성하는 곳</p>
 						<p class="fb2-story-date">작성일 보여주기</p>
 						<span class="fb2-story-count" >
@@ -247,7 +267,7 @@
 
 
 				<div class="fb2-1-story">
-					<a href="" class="fb2-1-story-outer">
+					<a href="<%=contextPath %>/views/freeBoard/freeBoardFreeBoard.jsp" class="fb2-1-story-outer">
 						<p style="font-size: 3rem;">글내용작성하는 곳</p>
 						<p class="fb2-story-date">작성일 보여주기</p>
 						<span class="fb2-story-count" >
@@ -258,7 +278,7 @@
 
 
 				<div class="fb2-1-story">
-					<a href="" class="fb2-1-story-outer">
+					<a href="<%=contextPath %>/views/freeBoard/freeBoardFreeBoard.jsp" class="fb2-1-story-outer">
 						<p style="font-size: 3rem;">글내용작성하는 곳</p>
 						<p class="fb2-story-date">작성일 보여주기</p>
 						<span class="fb2-story-count" >
@@ -270,7 +290,7 @@
 
 
 				<div class="fb2-1-story">
-					<a href="" class="fb2-1-story-outer">
+					<a href="<%=contextPath %>/views/freeBoard/freeBoardFreeBoard.jsp" class="fb2-1-story-outer">
 						<p style="font-size: 3rem;">글내용작성하는 곳</p>
 						<p class="fb2-story-date">작성일 보여주기</p>
 						<span class="fb2-story-count" >
@@ -289,7 +309,7 @@
 
 			</div>
 
-			<div id="fb1-3" class="container">
+			<div class="fb1-3" class="container">
 				
 				<table id="fb-table-main" class="container">
 
@@ -365,18 +385,18 @@
 
 
 
-			<div id="fb-page-area">
+			<div class="fb-page-area">
 
-				<a class="btn btn-primary" href="">1</a>
-				<a class="btn btn-primary" href="">1</a>
-				<a class="btn btn-primary" href="">1</a>
-				<a class="btn btn-primary" href="">1</a>
-				<a class="btn btn-primary" href="">1</a>
+				<a class="btn btn-outline-success btn-sm" href="">1</a>
+				<a class="btn btn-outline-success btn-sm" href="">1</a>
+				<a class="btn btn-outline-success btn-sm" href="">1</a>
+				<a class="btn btn-outline-success btn-sm" href="">1</a>
+				<a class="btn btn-outline-success btn-sm" href="">1</a>
 
 			</div>
 
 
-			<div id="fb2-2" onclick=""><input class="btn btn-outline-success" type="button" value="자유게시판 더보기" data-bs-toggle="modal" data-bs-target="#freeBoardWrite"></div>
+			<div id="fb2-2" onclick=""><input class="btn btn-outline-success" type="button" value="자유게시판 글 작성하기" data-bs-toggle="modal" data-bs-target="#freeBoardWrite"></div>
 			
 			
 		</div>
@@ -392,6 +412,8 @@
 
 	</div><!-- 끝 -->
 
+	<%@include file="/views/common/footer.jsp" %>
+	
 	
 	<!-- 중고거래 작성 모달 The Modal -->
 	<div class="modal" id="tradeWrite" data-bs-backdrop="static" data-bs-keyboard="false">
