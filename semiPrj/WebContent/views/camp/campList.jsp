@@ -25,6 +25,7 @@
         <section>
             <div id="search-box">
               
+              <!-- 새로고침,서브밋 했을 때 검색내용 유지기능 필요  -->
               <form class="search-form" action="<%=contextPath %>/camp/campList" method="get">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword" >
                   <div id="search-addr">
@@ -64,9 +65,12 @@
                     <div class="hashtag-list hide">
                       <ul class="tag-ul">
 						<%for(HashTagVo vo : hashTagList) { %>
-							<li><input hashTagKey="<%=vo.getHtCode()%>" type="hidden" name="hashTag" disabled="disabled" value="<%=vo.getHtCode()%>"></li>
-							<li><button hashTagKey="<%=vo.getHtCode()%>" type="button" class="tag-btn" ><%=vo.getHtName()%></button></li>
+							<li>
+								<input hashTagKey="<%=vo.getHtCode()%>" type="hidden" name="hashTag" disabled="disabled" value="<%=vo.getHtCode()%>">
+								<button hashTagKey="<%=vo.getHtCode()%>" type="button" class="tag-btn" ><%=vo.getHtName()%></button>
+							</li>
 						<%} %>
+						
                       </ul>
                     </div>
                     <input type="submit" value="search" class="btn btn-warning">
@@ -78,10 +82,10 @@
                
                 
 
-                  <div class="card mb-3" style="max-width: 800px;" onclick="location.href='campZoneList.jsp'">
+                  <div class="card mb-3" style="max-width: 800px;" onclick="location.href='<%=contextPath %>/views/camp/campZoneList.jsp'">
                     <div class="row no-gutters">
                       <div class="col-md-4">
-                        <img src="../../resource/img/test.jpg" class="card-img" alt="캠핑장 대표이미지">
+                        <img src="<%=contextPath %>/resource/img/test.jpg" class="card-img" alt="캠핑장 대표이미지">
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
@@ -96,7 +100,7 @@
                 <div class="card mb-3" style="max-width: 800px;">
                     <div class="row no-gutters">
                       <div class="col-md-4">
-                        <img src="../../resource/img/test.jpg" class="card-img" alt="캠핑장 대표이미지">
+                        <img src="<%=contextPath %>/resource/img/test.jpg" class="card-img" alt="캠핑장 대표이미지">
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
@@ -111,7 +115,7 @@
                 <div class="card mb-3" style="max-width: 800px;">
                     <div class="row no-gutters">
                       <div class="col-md-4">
-                        <img src="../../resource/img/test.jpg" class="card-img" alt="캠핑장 대표이미지">
+                        <img src="<%=contextPath %>/resource/img/test.jpg" class="card-img" alt="캠핑장 대표이미지">
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
@@ -126,7 +130,7 @@
                 <div class="card mb-3" style="max-width: 800px;">
                     <div class="row no-gutters">
                       <div class="col-md-4">
-                        <img src="../../resource/img/test.jpg" class="card-img" alt="캠핑장 대표이미지">
+                        <img src="<%=contextPath %>/resource/img/test.jpg" class="card-img" alt="캠핑장 대표이미지">
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
@@ -141,7 +145,7 @@
                 <div class="card mb-3" style="max-width: 800px;">
                     <div class="row no-gutters">
                       <div class="col-md-4">
-                        <img src="../../resource/img/test.jpg" class="card-img" alt="캠핑장 대표이미지">
+                        <img src="<%=contextPath %>/resource/img/test.jpg" class="card-img" alt="캠핑장 대표이미지">
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">

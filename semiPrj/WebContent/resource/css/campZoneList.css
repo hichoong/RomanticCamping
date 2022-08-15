@@ -20,7 +20,7 @@ section{
 #info-box{
     width: 25%;
     margin: 0 auto;
-    padding-top: 70px;
+    padding-top: 0px;
 }
 #info-box *{
     margin: 10px 0;
@@ -43,8 +43,8 @@ section .camp-list{
     border: 1px solid rgb(255, 218, 153);
 }
 .camp-name{
-    font-size: 1.7rem;
-    font-weight: 700;
+    font-size: 1.8rem;
+    font-weight: 900;
     text-align: center;
 }
 #camp-zone-img{
