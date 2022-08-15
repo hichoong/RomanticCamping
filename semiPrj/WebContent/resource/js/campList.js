@@ -47,7 +47,6 @@ $('document').ready(function() {
   //해시태그 리스트 show/hide
   $(function(){
     $('.hashtag').click(function(){
-
       $('.hashtag-list').slideToggle();
     })
   })

@@ -58,5 +58,8 @@ public class CampListController extends HttpServlet {
 		req.getRequestDispatcher("/views/camp/campList.jsp").forward(req, resp);
 	}
 	
+	
+	
+	
 
 }
