@@ -33,9 +33,9 @@ public class MemberDao {
 				vo.setName(rs.getString("NAME"));
 				vo.setPhone(rs.getString("PHONE"));
 				vo.setEmail(rs.getString("EMAIL"));
-				vo.setPhone(rs.getString("BIRTHDAY"));
-				vo.setPhone(rs.getString("GENDER"));
-				vo.setPhone(rs.getString("GRADE"));
+				vo.setBirthday(rs.getString("BIRTHDAY"));
+				vo.setGender(rs.getString("GENDER"));
+				vo.setGrade(rs.getString("GRADE"));
 				vo.setJoinDate(rs.getString("JOIN_DATE"));
 			}
 			
