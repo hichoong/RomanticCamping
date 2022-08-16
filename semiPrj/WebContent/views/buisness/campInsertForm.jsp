@@ -17,12 +17,13 @@
 	
 %>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 
 <link rel="stylesheet" href="/resource/css/SjyCss.css">
 
 <style type="text/css">
 
+	
 </style>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
@@ -36,22 +37,22 @@
 		<div id="content">
 
 
-			<form action="<%=contextPath%>/business/insert" method="post">
+			<form action="/bscamp/insert" method="post">
 				<h2>캠핑장 등록</h2>
-				<%System.out.println(contextPath); %>
+				
 				<hr>
-				<div style="overflow-x: hidden; width: 100%; height: 700px;">
+				<div style="overflow-x: hidden; width: 100%; height: 700px; padding-right: 10%">
 
 					<div class="md-3">
-						<label for="campName" class="form-label">* 이름:</label> <input
-							type="text" class="form-control" id="campName"
+						<label for="campName" class="form-label">* 이름:</label> 
+							<input type="text" class="form-control" id="campName"
 							placeholder="캠핑장 이름 입력" name="campName" required>
 					</div>
 
 					<div class="md-3 ">
-						<label for="campAdd" class="form-label">* 주소:</label> <select
-							name="addSido1" class="form-select" id="addSido1"></select> <select
-							name="addGugun1" class="form-select" id="addGugun1"></select>
+						<label for="campAdd" class="form-label">* 주소:</label> 
+						<select name="city" class="form-select" id="city"></select> 
+						<select name="district" class="form-select" id="district"></select>
 					</div>
 
 
@@ -63,9 +64,9 @@
 					</div>
 
 					<div class="md-3">
-						<label for="phoneNum" class="form-label">* 연락처:</label> <input
-							type="text" class="form-control" id="phoneNum"
-							placeholder="캠핑장 연락처 입력" name="phoneNum" required>
+						<label for="campPhone" class="form-label">* 연락처:</label> <input
+							type="text" class="form-control" id="campPhone" maxlength="13"
+							placeholder="캠핑장 연락처 입력" name="campPhone" required>
 					</div>
 
 					<div class="md-3">
@@ -75,88 +76,80 @@
 					</div>
 
 					<div class="md-3">
-						<label for="camp" class="form-label">* 시설현황:</label> <input
-							type="text" class="form-control" id="camp"
+						<label for="campFacility" class="form-label">* 시설현황:(※선택: 이미지 아이콘)</label> <input
+							type="text" class="form-control" id="campFacility"
 							placeholder="와이파이 전기 온수 반려견동반 매점 장작판매 운동장 산책로 물놀이장" name="camp"
 							disabled>
-								<img alt="dd" src="<%=contextPath %>/resource/img/facility.png">
-							    <input type="checkbox" id="ft1" class="facility">
+								
+							    <input type="checkbox" name="facility" id="ft1" class="facility" value="w">
 							    <label for="ft1" >와이파이</label>
-							   	
-							    <input type="checkbox" id="ft2" class="facility">
+							    <input type="checkbox" name="facility" id="ft2" class="facility" value="e">
 							    <label for="ft2">전기</label>
-							    <input type="checkbox" id="ft3" class="facility">
+							    <input type="checkbox" name="facility" id="ft3" class="facility" value="h">
 							    <label for="ft3">온수</label>
-							    <input type="checkbox" id="ft4" class="facility">
+							    <input type="checkbox" name="facility" id="ft4" class="facility" value="p">
 							    <label for="ft4">반려견동반</label>
-							    <input type="checkbox" id="ft5" class="facility">
+							    <input type="checkbox" name="facility" id="ft5" class="facility" value="s">
 							    <label for="ft5">매점</label>
 							    
-							    <input type="checkbox" id="ft6" class="facility">
+							    <input type="checkbox" name="facility" id="ft6" class="facility" value="f">
 							    <label for="ft6">장작판매</label>
-							    <input type="checkbox" id="ft7" class="facility">
+							    <input type="checkbox" name="facility" id="ft7" class="facility" value="p">
 							    <label for="ft7">운동장</label>
-							    <input type="checkbox" id="ft8" class="facility">
+							    <input type="checkbox" name="facility" id="ft8" class="facility" value="t">
 							    <label for="ft8">산책로</label>
-							    <input type="checkbox" id="ft9" class="facility">
+							    <input type="checkbox" name="facility" id="ft9" class="facility" value="o">
 							    <label for="ft9">물놀이장</label>
+							    
 					</div>
 
 					<div class="md-3" id="tdTheme">
-						<label for="campTheme" class="form-label">* 테마:(테마를
-							선택해주세요)</label>
+						<label for="campTheme" class="form-label">* 테마:(테마를선 택해주세요)</label>
 						<!-- <input type="text" class="form-control" id="camp"  placeholder="해변 숲 섬 호수 도심 계곡 산 강" name="camp" disabled> -->
 						<table>
 							<tr>
-								<td><input type="checkbox" class="btn-check" id="beach"
-									autocomplete="off" name="theme"> <label
-									class="btn btn-outline-success" for="beach">해변</label><br>
+								<td><input type="checkbox" class="btn-check" id="beach" autocomplete="off" name="theme" value="beach"> 
+									<label class="btn btn-outline-success" for="beach">해변</label><br>
 								</td>
 
-								<td><input type="checkbox" class="btn-check" id="forest"
-									autocomplete="off" name="theme"> <label
-									class="btn btn-outline-success" for="forest">숲</label><br>
+								<td><input type="checkbox" class="btn-check" id="forest" autocomplete="off" name="theme" value="forest">
+									<label class="btn btn-outline-success" for="forest">숲</label><br>
 								</td>
 
-								<td><input type="checkbox" class="btn-check" id="island"
-									autocomplete="off" name="theme"> <label
-									class="btn btn-outline-success" for="island">섬</label><br>
+								<td><input type="checkbox" class="btn-check" id="island" autocomplete="off" name="theme" value="island"> 
+									<label class="btn btn-outline-success" for="island">섬</label><br>
 								</td>
 
-								<td><input type="checkbox" class="btn-check" id="lake"
-									autocomplete="off" name="theme"> <label
-									class="btn btn-outline-success" for="lake">호수</label><br>
+								<td><input type="checkbox" class="btn-check" id="lake" autocomplete="off" name="theme" value="lake">  
+									<label class="btn btn-outline-success" for="lake">호수</label><br>
 								</td>
 
-								<td><input type="checkbox" class="btn-check" id="downtown"
-									autocomplete="off" name="theme"> <label
-									class="btn btn-outline-success" for="downtown">도심</label><br>
+								<td><input type="checkbox" class="btn-check" id="downtown" autocomplete="off" name="theme" value="downtown"> 
+								<label class="btn btn-outline-success" for="downtown">도심</label><br>
 								</td>
 
-								<td><input type="checkbox" class="btn-check" id="valley"
-									autocomplete="off" name="theme"> <label
-									class="btn btn-outline-success" for="valley">계곡</label><br>
+								<td><input type="checkbox" class="btn-check" id="valley" autocomplete="off" name="theme" value="valley"> 
+									<label class="btn btn-outline-success" for="valley">계곡</label><br>
 								</td>
 
-								<td><input type="checkbox" class="btn-check" id="mountain"
-									autocomplete="off" name="theme"> <label
-									class="btn btn-outline-success" for="mountain">산</label><br>
+								<td><input type="checkbox" class="btn-check" id="mountain" autocomplete="off" name="theme" value="mountain"> 
+									<label class="btn btn-outline-success" for="mountain">산</label><br>
 								</td>
 
-								<td><input type="checkbox" class="btn-check" id="river"
-									autocomplete="off" name="theme"> <label
-									class="btn btn-outline-success" for="river">강</label><br>
+								<td><input type="checkbox" class="btn-check" id="river" autocomplete="off" name="theme" value="river"> 
+									<label class="btn btn-outline-success" for="river">강</label><br>
 								</td>
 
 							</tr>
 						</table>
 					</div>
-
+					
 					<div class="md-3">
 						<label for="campRefund" class="form-label">* 환불규정:</label> <input
 							type="text" class="form-control" id="campRefund"
 							placeholder="환불규정" name="campRefund" required>
 					</div>
+
 
 					<div class="mb-3">
 						<label for="campRepImg" class="form-label">* 대표이미지:</label> <input
@@ -167,30 +160,30 @@
 
 
 					<div class="mb-3">
-						<label for="" class="form-label">구역 추가하기</label>
+						<label for="" class="form-label">*구역 추가하기</label>
 						<button type="button" class="btn btn-success btnAdd"
 							onclick="addArea(); ">추가</button>
 						<div class="addInput">
 
 							<hr>
 							<div class="mb-3">
-								<label for="campAreaName" class="form-label">구역이름</label> <input
-									class="form-control" type="text" id="campAreaName">
+								<label for="campZoneName" class="form-label">구역이름</label> 
+								<input class="form-control" type="text" id="campZoneName" name="campZoneName" placeholder="구역이름을 입력해주세요" required>
+							</div>
+							<div class="mb-3 " style="width: 30%">
+								<label for="maxGusests" class="form-label">최대 숙박인원(:명)</label> 
+								<input class="form-control" type="number" id="maxGusests" name="maxGusests" min="1" value="1" required>
+							</div>
+							<div class="mb-3 " style="width: 30%">
+								<label for="campAreaPrice" class="form-label">가격(:원)</label> 
+								<input class="form-control" type="number" id="campZonePrice" name="campZonePrice" min="0" value="0" required>
 							</div>
 							<div class="mb-3">
-								<label for="maxGusests" class="form-label">최대 숙박인원</label> <input
-									class="form-control" type="text" id="maxGusests">
+								<label for="campAreaImg" class="form-label">구역이미지</label>
+								 <input class="form-control" type="file" id="campZoneImg" name="campZoneImg">
 							</div>
-							<div class="mb-3">
-								<label for="campAreaPrice" class="form-label">가격</label> <input
-									class="form-control" type="text" id="campAreaPrice">
-							</div>
-							<div class="mb-3">
-								<label for="campRepImgMulti" class="form-label">구역
-									이미지(※최대 _개)</label> <input class="form-control" type="file"
-									id="campRepImgMulti" multiple>
-							</div>
-							<button type="button" class="btn btn-danger btnRemove">삭제</button>
+							
+							 <button type="button" class="btn btn-danger btnRemove" disabled >※구역은 1개이상 입력해주세요</button> 
 							<br>
 							<br>
 
@@ -274,7 +267,7 @@
 
 						// 시/도 선택 박스 초기화
 
-						$("select[name^=addSido]")
+						$("select[name^=city]")
 								.each(
 										function() {
 											$selsido = $(this);
@@ -295,7 +288,7 @@
 
 						// 시/도 선택시 구/군 설정
 
-						$("select[name^=addSido]")
+						$("select[name^=city]")
 								.change(
 										function() {
 											var area = "area"
@@ -304,18 +297,18 @@
 																	$(
 																			"option:selected",
 																			$(this))); // 선택지역의 구군 Array
-											var $gugun = $(this).next(); // 선택영역 군구 객체
-											$("option", $gugun).remove(); // 구군 초기화
+											var $district = $(this).next(); // 선택영역 군구 객체
+											$("option", $district).remove(); // 구군 초기화
 
 											if (area == "area0")
-												$gugun
+												$district
 														.append("<option value=''>구/군 선택</option>");
 											else {
 												$
 														.each(
 																eval(area),
 																function() {
-																	$gugun
+																	$district
 																			.append("<option value='" + this + "'>"
 																					+ this
 																					+ "</option>");
@@ -331,26 +324,26 @@
         $('.btnAdd').click(function(){
             $('.addInput').append(
                 '<hr>\
-					<div class="mb-3">\
-								<label for="campAreaName" class="form-label">구역이름</label>\
-								<input class="form-control" type="text" id="campAreaName" >\
-							</div>\
-					<div class="mb-3">\
-								<label for="maxGusests" class="form-label">최대 숙박인원</label>\
-								<input class="form-control" type="text" id="maxGusests" >\
-							</div>\
-							<div class="mb-3">\
-								<label for="campAreaPrice" class="form-label">가격</label>\
-								<input class="form-control" type="text" id="campAreaPrice" >\
-					</div>\
-					<div class="mb-3">\
-							<label for="campRepImgMulti" class="form-label">구역 이미지(※최대 _개)</label>\
-							<input class="form-control" type="file" id="campRepImgMulti" multiple>\
-					</div>\
+				<div class="mb-3">\
+					<label for="campZoneName" class="form-label">구역이름</label> \
+					<input class="form-control" type="text" id="campZoneName" name="campZoneName" placeholder="구역이름을 입력해주세요" required>\
+				</div>\
+				<div class="mb-3 " style="width: 30%">\
+					<label for="maxGusests" class="form-label">최대 숙박인원(:명)</label> \
+					<input class="form-control" type="number" id="maxGusests" name="maxGusests" min="1" value="1" required>\
+				</div>\
+				<div class="mb-3 " style="width: 30%">\
+					<label for="campAreaPrice" class="form-label">가격(:원)</label> \
+					<input class="form-control" type="number" id="campZonePrice" name="campZonePrice" min="0" value="0" required>\
+				</div>\
+				<div class="mb-3">\
+					<label for="campAreaImg" class="form-label">구역이미지</label>\
+					<input class="form-control" type="file" id="campZoneImg" name="campZoneImg">\
+				</div>\
 				<button type="button" class="btn btn-danger btnRemove">삭제</button><br><br>'
                 );
             $('.btnRemove').on('click',function(){
-                $(this).prev().remove();
+                /* $(this).prev().remove(); */
 				$(this).prev().remove();
 				$(this).prev().remove();
 				$(this).prev().remove();
@@ -358,38 +351,12 @@
 				$(this).prev().remove();
                 $(this).next().remove();
 				$(this).next().remove();
-                $(this).remove();
+                $(this).remove();//bt
 
 				// $(document.getElementsByClassName('addInput')).children().remove();
             })
         })
     })
 </script>
-
-<!-- <div class="mb-3">
-	<label for="" class="form-label">구역 추가하기</label>
-	<button type="button" class="btn btn-success" onclick="addArea()">추가</button>
-</div> -->
-
-<!-- <hr><div class="mb-3">
-	<label for="maxGusests" class="form-label">최대 숙박인원</label>
-	<input class="form-control" type="text" id="maxGusests" >
-</div>
-
-<div class="mb-3">
-	<label for="campAreaPrice" class="form-label">가격</label>
-	<input class="form-control" type="text" id="campAreaPrice" >
-</div>
-
-<div class="mb-3">
-	<label for="campAreaName" class="form-label">구역이름</label>
-	<input class="form-control" type="text" id="campAreaName" >
-</div>
-
-
-<div class="mb-3">
-	<label for="campRepImgMulti" class="form-label">구역 이미지(※최대 _개)</label>
-	<input class="form-control" type="file" id="campRepImgMulti" multiple>
-</div> -->
 
 </html>

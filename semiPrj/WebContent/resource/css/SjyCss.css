@@ -213,7 +213,7 @@ li {
 #delete:hover {background-color: #b12727}
 
 #delete:active {
-    background-color: #3e8e41;
+    background-color: #b12727;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
@@ -251,8 +251,8 @@ a{
 		/*시설현황*/
 input[class="facility"] + label {
 	display: inline-block;
-	width: 100px;
-	height: 100px;
+	width: 90px;
+	height: 90px;
 	border: 2px solid #bcbcbc;
 	cursor: pointer;
 		margin: auto;
@@ -260,19 +260,49 @@ input[class="facility"] + label {
 	
 }
 input[class="facility"]:checked + label {
+	
 	background-color: #666666;
-    color:white;
+    color: #bc510091;
+	font-weight: 900;
+	border: 5px solid #bc510091;
+    
     
 }
+
 input[class="facility"] {
 	display: none;
 }
 input[class="facility"]+label{
 	
-	background: url("/resource/img/facility.png") no-repeat 0 0px / contain;	
+	background: url("../../resource/img/facility.png") no-repeat 0 0px / contain;		
 }
-	
 
-input[class="facility"]:checked+label{
-	background: url('https://placehold.jp/200x200.png') no-repeat 0 0px / contain;
+input[class="facility"][id="ft1"]:checked+label{
+	background: url('../../resource/img/facility/wifi.png') no-repeat 0 0px / contain;
+	
 }
+input[class="facility"][id="ft2"]:checked+label{
+	background: url('../../resource/img/facility/electricity.png') no-repeat 0 0px / contain;
+}
+input[class="facility"][id="ft3"]:checked+label{
+	background: url('../../resource/img/facility/hotWater.png') no-repeat 0 0px / contain;
+}
+input[class="facility"][id="ft4"]:checked+label{
+	background: url('../../resource/img/facility/pet.png') no-repeat 0 0px / contain;
+}
+input[class="facility"][id="ft5"]:checked+label{
+	background: url('../../resource/img/facility/store.png') no-repeat 0 0px / contain;
+}
+input[class="facility"][id="ft6"]:checked+label{
+	background: url('../../resource/img/facility/fs.jpg') no-repeat 0 0px / contain;
+}
+input[class="facility"][id="ft7"]:checked+label{
+	background: url('../../resource/img/facility/playground.png') no-repeat 0 0px / contain;
+}
+input[class="facility"][id="ft8"]:checked+label{
+	background: url('../../resource/img/facility/path.png') no-repeat 0 0px / contain;
+}
+input[class="facility"][id="ft9"]:checked+label{
+	background: url('../../resource/img/facility/waterSlide.png') no-repeat 0 0px / contain;
+}
+
