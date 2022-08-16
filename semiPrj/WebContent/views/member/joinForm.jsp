@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String errorMsg = (String)request.getAttribute("errorMsg");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,43 +58,43 @@
                 </div>
             
                 <div class="modal-body">
-                    <form action="" method="post">
+                    <form action="<%=contextPath%>/user/join" method="post">
                         <div class="mb-4 mt-4">
                           <label for="id" class="form-label">* 아이디:</label>
-                          <input type="text" class="form-control" id="id" placeholder="Enter id" name="id" required>
+                          <input type="text" class="form-control" id="id" placeholder="3글자 이상 입력하세요" name="id" required>
                         </div>
                         <div class="mb-3">
                           <label for="pwd" class="form-label">* 비밀번호:</label>
-                          <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" required>
+                          <input type="password" class="form-control" id="pwd" placeholder="4글자 이상 입력하세요" name="pwd" required>
                         </div>
                         <div class="mb-3">
                             <label for="pwdCheck" class="form-label">* 비밀번호 확인:</label>
-                            <input type="password" class="form-control" id="pwdCheck" placeholder="Enter password" name="pwdCheck" required>
+                            <input type="password" class="form-control" id="pwdCheck" placeholder="비밀번호 재확인" name="pwdCheck" required>
                           </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">* 이름:</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" required>
+                            <input type="text" class="form-control" id="name" placeholder="1글자 이상 입력하세요" name="name" required>
                           </div>
                           <div class="mb-3">
                             <label for="phone" class="form-label">* 휴대폰번호:</label>
-                            <input type="text" class="form-control" id="phone" placeholder="ex) 01000000000" name="phone" required>
+                            <input type="text" class="form-control" id="phone" placeholder="ex) 01012345678" name="phone" required>
                           </div>
                           <div class="mb-3">
                             <label for="email" class="form-label">이메일:</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                            <input type="email" class="form-control" id="email" placeholder="ex) example@ex.com" name="email">
                           </div>
                           <div class="mb-3">
                             <label for="birth" class="form-label">생년월일:</label>
-                            <input type="date" class="form-control" id="birth" placeholder="Enter BithDay" name="birth">
+                            <input type="date" class="form-control" id="birth" name="birth">
                           </div>
                           <div class="mb-3">
                             성별: 
-                            <label><input type="radio" name="gender" value="M"> 남자</label>
+                            <label><input type="radio" name="gender" value="M" checked> 남자</label>
                             <label><input type="radio" name="gender" value="F"> 여자</label>
                           </div>
 
                         <div class="location-right">
-                            <button type="submit" class="btn btn-success" data-bs-dismiss="modal">회원가입</button>
+                            <button type="submit" class="btn btn-success" onclick="return checkPwd();">회원가입</button>
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">취소</button>
                         </div>
                       </form>
@@ -108,22 +111,22 @@
                 </div>
             
                 <div class="modal-body">
-                    <form action="" method="post">
+                    <form action="<%=contextPath%>/business/join" method="post">
                         <div class="mb-4 mt-4">
                           <label for="id" class="form-label">* 아이디:</label>
-                          <input type="text" class="form-control" id="id" placeholder="Enter id" name="id" required>
+                          <input type="text" class="form-control" id="id" placeholder="3글자 이상 입력하세요" name="id" required>
                         </div>
                         <div class="mb-3">
                           <label for="pwd" class="form-label">* 비밀번호:</label>
-                          <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" required>
+                          <input type="password" class="form-control" id="pwd" placeholder="4글자 이상 입력하세요" name="pwd" required>
                         </div>
                         <div class="mb-3">
                             <label for="pwdCheck" class="form-label">* 비밀번호 확인:</label>
-                            <input type="password" class="form-control" id="pwdCheck" placeholder="Enter password" name="pwdCheck" required>
+                            <input type="password" class="form-control" id="pwdCheck" placeholder="비밀번호 재확인" name="pwdCheck" required>
                           </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">* 이름:</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" required>
+                            <input type="text" class="form-control" id="name" placeholder="1글자 이상 입력하세요" name="name" required>
                           </div>
                           <div class="mb-3">
                             <label for="phone" class="form-label">* 휴대폰번호:</label>
@@ -131,11 +134,11 @@
                           </div>
                           <div class="mb-3">
                             <label for="email" class="form-label">* 이메일:</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                            <input type="email" class="form-control" id="email" placeholder="example@ex.com" name="email">
                           </div>
 
                         <div class="location-right">
-                            <button type="submit" class="btn btn-success" data-bs-dismiss="modal">회원가입</button>
+                            <button type="submit" class="btn btn-success" onclick="return checkPwd();">회원가입</button>
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">취소</button>
                         </div>
                       </form>
@@ -145,6 +148,27 @@
     </div>
 
     <%@ include file="/views/common/footer.jsp" %>
+
+	<script>
+		function checkPwd(){
+			isSame = $('input[name=pwd]').val() == $('input[name=pwdCheck]').val();
+			if(isSame) {
+				return true;
+			} else {
+				alert("비밀번호가 일치하지 않습니다.");
+				return false;
+			}
+			
+		}
+	</script>
+
+	<script>
+		$(function(){
+			<%if(errorMsg != null){%>
+				alert("<%=errorMsg%>");
+			<%}%>
+		});
+	</script>
 
 </body>
 </html>

@@ -36,43 +36,43 @@ public class MemberVo {
 		return id;
 	}
 	public void setId(String id) {
-		this.id = id;
+		this.id = id.replaceAll(" ", "");
 	}
 	public String getPwd() {
 		return pwd;
 	}
 	public void setPwd(String pwd) {
-		this.pwd = pwd;
+		this.pwd = pwd.replaceAll(" ", "");
 	}
 	public String getPwdCheck() {
 		return pwdCheck;
 	}
 	public void setPwdCheck(String pwdCheck) {
-		this.pwdCheck = pwdCheck;
+		this.pwdCheck = pwdCheck.replaceAll(" ", "");
 	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.name = name.trim();
 	}
 	public String getPhone() {
 		return phone;
 	}
 	public void setPhone(String phone) {
-		this.phone = phone;
+		this.phone = phone.replaceAll(" ", "");
 	}
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
-		this.email = email;
+		this.email = email.replaceAll(" ", "");
 	}
 	public String getBirthday() {
 		return birthday;
 	}
 	public void setBirthday(String birthday) {
-		this.birthday = birthday;
+		this.birthday = birthday.replaceAll("-", "");
 	}
 	public String getGender() {
 		return gender;

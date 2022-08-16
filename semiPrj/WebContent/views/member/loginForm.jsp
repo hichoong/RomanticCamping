@@ -21,6 +21,11 @@
         padding-top: 30px;
         text-align: center;
     }
+    
+    .errorDiv {
+    	text-align: center;
+    	color : red;
+    }
 
 </style>
 </head>
@@ -47,6 +52,9 @@
                   <label class="form-check-label">
                     <input class="form-check-input" type="checkbox" name="remember"> 아이디 저장
                   </label>
+                </div>
+                <div class="errorDiv">
+                	${empty errorMsg ? "" : errorMsg }
                 </div>
                 <div class="location-right">
                     <button type="submit" class="basic-btn">로그인</button>

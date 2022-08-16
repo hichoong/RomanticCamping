@@ -3,7 +3,7 @@ package com.kh.member.controller;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebFilter;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,14 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.member.service.MemberService;
 import com.kh.member.vo.MemberVo;
 
-@WebFilter(urlPatterns = "/member/login")
+@WebServlet(urlPatterns = "/member/login")
 public class MemberLoginController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 		req.getRequestDispatcher("/views/member/loginForm.jsp").forward(req, resp);
-	
 	}
 	
 	@Override
@@ -39,8 +37,8 @@ public class MemberLoginController extends HttpServlet {
 			req.getSession().setAttribute("loginMember", loginMember);
 			resp.sendRedirect(req.getContextPath());
 		} else {
-			req.setAttribute("errorMsg", "로그인 실패");
-			req.getRequestDispatcher("/member/login").forward(req, resp);
+			req.setAttribute("errorMsg", "아이디 또는 비밀번호를 잘못 입력했습니다.<br> 입력하신 내용을 다시 확인해주세요");
+			req.getRequestDispatcher("/views/member/loginForm.jsp").forward(req, resp);
 		}
 	
 	}
