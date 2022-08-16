@@ -64,52 +64,20 @@
                     <article class=" shadow"><a href="campDetaileInfo.jsp"><img src="https://placehold.jp/200x200.png" alt=""><span>camp4</span></a></article>
                     <article class=" shadow"><a href="campDetaileInfo.jsp"><img src="https://placehold.jp/200x200.png" alt=""><span>camp5</span></a></article>
                     <article class=" shadow"><a href="campDetaileInfo.jsp"><img src="https://placehold.jp/200x200.png" alt=""><span>camp6</span></a></article>
+                    <article class=" shadow"><a href="campDetaileInfo.jsp"><img src="https://placehold.jp/200x200.png" alt=""><span>camp1</span></a></article>
+                    <article class=" shadow"><a href="campDetaileInfo.jsp"><img src="https://placehold.jp/200x200.png" alt=""><span>camp2</span></a></article>
+                    <article class=" shadow"><a href="campDetaileInfo.jsp"><img src="https://placehold.jp/200x200.png" alt=""><span>camp3</span></a></article>
+                    <article class=" shadow"><a href="campDetaileInfo.jsp"><img src="https://placehold.jp/200x200.png" alt=""><span>camp4</span></a></article>
+                    <article class=" shadow"><a href="campDetaileInfo.jsp"><img src="https://placehold.jp/200x200.png" alt=""><span>camp5</span></a></article>
+                    <article class=" shadow"><a href="campDetaileInfo.jsp"><img src="https://placehold.jp/200x200.png" alt=""><span>camp6</span></a></article>
+                    <article class=" shadow"><a href="campDetaileInfo.jsp"><img src="https://placehold.jp/200x200.png" alt=""><span>camp2</span></a></article>
+                    <article class=" shadow"><a href="campDetaileInfo.jsp"><img src="https://placehold.jp/200x200.png" alt=""><span>camp3</span></a></article>
+                    <article class=" shadow"><a href="campDetaileInfo.jsp"><img src="https://placehold.jp/200x200.png" alt=""><span>camp4</span></a></article>
+                    <article class=" shadow"><a href="campDetaileInfo.jsp"><img src="https://placehold.jp/200x200.png" alt=""><span>camp5</span></a></article>
+                    <article class=" shadow"><a href="campDetaileInfo.jsp"><img src="https://placehold.jp/200x200.png" alt=""><span>camp6</span></a></article>
                     
             </div>
-			
-				
-				<!-- <div class="col-lg-4 col-md-6">
-					<a href="campDetaileInfo.jsp">
-						<div class="portfolio-box shadow">
-							<img src="https://placehold.jp/200x200.png">
-							<div>
-								<div class="caption">
-									<h4>캠핑장1</h4>
-									<p>#a #b #c</p>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				
-				<div class="col-lg-4 col-md-6">
-					<a href="campDetaileInfo.jsp">
-						<div class="portfolio-box shadow">
-							<img src="https://placehold.jp/200x200.png">
-							<div class="portfolio-info">
-								<div class="caption">
-									<h4>캠핑장2</h4>
-									<p>#a #b #c</p>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				
-				
-				<div class="col-lg-4 col-md-6">
-					<a href="campDetaileInfo.jsp">
-						<div class="portfolio-box shadow">
-							<img src="https://placehold.jp/200x200.png">
-							<div class="portfolio-info">
-								<div class="caption">
-									<h4>캠핑장3</h4>
-									<p>#a #b #c</p>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div> -->
+
 			
 				</div>
 	</main><!--#content  -->
