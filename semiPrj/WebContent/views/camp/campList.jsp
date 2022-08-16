@@ -1,3 +1,4 @@
+<%@page import="com.kh.camplist.theme.vo.ThemeVo"%>
 <%@page import="java.util.List"%>
 <%@page import="com.kh.camplist.hashtag.vo.HashTagVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -7,12 +8,12 @@
 	
 	List<HashTagVo> hashTagList = (List<HashTagVo>) request.getAttribute("hashTagList");
 	List<String> checkedHashCodes = (List<String>) request.getAttribute("checkedHashCodes");
+	List<ThemeVo> themeList = (List<ThemeVo>) request.getAttribute("themeList");
 
 %>
 <!DOCTYPE html>
 <html>
 <head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<meta charset="UTF-8">
 	<title>낭만캠핑</title>
 	<link rel="stylesheet" href="/semiPrj/resource/css/campList.css">
@@ -42,16 +43,9 @@
                       </tr>
                       <tr>
                         <td>
-                          <input type="checkbox" name="theme" value="island" id="island"><label for="island">섬</label><br>
-                          <input type="checkbox" name="theme" value="beach" id="beach"><label for="beach">해변</label><br>
-                          <input type="checkbox" name="theme" value="downtown" id="downtown"><label for="downtown">도심</label><br>
-                          <input type="checkbox" name="theme" value="mountain" id="mountain"><label for="mountain">산</label>
-                        </td>
-                        <td>
-                          <input type="checkbox" name="theme" value="forest" id="forest"><label for="forest">숲</label><br>
-                          <input type="checkbox" name="theme" value="lake" id="lake"><label for="lake">호수</label><br>
-                          <input type="checkbox" name="theme" value="valley" id="valley"><label for="valley">계곡</label><br> 
-                          <input type="checkbox" name="theme" value="river" id="river"><label for="river">강</label>
+	                        <%for(ThemeVo vo : themeList) { %>
+                         		<input type="radio" name="theme" value="<%=vo.getThemeCode()%>" id="<%=vo.getThemeCode()%>"><label for="<%=vo.getThemeCode()%>"><%=vo.getThemeName()%></label><br>
+							<%} %>
                         </td>
                       </tr>
                     </table>
