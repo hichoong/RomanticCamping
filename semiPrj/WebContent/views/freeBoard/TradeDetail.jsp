@@ -15,13 +15,13 @@
 	/* 제일큰틀 */
 	#freeboard-outer{
 		border: 1px solid red;
-        height: 2000px;
+        height: auto;
 	}
 
 	
 	#d6-d{
         display: flex;
-        height: 30%;
+        height: 28%;
         margin: 0 auto;
 		padding: 0px;
         border: 1px solid red;
@@ -36,7 +36,7 @@
 
 
 	#d8-d{
-        height: 35%;
+        height: 25%;
         margin: 0 auto;
 		padding: 0px;
         border: 1px solid red;
@@ -47,8 +47,16 @@
 		display: flex;
 		flex-direction: column;
 		flex-wrap: nowrap;
-        height: 20%;
+        height: auto;
         border: 3px solid blue;
+    }
+    
+    #d10{
+    	display: flex;
+		flex-direction: column;
+    	height:100px;
+    	width:100%;
+    	border: 1px solid red;
     }
 
 	/* 2차 틀 */
@@ -122,15 +130,11 @@
 	/* 리플창 */
 	.select-reple{
 		width: 100%;
-		height: 50%;
+		height: 100px;
 		border: 1px solid pink;
 	}
 
-	.make-reple{
-		width: 100%;
-		height: 50%;
-		border: 1px solid pink;
-	}
+
 		
 </style>
 </head>
@@ -154,7 +158,7 @@
 				</div>
 					
 				<!-- The slideshow/carousel -->
-				<div class="carousel-inner container" style="width: 100%; height:100%;">
+				<div class="carousel-inner container" style="width: 100%; height:600px;">
 					<div class="carousel-item active">
 							<img  src="<%=contextPath %>/resource/img/gsTest1.jpg" class="img-thumbnail" alt="Los Angeles" class="d-block" style="width:100%;">
 					</div>
@@ -240,12 +244,48 @@
 				<div class="reple-sub"><span>작성일자</span> <a>답글쓰기</a></div>
 
 			</div>
+			<div class="select-reple">
+
+				<div class="reple-id"><p >작성자 id</p></div>
+				<div class="reple-comment"><p >작성내용 </p></div>
+				<div class="reple-sub"><span>작성일자</span> <a>답글쓰기</a></div>
+
+			</div>
+			<div class="select-reple">
+
+				<div class="reple-id"><p >작성자 id</p></div>
+				<div class="reple-comment"><p >작성내용 </p></div>
+				<div class="reple-sub"><span>작성일자</span> <a>답글쓰기</a></div>
+
+			</div>
+			<div class="select-reple">
+
+				<div class="reple-id"><p >작성자 id</p></div>
+				<div class="reple-comment"><p >작성내용 </p></div>
+				<div class="reple-sub"><span>작성일자</span> <a>답글쓰기</a></div>
+
+			</div>
+			<div class="select-reple">
+
+				<div class="reple-id"><p >작성자 id</p></div>
+				<div class="reple-comment"><p >작성내용 </p></div>
+				<div class="reple-sub"><span>작성일자</span> <a>답글쓰기</a></div>
+
+			</div>
+			<div class="select-reple">
+
+				<div class="reple-id"><p >작성자 id</p></div>
+				<div class="reple-comment"><p >작성내용 </p></div>
+				<div class="reple-sub"><span>작성일자</span> <a>답글쓰기</a></div>
+
+			</div>
 			
-		
+			
+			
 			<!-- 선추가 -->
 			<div class="fbt-top-line"></div>
 			<!-- 내가 댓글작성하기 -->
-			<div class="make-reple"><p>내가 댓글작성하는 공간</p></div>
+			<div id="d10" class="select-reple"><p>내가 댓글작성하는 공간</p></div>
 			
 		</div>
 
@@ -255,7 +295,7 @@
 		
 	</div>
 
-
+	<%@ include file="/views/common/footer.jsp" %>
 
 
 </body>

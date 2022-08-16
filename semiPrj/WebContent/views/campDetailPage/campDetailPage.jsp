@@ -7,8 +7,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
@@ -31,7 +29,7 @@
 	    <div class="cdetail-top-line container"></div>
         <header class="container">
             <div id="cd-back"><button type="button" id="btn-back" name="btn-back" class="btn btn-outline-warning" onclik="history.back()" >&lg;</button></div>
-            <div id="cd-name"><p class="btn btn-outline-warning" >낭 만 캠 핑</p></div>
+            <div id="cd-name"><p class="btn btn-outline-warning" >캠핑장 이름</p></div>
             <div id="cd-name2"></div>
         </header>
 
@@ -83,9 +81,10 @@
             <div id="d2-d">
                 <div id="d2-1"  class="display-5 display-5-gplus">캠핑장 소개</div>
                 <div id="d2-2" >
-                    <p class="display-6">캠핑장 이름 -( CAMP-NAME )</p>
+                    <p class="display-6">캠핑장 구역 이름 -(  )</p>
                     <br>
-                    <p class="d2-2-campInfo">캠핑장설명 - ( CAMP-INTRO ) 사랑이 넘치는 우리의 보금자리 합천 꿈꾸는 캠핑장</p>
+                    <p class="d2-2-campInfo">캠핑장구역설명 - ( CAMP-INTRO ) 사랑이 넘치는 우리의 보금자리 합천 꿈꾸는 캠핑장</p>
+                    <p class="d2-2-campInfo"> 구역 최대 숙박인원 / 가격 / 일별 예약가능 수 </p>
                 </div>
                 <div id="d2-3">
                     <span class="d2-3-sp">##캠핑장 코드(CAMP_INFO)와 해시태그(HASHTAG_MAPPING) 맵핑</span>
@@ -161,7 +160,7 @@
         
 
         <div class="cdetail-top-line container"></div>
-        <!-- 6. 캠핑장 구역상세 -->
+        <!-- 6. 캠핑장 예약하기 -->
         <div id="d6" class="container ">
             <div id="d6-d">
                 <div id="d6-1" class="display-5 display-5-gplus">캠핑장 예약하기</div>
@@ -169,8 +168,15 @@
                     <div id="d6-2-1">
                         <div class="info-title" style="width: 100%;">캠핑장이 마음에 들었다면 예약을 진행해보세요</div>
                         <div class="info-content" style="width: 100%; margin:0px;">예약하기버튼을 통해 예약가능날짜 확인 및 세부사항을 확인하고 진행할 수 있습니다.</div>
+                   
+                        <form action="">
+                            <input type="date" value="2022-08-16" min="2022-08-16" max="2022-10-16">
+                            
+                        </form>
                     </div>
-                    <button type="button" id="d6-2-2" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#camp-policy"><span>캠핑장 예약하기</span></button>
+
+                    <button type="button" id="d6-2-2" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#"><span>캠핑장 예약하기</span></button>
+                    
                 </div>
             </div>  
         </div>
