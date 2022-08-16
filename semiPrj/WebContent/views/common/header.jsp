@@ -1,7 +1,13 @@
+<%@page import="com.kh.member.vo.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%
+	MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+	
+	String alertMsg = (String)session.getAttribute("alertMsg");
+	session.removeAttribute("alertMsg");
+
 	String contextPath = request.getContextPath();
 %>
 <!DOCTYPE html>
@@ -95,17 +101,43 @@
         &#128512;
       </button>
       <ul class="dropdown-menu dropdown-menu-end">
-        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/loginForm.jsp">로그인</a></li>
-        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/joinForm.jsp">회원가입</a></li>
-        <li><hr class="dropdown-divider"></hr></li>
-        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/myPage.jsp">마이페이지</a></li>
-        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/myReservationPage.jsp">캠핑 예약확인</a></li>
-        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/wishListPage.jsp">찜목록</a></li>
-        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/myBoardList.jsp">내가 쓴 글</a></li>
-        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/myCouponList.jsp">내 쿠폰함</a></li>
+      	<%if(loginMember == null) { %>
+        	<li><a class="dropdown-item" href="<%=contextPath%>/member/login">로그인</a></li>
+        	<li><a class="dropdown-item" href="<%=contextPath%>/member/join">회원가입</a></li>
+        <%} else if(loginMember.getType().equals("U")) { %>        
+	        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/myPage.jsp">마이페이지</a></li>
+	        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/myReservationPage.jsp">캠핑 예약확인</a></li>
+	        <li><hr class="dropdown-divider"></hr></li>
+	        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/myBoardList.jsp">내가 쓴 글</a></li>
+	        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/wishListPage.jsp">찜목록</a></li>
+	        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/myCouponList.jsp">내 쿠폰함</a></li>
+	        <li><hr class="dropdown-divider"></hr></li>
+	        <li><a class="dropdown-item" href="<%=contextPath%>/member/logout">로그아웃</a></li>
+        <%} else if(loginMember.getType().equals("B")) { %>
+	        <li><a class="dropdown-item" href="#">마이페이지</a></li>
+        	<li><a class="dropdown-item" href="<%=contextPath%>/views/buisness/campRsvForm.jsp">예약 확인</a></li>
+	        <li><a class="dropdown-item" href="<%=contextPath%>/views/buisness/campSearchForm.jsp">내 캠핑장</a></li>
+	        <li><hr class="dropdown-divider"></hr></li>
+	        <li><a class="dropdown-item" href="<%=contextPath%>/views/buisness/campQuestion.jsp">캠핑장 문의사항</a></li>
+	        <li><a class="dropdown-item" href="<%=contextPath%>/views/buisness/campSvcCenter.jsp">고객센터 Q&A</a></li>
+	        <li><hr class="dropdown-divider"></hr></li>
+	        <li><a class="dropdown-item" href="<%=contextPath%>/member/logout">로그아웃</a></li>
+        <%} else if(loginMember.getType().equals("A")) { %>  
+        	<li><a class="dropdown-item" href="<%=contextPath%>">문의글 확인</a></li>
+        	<li><hr class="dropdown-divider"></hr></li>
+	        <li><a class="dropdown-item" href="<%=contextPath%>/member/logout">로그아웃</a></li>
+        <%} %>
       </ul>
     </div>
   </nav>
+  
+  <script>
+
+  	<%if(alertMsg != null){%>
+		alert('<%=alertMsg%>');
+	<%}%>
+
+  </script>
 
 </body>
 </html>
