@@ -15,7 +15,7 @@
 	/* 제일큰틀 */
 	#freeboard-outer{
 		border: 1px solid red;
-        height: 2000px;
+        height: auto;
 	}
 
 	
@@ -122,15 +122,10 @@
 	/* 리플창 */
 	.select-reple{
 		width: 100%;
-		height: 50%;
+		height: 100px;
 		border: 1px solid pink;
 	}
 
-	.make-reple{
-		width: 100%;
-		height: 50%;
-		border: 1px solid pink;
-	}
 		
 </style>
 </head>
@@ -206,12 +201,34 @@
 				<div class="reple-sub"><span>작성일자</span> <a>답글쓰기</a></div>
 
 			</div>
+			<div class="select-reple">
+
+				<div class="reple-id"><p >작성자 id</p></div>
+				<div class="reple-comment"><p >작성내용 </p></div>
+				<div class="reple-sub"><span>작성일자</span> <a>답글쓰기</a></div>
+
+			</div>
+			<div class="select-reple">
+
+				<div class="reple-id"><p >작성자 id</p></div>
+				<div class="reple-comment"><p >작성내용 </p></div>
+				<div class="reple-sub"><span>작성일자</span> <a>답글쓰기</a></div>
+
+			</div>
+			<div class="select-reple">
+
+				<div class="reple-id"><p >작성자 id</p></div>
+				<div class="reple-comment"><p >작성내용 </p></div>
+				<div class="reple-sub"><span>작성일자</span> <a>답글쓰기</a></div>
+
+			</div>
+			
 			
 		
 			<!-- 선추가 -->
 			<div class="fbt-top-line"></div>
 			<!-- 내가 댓글작성하기 -->
-			<div class="make-reple"><p>내가 댓글작성하는 공간</p></div>
+			<div class="select-reple"><p>내가 댓글작성하는 공간</p></div>
 			
 		</div>
 
@@ -225,4 +242,9 @@
 
 
 </body>
+
+
+<%@ include file="/views/common/footer.jsp" %>
+
+
 </html>

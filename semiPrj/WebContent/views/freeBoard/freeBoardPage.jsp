@@ -1,10 +1,24 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
+<% String loginMember = "loginMember"; %>    
+<%-- <%
+	여기는 페이징 좀 하고 ㅊ리 MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+	List<FreeBoardVo> fbvoList = (Lists<FreeBoardVo>)request.getAttribute("list");
+	
+	PageVo pv = (PageVo)request.getAttribute("pv");
+
+	int currentPage = pv.getCurrentpage();
+	int startPage = pv.getStartPage();
+	int endPage = pv.getEndPage();
+	int maxPage = pv.getMaxPage();
+ 	
+ %>  --%>   
 <!DOCTYPE html>
 <html>
 <head>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <meta charset="UTF-8">
 <title>자유게시판</title>
 <style>
@@ -12,52 +26,7 @@
 	 <%@ include file="/resource/css/gsFreeB.css" %>
 	
 				
-	.fb1-3{
-		width: 100%;
-		padding-top : 5px;
-		padding-bottom : 10px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		flex-wrap : wrap;
-		text-align: center;
-		margin-bottom:2%;
-		border-top: 1px solid rgb(241, 216, 177);
-
-	}
-
-	#fb-table-main{
-		width: 100%;
-		margin-top: 5%;
-	}
-
-	#fb-table-main>tbody tr:hover{
-		background-color: rgb(241, 216, 177);
-		cursor:pointer;
-	}
 	
-	.fb-page-area{
-		width: 80%;
-		text-align: center;
-		margin: auto;
-		margin-bottom: 5%;
-	}
-	
-	.fb-page-area a {
-		margin :0px 0px 5px 0px;
-	}
-
-
-	thead {
-		margin-top : 10%;
-	}
-
-	thead tr {
-		color: black;
-		font-weight: 800;
-		font-size: 2rem;
-		border-bottom: 1px dashed lightgoldenrodyellow;
-	}
 	
 </style>
 </head>
@@ -81,7 +50,7 @@
 				
 				
 				<div class ="menu-items">
-					<a href="<%=contextPath %>/views/freeBoard/freeBoardTrade.jsp">
+					<a href="<%=contextPath %>/views/freeBoard/TradeDetail.jsp">
 						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest3.jpg" alt=""></div>
 						<div id="fb1-comment-outer" >
 							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
@@ -92,7 +61,7 @@
 				</div>
 
 				<div class ="menu-items">
-					<a href="<%=contextPath %>/views/freeBoard/freeBoardTrade.jsp">
+					<a href="<%=contextPath %>/views/freeBoard/TradeDetail.jsp">
 						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""></div>
 						<div>
 							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
@@ -103,7 +72,7 @@
 				</div>
 
 				<div class ="menu-items">
-					<a href="<%=contextPath %>/views/freeBoard/freeBoardTrade.jsp">
+					<a href="<%=contextPath %>/views/freeBoard/TradeDetail.jsp">
 						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""></div>
 						<div>
 							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
@@ -114,7 +83,7 @@
 				</div>
 
 				<div class ="menu-items">
-					<a href="<%=contextPath %>/views/freeBoard/freeBoardTrade.jsp">
+					<a href="<%=contextPath %>/views/freeBoard/TradeDetail.jsp">
 						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest1.jpg" alt=""></div>
 						<div>
 							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
@@ -125,7 +94,7 @@
 				</div>
 
 				<div class ="menu-items">
-					<a href="<%=contextPath %>/views/freeBoard/freeBoardTrade.jsp">
+					<a href="<%=contextPath %>/views/freeBoard/TradeDetail.jsp">
 						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest3.jpg" alt=""></div>
 						<div>
 							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
@@ -136,7 +105,7 @@
 				</div>
 
 				<div class ="menu-items">
-					<a href="<%=contextPath %>/views/freeBoard/freeBoardTrade.jsp">
+					<a href="<%=contextPath %>/views/freeBoard/TradeDetail.jsp">
 						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest1.jpg" alt=""></div>
 						<div>
 							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
@@ -164,17 +133,20 @@
 						</tr>
 					</thead>
 
-					<tbody>
-						
-							<tr>
-								<td>B_NO</td>
-								<td>B_TITLE</td>
-								<td>B_CONTENT</td>
-								<td>BOARD_WRITER</td>
-								<td>UPDATE_DATE</td>
-							</tr>
-						
-					</tbody>
+					<%-- 여기도 셀렉트 쿼리한다음 처리 <%for(FreeBoardTradeVo fbvo : fbvoList) {%>
+					
+						<tbody>
+							
+								<tr>
+									<td><%=fbvo.getNo() %>B_NO</td>
+									<td><%=fbvo.getTitle() %>B_TITLE</td>
+									<td><%=fbvo.getContent() %>B_CONTENT</td>
+									<td><%=fbvo.getWriter() %>BOARD_WRITER</td>
+									<td><%=fbvo.getEnrollDate() %>UPDATE_DATE</td>
+								</tr>
+							
+						</tbody>
+					<%} %> --%>
 					<tbody>
 						
 						<tr>
@@ -235,9 +207,35 @@
 				<a class="btn btn-outline-success btn-sm" href="">1</a>
 				<a class="btn btn-outline-success btn-sm" href="">1</a>
 
+				<%-- 페이징 처리하고 나서 처리 <%if(currentPage != 1){ %>
+					<a class="btn btn-sm btn-primary" href="<%=contextPath %>/freeBoard/list?p=<%=currentPage-1 %>"> &lt; </a>
+				<%} %>
+				
+				<% for(int i= startPage; i<= endPage; i++) { %>
+					<%if(i==currentPage){ %>
+						<a class="btn btn-sm btn-primary"><%=i%></a>
+					<%} else {%>
+						<a class="btn btn-sm btn-primary" href="<%=contextPath%>/board/list?p=<%=i%>"><%=i%></a>
+					<%} %>
+				<%} %>
+				
+				<%if(currentPage != maxPage){ %>
+					<a class="btn btn-sm btn-primary" href="/semi/board/list?p=<%=currentPage+1 %>"> &gt; </a>
+				<%} %> --%>
+				
+				
+				
 			</div>
 
-			<div id="fb1-2" onclick=""><input class="btn btn-outline-success" type="button" value="중고거래 글 작성하기" data-bs-toggle="modal" data-bs-target="#tradeWrite"></div>
+			<!-- 밑에거 이상하며 이거 살려서 다시 작업하기 <div id="fb1-2" ><input class="btn btn-outline-success" type="button" onclick="checkLogin()" value="중고거래 글 작성하기" data-bs-toggle="modal" data-bs-target="#tradeWrite"></div> -->
+			
+			<div id="fb1-2" >
+				<% if(loginMember != null) { %>
+				<input class="btn btn-outline-success" type="button" onclick="checkLogin()" value="중고거래 글 작성하기" data-bs-toggle="modal" data-bs-target="#tradeWrite">
+				<%} else {%>
+				<input class="btn btn-outline-success" type="button" value="중고거래 글 작성하기" onclik="">
+				<%} %>
+			</div>
 
 		</div>
 		
@@ -255,7 +253,7 @@
 
 
 				<div class="fb2-1-story">
-					<a href="<%=contextPath %>/views/freeBoard/freeBoardFreeBoard.jsp" class="fb2-1-story-outer">
+					<a href="<%=contextPath %>/views/freeBoard/freeBoardDetail.jsp" class="fb2-1-story-outer">
 						<p style="font-size: 3rem;">글내용작성하는 곳</p>
 						<p class="fb2-story-date">작성일 보여주기</p>
 						<span class="fb2-story-count" >
@@ -267,7 +265,7 @@
 
 
 				<div class="fb2-1-story">
-					<a href="<%=contextPath %>/views/freeBoard/freeBoardFreeBoard.jsp" class="fb2-1-story-outer">
+					<a href="<%=contextPath %>/views/freeBoard/freeBoardDetail.jsp" class="fb2-1-story-outer">
 						<p style="font-size: 3rem;">글내용작성하는 곳</p>
 						<p class="fb2-story-date">작성일 보여주기</p>
 						<span class="fb2-story-count" >
@@ -278,7 +276,7 @@
 
 
 				<div class="fb2-1-story">
-					<a href="<%=contextPath %>/views/freeBoard/freeBoardFreeBoard.jsp" class="fb2-1-story-outer">
+					<a href="<%=contextPath %>/views/freeBoard/freeBoardDetail.jsp" class="fb2-1-story-outer">
 						<p style="font-size: 3rem;">글내용작성하는 곳</p>
 						<p class="fb2-story-date">작성일 보여주기</p>
 						<span class="fb2-story-count" >
@@ -290,7 +288,7 @@
 
 
 				<div class="fb2-1-story">
-					<a href="<%=contextPath %>/views/freeBoard/freeBoardFreeBoard.jsp" class="fb2-1-story-outer">
+					<a href="<%=contextPath %>/views/freeBoard/freeBoardDetail.jsp" class="fb2-1-story-outer">
 						<p style="font-size: 3rem;">글내용작성하는 곳</p>
 						<p class="fb2-story-date">작성일 보여주기</p>
 						<span class="fb2-story-count" >
@@ -396,14 +394,20 @@
 			</div>
 
 
-			<div id="fb2-2" onclick=""><input class="btn btn-outline-success" type="button" value="자유게시판 글 작성하기" data-bs-toggle="modal" data-bs-target="#freeBoardWrite"></div>
+			<div id="fb2-2" ><input class="btn btn-outline-success" type="button" onclick="" value="자유게시판 글 작성하기" data-bs-toggle="modal" data-bs-target="#freeBoardWrite"></div>
 			
 			
 		</div>
 
 
 
-
+	<script>
+	
+		function alertMsg(){
+			alert('로그인 후 이용해 주세요');
+		}
+		
+	</script>
 
 
 
@@ -429,8 +433,8 @@
 	      <!-- Modal body -->
 	      <div class="modal-body">
 	      
-	      
-	        <form action="" method="post">
+			<!-- 등록하기 누르면 submit-등록 요청으로  -->	      
+	        <form action="<%=contextPath %>/freeboard/trade/insert" method="post">
 			  <div class="mb-3 mt-3 input-group-lg">
 			    <label for="trade-img" class="form-label" ><mark>이미지 선택하기</mark></label>
 			    <input type="file" class="form-control" id="trade-img" placeholder="이미지를 선택해주세요" name="trade-img">
@@ -483,7 +487,7 @@
 	      <div class="modal-body">
 	      
 	      
-	        <form action="" method="post">
+	        <form action="<%=contextPath %>/freeboard/insert" method="post">
 	  			<div class="mb-3 mt-3 input-group-lg">
 			    	<label for="fb-title" class="form-label h3"><mark>글제목</mark></label>
 			    	<input type="text" class="form-control" id="fb-title" placeholder="제목을 입력하세요" name="fb-title">

@@ -207,4 +207,50 @@
 		border: 1px solid darkolivegreen;
 	}
 
+
+	.fb1-3{
+		width: 100%;
+		padding-top : 5px;
+		padding-bottom : 10px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-wrap : wrap;
+		text-align: center;
+		margin-bottom:2%;
+		border-top: 1px solid rgb(241, 216, 177);
+
+	}
+
+	#fb-table-main{
+		width: 100%;
+		margin-top: 5%;
+	}
+
+	#fb-table-main>tbody tr:hover{
+		background-color: rgb(241, 216, 177);
+		cursor:pointer;
+	}
 	
+	.fb-page-area{
+		width: 80%;
+		text-align: center;
+		margin: auto;
+		margin-bottom: 5%;
+	}
+	
+	.fb-page-area a {
+		margin :0px 0px 5px 0px;
+	}
+
+
+	thead {
+		margin-top : 10%;
+	}
+
+	thead tr {
+		color: black;
+		font-weight: 800;
+		font-size: 2rem;
+		border-bottom: 1px dashed lightgoldenrodyellow;
+	}
