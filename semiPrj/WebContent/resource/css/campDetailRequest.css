@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+	.testImg {
+        width: 200px;
+        height: 200px;
+    }
+	
+	h2 {
+	text-align: center;
+    color: #f8a81c;
+    padding-top: 30px;
+	}
+
+    span {
+        padding-right: 20px;
+    }
+    
+    .content {
+        display: flex;
+    }
+
+    .content>img {
+        margin-right: 20px;
+    }
+
+    .contentBox {
+        width: 80%;
+        min-width: 600px;
+        margin: auto;
+        margin-top: 30px;
+        border: 1px solid #f8a81c;
+        border-radius: 1rem;
+        padding: 20px;
+    }
+    
+    #btn{
+        text-align: end;
+    }
+
+    .pagination {
+        margin-top: 30px;
+        align-items: center;
+        justify-content: center;
+    }
+    .pagination > li > a {
+        color: #f8a81c;
+        border: 1px solid #f8a81c;
+    }
+    .pagination > li > a:hover {
+        color: white;
+        border: 1px solid #f8a81c;
+        background-color: #f8a81c;
+    }

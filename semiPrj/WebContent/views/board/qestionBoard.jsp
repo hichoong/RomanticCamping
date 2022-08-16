@@ -4,8 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>고객센터</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<title>낭만캠프</title>
 <link rel="stylesheet" href="../../resource/css/qestionBoard.css">
 </head>
 <body>
@@ -69,7 +68,6 @@
         <input type="submit" value="검색" class="btn-sm btn btn-warning">
     </div>
 
-
         <table id="board">
             <thead>
               <tr>
@@ -83,7 +81,7 @@
             <tbody>
               <tr>
                 <th scope="row">001</th>
-                <td>애견 동반 문의합니다</td>
+                <td onClick="location.href='http://127.0.0.1:8803/semiPrj/views/board/qestionBoardDetail.jsp'">애견 동반 문의합니다</td>
                 <td>흰둥이</td>
                 <td>2022/05/01 22:07</td>
                 <td>2</td>
@@ -119,22 +117,24 @@
             </tbody>
           </table>
         
-          <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+	<!-- 페이지네이션 -->
+        <ul class="pagination">
+        	<li class="page-item"><a class="page-link" href="#">Previous</a></li>
             <li class="page-item"><a class="page-link" href="#">1</a></li>
             <li class="page-item"><a class="page-link" href="#">2</a></li>
             <li class="page-item"><a class="page-link" href="#">3</a></li>
             <li class="page-item"><a class="page-link" href="#">4</a></li>
             <li class="page-item"><a class="page-link" href="#">5</a></li>
             <li class="page-item"><a class="page-link" href="#">Next</a></li>
-         </ul>
+        </ul>
 
 
     <button type="button" id="btn" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
-				작성하기
+			작성하기
 	</button>
     
-    <!-- (Modal) -->
+    
+    <!-- 모달 -->
 			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			  <div class="modal-dialog">
 			    <div class="modal-content">
@@ -181,9 +181,7 @@
 			  </div>
 			</div>
   
-  </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  	</div>
     
 	
 	<%@ include file="/views/common/footer.jsp" %>

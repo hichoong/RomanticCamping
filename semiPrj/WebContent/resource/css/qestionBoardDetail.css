@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+#outer{
+    margin: auto;
+    background-color: white;
+    width: 900px;
+    height: 500px;
+ }
+ 
+ #board{
+     background-color: #fcc15a;
+     margin: auto;
+     margin-top: 100px;
+     width: 900px;
+     height: 400px;
+ }
+
+#btn{
+    background-color: white;
+    border: 1px solid #fcc15a;
+    color: #ffab1a;
+    float: right;
+    margin-top: 30px;
+    margin-bottom: 100px;
+}
+
+#btn:hover{
+    background-color: #ffab1a;
+    border: 1px solid #ffab1a;
+    color: white;
+}
+
