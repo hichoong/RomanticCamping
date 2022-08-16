@@ -6,6 +6,7 @@
     <title>상품 예약</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 	<!--헤더  -->
@@ -38,13 +39,13 @@
 		          <li class="list-group-item d-flex justify-content-between bg-light">
 		            <div class="text-success">
 		              <h6 class="my-0">쿠폰 이름</h6>
-		              <small>비 성수기 시즌</small>
+		              <small id="coupon-name">없음</small>
 		            </div>
-		            <span class="text-success">−20,000</span>
+		            <small class="text-success" id="coupon-cost"></small>
 		          </li>
 		          <li class="list-group-item d-flex justify-content-between">
 		            <span>총 결제금액</span>
-		            <strong>580,000</strong>
+		            <strong>120,000</strong>
 		          </li>
 		        </ul>
 		        
@@ -132,17 +133,14 @@
 		              </div>
 		          </div>
 		
-					<div class="my-3 alert-light">
+					<div class="my-3 alert-waring">
 		      		<h4 class="mb-3" >결제방법</h4>
 		            <div class="form-check">
 		              <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
 		              <label class="form-check-label" for="credit">카드결제</label>
 		            </div>
-		            <div class="form-check">
-		              <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
-		              <label class="form-check-label" for="debit">계좌이체</label>
-		            </div>  
 		          </div>
+					
 					<hr>
 		          
 		          <div class="row gy-3 ">
@@ -211,17 +209,18 @@
 		<form action="" method="post">
 		<div class="modal-body">
 		  소유한 쿠폰 : 
-				<select name="job">
-				   	<option value="">없음</option>
-				    <option value="비 성수기 시즌">비 성수기 시즌</option>
-				    <option value="생일 쿠폰">생일 쿠폰</option>
-				    <option value="첫 회원가입 쿠폰">첫 회원가입 쿠폰</option>
+				<select name="쿠폰선택" id="select-coupon">
+				   	<option value="없음">없음</option>
+				    <option value="비 성수기 시즌 -20,000">비 성수기 시즌</option>
+				    <option value="생일 쿠폰 -10,000">생일 쿠폰</option>
+				    <option value="첫 회원가입 쿠폰 -5,000">첫 회원가입 쿠폰</option>
 				</select>
+				<br>
 		</div>
 		<!-- modal footer -->
 		<div class="modal-footer">
 		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">창 닫기</button>
-		  <button type="submit" class="btn btn-primary">쿠폰 적용하기</button>
+		  <button type="button" class="btn btn-primary" id="coupon-button" >쿠폰 적용하기</button>
 		</div>
 		</form>
 	  </div>
@@ -231,6 +230,12 @@
 	
 	<%@ include file="/views/common/footer.jsp" %>
 
+
+<script>
+	$("#coupon-button").click(function(){
+    	$("#coupon-name").text($("#select-coupon").val());
+	});
 	
+</script>	
 </body>
 </html>
