@@ -32,16 +32,17 @@
                     <label for="email" class="form-label">이메일:</label>
                     <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
                 </div>
-                <div class="mb-3">
-                    <label for="birth" class="form-label">생년월일:</label>
-                    <input type="date" class="form-control" id="birth" placeholder="Enter BithDay" name="birth">
-                </div>
-                <div class="mb-3">
-                    성별: 
-                    <label><input type="radio" name="gender" value="M"> 남자</label>
-                    <label><input type="radio" name="gender" value="F"> 여자</label>
-                </div>
-
+                <% if(loginMember.getType().equals("U")) { %>
+	                <div class="mb-3">
+	                    <label for="birth" class="form-label">생년월일:</label>
+	                    <input type="date" class="form-control" id="birth" placeholder="Enter BithDay" name="birth">
+	                </div>
+	                <div class="mb-3">
+	                    성별: 
+	                    <label><input type="radio" name="gender" value="M"> 남자</label>
+	                    <label><input type="radio" name="gender" value="F"> 여자</label>
+	                </div>
+                <%} %>
                 <div class="location-center">
                     <button type="reset" class="basic-btn">초기화</button>
                     <button type="submit" class="basic-btn">수정완료</button>

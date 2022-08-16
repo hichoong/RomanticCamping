@@ -13,7 +13,7 @@ public class MemberService {
 	
 	public MemberVo login(MemberVo memberVo) {
 		
-		if(memberVo.getId().length() < 1 || memberVo.getPwd().length() < 1) {
+		if(memberVo.getId().length() < 3 || memberVo.getPwd().length() < 4) {
 			return null;
 		}
 		
@@ -25,4 +25,75 @@ public class MemberService {
 		return vo;
 	}
 
+	public int userJoin(MemberVo vo) {
+
+		if(!joinCheck(vo)) return -1;
+		
+		Connection conn = getConnection();
+		
+		int dup = new MemberDao().checkDup(conn, vo);
+		if(dup != 0) {
+			close(conn);
+			return -1;
+		}
+		
+		int result = dao.userJoin(conn, vo);
+		
+		if(result == 1) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public int businessJoin(MemberVo vo) {
+				
+		if(!joinCheck(vo)) return -1;
+		
+		Connection conn = getConnection();
+		
+		int dup = new MemberDao().checkDup(conn, vo);
+		if(dup != 0) {
+			close(conn);
+			return -1;
+		}
+		
+		int result = dao.businessJoin(conn, vo);
+		
+		if(result == 1) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+	protected boolean joinCheck(MemberVo vo) {
+		
+		if(vo.getId().length() < 3 || vo.getPwd().length() < 4) {
+			return false;
+		}
+		
+		if(vo.getPwd().equals(vo.getPwdCheck()) == false) {
+			return false;
+		}
+		
+		if(vo.getName().length() < 1) {
+			return false;
+		}
+		
+		if(vo.getPhone().length() != 11) {
+			return false;
+		}
+		
+		return true;
+	}
+	
 }
