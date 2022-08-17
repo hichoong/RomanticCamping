@@ -24,43 +24,42 @@ public class CampListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-//		int listCount;			//현재 총 게시글 갯수 
-//		int currentPage;		//현재 페이지(==사용자가 요청한 페이지) 
-//		int pageLimit;			//페이지 하단에 보여질 페이지 버튼의 최대 갯수 
-//		int listLimit;			//한 페이지 내 보여질 게시글 최대 갯수
-//		// 위의 4개를 이용해서 아래 3개 값 구하기
-//		int maxPage;			//가장 마지막 페이지(==총 페이지 수)
-//		int startPage;			//페이징바의 시작
-//		int endPage;			//페이징바의 끝
-//		
-//		
-//		listCount = new CampListService().getCount();
-//		currentPage = Integer.parseInt(req.getParameter("p"));
-//		pageLimit = 10;
-//		listLimit = 10;
-//		maxPage = (int)Math.ceil(((double)listCount/listLimit));
-//		startPage = (currentPage-1) / pageLimit * pageLimit + 1;
-//		endPage = startPage + pageLimit -1;
-//		
-//		if(endPage > maxPage) {
-//			endPage = maxPage;
-//		}
-//		
-//		PageVo pageVo = new PageVo();
-//		pageVo.setListLimit(listLimit);
-//		pageVo.setCurrentPage(currentPage);
-//		pageVo.setEndPage(endPage);
-//		pageVo.setListCount(listCount);
-//		pageVo.setMaxPage(maxPage);
-//		pageVo.setPageLimit(pageLimit);
-//		pageVo.setStartPage(startPage);
-//		
-//		List<CampInfoVo> campInfoVoList = new CampListService().selectList(pageVo);
-//		
-//		req.setAttribute("pageVo", pageVo);
-//		req.setAttribute("campInfoList", campInfoVoList);
+		//페이징 처리
+		int listCount;			//현재 총 게시글 갯수 
+		int currentPage;		//현재 페이지(==사용자가 요청한 페이지) 
+		int pageLimit;			//페이지 하단에 보여질 페이지 버튼의 최대 갯수 
+		int listLimit;			//한 페이지 내 보여질 게시글 최대 갯수
+		// 위의 4개를 이용해서 아래 3개 값 구하기
+		int maxPage;			//가장 마지막 페이지(==총 페이지 수)
+		int startPage;			//페이징바의 시작
+		int endPage;			//페이징바의 끝
 		
 		
+		listCount = new CampListService().getCount();
+		currentPage = Integer.parseInt(req.getParameter("p"));
+		pageLimit = 3;
+		listLimit = 7;
+		maxPage = (int)Math.ceil(((double)listCount/listLimit));
+		startPage = (currentPage-1) / pageLimit * pageLimit + 1;
+		endPage = startPage + pageLimit -1;
+		
+		if(endPage > maxPage) {
+			endPage = maxPage;
+		}
+		
+		PageVo pageVo = new PageVo();
+		pageVo.setListLimit(listLimit);
+		pageVo.setCurrentPage(currentPage);
+		pageVo.setEndPage(endPage);
+		pageVo.setListCount(listCount);
+		pageVo.setMaxPage(maxPage);
+		pageVo.setPageLimit(pageLimit);
+		pageVo.setStartPage(startPage);
+		
+		List<CampInfoVo> campInfoVoList = new CampListService().selectList(pageVo);
+		
+		req.setAttribute("pv", pageVo);
+		req.setAttribute("campInfoList", campInfoVoList);
 		
 		
 		

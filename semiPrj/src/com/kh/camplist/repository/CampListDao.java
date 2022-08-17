@@ -15,6 +15,76 @@ import com.kh.common.PageVo;
 import static com.kh.common.JDBCTemplate.*;
 
 public class CampListDao {
+	
+	//캠핑장 정보 리스트(카드) 총 갯수
+	public int getCount(Connection conn) {
+
+		String sql = "SELECT COUNT(CAMP_CODE) AS COUNT FROM CAMP_INFO WHERE CAMP_STATUS = 'Y'";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return count;
+	}
+
+	//현재 페이지에 보여질 캠핑장 리스트 조회
+	public List<CampInfoVo> selectList(Connection conn, PageVo pageVo ) {
+
+		String sql = "SELECT * FROM ( SELECT ROWNUM AS RNUM, CI.* FROM (SELECT C.CAMP_CODE, C.CAMP_NAME, C.CAMP_INTRO, C.CAMP_IMGPATH FROM CAMP_INFO C WHERE C.CAMP_STATUS = 'Y') CI ) WHERE RNUM BETWEEN ? AND ?";
+		
+		PreparedStatement pstmt = null;
+		List<CampInfoVo> list = new ArrayList<CampInfoVo>();
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int start = (pageVo.getCurrentPage()-1) * pageVo.getListLimit() + 1;
+			int end = start + pageVo.getListLimit() - 1;
+			
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				String campCode = rs.getString("CAMP_CODE");
+				String campName = rs.getString("CAMP_NAME");
+				String campIntro = rs.getString("CAMP_INTRO");
+				String campImgpath = rs.getString("CAMP_IMGPATH");
+				
+				CampInfoVo vo = new CampInfoVo();
+				vo.setCampCode(campCode);
+				vo.setCampName(campName);
+				vo.setCampIntro(campIntro);
+				vo.setCampImgpath(campImgpath);
+				
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 
 	//테마 리스트 조회
 	public List<ThemeVo> selectTheme(Connection conn) {
@@ -71,81 +141,8 @@ public class CampListDao {
 		
 		return list;
 	}
-
-//	public int getCount(Connection conn) {
-//
-//		String sql = "SELECT COUNT(CAMP_CODE) AS COUNT FROM CAMP_INFO WHERE CAMP_STATUS = 'Y'";
-//		
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//		int count = 0;
-//		
-//		try {
-//			//SQL 을 객체에 담기 및 SQL 완성
-//			pstmt = conn.prepareStatement(sql);
-//			//SQL 실행 및 결과 조회 
-//			rs = pstmt.executeQuery();
-//			
-//			//실행결과 -> 자바데이터
-//			if(rs.next()) {
-//				count = rs.getInt("COUNT");
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			close(pstmt);
-//			close(rs);
-//		}
-//		
-//		return count;
-//	}
-//
-//	public List<CampInfoVo> selectList(Connection conn, PageVo pageVo ) {
-//
-//		String sql = "SELECT * FROM ( SELECT ROWNUM AS RNUM, CI.* FROM (SELECT C.CAMP_CODE, C.CAMP_NAME, C.CITY, C.DISTRICT, C.CAMP_ADDRESS, C.CAMP_IMGPATH FROM CAMP_INFO C WHERE C.CAMP_STATUS = 'Y') CI ) WHERE RNUM BETWEEN ? AND ?";
-//		
-//		PreparedStatement pstmt = null;
-//		List<CampInfoVo> list = new ArrayList<CampInfoVo>();
-//		ResultSet rs = null;
-//		
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//			int start = (pageVo.getCurrentPage()-1) * pageVo.getListLimit() + 1;
-//			int end = start + pageVo.getListLimit() - 1;
-//			
-//			pstmt.setInt(1, start);
-//			pstmt.setInt(2, end);
-//			
-//			rs = pstmt.executeQuery();
-//			
-//			while(rs.next()) {
-//				
-//				String campCode = rs.getString("CAMP_CODE");
-//				String campName = rs.getString("CAMP_NAME");
-//				String city = rs.getString("CITY");
-//				String district = rs.getString("DISTRICT");
-//				String campAddress = rs.getString("CAMP_ADDRESS");
-//				String campImgpath = rs.getString("CAMP_IMGPATH");
-//				
-//				CampInfoVo vo = new CampInfoVo();
-//				vo.setCampCode(campCode);
-//				vo.setCampName(campName);
-//				vo.setCity(city);
-//				vo.setDistrict(district);
-//				vo.setCampAddress(campAddress);
-//				vo.setCampImgpath(campImgpath);
-//				
-//				list.add(vo);
-//			}
-//			
-//			
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		return list;
-//	}
+	
+	
 
 
 	

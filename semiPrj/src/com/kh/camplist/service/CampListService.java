@@ -15,6 +15,22 @@ public class CampListService {
 
 	private final CampListDao dao = new CampListDao();
 	
+	//캠핑장 정보 리스트(카드) 총 갯수
+	public int getCount() {
+		Connection conn = getConnection();
+		int result = dao.getCount(conn);
+		close(conn);
+		return result;
+	}
+
+	//현재 페이지에 보여질 캠핑장 리스트 조회
+	public List<CampInfoVo> selectList(PageVo pageVo) {
+		Connection conn = getConnection();
+		List<CampInfoVo> voList = dao.selectList(conn, pageVo);
+		close(conn);
+		return voList;
+	}
+	
 	//테마 리스트 조회
 	public List<ThemeVo> selectTheme() {
 		Connection conn = getConnection();
@@ -31,21 +47,7 @@ public class CampListService {
 		return list;
 	}
 
-//	//캠핑장 정보 리스트(카드) 총 갯수
-//	public int getCount() {
-//		Connection conn = getConnection();
-//		int result = dao.getCount(conn);
-//		close(conn);
-//		return result;
-//	}
-//
-//	//현재 페이지에 보여질 캠핑장 리스트 조회
-//	public List<CampInfoVo> selectList(PageVo pageVo) {
-//		Connection conn = getConnection();
-//		List<CampInfoVo> voList = dao.selectList(conn, pageVo);
-//		close(conn);
-//		return voList;
-//	}
+	
 	
 	
 	

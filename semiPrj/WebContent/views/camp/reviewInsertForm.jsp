@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>낭만캠핑</title>
-<link rel="stylesheet" href="../../resource/css/reviewInsertForm.css">
+<link rel="stylesheet" href="/semiPrj/resource/css/reviewInsertForm.css">
 </head>
 <body>
 	
@@ -30,7 +30,7 @@
                 </div>
             </div>
 
-            <form action="" method="post" id="review-write">
+            <form action="<%=contextPath%>/review/insert" method="post" id="review-write">
                 <div class="review-star">
                     <span class="text-bold">별점을 선택해주세요</span>
                     <input type="radio" name="reviewStar" value="5" id="rate1"><label
