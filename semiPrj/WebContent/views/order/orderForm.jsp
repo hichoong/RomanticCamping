@@ -19,6 +19,7 @@
 		      <h1>결제하기</h1>
 		      <p class="lead"></p>
 		    </div>
+		    <form class="needs-validation" novalidate action="<%=contextPath%>/views/order/orderSuccess.jsp" method="post">
 		    <div class="row g-5">
 		      <div class="col-md-5 col-lg-4 order-md-last">
 		        <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -33,35 +34,35 @@
 		              <small class="text-muted">숙박 인원 : 5명 </small>
 		              
 		            </div>
-		            <span class="text-muted">120,000</span>
+		            <span class="text-muted" id="origin-cost">120,000</span>
 		          </li>
 		          
 		          <li class="list-group-item d-flex justify-content-between bg-light">
 		            <div class="text-success">
-		              <h6 class="my-0">쿠폰 이름</h6>
+		              <h6 class="my-0">사용할 쿠폰</h6>
 		              <small id="coupon-name">없음</small>
 		            </div>
-		            <small class="text-success" id="coupon-cost"></small>
+		            <small class="text-success" id="coupon-cost">0</small>
 		          </li>
 		          <li class="list-group-item d-flex justify-content-between">
 		            <span>총 결제금액</span>
-		            <strong>120,000</strong>
+		            <strong id="total-cost" >120,000</strong>
 		          </li>
 		        </ul>
 		        
-		        <form class="card p-2">
+		        
 		          <div class="input-group">
 		            <input type="text" class="form-control" placeholder="프로모션 코드">
 		            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#selectCoupon">제출</button>
 		          </div>
-		        </form>
+		       
 		      </div>
 		      
 		       <hr class="my-4">
 		 
 		      <!--사용자 정보  -->
 		      <div class="col-md-7 col-lg-8" >
-		     	 <form class="needs-validation" novalidate>
+		     	 
 		          <div class="row g-3 alert-light">
 		        	<h4 class="mb-3 " >사용자 정보</h4>
 		            <div class="col-12">
@@ -187,7 +188,7 @@
 		          
 		          <hr class="my-4">
 		
-		          <button class="w-100 btn btn-primary btn-lg btn btn-danger" type="submit" onclick="location.href='<%=contextPath%>/views/order/orderSuccess.jsp'" >결제하기</button>
+		          <button class="w-100 btn btn-primary btn-lg btn btn-danger" type="submit">결제하기</button>
 		        </form>
 		      </div>
 		    </div>
@@ -210,12 +211,11 @@
 		<div class="modal-body">
 		  소유한 쿠폰 : 
 				<select name="쿠폰선택" id="select-coupon">
-				   	<option value="없음">없음</option>
-				    <option value="비 성수기 시즌 -20,000">비 성수기 시즌</option>
-				    <option value="생일 쿠폰 -10,000">생일 쿠폰</option>
-				    <option value="첫 회원가입 쿠폰 -5,000">첫 회원가입 쿠폰</option>
+				   	<option value="0" id="select-coupon-cost">없음</option>
+				    <option value="20,000" id="select-coupon-cost">비 성수기 시즌</option>
+				    <option value="10,000" id="select-coupon-cost">생일 쿠폰</option>
+				    <option value="5,000" id="select-coupon-cost">첫 회원가입 쿠폰</option>
 				</select>
-				<br>
 		</div>
 		<!-- modal footer -->
 		<div class="modal-footer">
@@ -232,9 +232,31 @@
 
 
 <script>
+$(document).ready(function() {
+	    // 모두 로딩되었을때
+	
+		
+	
+	
+	
 	$("#coupon-button").click(function(){
-    	$("#coupon-name").text($("#select-coupon").val());
+    	
+		$("#coupon-cost").text($("#select-coupon").val());
+    	$("#coupon-name").text($("#select-coupon option:selected").text());
+    	
+    	
+    	var  origin= $("#origin-cost").text() ; 
+    	origin = Number(origin)
+    	
+    	var  coupon = $("#select-coupon").val() ; 
+    	coupon= Number(coupon)
+    	
+    	var total = origin - coupon;
+
+    	total = $("#total-cost").text(total);
 	});
+	}); 
+	
 	
 </script>	
 </body>
