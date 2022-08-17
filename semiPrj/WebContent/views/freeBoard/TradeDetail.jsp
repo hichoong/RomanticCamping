@@ -13,13 +13,13 @@
 	}
 
 	/* 제일큰틀 */
-	#freeboard-outer{
+	#freeboard-trade-detail-outer{
 		border: 1px solid red;
         height: auto;
 	}
 
 	
-	#d6-d{
+	#fb_img{
         display: flex;
         height: 28%;
         margin: 0 auto;
@@ -28,14 +28,14 @@
     }
 
 
-	#d7-d{
+	#fb_info{
 		display: flex;
         height: 5%;
         border: 1px solid red;
     }
 
 
-	#d8-d{
+	#fb_section{
         height: 25%;
         margin: 0 auto;
 		padding: 0px;
@@ -43,7 +43,7 @@
 		vertical-align: baseline;
     }
 
-	#d9-d{
+	#fb_reple{
 		display: flex;
 		flex-direction: column;
 		flex-wrap: nowrap;
@@ -51,7 +51,7 @@
         border: 3px solid blue;
     }
     
-    #d10{
+    #fb_my_reple{
     	display: flex;
 		flex-direction: column;
     	height:100px;
@@ -60,7 +60,7 @@
     }
 
 	/* 2차 틀 */
-	#d6-d>div{
+	#fb_img>div{
 		margin: 0 auto;
 		padding: 0px;
         height: 100%;
@@ -143,10 +143,10 @@
 	<%@ include file="/views/common/header.jsp" %>	
 	
 	<h1> 여기는 중고거래게시판 상세보기 게시판</h1>
-	<div id="freeboard-outer" class="container">
+	<div id="freeboard-trade-detail-outer" class="container">
 
 
-		<div id="d6-d" class="container">
+		<div id="fb_img" class="container">
 			<!-- Carousel -->
 			<div id="demo" class="carousel container " data-bs-ride="carousel">
 	
@@ -186,7 +186,7 @@
 		<div class="fbt-top-line"></div>
 
 
-		<div id="d7-d" class="container">
+		<div id="fb_info" class="container">
 
 			<div id="fbt-div-outer">
 
@@ -209,7 +209,7 @@
 		<!-- 선추가 -->
 		<div class="fbt-top-line"></div>
 
-		<div id="d8-d" class="container">
+		<div id="fb_section" class="container">
 
 
 					<p style="font-size: 3rem;">글제목 보여주는 곳</p>
@@ -227,7 +227,7 @@
 		<!-- 선추가 -->
 		<div class="fbt-top-line"></div>
 
-		<div id="d9-d" class="container">
+		<div id="fb_reple" class="container">
 
 			<!-- 작성된 댓글 가져와서 보여주기 -->
 			<div class="select-reple">
@@ -285,7 +285,7 @@
 			<!-- 선추가 -->
 			<div class="fbt-top-line"></div>
 			<!-- 내가 댓글작성하기 -->
-			<div id="d10" class="select-reple"><p>내가 댓글작성하는 공간</p></div>
+			<div id="fb_my_reple" class="select-reple"><p>내가 댓글작성하는 공간</p></div>
 			
 		</div>
 

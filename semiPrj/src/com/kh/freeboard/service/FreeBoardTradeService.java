@@ -1,12 +1,16 @@
 package com.kh.freeboard.service;
 
 import java.sql.Connection;
+import java.util.List;
 import java.util.UUID;
 
 import static com.kh.common.JDBCTemplate.*;
+
+import com.kh.common.PageVo;
 import com.kh.freeboard.attachment.vo.FreeBoardAttachmentVo;
 import com.kh.freeboard.repository.FreeBoardTradeDao;
 import com.kh.freeboard.vo.FreeBoardTradeVo;
+import com.kh.freeboard.vo.FreeBoardVo;
 
 public class FreeBoardTradeService {
 
@@ -72,6 +76,65 @@ public class FreeBoardTradeService {
 		
 		return result * result2;
 		
+	}
+	
+	
+	/*
+	 * 중고거래 게시판 총 글 수
+	 */
+	public int getCount() {
+		int result = 0;
+		Connection conn = getConnection();
+		
+		try {
+			
+			//select 쿼리이지만 count작업으로 int리턴됨.(셀렉트 이므로 커밋롤백필요없다.)
+			result = dao.getCount(conn);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(conn);
+		}
+		
+		return result;
+	}
+	
+	
+	/*
+	 * 중고거래 게시판 리시트 조회 (페이징처리)
+	 */
+	public List<FreeBoardTradeVo> selecList(PageVo fbpageVo) {
+
+		Connection conn = getConnection();
+		
+		List<FreeBoardTradeVo> fbvoList = null;
+		
+		//dao 호출
+		fbvoList = dao.selectList(conn, fbpageVo);
+		
+		close(conn);
+		
+
+		
+		return fbvoList;
+	
+	}
+	
+	/*
+	 * 중고거래 게시판 인기글 가져오기
+	 */
+	public List<FreeBoardTradeVo> selectMainList() {
+
+		Connection conn = getConnection();
+		
+		List<FreeBoardTradeVo> fbMainList = null;
+		
+		fbMainList = dao.selectMainList(conn);
+		
+		close(conn);
+		
+		return fbMainList;
 	}
 
 	

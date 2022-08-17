@@ -49,13 +49,13 @@
                     <!-- The slideshow/carousel -->
                     <div class="carousel-inner"  >
                         <div class="carousel-item active">
-                                <img src="<%=contextPath %>/resource/img/gsTest1.jpg" class="img-thumbnail" alt="Los Angeles" class="d-block" style="width:100%; height: 100%;">
+                                <img src="<%=contextPath %>/resource/img/gsTest1.jpg" class="img-thumbnail" alt="Los Angeles" class="d-block" style="width:100%; height: 650px;">
                         </div>
                         <div class="carousel-item">
-                                <img  src="<%=contextPath %>/resource/img/gsTest2.jpg" class="img-thumbnail" alt="Chicago" class="d-block" style="width:100%">
+                                <img  src="<%=contextPath %>/resource/img/gsTest2.jpg" class="img-thumbnail" alt="Chicago" class="d-block" style="width:100%; height: 650px;">
                         </div>
                         <div class="carousel-item">
-                                <img  src="<%=contextPath %>/resource/img/gsTest3.jpg" class="img-thumbnail" alt="New York" class="d-block" style="width:100%">
+                                <img  src="<%=contextPath %>/resource/img/gsTest3.jpg" class="img-thumbnail" alt="New York" class="d-block" style="width:100%; height: 650px;">
                         </div>
                     </div>
                         
@@ -170,8 +170,8 @@
                         <div class="info-content" style="width: 100%; margin:0px;">예약하기버튼을 통해 예약가능날짜 확인 및 세부사항을 확인하고 진행할 수 있습니다.</div>
                    
                         <form action="">
-                            <input type="date" value="2022-08-16" min="2022-08-16" max="2022-10-16">
-                            
+                           가는날 선택 : <input type="date" value="2022-08-16" min="2022-08-16" max="2022-10-16">
+                           오는날 선택 : <input type="date" value="2022-08-16" min="2022-08-16" max="2022-10-16">
                         </form>
                     </div>
 
