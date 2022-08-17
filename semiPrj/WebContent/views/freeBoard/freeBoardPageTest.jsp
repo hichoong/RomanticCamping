@@ -1,20 +1,33 @@
 
+<%@page import="com.kh.freeboard.vo.FreeBoardTradeVo"%>
+<%@page import="com.kh.common.PageVo"%>
+<%@page import="com.kh.freeboard.vo.FreeBoardVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
     
-<%-- <%
-	여기는 페이징 좀 하고 ㅊ리 MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
-	List<FreeBoardVo> fbvoList = (Lists<FreeBoardVo>)request.getAttribute("list");
+<%
+	List<FreeBoardVo> fvoList = (List<FreeBoardVo>)request.getAttribute("fvoList");
+	PageVo fpageVo = (PageVo)request.getAttribute("fpageVo");
 	
-	PageVo pv = (PageVo)request.getAttribute("pv");
+	List<FreeBoardTradeVo> fbvoList = (List<FreeBoardTradeVo>)request.getAttribute("fbvoList");
+	PageVo fbpageVo = (PageVo)request.getAttribute("fbpageVo");
 
-	int currentPage = pv.getCurrentpage();
-	int startPage = pv.getStartPage();
-	int endPage = pv.getEndPage();
-	int maxPage = pv.getMaxPage();
+	List<FreeBoardVo> fMainList = (List<FreeBoardVo>)request.getAttribute("fMainList");
+	List<FreeBoardTradeVo> fbMainList = (List<FreeBoardTradeVo>)request.getAttribute("fbMainList");
+	
+	
+	int fcurrentPage = fpageVo.getCurrentPage();
+	int fstartPage = fpageVo.getStartPage();
+	int fendPage = fpageVo.getEndPage();
+	int fmaxPage = fpageVo.getMaxPage();
  	
- %>  --%>   
+	int fbcurrentPage = fbpageVo.getCurrentPage();
+	int fbstartPage = fbpageVo.getStartPage();
+	int fbendPage = fbpageVo.getEndPage();
+	int fbmaxPage = fbpageVo.getMaxPage();
+ %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,10 +43,6 @@
 <body>
 
 	<%@ include file="/views/common/header.jsp" %>
-	
-	<h1>여기다가 자유게시판 </h1>
-	<a href="<%=contextPath%>/freeboard/page?p1=1&p2=1">테스트 링크 </a>
-	
 	
 	
 	<!-- href링크는 게시글 번호로 그 번호에 맞는 상세페이지로 이동시키기 -->
@@ -61,60 +70,23 @@
 					</a>
 				</div>
 
-				<div class ="menu-items">
-					<a href="<%=contextPath %>/views/freeBoard/TradeDetail.jsp">
+
+				<%for(FreeBoardTradeVo fblist : fbMainList) { %>
+					<div class ="menu-items">
+					<a href="<%=contextPath %>/views/freeboard/detail?num=<%=fblist.getNo() %>">
 						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""></div>
 						<div>
-							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
-							<p id="fb1-subtitle1">서울 종로구 관철동</p>
-							<p id="fb1-subtitle2">130만원</p>
+							<div class="fb1-comment-outer"><span><%=fblist.getTitle() %></span></div>
+							<p id="fb1-subtitle1"><%=fblist.getWriter() %></p>
+							<p id="fb1-subtitle2"><%=fblist.getPrice() %>원</p>
 						</div>
 					</a>
 				</div>
+				<%} %>
 
-				<div class ="menu-items">
-					<a href="<%=contextPath %>/views/freeBoard/TradeDetail.jsp">
-						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""></div>
-						<div>
-							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
-							<p id="fb1-subtitle1">서울 종로구 관철동</p>
-							<p id="fb1-subtitle2">130만원</p>
-						</div>
-					</a>
-				</div>
 
-				<div class ="menu-items">
-					<a href="<%=contextPath %>/views/freeBoard/TradeDetail.jsp">
-						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest1.jpg" alt=""></div>
-						<div>
-							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
-							<p id="fb1-subtitle1">서울 종로구 관철동</p>
-							<p id="fb1-subtitle2">130만원</p>
-						</div>
-					</a>
-				</div>
+				
 
-				<div class ="menu-items">
-					<a href="<%=contextPath %>/views/freeBoard/TradeDetail.jsp">
-						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest3.jpg" alt=""></div>
-						<div>
-							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
-							<p id="fb1-subtitle1">서울 종로구 관철동</p>
-							<p id="fb1-subtitle2">130만원</p>
-						</div>
-					</a>
-				</div>
-
-				<div class ="menu-items">
-					<a href="<%=contextPath %>/views/freeBoard/TradeDetail.jsp">
-						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest1.jpg" alt=""></div>
-						<div>
-							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
-							<p id="fb1-subtitle1">서울 종로구 관철동</p>
-							<p id="fb1-subtitle2">130만원</p>
-						</div>
-					</a>
-				</div>
 				
 
 			</div>
@@ -134,7 +106,7 @@
 						</tr>
 					</thead>
 
-					<%-- 여기도 셀렉트 쿼리한다음 처리 <%for(FreeBoardTradeVo fbvo : fbvoList) {%>
+					<%for(FreeBoardTradeVo fbvo : fbvoList) {%>
 					
 						<tbody>
 							
@@ -147,57 +119,19 @@
 								</tr>
 							
 						</tbody>
-					<%} %> --%>
-					<tbody>
-						
-						<tr>
-							<td>B_NO</td>
-							<td>B_TITLE</td>
-							<td>B_CONTENT</td>
-							<td>BOARD_WRITER</td>
-							<td>UPDATE_DATE</td>
-						</tr>
+					<%} %>
 					
-					</tbody>
-					<tbody>
-							
-						<tr>
-							<td>B_NO</td>
-							<td>B_TITLE</td>
-							<td>B_CONTENT</td>
-							<td>BOARD_WRITER</td>
-							<td>UPDATE_DATE</td>
-						</tr>
 					
-					</tbody>
-					<tbody>
-							
-						<tr>
-							<td>B_NO</td>
-							<td>B_TITLE</td>
-							<td>B_CONTENT</td>
-							<td>BOARD_WRITER</td>
-							<td>UPDATE_DATE</td>
-						</tr>
 					
-					</tbody>
-					<tbody>
-							
-						<tr>
-							<td>B_NO</td>
-							<td>B_TITLE</td>
-							<td>B_CONTENT</td>
-							<td>BOARD_WRITER</td>
-							<td>UPDATE_DATE</td>
-						</tr>
-					
-					</tbody>
 
 
 				</table>
 				
 			
 			</div>
+
+
+
 
 
 			<div class="fb-page-area">
@@ -208,21 +142,23 @@
 				<a class="btn btn-outline-success btn-sm" href="">1</a>
 				<a class="btn btn-outline-success btn-sm" href="">1</a>
 
-				<%-- 페이징 처리하고 나서 처리 <%if(currentPage != 1){ %>
-					<a class="btn btn-sm btn-primary" href="<%=contextPath %>/freeBoard/list?p=<%=currentPage-1 %>"> &lt; </a>
+				<%if(fbcurrentPage != 1){ %>
+					<a class="btn btn-sm btn-primary" href="<%=contextPath %>/freeBoard/page?p2=<%=fbcurrentPage-1 %>"> &lt; </a>
 				<%} %>
 				
-				<% for(int i= startPage; i<= endPage; i++) { %>
-					<%if(i==currentPage){ %>
+				
+				<% for(int i= fbstartPage; i<= fbendPage; i++) { %>
+					<%if(i==fbcurrentPage){ %>
 						<a class="btn btn-sm btn-primary"><%=i%></a>
 					<%} else {%>
-						<a class="btn btn-sm btn-primary" href="<%=contextPath%>/board/list?p=<%=i%>"><%=i%></a>
+						<a class="btn btn-sm btn-primary" href="<%=contextPath%>/freeBoard/page?p2=<%=i%>"><%=i%></a>
 					<%} %>
 				<%} %>
 				
-				<%if(currentPage != maxPage){ %>
-					<a class="btn btn-sm btn-primary" href="/semi/board/list?p=<%=currentPage+1 %>"> &gt; </a>
-				<%} %> --%>
+				
+				<%if(fbcurrentPage != fbmaxPage){ %>
+					<a class="btn btn-sm btn-primary" href="<%=contextPath%>/freeBoard/page?p2=<%=fbcurrentPage+1 %>"> &gt; </a>
+				<%} %> 
 				
 				
 				
@@ -254,60 +190,25 @@
 			<div id="fb2-1" class="container">
 
 
-				<div class="fb2-1-story">
-					<a href="<%=contextPath %>/views/freeBoard/freeBoardDetail.jsp" class="fb2-1-story-outer">
-						<p style="font-size: 3rem;">글내용작성하는 곳</p>
-						<p class="fb2-story-date">작성일 보여주기</p>
-						<span class="fb2-story-count" >
-							<span><img src="" alt="이미지">"조회수 : "</span>
-						</span>
-					</a>
-				</div>
-
-
-
-				<div class="fb2-1-story">
-					<a href="<%=contextPath %>/views/freeBoard/freeBoardDetail.jsp" class="fb2-1-story-outer">
-						<p style="font-size: 3rem;">글내용작성하는 곳</p>
-						<p class="fb2-story-date">작성일 보여주기</p>
-						<span class="fb2-story-count" >
-							<span><img src="" alt="이미지">"조회수 : "</span>
-						</span>
-					</a>
-				</div>
-
-
-				<div class="fb2-1-story">
-					<a href="<%=contextPath %>/views/freeBoard/freeBoardDetail.jsp" class="fb2-1-story-outer">
-						<p style="font-size: 3rem;">글내용작성하는 곳</p>
-						<p class="fb2-story-date">작성일 보여주기</p>
-						<span class="fb2-story-count" >
-							<span><img src="" alt="이미지">"조회수 : "</span>
-						</span>
-					</a>
-				</div>
-
-
-
-				<div class="fb2-1-story">
-					<a href="<%=contextPath %>/views/freeBoard/freeBoardDetail.jsp" class="fb2-1-story-outer">
-						<p style="font-size: 3rem;">글내용작성하는 곳</p>
-						<p class="fb2-story-date">작성일 보여주기</p>
-						<span class="fb2-story-count" >
-							<span><img src="" alt="이미지">"조회수 : "</span>
-						</span>
-					</a>
-				</div>
-
 				
 
 
-
-
+				<%for(FreeBoardVo flist : fMainList) { %>
+					<div class="fb2-1-story">
+						<a href="<%=contextPath %>/views/freeBoard/freeBoardDetail?num=<%=flist.getNo()%>" class="fb2-1-story-outer">
+							<p style="font-size: 3rem;"><%=flist.getContent() %></p>
+							<p class="fb2-story-date"><%=flist.getEnrollDate() %></p>
+							<span class="fb2-story-count" >
+								<span><img src="" alt="이미지">"조회수 : "<%=flist.getCnt() %></span>
+							</span>
+						</a>
+					</div>
+				<%} %>
 
 
 
 			</div>
+
 
 			<div class="fb1-3" class="container">
 				
@@ -322,63 +223,21 @@
 							<td>작성일</td>
 						</tr>
 					</thead>
-
-					<tbody>
+					<%for(FreeBoardVo fb : fvoList) {%>
 						
-							<tr>
-								<td>B_NO</td>
-								<td>B_TITLE</td>
-								<td>B_CONTENT</td>
-								<td>BOARD_WRITER</td>
-								<td>UPDATE_DATE</td>
-							</tr>
-						
-					</tbody>
-					<tbody>
-						
-						<tr>
-							<td>B_NO</td>
-							<td>B_TITLE</td>
-							<td>B_CONTENT</td>
-							<td>BOARD_WRITER</td>
-							<td>UPDATE_DATE</td>
-						</tr>
-					
-					</tbody>
-					<tbody>
+						<tbody>
 							
-						<tr>
-							<td>B_NO</td>
-							<td>B_TITLE</td>
-							<td>B_CONTENT</td>
-							<td>BOARD_WRITER</td>
-							<td>UPDATE_DATE</td>
-						</tr>
-					
-					</tbody>
-					<tbody>
+								<tr>
+									<td><%= fb.getNo() %></td>
+									<td><%= fb.getTitle() %></td>
+									<td><%= fb.getContent() %></td>
+									<td><%= fb.getWriter() %></td>
+									<td><%= fb.getEnrollDate() %></td>
+								</tr>
 							
-						<tr>
-							<td>B_NO</td>
-							<td>B_TITLE</td>
-							<td>B_CONTENT</td>
-							<td>BOARD_WRITER</td>
-							<td>UPDATE_DATE</td>
-						</tr>
+						</tbody>
+					<%} %>
 					
-					</tbody>
-					<tbody>
-							
-						<tr>
-							<td>B_NO</td>
-							<td>B_TITLE</td>
-							<td>B_CONTENT</td>
-							<td>BOARD_WRITER</td>
-							<td>UPDATE_DATE</td>
-						</tr>
-					
-					</tbody>
-
 
 				</table>
 			</div>
@@ -387,12 +246,24 @@
 
 			<div class="fb-page-area">
 
-				<a class="btn btn-outline-success btn-sm" href="">1</a>
-				<a class="btn btn-outline-success btn-sm" href="">1</a>
-				<a class="btn btn-outline-success btn-sm" href="">1</a>
-				<a class="btn btn-outline-success btn-sm" href="">1</a>
-				<a class="btn btn-outline-success btn-sm" href="">1</a>
-
+				
+				<%if(fcurrentPage != 1){ %>
+					<a class="btn btn-sm btn-primary" href="<%=contextPath %>/freeBoard/page?p1=<%=fcurrentPage-1 %>"> &lt; </a>
+				<%} %>
+				
+				
+				<% for(int i= fstartPage; i<= fendPage; i++) { %>
+					<%if(i==fcurrentPage){ %>
+						<a class="btn btn-sm btn-primary"><%=i%></a>
+					<%} else {%>
+						<a class="btn btn-sm btn-primary" href="<%=contextPath %>/freeBoard/page?p1=<%=i%>"><%=i%></a>
+					<%} %>
+				<%} %>
+				
+				
+				<%if(fcurrentPage != fmaxPage){ %>
+					<a class="btn btn-sm btn-primary" href="<%=contextPath %>/freeBoard/page?p1=<%=fcurrentPage+1 %>"> &gt; </a>
+				<%} %> 
 			</div>
 
 
@@ -419,7 +290,7 @@
 
 
 
-	</div><!-- 끝 -->
+	</div><!-- body 끝 -->
 
 	<%@include file="/views/common/footer.jsp" %>
 	
