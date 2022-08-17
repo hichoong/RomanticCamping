@@ -105,7 +105,7 @@
         	<li><a class="dropdown-item" href="<%=contextPath%>/member/login">로그인</a></li>
         	<li><a class="dropdown-item" href="<%=contextPath%>/member/join">회원가입</a></li>
         <%} else if(loginMember.getType().equals("U")) { %>        
-	        <li><a class="dropdown-item" href="<%=contextPath%>/member/mypage">마이페이지</a></li>
+	        <li><a class="dropdown-item" href="<%=contextPath%>/member/myPage">마이페이지</a></li>
 	        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/myReservationPage.jsp">캠핑 예약확인</a></li>
 	        <li><hr class="dropdown-divider"></hr></li>
 	        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/myBoardList.jsp">내가 쓴 글</a></li>
@@ -114,7 +114,7 @@
 	        <li><hr class="dropdown-divider"></hr></li>
 	        <li><a class="dropdown-item" href="<%=contextPath%>/member/logout">로그아웃</a></li>
         <%} else if(loginMember.getType().equals("B")) { %>
-	        <li><a class="dropdown-item" href="<%=contextPath%>/member/mypage">마이페이지</a></li>
+	        <li><a class="dropdown-item" href="<%=contextPath%>/member/myPage">마이페이지</a></li>
         	<li><a class="dropdown-item" href="<%=contextPath%>/views/buisness/campRsvForm.jsp">예약 확인</a></li>
 	        <li><a class="dropdown-item" href="<%=contextPath%>/views/buisness/campSearchForm.jsp">내 캠핑장</a></li>
 	        <li><hr class="dropdown-divider"></hr></li>

@@ -12,7 +12,7 @@ public class MemberDao {
 	
 	public MemberVo login(Connection conn, MemberVo mvo) {
 
-		String sql = "SELECT NO, TYPE, ID, NAME, PHONE, EMAIL, BIRTHDAY, GENDER, GRADE, TO_CHAR(JOIN_DATE, 'YY/MM/DD') AS JOIN_DATE FROM MEMBER WHERE ID=? AND PWD = ?";
+		String sql = "SELECT NO, TYPE, ID, NAME, PHONE, EMAIL, BIRTHDAY, GENDER, GRADE, TO_CHAR(JOIN_DATE, 'YY/MM/DD') AS JOIN_DATE FROM MEMBER WHERE ID=? AND PWD = ? AND STATUS = 'Y'";
 		
 		MemberVo vo = null;
 		PreparedStatement pstmt = null;
@@ -51,11 +51,12 @@ public class MemberDao {
 
 	public int userJoin(Connection conn, MemberVo vo) {
 		
+		String sql = "INSERT INTO MEMBER(NO, TYPE, ID, PWD, NAME, PHONE, EMAIL, BIRTHDAY, GENDER) VALUES (SEQ_MEMBER_NO.NEXTVAL, 'U', ?, ?, ?, ?, ?, ?, ?)";
+
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
 		try {
-			String sql = "INSERT INTO MEMBER(NO, TYPE, ID, PWD, NAME, PHONE, EMAIL, BIRTHDAY, GENDER) VALUES (SEQ_MEMBER_NO.NEXTVAL, 'U', ?, ?, ?, ?, ?, ?, ?)";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getId());
@@ -79,11 +80,12 @@ public class MemberDao {
 
 	public int businessJoin(Connection conn, MemberVo vo) {
 		
+		String sql = "INSERT INTO MEMBER(NO, TYPE, ID, PWD, NAME, PHONE, EMAIL) VALUES (SEQ_MEMBER_NO.NEXTVAL, 'B', ?, ?, ?, ?, ?)";
+
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
 		try {
-			String sql = "INSERT INTO MEMBER(NO, TYPE, ID, PWD, NAME, PHONE, EMAIL) VALUES (SEQ_MEMBER_NO.NEXTVAL, 'B', ?, ?, ?, ?, ?)";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getId());
@@ -130,4 +132,71 @@ public class MemberDao {
 		return n;
 	}
 
+	public int edit(Connection conn, MemberVo vo) {
+		
+		String sql = "UPDATE MEMBER SET NAME = ?, PHONE = ?, EMAIL = ? ,BIRTHDAY = ? ,GENDER = ? WHERE NO = ?";
+
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getName());
+			pstmt.setString(2, vo.getPhone());
+			pstmt.setString(3, vo.getEmail());
+			pstmt.setString(4, vo.getBirthday());
+			pstmt.setString(5, vo.getGender());
+			pstmt.setString(6, vo.getNo());
+			
+			result = pstmt.executeUpdate();
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public MemberVo selectOneByNo(Connection conn, String num) {
+		
+		String sql = "SELECT NO, TYPE, ID, NAME, PHONE, EMAIL, BIRTHDAY, GENDER, GRADE, TO_CHAR(JOIN_DATE, 'YY/MM/DD') AS JOIN_DATE FROM MEMBER WHERE NO = ? AND STATUS = 'Y'";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MemberVo vo = null;
+		
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				vo = new MemberVo();
+				vo.setNo(rs.getString("NO"));
+				vo.setType(rs.getString("TYPE"));
+				vo.setId(rs.getString("ID"));
+				vo.setName(rs.getString("NAME"));
+				vo.setPhone(rs.getString("PHONE"));
+				vo.setEmail(rs.getString("EMAIL"));
+				vo.setBirthday(rs.getString("BIRTHDAY"));
+				vo.setGender(rs.getString("GENDER"));
+				vo.setGrade(rs.getString("GRADE"));
+				vo.setJoinDate(rs.getString("JOIN_DATE"));
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return vo;
+	}
+	
 }

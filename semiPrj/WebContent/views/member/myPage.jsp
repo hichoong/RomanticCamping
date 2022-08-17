@@ -19,23 +19,23 @@
 
             <h3 class="mb-4">내정보</h3>
 
-            <form action="" method="post">
+            <form action="<%=contextPath%>/member/myPage" method="post">
                 <div class="mb-3">
                     <label for="name" class="form-label">이름:</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" required>
+                    <input type="text" class="form-control" id="name" value="${loginMember.name}" name="name" required>
                 </div>
                 <div class="mb-3">
                     <label for="phone" class="form-label">휴대폰번호:</label>
-                    <input type="text" class="form-control" id="phone" placeholder="ex) 01000000000" name="phone" required>
+                    <input type="text" class="form-control" id="phone" value="${loginMember.phone}" placeholder="ex) 01012345678" name="phone" required>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">이메일:</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                    <input type="email" class="form-control" id="email" value="${loginMember.email}" placeholder="ex) example@ex.com" name="email">
                 </div>
                 <% if(loginMember.getType().equals("U")) { %>
 	                <div class="mb-3">
 	                    <label for="birth" class="form-label">생년월일:</label>
-	                    <input type="date" class="form-control" id="birth" placeholder="Enter BithDay" name="birth">
+	                    <input type="date" class="form-control" id="birth" value="<%=loginMember.getBirthdayToDate()%>" name="birth">
 	                </div>
 	                <div class="mb-3">
 	                    성별: 
@@ -44,7 +44,7 @@
 	                </div>
                 <%} %>
                 <div class="location-center">
-                    <button type="reset" class="basic-btn">초기화</button>
+                    <button type="reset" class="basic-btn" onclick="genderCheck();">초기화</button>
                     <button type="submit" class="basic-btn">수정완료</button>
                 </div>
                 <div class="location-right mt-3">
@@ -64,7 +64,7 @@
                     </div>
                 
                     <div class="modal-body">
-                        <form action="" method="post">
+                        <form action="<%=contextPath%>/member/changePwd" method="post">
                             <div class="mb-3">
                               <label for="pwd" class="form-label">기존 비밀번호:</label>
                               <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" required>
@@ -79,7 +79,7 @@
                             </div>
     
                             <div class="location-right">
-                                <button type="submit" class="btn btn-success" data-bs-dismiss="modal">비밀번호 변경</button>
+                                <button type="submit" class="btn btn-success" onclick="return checkPwd();">비밀번호 변경</button>
                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">취소하기</button>
                             </div>
                           </form>
@@ -97,7 +97,7 @@
                         </div>
 
                         <div class="location-center">
-                            <button type="submit" class="btn btn-success" data-bs-dismiss="modal">탈퇴하기</button>
+                            <button type="submit" class="btn btn-success" onclick="location.href='<%=contextPath%>/member/quit'">탈퇴하기</button>
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">취소하기</button>
                         </div>
                     </div>
@@ -108,6 +108,28 @@
     </div>
 
     <%@ include file="/views/common/footer.jsp" %>
+
+	<script>
+		
+		$(function genderCheck(){
+			$('input[name=gender]').each(function(){
+				if(this.value =='${loginMember.gender}') {
+					this.checked = true;
+				}
+			});
+		})
+	
+		function checkPwd(){
+			isSame = $('input[name=newPwd]').val() == $('input[name=newPwdCheck]').val();
+			if(isSame) {
+				return true;
+			} else {
+				alert("신규 비밀번호가 일치하지 않습니다.");
+				return false;
+			}
+		}
+		
+	</script>
 
 </body>
 </html>
