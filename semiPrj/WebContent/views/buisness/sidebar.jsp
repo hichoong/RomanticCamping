@@ -24,7 +24,7 @@
 						<li>
 							<a href="#">등록/조회</a>
 							<ul class="submenu">
-								<li><a href="<%=path%>/views/buisness/campSearchForm.jsp">캠핑장 조회</a></li>
+								<li><a href="<%=path%>/bscamp/search">캠핑장 조회</a></li>
 								<li><a href="<%=path%>/bscamp/insert">캠핑장 등록</a></li>
 								<%-- <li><a href="<%=path%>/views/buisness/campZoneManage.jsp">구역 관리</a></li> --%>
 							</ul>
