@@ -80,7 +80,7 @@
                     <span>예약자 전화번호 : <strong>010-1111-1111</strong></span>
                 </div>
                 <div class="location-center ">
-                    <button class="basic-btn">리뷰작성</button>
+                    <button class="basic-btn" onclick="location.href='<%=contextPath%>/review/insert'">리뷰작성</button>
                 </div>
             </div>
 

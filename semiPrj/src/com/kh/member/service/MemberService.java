@@ -25,14 +25,55 @@ public class MemberService {
 		return vo;
 	}
 
-	public int userJoin(MemberVo vo) {
-
-		if(!joinCheck(vo)) return -1;
+	protected boolean etcCheck(MemberVo vo) {
 		
-		Connection conn = getConnection();
+		if(vo.getName().length() < 1) {
+			return false;
+		}
+		
+		if(vo.getPhone().length() != 11) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	protected boolean idCheck(Connection conn, MemberVo vo) {
+			
+		if(vo.getId().length() < 3) {
+			return false;
+		}
 		
 		int dup = new MemberDao().checkDup(conn, vo);
 		if(dup != 0) {
+			close(conn);
+			return false;
+		}
+		
+		return true;
+	}
+	
+	protected boolean pwdCheck(MemberVo vo) {
+		
+		if(vo.getPwd().length() < 4) {
+			return false;
+		}
+		
+		if(vo.getPwd().equals(vo.getPwdCheck()) == false) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	public int userJoin(MemberVo vo) {
+
+		if(!pwdCheck(vo)) return -1;
+		if(!etcCheck(vo)) return -1;
+		
+		Connection conn = getConnection();
+		
+		if(!idCheck(conn, vo)) {
 			close(conn);
 			return -1;
 		}
@@ -52,12 +93,12 @@ public class MemberService {
 
 	public int businessJoin(MemberVo vo) {
 				
-		if(!joinCheck(vo)) return -1;
+		if(!pwdCheck(vo)) return -1;
+		if(!etcCheck(vo)) return -1;
 		
 		Connection conn = getConnection();
 		
-		int dup = new MemberDao().checkDup(conn, vo);
-		if(dup != 0) {
+		if(!idCheck(conn, vo)) {
 			close(conn);
 			return -1;
 		}
@@ -75,25 +116,35 @@ public class MemberService {
 		return result;
 	}
 
-	protected boolean joinCheck(MemberVo vo) {
+	public MemberVo edit(MemberVo vo) {
 		
-		if(vo.getId().length() < 3 || vo.getPwd().length() < 4) {
-			return false;
+		if(!etcCheck(vo)) return null;
+		
+		Connection conn = getConnection();
+		int result = new MemberDao().edit(conn, vo);
+		MemberVo updateVo = null;
+		
+		if(result == 1) {
+			commit(conn);
+			updateVo = selectOneByNo(vo.getNo());
+		} else {
+			rollback(conn);
 		}
 		
-		if(vo.getPwd().equals(vo.getPwdCheck()) == false) {
-			return false;
-		}
+		close(conn);
 		
-		if(vo.getName().length() < 1) {
-			return false;
-		}
-		
-		if(vo.getPhone().length() != 11) {
-			return false;
-		}
-		
-		return true;
+		return updateVo;
 	}
+	
+	public MemberVo selectOneByNo(String no) {
+		
+		Connection conn = getConnection();
+		MemberVo vo = new MemberDao().selectOneByNo(conn, no);
+		close(conn);
+		
+		return vo;
+	}
+	
+	
 	
 }

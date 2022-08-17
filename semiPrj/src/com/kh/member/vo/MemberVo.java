@@ -60,19 +60,26 @@ public class MemberVo {
 		return phone;
 	}
 	public void setPhone(String phone) {
-		this.phone = phone.replaceAll(" ", "");
+		if(phone != null) this.phone = phone.replaceAll(" ", "");
 	}
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
-		this.email = email.replaceAll(" ", "");
+		if(email != null) this.email = email.replaceAll(" ", "");
 	}
 	public String getBirthday() {
 		return birthday;
 	}
+	public String getBirthdayToDate() {
+		String dateBirth = null;
+		if(birthday != null) {
+			dateBirth = birthday.substring(0,4) + "-" + birthday.substring(4,6) + "-" + birthday.substring(6,8);
+		}
+		return dateBirth;
+	}
 	public void setBirthday(String birthday) {
-		this.birthday = birthday.replaceAll("-", "");
+		if(birthday != null) this.birthday = birthday.replaceAll("-", "");
 	}
 	public String getGender() {
 		return gender;
