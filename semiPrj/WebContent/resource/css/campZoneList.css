@@ -4,7 +4,7 @@
     padding: 0;
     margin: 0;    
 }
-/* div,section,label {
+/* * {
     border: 1px solid gray;
 } */
 .container{
@@ -54,5 +54,17 @@ section .camp-list{
     font-size: 1.2rem;
     text-align: center;
 }
-
+.card-body{
+    display: flex;
+    flex-direction: row;
+}
+.zone-info{
+    width: 75%;
+}
+.zone-price{
+    display: flex;
+    padding: 10px;
+	align-items: center;
+    justify-content: center;
+}
 

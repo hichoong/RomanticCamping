@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>낭만캠핑</title>
-<link rel="stylesheet" href="../../resource/css/reviewInsertForm.css">
+<link rel="stylesheet" href="/semiPrj/resource/css/reviewInsertForm.css">
 </head>
 <body>
 	
@@ -30,9 +30,12 @@
                 </div>
             </div>
 
-            <form action="" method="post" id="review-write">
+            <form action="<%=contextPath%>/review/edit" method="post" id="review-write">
                 <div class="review-star">
+        			<input type="hidden" name="num" value="${vo.rNo }">
                     <span class="text-bold">별점을 선택해주세요</span>
+                    <!-- 별점 선택돼있도록 수정하기 -->
+                    <input type="hidden" name="reviewStar" value="${vo.rNum })" id="rate1">
                     <input type="radio" name="reviewStar" value="5" id="rate1"><label
                         for="rate1">★</label>
                     <input type="radio" name="reviewStar" value="4" id="rate2"><label
@@ -46,7 +49,7 @@
                     
                 </div>
 
-                <textarea name="review-content" id="review-text" spellcheck="false" onfocus="this.value='';" >내용을 입력해주세요.</textarea>
+                <textarea name="review-content" id="review-text" spellcheck="false">${vo.rContent}</textarea>
 
                 <div id="review-notice">
                     <span>리뷰 작성 시 유의사항</span> <br>
@@ -62,14 +65,13 @@
 
                 <div id="review-update-buttons">
                     <input type="submit" value="리뷰 수정하기" id="review-update" class="btn btn-warning">
-                    <button class="btn btn-warning" id="review-delete">삭제하기</button>
+                    <button type="button" class="btn btn-warning" id="review-delete" onclick="location.href='<%=contextPath%>/review/delete'">삭제하기</button>
                 </div>
                 
             </form>
 
         </section>
     </div>
-	
 	
 	<%@include file="/views/common/footer.jsp" %>
 	

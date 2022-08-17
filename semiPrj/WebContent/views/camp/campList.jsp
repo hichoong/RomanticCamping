@@ -1,3 +1,5 @@
+<%@page import="com.kh.common.PageVo"%>
+<%@page import="com.kh.camplist.campinfo.vo.CampInfoVo"%>
 <%@page import="com.kh.camplist.theme.vo.ThemeVo"%>
 <%@page import="java.util.List"%>
 <%@page import="com.kh.camplist.hashtag.vo.HashTagVo"%>
@@ -9,6 +11,14 @@
 	List<HashTagVo> hashTagList = (List<HashTagVo>) request.getAttribute("hashTagList");
 	List<String> checkedHashCodes = (List<String>) request.getAttribute("checkedHashCodes");
 	List<ThemeVo> themeList = (List<ThemeVo>) request.getAttribute("themeList");
+	
+	List<CampInfoVo> campInfoList = (List<CampInfoVo>) request.getAttribute("campInfoList");
+	PageVo pv = (PageVo) request.getAttribute("pv");
+	
+	int currentPage = pv.getCurrentPage();
+	int startPage = pv.getStartPage();
+	int endPage = pv.getEndPage();
+	int maxPage = pv.getMaxPage();
 
 %>
 <!DOCTYPE html>
@@ -34,7 +44,6 @@
                     <select name="gugun1" id="gugun1"></select>
                   </div>
                   
-                
                   <div class="check-theme">
                     
                     <table>
@@ -50,7 +59,6 @@
                       </tr>
                     </table>
                   </div>
-                
 
                     <div class="hashtag">
                       <button type="button" class="btn btn-warning">+해시태그</button>
@@ -74,89 +82,39 @@
 
             <div class="camp-list">
                
-                
-
-                  <div class="card mb-3" style="max-width: 800px;" onclick="location.href='<%=contextPath %>/views/camp/campZoneList.jsp'">
-                    <div class="row no-gutters">
-                      <div class="col-md-4">
-                        <img src="<%=contextPath %>/resource/img/test.jpg" class="card-img" alt="캠핑장 대표이미지">
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title">캠핑장1</h5>
-                          <p class="card-text">여유로움을 즐길 수 있는 캠핑장1 입니다</p>
-                          <p class="card-text"><small class="text-muted">#여유 #힐링</small></p>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-
-                <div class="card mb-3" style="max-width: 800px;">
-                    <div class="row no-gutters">
-                      <div class="col-md-4">
-                        <img src="<%=contextPath %>/resource/img/test.jpg" class="card-img" alt="캠핑장 대표이미지">
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title">캠핑장1</h5>
-                          <p class="card-text">여유로움을 즐길 수 있는 캠핑장1 입니다</p>
-                          <p class="card-text"><small class="text-muted">#여유 #힐링</small></p>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-
-                <div class="card mb-3" style="max-width: 800px;">
-                    <div class="row no-gutters">
-                      <div class="col-md-4">
-                        <img src="<%=contextPath %>/resource/img/test.jpg" class="card-img" alt="캠핑장 대표이미지">
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title">캠핑장1</h5>
-                          <p class="card-text">여유로움을 즐길 수 있는 캠핑장1 입니다</p>
-                          <p class="card-text"><small class="text-muted">#여유 #힐링</small></p>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-
-                <div class="card mb-3" style="max-width: 800px;">
-                    <div class="row no-gutters">
-                      <div class="col-md-4">
-                        <img src="<%=contextPath %>/resource/img/test.jpg" class="card-img" alt="캠핑장 대표이미지">
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title">캠핑장1</h5>
-                          <p class="card-text">여유로움을 즐길 수 있는 캠핑장1 입니다</p>
-                          <p class="card-text"><small class="text-muted">#여유 #힐링</small></p>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-
-                <div class="card mb-3" style="max-width: 800px;">
-                    <div class="row no-gutters">
-                      <div class="col-md-4">
-                        <img src="<%=contextPath %>/resource/img/test.jpg" class="card-img" alt="캠핑장 대표이미지">
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title">캠핑장1</h5>
-                          <p class="card-text">여유로움을 즐길 수 있는 캠핑장1 입니다</p>
-                          <p class="card-text"><small class="text-muted">#여유 #힐링</small></p>
-                        </div>
-                      </div>
-                    </div>
-                </div>
+				<%for(CampInfoVo c : campInfoList) { %>
+	                 <div class="card mb-3" style="max-width: 800px;" onclick="location.href='<%=contextPath %>/views/camp/campZoneList.jsp'">
+	                    <div class="row no-gutters">
+	                      <div class="col-md-4">
+	                        <img src="<%=c.getCampImgpath()%>" class="card-img" alt="캠핑장 대표이미지">
+	                      </div>
+	                      <div class="col-md-8">
+	                        <div class="card-body">
+	                          <h5 class="card-title"><%=c.getCampName() %></h5>
+	                          <p class="card-text"><%=c.getCampIntro() %></p>
+	                          <p class="card-text"><small class="text-muted"></small></p>
+	                        </div>
+	                      </div>
+	                    </div>
+	                </div>
+				<%} %>
                 
                 <ul class="pagination mt-4">
-	                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-	                <li class="page-item"><a class="page-link" href="#">1</a></li>
-	                <li class="page-item"><a class="page-link" href="#">2</a></li>
-	                <li class="page-item"><a class="page-link" href="#">3</a></li>
-	                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                	<%if(currentPage != 1) { %>
+	                	<li class="page-item"><a class="page-link" href="<%=contextPath%>/camp/campList?p=<%=currentPage-1%>">Previous</a></li>
+	                <%} %>
+	                
+	                <%for(int i = startPage; i <= endPage; i++) { %>
+						<%if(i == currentPage){ %>
+							<li class="page-item"><a class="page-link"><%=i %></a></li>
+						<%}else { %>
+							<li class="page-item"><a class="page-link" href="<%=contextPath%>/camp/campList?p=<%=i %>"><%=i %></a></li>
+						<%} %>
+					<%} %>
+	                
+	                <%if(currentPage != maxPage) { %>
+	                	<li class="page-item"><a class="page-link" href="<%=contextPath%>/camp/campList?p=<%=currentPage+1%>">Next</a></li>
+               		<%} %>
                 </ul>
 	           	  
             </div>
