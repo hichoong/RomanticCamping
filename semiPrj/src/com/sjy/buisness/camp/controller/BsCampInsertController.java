@@ -1,4 +1,4 @@
-package com.sjy.bscamp.controller;
+package com.sjy.buisness.camp.controller;
 
 import java.io.IOException;
 

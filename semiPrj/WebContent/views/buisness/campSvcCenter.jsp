@@ -15,7 +15,8 @@
 <link rel="stylesheet" href="<%=request.getContextPath() %>/resource/css/SjyCss.css">
 </head>
 <body>
-	<%@ include file="/views/buisness/bsHeader.jsp" %>
+	<%-- <%@ include file="/views/buisness/bsHeader.jsp" %> --%>
+	<%@ include file="/views/common/header.jsp" %>
 	<main class="navbar navbar-expand-sm container">
     <div id="side"  class="shadow">
         <div id="sidebar" class="col">

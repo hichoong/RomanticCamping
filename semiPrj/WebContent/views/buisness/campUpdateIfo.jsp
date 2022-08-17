@@ -38,8 +38,8 @@
 		<div id="content">
 
 
-			<form action="/bscamp/insert" method="get">
-				<h2>캠핑장 등록</h2>
+			<form action="/bscamp/insert" method="post">
+				<h2>캠핑장 조회및 수정(데이터 가져와서 value값 넣기)</h2>
 				
 				<hr>
 				<div style="overflow-x: hidden; width: 100%; height: 700px; padding-right: 10%">
@@ -200,8 +200,8 @@
 				</div>
 
 				<div id="end">
-					<input type="submit" value="등록요청" id="send" class="rounded">
-				</div>
+							<button  id="upDate" >수정요청</button>
+						</div>
 			</form>
 		</div>
 		<!--content-->

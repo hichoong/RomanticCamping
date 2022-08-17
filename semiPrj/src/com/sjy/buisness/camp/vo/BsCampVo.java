@@ -1,4 +1,4 @@
-package com.sjy.bscamp.vo;
+package com.sjy.buisness.camp.vo;
 
 public class BsCampVo {
 	
