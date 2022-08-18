@@ -242,5 +242,35 @@ public class MemberDao {
 		
 		return result;
 	}
+
+	public String findId(Connection conn, String name, String phone) {
+
+		String sql = "SELECT ID FROM MEMBER WHERE NAME = ? AND PHONE = ? AND STATUS = 'Y'";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String id = null;
+		
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, phone);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				id = rs.getString("ID");
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return id;
+	}
 	
 }

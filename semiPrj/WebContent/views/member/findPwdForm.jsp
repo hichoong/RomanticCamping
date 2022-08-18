@@ -51,7 +51,7 @@
                     <button type="submit" class="basic-btn">비밀번호 찾기</button>
                 </div>
                 <div class="sub-btn-list">
-                    <a href="<%=contextPath%>/views/member/findIdForm.jsp" class="basic-a">아이디 찾기</a> |
+                    <a href="<%=contextPath%>/findId" class="basic-a">아이디 찾기</a> |
                     <a href="<%=contextPath%>/login" class="basic-a">로그인하기</a> |
                     <a href="<%=contextPath%>/join" class="basic-a">회원가입</a>
                 </div>

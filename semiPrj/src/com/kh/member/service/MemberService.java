@@ -179,5 +179,15 @@ public class MemberService {
 		
 		return result;
 	}
+
+	public String findId(String name, String phone) {
+
+		Connection conn = getConnection();
+		String id = dao.findId(conn, name, phone);
+		
+		close(conn);
+		
+		return id;
+	}
 	
 }
