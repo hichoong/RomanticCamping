@@ -18,17 +18,27 @@
 				<div id="side" class="shadow">
 				<div id="sidebar" class="col">
 
-					<div style="margin-left: 10%; font-size: 20px; color: white;">캠핑장 관리</div>
+					<div style="margin-left: 10%; font-size: 20px; color: white;">캠핑장</div>
 					
 					<ul class="menu">
 						<li>
-							<a href="#">등록/조회</a>
+							<a href="#">캠핑장 관리</a>
 							<ul class="submenu">
 								<li><a href="<%=path%>/bscamp/search">캠핑장 조회</a></li>
 								<li><a href="<%=path%>/bscamp/insert">캠핑장 등록</a></li>
-								<%-- <li><a href="<%=path%>/views/buisness/campZoneManage.jsp">구역 관리</a></li> --%>
+								
 							</ul>
 						</li>
+						
+						<li>
+							<a href="#">구역 관리</a>
+							<ul class="submenu">
+								<li><a href="<%=path%>/views/buisness/campZoneSearch.jsp">구역 조회</a></li>
+								<li><a href="<%=path%>/views/buisness/campZoneInsert.jsp">구역 등록</a></li>
+								
+							</ul>
+						</li>						
+						
 						<li>
 							<a href="#">예약관리</a>
 							<ul class="submenu">

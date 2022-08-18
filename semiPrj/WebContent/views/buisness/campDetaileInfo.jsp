@@ -14,7 +14,8 @@
 	
 	//등록일 기본값 세팅
 	String toDay = d+"T"+t;
-	
+	String num = (String)request.getAttribute("num");
+	System.out.println(num);
 %>
 <head>
 
@@ -26,7 +27,7 @@
 	
 </style>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>캠핑장 조회</title>
 </head>
 
 <body>
@@ -43,7 +44,7 @@
 				
 				<hr>
 				<div style="overflow-x: hidden; width: 100%; height: 700px; padding-right: 10%">
-
+					<div><%=num %>캠핑장</div>
 					<div class="md-3">
 						<label for="campName" class="form-label">* 이름:</label> 
 							<input type="text" class="form-control" id="campName"
@@ -212,7 +213,7 @@
 </body>
 
 <script>
-	console.log("hi");
+	
 	$('document')
 			.ready(
 					function() {

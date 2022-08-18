@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>예약 상세조회</title>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/resource/css/SjyCss.css">
 </head>
 <body>
