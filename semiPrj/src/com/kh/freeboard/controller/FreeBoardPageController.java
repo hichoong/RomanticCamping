@@ -27,17 +27,21 @@ public class FreeBoardPageController extends HttpServlet{
 		//페이징 처리
 		//------------------ 페이징 처리 -------------------
 		int flistCount;		//현재 총 게시글 개수
-		int fblistCount;		//현재 총 게시글 개수
+		int fblistCount;	//현재 총 게시글 개수
+		
 		int fcurrentPage;	//현재 페이지(== 사용자가 요청한 페이지)
 		int fbcurrentPage;	//현재 페이지(== 사용자가 요청한 페이지)
+		
 		int pageLimit;		//페이지 하단에 보여질 페이지 버튼의 최대 개수
 		int boardLimit;		//한 페이지 내 보여질 게시글 최대 개수
 		
 		// 위의 4개를 이용해서 3개 값 구하기
 		int fmaxPage;		//가장 마지막 페이지 ( =총 페이지 수)
 		int fbmaxPage;		//가장 마지막 페이지 ( =총 페이지 수)
+		
 		int fstartPage;		//페이징바의 시작
-		int fbstartPage;		//페이징바의 시작
+		int fbstartPage;	//페이징바의 시작
+		
 		int fendPage;		//페이징바의 끝
 		int fbendPage;		//페이징바의 끝
 		

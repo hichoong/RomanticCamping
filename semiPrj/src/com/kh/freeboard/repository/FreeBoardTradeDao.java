@@ -23,17 +23,16 @@ public class FreeBoardTradeDao {
 		int result = 0;
 		
 		
-		String sql = "INSERT INTO BOARD ( NO ,TYPE ,CATEGORY_NO ,TITLE ,CONTENT ,WRITER ) VALUES ( SEQ_BOARD_NO.NEXTVAL , 1 , ? , ? , ? , ? )";
+		String sql = "INSERT INTO FREEBOARD_TRADE ( FB_NO, FB_TITLE ,FB_CONTENT ,FB_WRITER ) VALUES ( SEQ_FREEBOARD_TRADE_NO.NEXTVAL , ?, ?, ? )";
 
 
 		try {
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, fvo.getType());
-			pstmt.setString(2, fvo.getTitle());
-			pstmt.setString(3, fvo.getContent());
-			pstmt.setString(4, fvo.getWriter());
+			pstmt.setString(1, fvo.getTitle());
+			pstmt.setString(2, fvo.getContent());
+			pstmt.setString(3, fvo.getWriter());
 			
 			
 			result = pstmt.executeUpdate();
@@ -57,7 +56,7 @@ public class FreeBoardTradeDao {
 		int result = 0;
 		
 		
-		String sql = "INSERT INTO ATTACHMENT (NO, REF_BNO, ORIGIN_NAME, CHANGE_NAME, FILE_PATH) VALUES(SEQ_ATTACHMENT_NO.NEXTVAL, SEQ_BOARD_NO.CURRVAL, ?, ?, ?)";
+		String sql = "INSERT INTO FB_ATTACHMENT (FBA_NO, FBA_REF_NO, FBA_ORIGIN_NAME, FBA_CHANGE_NAME, FBA_FILE_PATH) VALUES(SEQ_FB_ATTACHMENT_NO.NEXTVAL, SEQ_FREEBOARD_TRADE_NO.CURRVAL, ?, ?, ?)";
 
 
 		try {
@@ -91,7 +90,7 @@ public class FreeBoardTradeDao {
 		
 		try {
 			//일반게시판은 타입1 / 사진게시판은 타입2 
-			String sql = "SELECT COUNT(NO) AS COUNT FROM BOARD WHERE STATUS='N' AND TYPE=20";
+			String sql = "SELECT COUNT(FB_NO) AS COUNT FROM FREEBOARD_TRADE WHERE FB_STATUS='N'";
 			pstmt = conn.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
@@ -121,7 +120,7 @@ public class FreeBoardTradeDao {
 		List<FreeBoardTradeVo> fbvoList = new ArrayList<FreeBoardTradeVo>();
 		
 		
-		String sql = "SELECT * FROM ( SELECT ROWNUM RUNM, T.* FROM ( SELECT B.NO ,B.TITLE ,B.CONTENT ,B.CNT ,B.ENROLL_DATE ,M.ID AS WRITER ,C.CATEGORY_NAME AS CATEGORY_NAME FROM BOARD B JOIN MEMBER M ON B.WRITER = M.NO JOIN CATEGORY C USING(CATEGORY_NO) WHERE B.TYPE=1 AND B.STATUS='N' ORDER BY B.NO DESC ) T ) WHERE RUNM BETWEEN ? AND ?";
+		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT B.FB_NO ,B.FB_TITLE ,B.FB_CONTENT ,B.FB_CNT ,B.FB_ENROLL_DATE ,M.ID AS FB_WRITER FROM FREEBOARD_TRADE B JOIN MEMBER M ON B.FB_WRITER = M.NO WHERE B.FB_STATUS='N' ORDER BY B.FB_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
 		
 		try {
 			//SQL을 객체에 담기 및 완성
@@ -142,13 +141,12 @@ public class FreeBoardTradeDao {
 				//객체 만들고 값 세팅해주기
 				FreeBoardTradeVo fbvo = new FreeBoardTradeVo();
 				
-				fbvo.setNo(rs.getString("NO"));
-				fbvo.setTitle(rs.getString("TITLE"));
-				fbvo.setContent(rs.getString("CONTENT"));
-				fbvo.setWriter(rs.getString("WRITER"));
-				fbvo.setCnt(rs.getString("CNT"));
-				fbvo.setEnrollDate(rs.getString("ENROLL_DATE"));
-				fbvo.setStatus(rs.getString("STATUS"));
+				fbvo.setNo(rs.getString("FB_NO"));
+				fbvo.setTitle(rs.getString("FB_TITLE"));
+				fbvo.setContent(rs.getString("FB_CONTENT"));
+				fbvo.setWriter(rs.getString("FB_WRITER"));
+				fbvo.setCnt(rs.getString("FB_CNT"));
+				fbvo.setEnrollDate(rs.getString("FB_ENROLL_DATE"));
 				
 				
 				//값 세팅한 vo객체를 list에 추가해주기
@@ -175,7 +173,7 @@ public class FreeBoardTradeDao {
 		ArrayList<FreeBoardTradeVo> fbMainList = new ArrayList<FreeBoardTradeVo>();
 		
 		//SQL 준비
-		String sql = "SELECT N.NO, N.TITLE, N.CONTENT, N.CNT, TO_CHAR(N.ENROLL_DATE, 'YY/MM/DD HH:MI') AS ENROLL_DATE, N.STATUS, M.NAME AS WRITER FROM NOTICE N JOIN MEMBER M ON N.WRITER = M.NO WHERE N.STATUS = 'N' ORDER BY CNT DESC 6개가져오기";
+		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT B.FB_NO ,B.FB_TITLE ,B.FB_CONTENT ,B.FB_CNT ,B.FB_ENROLL_DATE ,M.ID AS FB_WRITER FROM FREEBOARD_TRADE B JOIN MEMBER M ON B.FB_WRITER = M.NO WHERE B.FB_STATUS='N' ORDER BY B.FB_CNT DESC ) T ) WHERE RNUM BETWEEN 1 AND 6";
 		
 		try {
 
@@ -187,13 +185,12 @@ public class FreeBoardTradeDao {
 			
 			//결과 변환 // ResultSet -> 자바객체(NoticeVo)
 			while(rs.next()) {
-				String no = rs.getString("NO");
-				String title = rs.getString("TITLE");
-				String content = rs.getString("CONTENT");
-				String writer = rs.getString("WRITER");
-				String cnt = rs.getString("CNT");
-				String enrollDate = rs.getString("ENROLL_DATE");
-				String status = rs.getString("STATUS");
+				String no = rs.getString("FB_NO");
+				String title = rs.getString("FB_TITLE");
+				String content = rs.getString("FB_CONTENT");
+				String writer = rs.getString("FB_WRITER");
+				String cnt = rs.getString("FB_CNT");
+				String enrollDate = rs.getString("FB_ENROLL_DATE");
 				
 				FreeBoardTradeVo vo = new FreeBoardTradeVo();
 				
@@ -203,7 +200,6 @@ public class FreeBoardTradeDao {
 				vo.setWriter(writer);
 				vo.setCnt(cnt);
 				vo.setEnrollDate(enrollDate);
-				vo.setStatus(status);
 				
 				//실행될 때마다 voList에 vo하나씩 담아주기
 				fbMainList.add(vo);
@@ -220,6 +216,87 @@ public class FreeBoardTradeDao {
 		
 		//결과 리턴
 		return fbMainList;
+	}
+	
+	/*
+	 * 조회 수 증가
+	 */
+	public int increaseFreeBoardTrade(Connection conn, String num) {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			String sql = "UPDATE FREEBOARD_TRADE SET FB_CNT = FB_CNT+1 WHERE FB_NO=? AND FB_STATUS ='N'";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+		
+	}
+	/*
+	 * 특정 게시글 가져오기 ( 상세보기 )
+	 */
+	
+	public FreeBoardTradeVo selectOne(Connection conn, String num) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		FreeBoardTradeVo fbvo = null;
+		
+		try {
+			
+			String sql = "SELECT B.FB_NO, B.FB_TITLE, B.FB_CONTENT, M.NAME AS FB_WRITER, B.FB_CNT, B.FB_ENROLL_DATE FROM FREEBOARD_TRADE B JOIN MEMBER M ON B.FB_WRITER = M.NO WHERE B.FB_NO = ? AND B.FB_STATUS ='N'";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			
+			rs = pstmt.executeQuery();
+			
+			//rs -> obj로 바꿔주는 작업 필요
+			if(rs.next()) {
+				
+				String no = rs.getString("FB_NO");
+				String title = rs.getString("FB_TITLE");
+				String content = rs.getString("FB_CONTENT");
+				String writer = rs.getString("FB_WRITER");
+				String cnt = rs.getString("FB_CNT");
+				String enrollDate = rs.getString("FB_ENROLL_DATE");
+				
+				//vo객체에 담아주기
+				fbvo = new FreeBoardTradeVo();
+				
+				fbvo.setNo(no);
+				fbvo.setTitle(title);
+				fbvo.setContent(content);
+				fbvo.setWriter(writer);
+				fbvo.setCnt(cnt);
+				fbvo.setEnrollDate(enrollDate);
+				
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		
+		return fbvo;
 	}
 
 	

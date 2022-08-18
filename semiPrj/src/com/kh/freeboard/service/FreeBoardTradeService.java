@@ -136,6 +136,42 @@ public class FreeBoardTradeService {
 		
 		return fbMainList;
 	}
+	
+	/*
+	 * 조회 수 증가
+	 */
+	public int increaseFreeBoardTrade(String num) {
+		
+		Connection conn = getConnection();
+		
+		int result = dao.increaseFreeBoardTrade(conn, num);
+		
+		if(result==1) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
+	/*
+	 * 특정 게시글 가져오기 
+	 */
+	public FreeBoardTradeVo selectOne(String num) {
+
+		Connection conn = getConnection();
+		
+		FreeBoardTradeVo fbvo = null;
+		
+		fbvo = dao.selectOne(conn, num); 
+		
+		close(conn);		
+		
+		return fbvo;		
+	}
 
 	
 	
