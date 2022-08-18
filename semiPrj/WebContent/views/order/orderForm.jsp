@@ -23,30 +23,30 @@
 		    <div class="row g-5">
 		      <div class="col-md-5 col-lg-4 order-md-last">
 		        <h4 class="d-flex justify-content-between align-items-center mb-3">
-		          <span class="text-danger" >예약할 캠핑장</span>
+		          <span class="text-danger"  id="캠핑장 이름">예약할 캠핑장</span>
 		          <span class="badge bg-danger rounded-pill">1</span>
 		        </h4>
 		        <ul class="list-group mb-3">
 		          <li class="list-group-item d-flex justify-content-between lh-sm">
 		            <div>
 		              <h6 class="my-0">하늘캠핑장</h6>
-		              <small class="text-muted"> 날짜 : 2022.08.14~22.08.15</small>
-		              <small class="text-muted">숙박 인원 : 5명 </small>
+		              <small class="text-muted" id="날짜"> 날짜 : 2022.08.14~22.08.15</small>
+		              <small class="text-muted" id="reservaionNop">숙박 인원 : 5명 </small>
 		              
 		            </div>
-		            <span class="text-muted" id="origin-cost">120,000</span>
+		            <span class="text-muted" id="originCost">120,000</span>
 		          </li>
 		          
 		          <li class="list-group-item d-flex justify-content-between bg-light">
 		            <div class="text-success">
 		              <h6 class="my-0">사용할 쿠폰</h6>
-		              <small id="coupon-name">없음</small>
+		              <small id="coupoName">없음</small>
 		            </div>
-		            <small class="text-success" id="coupon-cost">0</small>
+		            <small class="text-success" id="couponCost">0</small>
 		          </li>
 		          <li class="list-group-item d-flex justify-content-between">
 		            <span>총 결제금액</span>
-		            <strong id="total-cost" >120,000</strong>
+		            <strong id="totalCost" >120,000</strong>
 		          </li>
 		        </ul>
 		        
@@ -80,21 +80,20 @@
 		              <label for="email" class="form-label">이메일<span class="text-muted">(선택사항)</span></label>
 		              <input type="email" class="form-control" id="email" placeholder="you@naver.com">
 		              <div class="invalid-feedback">
-		                연락처를 입력해 주세요.
 		              </div>
 		            </div>
 		
 		            <div class="col-12">
 		              <label for="address" class="form-label">연락처</label>
-		              <input type="text" class="form-control" id="address" placeholder="-부호 제외" required>
+		              <input type="tel" class="form-control" id="address" placeholder="-부호 제외" required>
 		              <div class="invalid-feedback">
-		                Please enter your shipping address.
+		               연락처를 입력해 주세요.
 		              </div>
 		            </div>
 		
 		            <div class="col-12">
 		              <label for="address2" class="form-label">요청사항<span class="text-muted">(선택사항)</span></label>
-		              <input type="text" class="form-control" id="address2" placeholder="">
+		              <input type="text" class="form-control" id="requestion" placeholder="">
 		            </div>
 					<br><br><br><br><br>
 		          </div>
@@ -127,17 +126,17 @@
 						</table>
 		            
 		            
-		            <input type="checkbox" class="form-check-input" id="agree-notice">
+		            <input type="checkbox" class="form-check-input" id="agree-notice" required>
 		            <label class="form-check-label" for="agree-notice">동의합니다</label>
 		            <div class="invalid-feedback">
-		                Expiration date required
+		                동의해 주세요.
 		              </div>
 		          </div>
 		
 					<div class="my-3 alert-waring">
 		      		<h4 class="mb-3" >결제방법</h4>
 		            <div class="form-check">
-		              <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+		              <input id="paymentMethod" name="credit" type="radio" class="form-check-input" value="카드결제" checked required>
 		              <label class="form-check-label" for="credit">카드결제</label>
 		            </div>
 		          </div>
@@ -146,7 +145,7 @@
 		          
 		          <div class="row gy-3 ">
 		            <div class="col-md-6">
-		              <label for="cc-name" class="form-label">카드사</label>
+		              <label for="cc-name" class="form-label" id="결제방법">카드사</label>
 		             <select class="form-select" aria-label="Default select example" name="카드사">
 						  <option selected>BC카드</option>
 						  <option value="1">KB국민카드</option>
@@ -163,7 +162,7 @@
 		
 		            <div class="col-md-6">
 		              <label for="cc-number" class="form-label">카드번호</label>
-		              <input type="text" class="form-control" id="cc-number" placeholder="" required>
+		              <input type="text" class="form-control" id="cc-number" placeholder="ex)xxxx-xxxx-xxxx-xxxx" required>
 		              <div class="invalid-feedback">
 		                카드 번호를 입력해 주세요.
 		              </div>
@@ -171,7 +170,7 @@
 		
 		            <div class="col-md-3">
 		              <label for="cc-expiration" class="form-label">만료일</label>
-		              <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+		              <input type="text" class="form-control" id="cc-expiration" placeholder="ex) 08/22" required>
 		              <div class="invalid-feedback">
 		               기간 만료일을 기입해 주세요.
 		              </div>
@@ -179,7 +178,7 @@
 		
 		            <div class="col-md-3">
 		              <label for="cc-cvv" class="form-label">CVV번호</label>
-		              <input type="text" class="form-control" id="cc-cvv" placeholder="" required >
+		              <input type="text" class="form-control" id="cc-cvv" placeholder="3자리" required >
 		              <div class="invalid-feedback">
 		                CVV번호 3자를 입력해 주세요.
 		              </div>
@@ -233,27 +232,22 @@
 
 <script>
 $(document).ready(function() {
-	    // 모두 로딩되었을때
-	
-		
-	
-	
-	
+    // 모두 로딩되었을때
+
+	// 쿠폰 모달창 선택 시 이벤트
 	$("#coupon-button").click(function(){
     	
-		$("#coupon-cost").text($("#select-coupon").val());
-    	$("#coupon-name").text($("#select-coupon option:selected").text());
+		$("#couponCost").text($("#select-coupon").val());
+    	$("#coupoName").text($("#select-coupon option:selected").text());
     	
     	
-    	var  origin= $("#origin-cost").text() ; 
-    	origin = Number(origin)
+    	var  origin= $("#originCost").text().replace(/,/g, '') ; 
     	
-    	var  coupon = $("#select-coupon").val() ; 
-    	coupon= Number(coupon)
+    	var  coupon = $("#select-coupon").val().replace(/,/g, '') ; 
     	
     	var total = origin - coupon;
 
-    	total = $("#total-cost").text(total);
+    	total = $("#totalCost").text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 	});
 	}); 
 	
