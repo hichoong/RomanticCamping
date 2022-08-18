@@ -28,8 +28,8 @@ public class ReviewInsertController extends HttpServlet {
 		String content = req.getParameter("review-content");
 		
 		ReviewVo vo = new ReviewVo();
-		vo.setrNum(starScore);
-		vo.setrContent(content);
+		vo.setStarScore(starScore);
+		vo.setReviewContent(content);
 		
 		int result = new ReviewService().reviewInsert(vo);
 		

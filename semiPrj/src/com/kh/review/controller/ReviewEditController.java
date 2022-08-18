@@ -37,14 +37,14 @@ public class ReviewEditController extends HttpServlet {
 		
 		req.setCharacterEncoding("UTF-8");
 		
-		String reviewStar = req.getParameter("reviewStar"); 
+		String starScore = req.getParameter("reviewStar"); 
 		String content = req.getParameter("review-content");
 		String num = req.getParameter("num");
 		
 		ReviewVo vo = new ReviewVo();
-		vo.setrNum(reviewStar);
-		vo.setrContent(content);
-		vo.setrNo(num);
+		vo.setStarScore(starScore);
+		vo.setReviewContent(content);
+		vo.setReviewNo(num);
 		
 		int result = new ReviewService().edit(vo);
 		
@@ -52,11 +52,11 @@ public class ReviewEditController extends HttpServlet {
 			//성공
 			req.getSession().setAttribute("alertMsg", "리뷰수정 성공");
 			req.setAttribute("vo", vo);
-			req.getRequestDispatcher("/views/member/myBoardList.jsp").forward(req, resp);
+			req.getRequestDispatcher("/views/member/myReservationPage.jsp").forward(req, resp);
 		} else {
 			//실패 에러페이지
 			req.getSession().setAttribute("alertMsg", "리뷰수정 실패");
-			req.getRequestDispatcher("/views/camp/reviewEdit.jsp").forward(req, resp);
+			req.getRequestDispatcher("/views/camp/myReservationPage.jsp").forward(req, resp);
 		}
 		
 		

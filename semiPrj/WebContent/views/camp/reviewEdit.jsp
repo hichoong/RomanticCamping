@@ -30,12 +30,10 @@
                 </div>
             </div>
 
-            <form action="<%=contextPath%>/review/edit" method="post" id="review-write">
+            <form action="<%=contextPath%>/review/edit?num=${vo.reviewNo}" method="post" id="review-write">
                 <div class="review-star">
-        			<input type="hidden" name="num" value="${vo.rNo }">
                     <span class="text-bold">별점을 선택해주세요</span>
-                    <!-- 별점 선택돼있도록 수정하기 -->
-                    <input type="hidden" name="reviewStar" value="${vo.rNum })" id="rate1">
+                    <input type="hidden" name="rNum" value="${vo.starScore}">
                     <input type="radio" name="reviewStar" value="5" id="rate1"><label
                         for="rate1">★</label>
                     <input type="radio" name="reviewStar" value="4" id="rate2"><label
@@ -46,10 +44,17 @@
                         for="rate4">★</label>
                     <input type="radio" name="reviewStar" value="1" id="rate5"><label
                         for="rate5">★</label>
-                    
                 </div>
 
-                <textarea name="review-content" id="review-text" spellcheck="false">${vo.rContent}</textarea>
+                <script>
+                    $(function(){
+                        //작성했던 별점 표시
+                        $('input[value=${vo.starScore}]').attr("checked","checked");
+                    })
+                </script>
+
+
+                <textarea name="review-content" id="review-text" spellcheck="false">${vo.reviewContent}</textarea>
 
                 <div id="review-notice">
                     <span>리뷰 작성 시 유의사항</span> <br>
@@ -65,7 +70,7 @@
 
                 <div id="review-update-buttons">
                     <input type="submit" value="리뷰 수정하기" id="review-update" class="btn btn-warning">
-                    <button type="button" class="btn btn-warning" id="review-delete" onclick="location.href='<%=contextPath%>/review/delete'">삭제하기</button>
+                    <button type="button" class="btn btn-warning" id="review-delete" onclick="location.href='<%=contextPath%>/review/delete?num=${vo.reviewNo }'">삭제하기</button>
                 </div>
                 
             </form>
