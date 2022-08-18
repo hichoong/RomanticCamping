@@ -81,7 +81,7 @@
             <tbody>
               <tr>
                 <th scope="row">001</th>
-                <td onClick="location.href='http://127.0.0.1:8803/semiPrj/views/board/qestionBoardDetail.jsp'">애견 동반 문의합니다</td>
+                <td onClick="location.href='http://127.0.0.1:8803/semiPrj/views/board/questionBoardDetail.jsp'">애견 동반 문의합니다</td>
                 <td>흰둥이</td>
                 <td>2022/05/01 22:07</td>
                 <td>2</td>

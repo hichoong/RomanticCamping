@@ -36,7 +36,7 @@
               </table>
             
             <button id="btn" class="b1 btn btn-warning" onclick="history.back();">목록</button>
-            <button id="btn" class="b1 btn btn-warning" onclick="location.href='http://127.0.0.1:8803/semiPrj/views/board/qestionBoardRevise.jsp'">수정</button>
+            <button id="btn" class="b1 btn btn-warning" onclick="location.href='http://127.0.0.1:8803/semiPrj/views/board/questionBoardRevise.jsp'">수정</button>
               
               
        <%@ include file="/views/common/footer.jsp" %>
