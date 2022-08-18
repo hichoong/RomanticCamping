@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>사업자 상세문의</title>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/resource/css/SjyCss.css">
 <style>
 	td>a{

@@ -1,3 +1,6 @@
+<%@page import="com.kh.camplist.theme.vo.ThemeVo"%>
+<%@page import="java.util.List"%>
+<%@page import="com.kh.camplist.hashtag.vo.HashTagVo"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -15,6 +18,13 @@
 	//등록일 기본값 세팅
 	String toDay = d+"T"+t;
 	
+	List<HashTagVo> hashTagList = (List<HashTagVo>) request.getAttribute("hashTagList");
+	List<String> checkedHashCodes = (List<String>) request.getAttribute("checkedHashCodes");
+	List<ThemeVo> themeList = (List<ThemeVo>) request.getAttribute("themeList");
+	/* System.out.println(themeList);
+	System.out.println(hashTagList);
+	System.out.println(checkedHashCodes); */
+	
 %>
 <head>
 
@@ -26,7 +36,7 @@
 	
 </style>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>캠핑장 등록</title>
 </head>
 
 <body>
@@ -38,7 +48,7 @@
 		<div id="content">
 
 
-			<form action="/bscamp/insert" method="get">
+			<form action="<%=contextPath %>/bscamp/insert" method="post">
 				<h2>캠핑장 등록</h2>
 				
 				<hr>
@@ -103,10 +113,10 @@
 							    <label for="ft9">물놀이장</label>
 							    
 					</div>
-
+ 					
+					<!--
 					<div class="md-3" id="tdTheme">
 						<label for="campTheme" class="form-label">* 테마:(테마를선 택해주세요)</label>
-						<!-- <input type="text" class="form-control" id="camp"  placeholder="해변 숲 섬 호수 도심 계곡 산 강" name="camp" disabled> -->
 						<table>
 							<tr>
 								<td><input type="checkbox" class="btn-check" id="beach" autocomplete="off" name="theme" value="beach"> 
@@ -144,6 +154,46 @@
 							</tr>
 						</table>
 					</div>
+					 -->
+					 <div class="md-3" id="tdTheme">
+					 	<label for="campTheme" class="form-label">* 테마:(테마를선 택해주세요)</label>
+						<table>
+							<tr>
+								<%for(ThemeVo vo : themeList) { %>
+		                      		<td>
+		                      		<input type="checkbox" class="btn-check" id="<%=vo.getThemeCode()%>" autocomplete="off" name="theme" value="<%=vo.getThemeCode()%>"> 
+									<label class="btn btn-outline-success" for="<%=vo.getThemeCode()%>"><%=vo.getThemeName()%></label>
+									</td>
+								<%} %>
+							</tr> 
+						</table>	
+					</div>
+					
+					<div class="md-3" id="hashTag">
+						<label for="campHashTag" class="form-label">* 태그:(해쉬태그를 선택해주세요)</label>
+						
+						<table>
+								<tr>
+								<%for(HashTagVo vo : hashTagList) { %>
+								<%  String x1 = vo.getHtCode();
+									int x =Integer.parseInt(x1);
+									%>
+									
+										<%if( (x%5)!=0 ){%>
+											<td>
+		                      				<input type="checkbox" class="btn-check" id="<%=vo.getHtName()%>" autocomplete="off" name="campHashTag" value="<%=vo.getHtCode()%>"> 
+											<label class="btn btn-outline-success" for="<%=vo.getHtName()%>"><%=vo.getHtName()%></label><br>
+											</td>
+										<%}else{%>
+											<td>
+		                      				<input type="checkbox" class="btn-check" id="<%=vo.getHtName()%>" autocomplete="off" name="campHashTag" value="<%=vo.getHtCode()%>"> 
+											<label class="btn btn-outline-success" for="<%=vo.getHtName()%>"><%=vo.getHtName()%></label><br>
+											</td></tr>
+										<%} %>
+								<%} %>
+								
+						</table>
+					</div>
 					
 					<div class="md-3">
 						<label for="campRefund" class="form-label">* 환불규정:</label> <input
@@ -154,7 +204,7 @@
 
 					<div class="mb-3">
 						<label for="campRepImg" class="form-label">* 대표이미지:</label> <input
-							class="form-control" type="file" name="campRepImg"
+							class="form-control" type="file" name="campRepImg" accept="image/*"
 							id="campRepImg">
 					</div>
 
@@ -181,7 +231,7 @@
 							</div>
 							<div class="mb-3">
 								<label for="campAreaImg" class="form-label">구역이미지</label>
-								 <input class="form-control" type="file" id="campZoneImg" name="campZoneImg">
+								 <input class="form-control" type="file" id="campZoneImg" name="campZoneImg" accept="image/*">
 							</div>
 							
 							 <button type="button" class="btn btn-danger btnRemove" disabled >※구역은 1개이상 입력해주세요</button> 
@@ -321,13 +371,15 @@
 </script>
 
 <script> 
+	var i = 0;
     $(document).ready (function(){
         $('.btnAdd').click(function(){
+			++i;
             $('.addInput').append(
                 '<hr>\
 				<div class="mb-3">\
 					<label for="campZoneName" class="form-label">구역이름</label> \
-					<input class="form-control" type="text" id="campZoneName" name="campZoneName" placeholder="구역이름을 입력해주세요" required>\
+					<input class="form-control" type="text" id="campZoneName" name=i placeholder="구역이름을 입력해주세요" required>\
 				</div>\
 				<div class="mb-3 " style="width: 30%">\
 					<label for="maxGusests" class="form-label">최대 숙박인원(:명)</label> \
@@ -339,12 +391,13 @@
 				</div>\
 				<div class="mb-3">\
 					<label for="campAreaImg" class="form-label">구역이미지</label>\
-					<input class="form-control" type="file" id="campZoneImg" name="campZoneImg">\
+					<input class="form-control" type="file" id="campZoneImg" name="campZoneImg" accept="image/*">\
 				</div>\
 				<button type="button" class="btn btn-danger btnRemove">삭제</button><br><br>'
                 );
             $('.btnRemove').on('click',function(){
                 /* $(this).prev().remove(); */
+				--i;
 				$(this).prev().remove();
 				$(this).prev().remove();
 				$(this).prev().remove();
@@ -355,6 +408,7 @@
                 $(this).remove();//bt
 
 				// $(document.getElementsByClassName('addInput')).children().remove();
+				//campZoneName  maxGusests campZonePrice campZoneImg
             })
         })
     })
