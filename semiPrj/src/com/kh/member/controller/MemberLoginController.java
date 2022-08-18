@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.member.service.MemberService;
 import com.kh.member.vo.MemberVo;
 
-@WebServlet(urlPatterns = "/member/login")
+@WebServlet(urlPatterns = "/login")
 public class MemberLoginController extends HttpServlet {
 
 	@Override

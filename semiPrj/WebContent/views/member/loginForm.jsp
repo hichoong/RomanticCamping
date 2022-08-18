@@ -62,7 +62,7 @@
                 <div class="sub-btn-list">
                     <a href="<%=contextPath%>/views/member/findIdForm.jsp" class="basic-a">아이디 찾기</a> |
                     <a href="<%=contextPath%>/views/member/findPwdForm.jsp" class="basic-a">비밀번호 찾기</a> |
-                    <a href="<%=contextPath%>/views/member/joinForm.jsp" class="basic-a">회원가입</a>
+                    <a href="<%=contextPath%>/join" class="basic-a">회원가입</a>
                 </div>
               </form>
         </div>
