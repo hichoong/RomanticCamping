@@ -24,15 +24,15 @@ public class ChangePwdController extends HttpServlet {
 		String newPwdCheck = req.getParameter("newPwdCheck");
 		String id = ((MemberVo)req.getSession().getAttribute("loginMember")).getId();
 		
-//		int result = new MemberService().changePwd(memberId, memberPwd, memberPwdNew, memberPwdNew2);
-//		
-//		if(result == 1) {
-//			req.getSession().setAttribute("alertMsg", "비밀번호 변경 성공!");
-//			resp.sendRedirect("/semi/member/myPage");
-//		} else {
-//			req.setAttribute("errorMsg", "비밀번호 변경 실패..");
-//			req.getRequestDispatcher("/views/error/errorPage.jsp").forward(req, resp);
-//		}
+		int result = new MemberService().changePwd(originPwd, newPwd, newPwdCheck, id);
+		
+		if(result == 1) {
+			req.getSession().setAttribute("alertMsg", "비밀번호 변경 성공!");
+			resp.sendRedirect(req.getContextPath()+"/member/myPage");
+		} else {
+			req.getSession().setAttribute("alertMsg", "비밀번호 변경에 실패했습니다. 입력사항을 다시 확인해주세요");
+			resp.sendRedirect(req.getContextPath()+"/member/myPage");
+		}
 		
 	}
 	

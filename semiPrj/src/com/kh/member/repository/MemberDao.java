@@ -105,7 +105,7 @@ public class MemberDao {
 		return result;
 	}
 
-	public int checkDup(Connection conn, MemberVo vo) {
+	public int checkDup(Connection conn, String id) {
 		String sql = "SELECT COUNT(ID) DUP FROM MEMBER WHERE ID=?";
 		
 		PreparedStatement pstmt = null;
@@ -114,7 +114,7 @@ public class MemberDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vo.getId());
+			pstmt.setString(1, id);
 			
 			rs = pstmt.executeQuery();
 			
@@ -197,6 +197,50 @@ public class MemberDao {
 		}
 		
 		return vo;
+	}
+
+	public int changePwd(Connection conn, String originPwd, String newPwd, String id) {
+
+		String sql = "UPDATE MEMBER SET PWD = ? WHERE ID = ? AND PWD = ?";
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, newPwd);
+			pstmt.setString(2, id);
+			pstmt.setString(3, originPwd);
+			
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int quit(Connection conn, String no) {
+
+		String sql = "UPDATE MEMBER SET STATUS ='N' WHERE NO = ?";
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, no);
+			
+			result = pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 	
 }
