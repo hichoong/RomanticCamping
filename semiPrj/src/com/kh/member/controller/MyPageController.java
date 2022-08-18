@@ -38,7 +38,7 @@ public class MyPageController extends HttpServlet{
 			req.getSession().setAttribute("alertMsg", "회원 정보 수정을 완료했습니다");
 			resp.sendRedirect(req.getContextPath()+"/member/myPage");
 		} else {
-			req.setAttribute("errorMsg", "정보수정에 실패했습니다. 입력하신 내용을 다시 확인해주세요");
+			req.setAttribute("alertMsg", "정보수정에 실패했습니다. 입력하신 내용을 다시 확인해주세요");
 			req.getRequestDispatcher("/views/member/myPage.jsp").forward(req, resp);
 		}
 		
