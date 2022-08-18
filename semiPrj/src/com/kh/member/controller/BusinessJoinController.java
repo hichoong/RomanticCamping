@@ -17,8 +17,6 @@ public class BusinessJoinController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		req.setCharacterEncoding("UTF-8");
-		
 		MemberVo vo = new MemberVo();
 		
 		vo.setId(req.getParameter("id"));
