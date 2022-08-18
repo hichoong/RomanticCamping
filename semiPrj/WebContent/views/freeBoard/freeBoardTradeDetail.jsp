@@ -1,5 +1,9 @@
+<%@page import="com.kh.freeboard.vo.FreeBoardTradeVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	FreeBoardTradeVo fbvo = (FreeBoardTradeVo)request.getAttribute("fbvo");
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -191,15 +195,15 @@
 			<div id="fbt-div-outer">
 
 				<div id="fbt-left-div">
-					<div id="userId" >작성자 : 행운목</div>
-					<div id="userGrade">회원등급 : 골드회원</div>
+					<div id="userId" >작성자 :<%= fbvo.getWriter() %></div>
+					<div id="userGrade">회원등급 : <%= fbvo.getCnt() %></div>
 				</div>
 
 
 
 				<div id="fbt-right-div">
-					<div id="count">조회수 : 5186</div>
-					<div id="update_date"> 작성일자 : 0000-00-00</div>
+					<div id="count">조회수 : <%= fbvo.getCnt() %></div>
+					<div id="update_date"> 작성일자 : <%= fbvo.getEnrollDate() %></div>
 				</div>
 
 			</div>
@@ -212,11 +216,11 @@
 		<div id="fb_section" class="container">
 
 
-					<p style="font-size: 3rem;">글제목 보여주는 곳</p>
-					<textarea style="font-size: 2rem;" class="fb2-story-content" name="" id="" >글 내용 보여주는 곳 durldp이렇게 엔터키를 치면 어캐보이는지? 
+					<p style="font-size: 3rem;">글제목 보여주는 곳 <%= fbvo.getTitle() %></p>
+					<textarea style="font-size: 2rem;" class="fb2-story-content" name="" id="" ><%= fbvo.getContent() %>글 내용 보여주는 곳 durldp이렇게 엔터키를 치면 어캐보이는지? 
 					</textarea>
-					<p class="fb2-story-date">작성시간 :</p>
-					<p class="fb2-story-date">조회 수 :</p>
+					<p class="fb2-story-date">작성시간 : <%= fbvo.getEnrollDate() %></p>
+					<p class="fb2-story-date">조회 수 : <%= fbvo.getCnt() %></p>
 					<p class="fb2-story-date">등등</p>
 			
 			

@@ -23,7 +23,7 @@ public class FreeBoardDao {
 		
 		try {
 			
-			String sql = "INSERT INTO NOTICE ( NO, TITLE, CONTENT, WRITER ) VALUES ( SEQ_NOTICE_NO.NEXTVAL, ?, ?, ? )";
+			String sql = "INSERT INTO FREEBOARD ( F_NO, F_TITLE, F_CONTENT, F_WRITER ) VALUES ( SEQ_FREEBOARD_NO.NEXTVAL, ?, ?, ? )";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getTitle());
@@ -53,7 +53,7 @@ public class FreeBoardDao {
 		List<FreeBoardVo> fvoList = new ArrayList<FreeBoardVo>();
 		
 		//SQL 준비
-		String sql = "SELECT * FROM ( SELECT ROWNUM RUNM, T.* FROM ( SELECT B.NO ,B.TITLE ,B.CONTENT ,B.CNT ,B.ENROLL_DATE ,M.ID AS WRITER ,C.CATEGORY_NAME AS CATEGORY_NAME FROM BOARD B JOIN MEMBER M ON B.WRITER = M.NO JOIN CATEGORY C USING(CATEGORY_NO) WHERE B.TYPE=1 AND B.STATUS='N' ORDER BY B.NO DESC ) T ) WHERE RUNM BETWEEN ? AND ?";
+		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT B.F_NO ,B.F_TITLE ,B.F_CONTENT ,B.F_CNT ,B.F_ENROLL_DATE ,M.ID AS F_WRITER FROM FREEBOARD B JOIN MEMBER M ON B.F_WRITER = M.NO WHERE B.F_STATUS='N' ORDER BY B.F_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
 		
 		try {
 
@@ -71,13 +71,12 @@ public class FreeBoardDao {
 			
 			//결과 변환 // ResultSet -> 자바객체(NoticeVo)
 			while(rs.next()) {
-				String no = rs.getString("NO");
-				String title = rs.getString("TITLE");
-				String content = rs.getString("CONTENT");
-				String writer = rs.getString("WRITER");
-				String cnt = rs.getString("CNT");
-				String enrollDate = rs.getString("ENROLL_DATE");
-				String status = rs.getString("STATUS");
+				String no = rs.getString("F_NO");
+				String title = rs.getString("F_TITLE");
+				String content = rs.getString("F_CONTENT");
+				String writer = rs.getString("F_WRITER");
+				String cnt = rs.getString("F_CNT");
+				String enrollDate = rs.getString("F_ENROLL_DATE");
 				
 				FreeBoardVo vo = new FreeBoardVo();
 				
@@ -87,7 +86,6 @@ public class FreeBoardDao {
 				vo.setWriter(writer);
 				vo.setCnt(cnt);
 				vo.setEnrollDate(enrollDate);
-				vo.setStatus(status);
 				
 				//실행될 때마다 voList에 vo하나씩 담아주기
 				fvoList.add(vo);
@@ -117,7 +115,7 @@ public class FreeBoardDao {
 		
 		try {
 			//일반게시판은 타입1 / 사진게시판은 타입2 
-			String sql = "SELECT COUNT(NO) AS COUNT FROM BOARD WHERE STATUS='N' AND TYPE=1";
+			String sql = "SELECT COUNT(F_NO) AS COUNT FROM FREEBOARD WHERE F_STATUS='N'";
 			pstmt = conn.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
@@ -147,7 +145,7 @@ public class FreeBoardDao {
 		List<FreeBoardVo> fMainList = new ArrayList<FreeBoardVo>();
 		
 		//SQL 준비
-		String sql = "SELECT N.NO, N.TITLE, N.CONTENT, N.CNT, TO_CHAR(N.ENROLL_DATE, 'YY/MM/DD HH:MI') AS ENROLL_DATE, N.STATUS, M.NAME AS WRITER FROM NOTICE N JOIN MEMBER M ON N.WRITER = M.NO WHERE N.STATUS = 'N' ORDER BY CNT DESC 4개만";
+		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT B.F_NO ,B.F_TITLE ,B.F_CONTENT ,B.F_CNT ,B.F_ENROLL_DATE ,M.ID AS F_WRITER FROM FREEBOARD B JOIN MEMBER M ON B.F_WRITER = M.NO WHERE B.F_STATUS='N' ORDER BY B.F_CNT DESC ) T ) WHERE RNUM BETWEEN 1 AND 4";
 		
 		try {
 
@@ -159,13 +157,12 @@ public class FreeBoardDao {
 			
 			//결과 변환 // ResultSet -> 자바객체(NoticeVo)
 			while(rs.next()) {
-				String no = rs.getString("NO");
-				String title = rs.getString("TITLE");
-				String content = rs.getString("CONTENT");
-				String writer = rs.getString("WRITER");
-				String cnt = rs.getString("CNT");
-				String enrollDate = rs.getString("ENROLL_DATE");
-				String status = rs.getString("STATUS");
+				String no = rs.getString("F_NO");
+				String title = rs.getString("F_TITLE");
+				String content = rs.getString("F_CONTENT");
+				String writer = rs.getString("F_WRITER");
+				String cnt = rs.getString("F_CNT");
+				String enrollDate = rs.getString("F_ENROLL_DATE");
 				
 				FreeBoardVo vo = new FreeBoardVo();
 				
@@ -175,7 +172,6 @@ public class FreeBoardDao {
 				vo.setWriter(writer);
 				vo.setCnt(cnt);
 				vo.setEnrollDate(enrollDate);
-				vo.setStatus(status);
 				
 				//실행될 때마다 voList에 vo하나씩 담아주기
 				fMainList.add(vo);
@@ -205,7 +201,7 @@ public class FreeBoardDao {
 		
 		try {
 			
-			String sql = "UPDATE FREEBOARD SET CNT = CNT+1 WHERE NO=? AND STATUS ='N'";
+			String sql = "UPDATE FREEBOARD SET F_CNT = F_CNT+1 WHERE F_NO=? AND F_STATUS ='N'";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, num);
@@ -232,7 +228,7 @@ public class FreeBoardDao {
 		
 		try {
 			
-			String sql = "SELECT N.NO, N.TITLE, N.CONTENT, M.NAME AS WRITER, N.CNT, N.ENROLL_DATE, N.STATUS FROM NOTICE N JOIN MEMBER M ON N.WRITER = M.NO WHERE N.NO = ? AND N.STATUS ='N'";
+			String sql = "SELECT B.F_NO, B.F_TITLE, B.F_CONTENT, M.NAME AS F_WRITER, B.F_CNT, B.F_ENROLL_DATE, B.F_STATUS FROM FREEBOARD B JOIN MEMBER M ON B.F_WRITER = M.NO WHERE B.F_NO = ? AND B.F_STATUS ='N'";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, num);
@@ -245,12 +241,12 @@ public class FreeBoardDao {
 				//vo객체에 담아주기
 				fvo = new FreeBoardVo();
 				
-				fvo.setNo(rs.getString("NO"));
-				fvo.setTitle(rs.getString("TITLE"));
-				fvo.setContent(rs.getString("CONTENT"));
-				fvo.setWriter(rs.getString("WRITER"));
-				fvo.setCnt(rs.getString("CNT"));
-				fvo.setEnrollDate(rs.getString("ENROLL_DATE"));
+				fvo.setNo(rs.getString("F_NO"));
+				fvo.setTitle(rs.getString("F_TITLE"));
+				fvo.setContent(rs.getString("F_CONTENT"));
+				fvo.setWriter(rs.getString("F_WRITER"));
+				fvo.setCnt(rs.getString("F_CNT"));
+				fvo.setEnrollDate(rs.getString("F_ENROLL_DATE"));
 				
 			}
 			

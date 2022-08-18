@@ -59,21 +59,10 @@
 			<div id="fb1-1" class="container">
 				
 				
-				<div class ="menu-items">
-					<a href="<%=contextPath %>/views/freeBoard/TradeDetail.jsp">
-						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest3.jpg" alt=""></div>
-						<div id="fb1-comment-outer" >
-							<div class="fb1-comment-outer"><span>거래물품제목쓰는곳</span></div>
-							<p id="fb1-subtitle1">서울 종로구 관철동</p>
-							<p id="fb1-subtitle2">130만원</p>
-						</div>
-					</a>
-				</div>
-
-
+			
 				<%for(FreeBoardTradeVo fblist : fbMainList) { %>
 					<div class ="menu-items">
-					<a href="<%=contextPath %>/views/freeboard/detail?num=<%=fblist.getNo() %>">
+					<a href="<%=contextPath %>/views/freeboard/trade/detail?num=<%=fblist.getNo() %>">
 						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""></div>
 						<div>
 							<div class="fb1-comment-outer"><span><%=fblist.getTitle() %></span></div>
@@ -111,11 +100,11 @@
 						<tbody>
 							
 								<tr>
-									<td><%=fbvo.getNo() %>B_NO</td>
-									<td><%=fbvo.getTitle() %>B_TITLE</td>
-									<td><%=fbvo.getContent() %>B_CONTENT</td>
-									<td><%=fbvo.getWriter() %>BOARD_WRITER</td>
-									<td><%=fbvo.getEnrollDate() %>UPDATE_DATE</td>
+									<td><%=fbvo.getNo() %></td>
+									<td><%=fbvo.getTitle() %></td>
+									<td><%=fbvo.getContent() %></td>
+									<td><%=fbvo.getWriter() %></td>
+									<td><%=fbvo.getEnrollDate() %></td>
 								</tr>
 							
 						</tbody>
@@ -195,7 +184,7 @@
 
 				<%for(FreeBoardVo flist : fMainList) { %>
 					<div class="fb2-1-story">
-						<a href="<%=contextPath %>/views/freeBoard/freeBoardDetail?num=<%=flist.getNo()%>" class="fb2-1-story-outer">
+						<a href="<%=contextPath %>/freeboard/detail?num=<%=flist.getNo()%>" class="fb2-1-story-outer">
 							<p style="font-size: 3rem;"><%=flist.getContent() %></p>
 							<p class="fb2-story-date"><%=flist.getEnrollDate() %></p>
 							<span class="fb2-story-count" >
@@ -212,7 +201,7 @@
 
 			<div class="fb1-3" class="container">
 				
-				<table id="fb-table-main" class="container">
+				<table id="f-table-main" class="container">
 
 					<thead>
 						<tr>
@@ -282,7 +271,32 @@
 		</div>
 
 
+	<script>
+		$(function(){
+			$('#f-table-main>tbody>tr').click(function(){
+				
+				const num = $(this).children().eq(0).text();
 
+				location.href='<%=contextPath%>/freeboard/detail?num='+num;
+			});
+		})
+	</script>
+	<script>
+		$(function(){
+			$('#fb-table-main>tbody>tr').click(function(){
+				//행 클릭 되었을 때, 동작할 내용
+				
+				//1.글 번호 가져오기
+				//현재 tr에서 자식중에 첫 번째 요소의 text를 가져온다.
+				const num2 = $(this).children().eq(0).text();
+
+				//2.해당번호로 요청 보내기
+				//상세페이지 보여주는 서블릿에게 요청보내기 쿼리스트링과 함께
+				location.href='<%=contextPath%>/freeBoard/trade/detail?num2='+num2;
+			});
+		})
+	
+	</script>
 
 
 

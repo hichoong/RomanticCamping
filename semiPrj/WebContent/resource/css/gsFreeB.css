@@ -232,6 +232,19 @@
 		cursor:pointer;
 	}
 	
+	#f-table-main{
+		width: 100%;
+		margin-top: 5%;
+	}
+
+	#f-table-main>tbody tr:hover{
+		background-color: rgb(241, 216, 177);
+		cursor:pointer;
+	}
+	
+	
+	
+	
 	.fb-page-area{
 		width: 80%;
 		text-align: center;

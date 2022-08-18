@@ -20,7 +20,7 @@
 	}
 
 	/* 제일큰틀 */
-	#freeboard-outer{
+	#freeboard-detail-outer{
 		border: 1px solid red;
         height: auto;
 	}
@@ -141,7 +141,7 @@
 <%@ include file="/views/common/header.jsp" %>	
 	
 	<h1> 여기는 중고거래게시판 상세보기 게시판</h1>
-	<div id="freeboard-outer" class="container">
+	<div id="freeboard-detail-outer" class="container">
 
 
 		
