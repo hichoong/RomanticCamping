@@ -38,6 +38,7 @@
               
               <!-- 새로고침,서브밋 했을 때 검색내용 유지기능 필요  -->
               <form class="search-form" action="<%=contextPath %>/camp/campList" method="get">
+              	  <input type="hidden" name="p" value="1">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword" >
                   <div id="search-addr">
                     <select name="sido1" id="sido1"></select>

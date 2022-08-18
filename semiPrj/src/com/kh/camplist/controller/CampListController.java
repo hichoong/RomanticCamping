@@ -84,6 +84,7 @@ public class CampListController extends HttpServlet {
 			checkedHashCodes = new ArrayList<String>();
 		}
 		
+		
 		req.setAttribute("hashTagCodeList", checkedHashCodes);
 		req.getRequestDispatcher("/views/camp/campList.jsp").forward(req, resp);
 		

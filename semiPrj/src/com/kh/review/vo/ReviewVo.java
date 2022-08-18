@@ -6,88 +6,98 @@ public class ReviewVo {
 		
 	}
 	
-	public ReviewVo(String rNo, String reNo, String rDate, String rContent, String rNum, String rUpdated,
-			String rStatus) {
+	public ReviewVo(String reviewNo, String reservationNo, String enrollDate, String reviewContent, String starScore,
+			String reviewUpdated, String reviewStatus, String campCode) {
 		super();
-		this.rNo = rNo;
-		this.reNo = reNo;
-		this.rDate = rDate;
-		this.rContent = rContent;
-		this.rNum = rNum;
-		this.rUpdated = rUpdated;
-		this.rStatus = rStatus;
+		this.reviewNo = reviewNo;
+		this.reservationNo = reservationNo;
+		this.enrollDate = enrollDate;
+		this.reviewContent = reviewContent;
+		this.starScore = starScore;
+		this.reviewUpdated = reviewUpdated;
+		this.reviewStatus = reviewStatus;
+		this.campCode = campCode;
 	}
 
-	private String rNo;
-	private String reNo;
-	private String rDate;
-	private String rContent;
-	private String rNum;
-	private String rUpdated;
-	private String rStatus;
+	private String reviewNo;
+	private String reservationNo;
+	private String enrollDate;
+	private String reviewContent;
+	private String starScore;
+	private String reviewUpdated;
+	private String reviewStatus;
+	private String campCode;
 	
-	public String getrNo() {
-		return rNo;
+	public String getReviewNo() {
+		return reviewNo;
 	}
 
-	public void setrNo(String rNo) {
-		this.rNo = rNo;
+	public void setReviewNo(String reviewNo) {
+		this.reviewNo = reviewNo;
 	}
 
-	public String getReNo() {
-		return reNo;
+	public String getReservationNo() {
+		return reservationNo;
 	}
 
-	public void setReNo(String reNo) {
-		this.reNo = reNo;
+	public void setReservationNo(String reservationNo) {
+		this.reservationNo = reservationNo;
 	}
 
-	public String getrDate() {
-		return rDate;
+	public String getEnrollDate() {
+		return enrollDate;
 	}
 
-	public void setrDate(String rDate) {
-		this.rDate = rDate;
+	public void setEnrollDate(String enrollDate) {
+		this.enrollDate = enrollDate;
 	}
 
-	public String getrContent() {
-		return rContent;
+	public String getReviewContent() {
+		return reviewContent;
 	}
 
-	public void setrContent(String rContent) {
-		this.rContent = rContent;
+	public void setReviewContent(String reviewContent) {
+		this.reviewContent = reviewContent;
 	}
 
-	public String getrNum() {
-		return rNum;
+	public String getStarScore() {
+		return starScore;
 	}
 
-	public void setrNum(String rNum) {
-		this.rNum = rNum;
+	public void setStarScore(String starScore) {
+		this.starScore = starScore;
 	}
 
-	public String getrUpdated() {
-		return rUpdated;
+	public String getReviewUpdated() {
+		return reviewUpdated;
 	}
 
-	public void setrUpdated(String rUpdated) {
-		this.rUpdated = rUpdated;
+	public void setReviewUpdated(String reviewUpdated) {
+		this.reviewUpdated = reviewUpdated;
 	}
 
-	public String getrStatus() {
-		return rStatus;
+	public String getReviewStatus() {
+		return reviewStatus;
 	}
 
-	public void setrStatus(String rStatus) {
-		this.rStatus = rStatus;
+	public void setReviewStatus(String reviewStatus) {
+		this.reviewStatus = reviewStatus;
+	}
+
+	public String getCampCode() {
+		return campCode;
+	}
+
+	public void setCampCode(String campCode) {
+		this.campCode = campCode;
 	}
 
 	@Override
 	public String toString() {
-		return "ReviewVo [rNo=" + rNo + ", reNo=" + reNo + ", rDate=" + rDate + ", rContent=" + rContent + ", rNum="
-				+ rNum + ", rUpdated=" + rUpdated + ", rStatus=" + rStatus + "]";
+		return "ReviewVo [reviewNo=" + reviewNo + ", reservationNo=" + reservationNo + ", enrollDate=" + enrollDate
+				+ ", reviewContent=" + reviewContent + ", starScore=" + starScore + ", reviewUpdated=" + reviewUpdated
+				+ ", reviewStatus=" + reviewStatus + ", campCode=" + campCode + "]";
 	}
-	
 	
 	
 }

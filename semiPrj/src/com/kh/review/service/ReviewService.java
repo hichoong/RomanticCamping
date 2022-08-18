@@ -10,19 +10,47 @@ public class ReviewService {
 	
 	private final ReviewDao dao = new ReviewDao();
 	
+	//리뷰 조회
+	public ReviewVo selectOne(String num) {
+		Connection conn = getConnection();
+		ReviewVo vo = new ReviewDao().selectOne(conn, num);
+		close(conn);
+		return vo;
+	}
+
 	//리뷰 작성
 	public int reviewInsert(ReviewVo vo) {
 		
-		if(vo.getrNum().equals("0")) {
+		if(vo.getStarScore().equals("") || vo.getStarScore() == null) {
 			return-1;
 		}
 		
-		if(vo.getrContent().length() < 1) {
+		if(vo.getReviewContent().length() < 1) {
 			return-2;
 		}
 		
 		Connection conn = getConnection();
 		int result = dao.reviewInsert(conn, vo);
+		
+		if(result == 1) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
+	
+	//리뷰 수정
+	public int edit(ReviewVo vo) {
+		
+		if(vo.getReviewContent().length() < 1) {
+			return-2;
+		}
+		
+		Connection conn = getConnection();
+		int result = dao.edit(conn, vo);
 		
 		if(result == 1) {
 			commit(conn);
@@ -50,31 +78,6 @@ public class ReviewService {
 		return result;
 	}
 	
-	//리뷰 조회
-	public ReviewVo selectOne(String num) {
-		Connection conn = getConnection();
-		ReviewVo vo = new ReviewDao().selectOne(conn, num);
-		close(conn);
-		return vo;
-	}
-
-	public int edit(ReviewVo vo) {
-		
-		if(vo.getrContent().length() < 1) {
-			return-2;
-		}
-		
-		Connection conn = getConnection();
-		int result = dao.edit(conn, vo);
-		
-		if(result == 1) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		}
-		close(conn);
-		
-		return result;
-	}
+	
 
 }
