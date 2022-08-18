@@ -39,7 +39,7 @@
 
             <h3 class="mb-4">로그인</h3>
 
-            <form action="" method="post">
+            <form action="<%=contextPath%>/login" method="post">
                 <div class="mb-4 mt-4">
                   <label for="id" class="form-label">아이디:</label>
                   <input type="text" class="form-control" id="id" placeholder="아이디를 입력하세요." name="id">
@@ -60,9 +60,9 @@
                     <button type="submit" class="basic-btn">로그인</button>
                 </div>
                 <div class="sub-btn-list">
-                    <a href="<%=contextPath%>/views/member/findIdForm.jsp" class="basic-a">아이디 찾기</a> |
-                    <a href="<%=contextPath%>/views/member/findPwdForm.jsp" class="basic-a">비밀번호 찾기</a> |
-                    <a href="<%=contextPath%>/views/member/joinForm.jsp" class="basic-a">회원가입</a>
+                    <a href="<%=contextPath%>/findId" class="basic-a">아이디 찾기</a> |
+                    <a href="<%=contextPath%>/findPwd" class="basic-a">비밀번호 찾기</a> |
+                    <a href="<%=contextPath%>/join" class="basic-a">회원가입</a>
                 </div>
               </form>
         </div>

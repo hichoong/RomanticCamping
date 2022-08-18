@@ -38,13 +38,13 @@ public class MemberService {
 		return true;
 	}
 	
-	protected boolean idCheck(Connection conn, MemberVo vo) {
+	protected boolean idCheck(Connection conn, String id) {
 			
-		if(vo.getId().length() < 3) {
+		if(id.length() < 3) {
 			return false;
 		}
 		
-		int dup = new MemberDao().checkDup(conn, vo);
+		int dup = new MemberDao().checkDup(conn, id);
 		if(dup != 0) {
 			close(conn);
 			return false;
@@ -53,13 +53,13 @@ public class MemberService {
 		return true;
 	}
 	
-	protected boolean pwdCheck(MemberVo vo) {
+	protected boolean pwdCheck(String pwd, String pwdCheck) {
 		
-		if(vo.getPwd().length() < 4) {
+		if(pwd.length() < 4) {
 			return false;
 		}
 		
-		if(vo.getPwd().equals(vo.getPwdCheck()) == false) {
+		if(pwd.equals(pwdCheck) == false) {
 			return false;
 		}
 		
@@ -68,12 +68,12 @@ public class MemberService {
 	
 	public int userJoin(MemberVo vo) {
 
-		if(!pwdCheck(vo)) return -1;
+		if(!pwdCheck(vo.getPwd(), vo.getPwdCheck())) return -1;
 		if(!etcCheck(vo)) return -1;
 		
 		Connection conn = getConnection();
 		
-		if(!idCheck(conn, vo)) {
+		if(!idCheck(conn, vo.getId())) {
 			close(conn);
 			return -1;
 		}
@@ -93,12 +93,12 @@ public class MemberService {
 
 	public int businessJoin(MemberVo vo) {
 				
-		if(!pwdCheck(vo)) return -1;
+		if(!pwdCheck(vo.getPwd(), vo.getPwdCheck())) return -1;
 		if(!etcCheck(vo)) return -1;
 		
 		Connection conn = getConnection();
 		
-		if(!idCheck(conn, vo)) {
+		if(!idCheck(conn, vo.getId())) {
 			close(conn);
 			return -1;
 		}
@@ -144,7 +144,50 @@ public class MemberService {
 		
 		return vo;
 	}
-	
-	
+
+	public int changePwd(String originPwd, String newPwd, String newPwdCheck, String id) {
+
+		if(originPwd.length() < 4) return -1;
+		if(!pwdCheck(newPwd, newPwdCheck)) return -1;
+		
+		Connection conn = getConnection();
+		int result = dao.changePwd(conn, originPwd, newPwd, id);
+		
+		if(result == 1) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public int quit(String no) {
+		
+		Connection conn = getConnection();
+		int result = dao.quit(conn, no);
+		
+		if(result == 1) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public String findId(String name, String phone) {
+
+		Connection conn = getConnection();
+		String id = dao.findId(conn, name, phone);
+		
+		close(conn);
+		
+		return id;
+	}
 	
 }

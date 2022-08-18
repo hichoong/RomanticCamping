@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.member.service.MemberService;
 import com.kh.member.vo.MemberVo;
 
-@WebServlet(urlPatterns = "/member/login")
+@WebServlet(urlPatterns = "/login")
 public class MemberLoginController extends HttpServlet {
 
 	@Override
@@ -22,8 +22,6 @@ public class MemberLoginController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		req.setCharacterEncoding("UTF-8");
-		
 		String id = req.getParameter("id");
 		String pwd = req.getParameter("pwd");
 		

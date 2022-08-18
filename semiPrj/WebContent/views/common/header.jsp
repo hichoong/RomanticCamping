@@ -1,7 +1,7 @@
 <%@page import="com.kh.member.vo.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
 	
@@ -102,8 +102,8 @@
       </button>
       <ul class="dropdown-menu dropdown-menu-end">
       	<%if(loginMember == null) { %>
-        	<li><a class="dropdown-item" href="<%=contextPath%>/member/login">로그인</a></li>
-        	<li><a class="dropdown-item" href="<%=contextPath%>/member/join">회원가입</a></li>
+        	<li><a class="dropdown-item" href="<%=contextPath%>/login">로그인</a></li>
+        	<li><a class="dropdown-item" href="<%=contextPath%>/join">회원가입</a></li>
         <%} else if(loginMember.getType().equals("U")) { %>        
 	        <li><a class="dropdown-item" href="<%=contextPath%>/member/myPage">마이페이지</a></li>
 	        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/myReservationPage.jsp">캠핑 예약확인</a></li>
