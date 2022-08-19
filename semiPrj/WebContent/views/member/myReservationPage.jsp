@@ -24,7 +24,7 @@
 
     <div class="container">
         <ul id="sub-nav" class="list-group">
-            <a href="#" class="list-group-item list-group-item-action">예약완료</a>
+            <a href="#" class="list-group-item list-group-item-action" onclick="test();">예약완료</a>
             <a href="#" class="list-group-item list-group-item-action">이용완료</a>
             <a href="#" class="list-group-item list-group-item-action">취소/환불</a>
         </ul>
@@ -32,7 +32,7 @@
         <div class="outer">
             <div class="contentBox">
                 <div class="mb-4">
-                    <span>캠핑장 : <strong>낭만캠핑장</strong></span>
+                    <span>캠핑장 : <strong>${rv.name }</strong></span>
                     <span>전화번호 : <strong>02)000-0000</strong></span>
                     <br>
                     <span>상세주소 : <strong>서울시 강남구 테헤란로</strong></span>
@@ -129,6 +129,32 @@
     </div>
 
     <%@ include file="/views/common/footer.jsp" %>
+    
+	<script>
+		function test() {
+			console.log(${loginMember.no});
+			
+			$.ajax({
+				url : "${pageContext.request.contextPath}/member/reservationCheck",
+				method : "POST",
+				data : {userNo : ${loginMember.no}},
+				success : function(nowReservation){ 
+					const rv = JSON.parse(nowReservation);
+					console.log(rv);
+					if(rv != null){
+						console.log("null이아님");
+					} else {
+						console.log("null");
+					} 
+				},
+				error : function(eee){
+					console.log("통신실패 ㅠㅠ");
+					console.log(eee);
+				}
+			});
+		}
+		
+	</script>
 
 </body>
 </html>

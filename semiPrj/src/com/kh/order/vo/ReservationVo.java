@@ -2,26 +2,30 @@ package com.kh.order.vo;
 
 public class ReservationVo {
 	private String reservationNo;
-	private String reservationPhone;
+	private String reservationPhone;	//예약한 사람의 전화번호
 	private String reservationCheckin;
 	private String reservationCheckout;
 	private String reservationNop;
 	private String request;
-	private String reservationDate;
-	private String reservationStatus;
-	private String campZone;
-	private String zNo;
-	private String userNo;
-
-	//생성자
+	private String reservationDate;		//예약을 한 일자
+	private String reservationStatus;	//처리상태
+	private String campCode;	//캠핑장코드
+	private String zoneNo;			//구역번호
+	private String userNo;		//유저번호
 	
+	private String campName;
+	private String campPhone;
+	private String campAddr;
+	private String zoneName;
+	
+	//생성자
 	public ReservationVo() {
 
 	}
 
 	public ReservationVo(String reservationNo, String reservationPhone, String reservationCheckin,
 			String reservationCheckout, String reservationNop, String request, String reservationDate,
-			String reservationStatus, String campZone, String zNo, String userNo) {
+			String reservationStatus, String campCode, String zoneNo, String userNo) {
 		this.reservationNo = reservationNo;
 		this.reservationPhone = reservationPhone;
 		this.reservationCheckin = reservationCheckin;
@@ -30,8 +34,8 @@ public class ReservationVo {
 		this.request = request;
 		this.reservationDate = reservationDate;
 		this.reservationStatus = reservationStatus;
-		this.campZone = campZone;
-		this.zNo = zNo;
+		this.campCode = campCode;
+		this.zoneNo = zoneNo;
 		this.userNo = userNo;
 	}
 
@@ -101,20 +105,20 @@ public class ReservationVo {
 		this.reservationStatus = reservationStatus;
 	}
 
-	public String getCampZone() {
-		return campZone;
+	public String getCampCode() {
+		return campCode;
 	}
 
-	public void setCampZone(String campZone) {
-		this.campZone = campZone;
+	public void setCampCode(String campCode) {
+		this.campCode = campCode;
 	}
 
-	public String getzNo() {
-		return zNo;
+	public String getZoneNo() {
+		return zoneNo;
 	}
 
-	public void setzNo(String zNo) {
-		this.zNo = zNo;
+	public void setZoneNo(String zoneNo) {
+		this.zoneNo = zoneNo;
 	}
 
 	public String getUserNo() {
@@ -124,18 +128,47 @@ public class ReservationVo {
 	public void setUserNo(String userNo) {
 		this.userNo = userNo;
 	}
+	
+	public String getCampName() {
+		return campName;
+	}
 
-	//toString
+	public void setCampName(String campName) {
+		this.campName = campName;
+	}
+
+	public String getCampPhone() {
+		return campPhone;
+	}
+
+	public void setCampPhone(String campPhone) {
+		this.campPhone = campPhone;
+	}
+
+	public String getCampAddr() {
+		return campAddr;
+	}
+
+	public void setCampAddr(String campAddr) {
+		this.campAddr = campAddr;
+	}
+
+	public String getZoneName() {
+		return zoneName;
+	}
+
+	public void setZoneName(String zoneName) {
+		this.zoneName = zoneName;
+	}
+
 	@Override
 	public String toString() {
 		return "ReservationVo [reservationNo=" + reservationNo + ", reservationPhone=" + reservationPhone
 				+ ", reservationCheckin=" + reservationCheckin + ", reservationCheckout=" + reservationCheckout
 				+ ", reservationNop=" + reservationNop + ", request=" + request + ", reservationDate=" + reservationDate
-				+ ", reservationStatus=" + reservationStatus + ", campZone=" + campZone + ", zNo=" + zNo + ", userNo="
-				+ userNo + "]";
+				+ ", reservationStatus=" + reservationStatus + ", campCode=" + campCode + ", zoneNo=" + zoneNo
+				+ ", userNo=" + userNo + ", campName=" + campName + ", campPhone=" + campPhone + ", campAddr="
+				+ campAddr + ", zoneName=" + zoneName + "]";
 	}
-	
-	
-	
 
 }

@@ -189,5 +189,15 @@ public class MemberService {
 		
 		return id;
 	}
+
+	public String findPwd(String id, String name, String phone) {
+		
+		Connection conn = getConnection();
+		String pwd = dao.findPwd(conn, id, name, phone);
+		
+		close(conn);
+		
+		return pwd;
+	}
 	
 }

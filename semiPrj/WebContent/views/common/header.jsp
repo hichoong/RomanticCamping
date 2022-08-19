@@ -106,7 +106,7 @@
         	<li><a class="dropdown-item" href="<%=contextPath%>/join">회원가입</a></li>
         <%} else if(loginMember.getType().equals("U")) { %>        
 	        <li><a class="dropdown-item" href="<%=contextPath%>/member/myPage">마이페이지</a></li>
-	        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/myReservationPage.jsp">캠핑 예약확인</a></li>
+	        <li><a class="dropdown-item" href="<%=contextPath%>/member/myReservation">캠핑 예약확인</a></li>
 	        <li><hr class="dropdown-divider"></hr></li>
 	        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/myBoardList.jsp">내가 쓴 글</a></li>
 	        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/wishListPage.jsp">찜목록</a></li>
