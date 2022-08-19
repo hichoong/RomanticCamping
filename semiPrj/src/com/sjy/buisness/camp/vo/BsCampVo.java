@@ -13,13 +13,14 @@ public class BsCampVo {
 	private String rgDate;			//등록일
 	private String campRefund;		//환불규정
 	private String campImgPath;		//대표이미지
+	private String theme;
 	private String campUpdated;		//최근수정일
 	
 	public BsCampVo() {}
 
 	public BsCampVo(String campCode, String campName, String city, String district, String campAddress,
 			String campPhone, String campIntro, String campFacility, String rgDate, String campRefund,
-			String campImgPath, String campUpdated) {
+			String campImgPath,String theme, String campUpdated) {
 		super();
 		this.campCode = campCode;
 		this.campName = campName;
@@ -32,6 +33,7 @@ public class BsCampVo {
 		this.rgDate = rgDate;
 		this.campRefund = campRefund;
 		this.campImgPath = campImgPath;
+		this.theme = theme;
 		this.campUpdated = campUpdated;
 	}
 
@@ -121,6 +123,15 @@ public class BsCampVo {
 
 	public void setCampImgPath(String campImgPath) {
 		this.campImgPath = campImgPath;
+	}
+
+	
+	public String getTheme() {
+		return theme;
+	}
+
+	public void setTheme(String theme) {
+		this.theme = theme;
 	}
 
 	public String getCampUpdated() {
