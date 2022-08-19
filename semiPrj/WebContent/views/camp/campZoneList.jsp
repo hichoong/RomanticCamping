@@ -21,6 +21,7 @@
             </div>
 
             <div class="camp-list">
+            	 <input type="hidden" name="num" value="캠핑장 코드 들어갈 자리">
                  <div class="card mb-3" style="max-width: 800px;" onclick="location.href='<%=contextPath %>/review/insert'">
                     <div class="row no-gutters">
                       <div class="col-md-4">

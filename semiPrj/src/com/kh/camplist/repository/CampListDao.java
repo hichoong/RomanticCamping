@@ -141,6 +141,72 @@ public class CampListDao {
 		
 		return list;
 	}
+
+	//검색 결과 리스트 조회
+	public List<CampInfoVo> searchList(Connection conn, List<String> keywordList, String sido1, String gugun1, String theme,
+			List<String> checkedHashCodes) {
+
+		//검색 쿼리
+		String sql = "SELECT * FROM CAMP_INFO WHERE 1=1";
+		
+		if(keywordList != null) {
+			for(int i=0; i<keywordList.size(); i++) {
+					sql += " AND CAMP_NAME LIKE '%" + keywordList.get(i) + "%'";
+				}
+		}
+		if(!sido1.equals("")) {
+				sql += " AND CITY = " + "'" + sido1  + "'";
+		}
+		if(!gugun1.equals("")) {
+				sql += " AND DISTRICT = " + "'" +gugun1+ "'";
+		}
+		if(!theme.equals("")) {
+				sql += " AND THEME_CODE = " + theme;
+		}
+		if(checkedHashCodes != null) {
+			for(int i=0; i<checkedHashCodes.size(); i++) {
+				sql += " AND CAMP_CODE IN ( SELECT C.CAMP_CODE FROM CAMP_INFO C INNER JOIN HASHTAG_MAPPING HTM ON C.CAMP_CODE = HTM.CAMP_CODE WHERE HTM.HT_CODE = " + checkedHashCodes.get(i) + ")";
+			}
+		}
+		
+		System.out.println(sql);
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<CampInfoVo> list = new ArrayList<CampInfoVo>();
+		
+		System.out.println("디에이오1 잘 됨");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				String campCode = rs.getString("CAMP_CODE");
+				String campName = rs.getString("CAMP_NAME");
+				String campIntro = rs.getString("CAMP_INTRO");
+				String campImgpath = rs.getString("CAMP_IMGPATH");
+				
+				CampInfoVo vo = new CampInfoVo();
+				vo.setCampCode(campCode);
+				vo.setCampName(campName);
+				vo.setCampIntro(campIntro);
+				vo.setCampImgpath(campImgpath);
+				
+				list.add(vo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+		
+	}
 	
 	
 
