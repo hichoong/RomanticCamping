@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.kh.common.PageVo;
 import com.kh.freeboard.repository.FreeBoardDao;
+import com.kh.freeboard.vo.FreeBoardRepleVo;
 import com.kh.freeboard.vo.FreeBoardVo;
 
 public class FreeBoardService {
@@ -119,12 +120,28 @@ public class FreeBoardService {
 		Connection conn = getConnection();
 		
 		FreeBoardVo fvo = null;
-		fvo = dao.F_selectOne(conn, num); 
+		fvo = dao.selectFreeBoard(conn, num); 
 		
 		close(conn);		
 		
 		return fvo;		
 				
+	}
+	/*
+	 * 댓글 리스트 가져오기
+	 */
+	public List selectReple(String num) {
+	
+		Connection conn = getConnection();
+		
+		List<FreeBoardRepleVo> frvoList = null;
+				
+		frvoList = dao.selectReple(conn, num);
+			
+		close(conn);
+		
+		//실행 결과 리턴
+		return frvoList;
 	}
 
 	

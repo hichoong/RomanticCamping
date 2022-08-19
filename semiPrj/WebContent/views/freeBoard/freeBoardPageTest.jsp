@@ -62,7 +62,7 @@
 			
 				<%for(FreeBoardTradeVo fblist : fbMainList) { %>
 					<div class ="menu-items">
-					<a href="<%=contextPath %>/views/freeboard/trade/detail?num=<%=fblist.getNo() %>">
+					<a href="<%=contextPath %>/freeBoard/trade/detail?num2=<%=fblist.getNo() %>">
 						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""></div>
 						<div>
 							<div class="fb1-comment-outer"><span><%=fblist.getTitle() %></span></div>
@@ -125,35 +125,29 @@
 
 			<div class="fb-page-area">
 
-				<a class="btn btn-outline-success btn-sm" href="">1</a>
-				<a class="btn btn-outline-success btn-sm" href="">1</a>
-				<a class="btn btn-outline-success btn-sm" href="">1</a>
-				<a class="btn btn-outline-success btn-sm" href="">1</a>
-				<a class="btn btn-outline-success btn-sm" href="">1</a>
-
+			
 				<%if(fbcurrentPage != 1){ %>
-					<a class="btn btn-sm btn-primary" href="<%=contextPath %>/freeBoard/page?p2=<%=fbcurrentPage-1 %>"> &lt; </a>
+					<a class="btn btn-sm btn-outline-success" href="<%=contextPath %>/freeBoard/page?p1=1&p2=<%=fbcurrentPage-1 %>"> &lt; </a>
 				<%} %>
 				
 				
 				<% for(int i= fbstartPage; i<= fbendPage; i++) { %>
 					<%if(i==fbcurrentPage){ %>
-						<a class="btn btn-sm btn-primary"><%=i%></a>
+						<a class="btn btn-sm btn-outline-success"><%=i%></a>
 					<%} else {%>
-						<a class="btn btn-sm btn-primary" href="<%=contextPath%>/freeBoard/page?p2=<%=i%>"><%=i%></a>
+						<a class="btn btn-sm btn-outline-success" href="<%=contextPath%>/freeBoard/page?p1=1&p2=<%=i%>"><%=i%></a>
 					<%} %>
 				<%} %>
 				
 				
 				<%if(fbcurrentPage != fbmaxPage){ %>
-					<a class="btn btn-sm btn-primary" href="<%=contextPath%>/freeBoard/page?p2=<%=fbcurrentPage+1 %>"> &gt; </a>
+					<a class="btn btn-sm btn-outline-success" href="<%=contextPath%>/freeBoard/page?p1=1&p2=<%=fbcurrentPage+1 %>"> &gt; </a>
 				<%} %> 
 				
 				
 				
 			</div>
 
-			<!-- 밑에거 이상하며 이거 살려서 다시 작업하기 <div id="fb1-2" ><input class="btn btn-outline-success" type="button" onclick="checkLogin()" value="중고거래 글 작성하기" data-bs-toggle="modal" data-bs-target="#tradeWrite"></div> -->
 			
 			<div id="fb1-2" >
 				<!-- 나중에 != 으로 체인지  -->
@@ -184,7 +178,7 @@
 
 				<%for(FreeBoardVo flist : fMainList) { %>
 					<div class="fb2-1-story">
-						<a href="<%=contextPath %>/freeboard/detail?num=<%=flist.getNo()%>" class="fb2-1-story-outer">
+						<a href="<%=contextPath %>/freeBoard/detail?num=<%=flist.getNo()%>" class="fb2-1-story-outer">
 							<p style="font-size: 3rem;"><%=flist.getContent() %></p>
 							<p class="fb2-story-date"><%=flist.getEnrollDate() %></p>
 							<span class="fb2-story-count" >
@@ -237,21 +231,21 @@
 
 				
 				<%if(fcurrentPage != 1){ %>
-					<a class="btn btn-sm btn-primary" href="<%=contextPath %>/freeBoard/page?p1=<%=fcurrentPage-1 %>"> &lt; </a>
+					<a class="btn btn-sm btn-outline-success" href="<%=contextPath %>/freeBoard/page?p1=<%=fcurrentPage-1 %>&p2=1"> &lt; </a>
 				<%} %>
 				
 				
 				<% for(int i= fstartPage; i<= fendPage; i++) { %>
 					<%if(i==fcurrentPage){ %>
-						<a class="btn btn-sm btn-primary"><%=i%></a>
+						<a class="btn btn-sm btn-outline-success"><%=i%></a>
 					<%} else {%>
-						<a class="btn btn-sm btn-primary" href="<%=contextPath %>/freeBoard/page?p1=<%=i%>"><%=i%></a>
+						<a class="btn btn-sm btn-outline-success" href="<%=contextPath %>/freeBoard/page?p1=<%=i%>&p2=1"><%=i%></a>
 					<%} %>
 				<%} %>
 				
 				
 				<%if(fcurrentPage != fmaxPage){ %>
-					<a class="btn btn-sm btn-primary" href="<%=contextPath %>/freeBoard/page?p1=<%=fcurrentPage+1 %>"> &gt; </a>
+					<a class="btn btn-sm btn-outline-success" href="<%=contextPath %>/freeBoard/page?p1=<%=fcurrentPage+1 %>&p2=1"> &gt; </a>
 				<%} %> 
 			</div>
 
@@ -261,9 +255,9 @@
 				
 				<!-- 나중에 != 으로 체인지  -->
 				<% if(loginMember == null) { %>
-					<input class="btn btn-outline-success" type="button" value="자유게시판 글 작성하기" data-bs-toggle="modal" data-bs-target="#tradeWrite">
+					<input class="btn btn-outline-success" type="button" value="자유게시판 글 작성하기" data-bs-toggle="modal" data-bs-target="#freeBoardWrite">
 				<%} else {%>
-					<input class="btn btn-outline-success" type="button" value="자유게시판 글 작성하기" data-bs-toggle= data-bs-target="">
+					<input class="btn btn-outline-success" type="button" value="자유게시판 글 작성하기" onclick="alert('로그인 후 작성 가능합니다.')">
 				<%} %>
 			</div>
 			
@@ -277,7 +271,7 @@
 				
 				const num = $(this).children().eq(0).text();
 
-				location.href='<%=contextPath%>/freeboard/detail?num='+num;
+				location.href='<%=contextPath%>/freeBoard/detail?num='+num;
 			});
 		})
 	</script>
@@ -324,36 +318,40 @@
 	      <div class="modal-body">
 	      
 			<!-- 등록하기 누르면 submit-등록 요청으로  -->	      
-	        <form action="<%=contextPath %>/freeboard/trade/insert" method="post">
+	        <form action="<%=contextPath %>/freeBoard/trade/insert" method="post" enctype="multipart/form-data">
 			  <div class="mb-3 mt-3 input-group-lg">
+			  
+			  	<!-- value값 로그인멤버 번호로 변경하기 -->
+			  	<input type="hidden" name="fbt-writerNo" value="1">
 			    <label for="trade-img" class="form-label" ><mark>이미지 선택하기</mark></label>
-			    <input type="file" class="form-control" id="trade-img" placeholder="이미지를 선택해주세요" name="trade-img">
+			    <input type="file" class="form-control" id="trade-img" placeholder="이미지를 선택해주세요" name="fbt-img">
 			  </div>
 			  <div class="mb-3 mt-3 input-group-lg">
 			    <label for="trade-title" class="form-label"><mark>글제목</mark></label>
-			    <input type="text" class="form-control" id="trade-title" placeholder="제목을 입력하세요" name="trade-title">
+			    <input type="text" class="form-control" id="trade-title" placeholder="제목을 입력하세요" name="fbt-title">
 			  </div>
 			  
 			  <label for="trade-price" class="form-label"><mark>희망가격</mark></label><br>
 			  <div class="mb-3 input-group input-group-lg">
 				<span class="input-group-text">희망가격</span>
-				<input type="number" class="form-control" id="trade-price" placeholder="'원'단위로 입력해주세요" name="trade-price">
+				<input type="number" class="form-control" id="trade-price" placeholder="'원'단위로 입력해주세요" name="fbt-price">
 			  </div>
 			  <div class="mb-3 mt-3 input-group-lg">
 			    <label for="trade-comment" ><mark>글 내용</mark></label>
-				<textarea class="form-control" rows="5" id="trade-comment" name="trade-comment"></textarea>
+				<textarea class="form-control" rows="5" id="trade-comment" name="fbt-content"></textarea>
 			  </div>
 			  	
+		      <!-- Modal footer -->
+		      <div class="modal-footer">
+		        <input type="submit" class="btn btn-success" value="등록하기" >
+		        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">취소하기</button>
+		      </div>
+		      
 			</form>
 			
 			
 	      </div>
 	
-	      <!-- Modal footer -->
-	      <div class="modal-footer">
-	        <input type="submit" class="btn btn-success" value="등록하기" onclick="return checkWrite();">
-	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">취소하기</button>
-	      </div>
 	
 	    </div>
 	  </div>
@@ -377,8 +375,11 @@
 	      <div class="modal-body">
 	      
 	      
-	        <form action="<%=contextPath %>/freeboard/insert" method="post">
+	        <form action="<%=contextPath %>/freeBoard/insert" method="post">
 	  			<div class="mb-3 mt-3 input-group-lg">
+	  			
+	  				<!-- value값 로그인멤버 번호로 변경하기 -->
+	  				<input type="hidden" name="fb-writerNo" value="1">
 			    	<label for="fb-title" class="form-label h3"><mark>글제목</mark></label>
 			    	<input type="text" class="form-control" id="fb-title" placeholder="제목을 입력하세요" name="fb-title">
 				</div>
@@ -388,16 +389,16 @@
 			    	<textarea class="form-control" rows="5" id="fb-content" placeholder="내용을 입력하세요" name="fb-content"></textarea>
 				</div>
 			  	
+		      <!-- Modal footer -->
+		      <div class="modal-footer">
+		        <input type="submit" class="btn btn-success" value="등록하기" >
+		        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">취소하기</button>
+		      </div>
 			</form>
 			
 			
 	      </div>
 	
-	      <!-- Modal footer -->
-	      <div class="modal-footer">
-	        <input type="submit" class="btn btn-success" value="등록하기" onclick="return checkWrite();">
-	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">취소하기</button>
-	      </div>
 	
 	    </div>
 	  </div>

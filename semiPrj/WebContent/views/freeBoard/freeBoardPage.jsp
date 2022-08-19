@@ -32,7 +32,7 @@
 	<%@ include file="/views/common/header.jsp" %>
 	
 	<h1>여기다가 자유게시판 </h1>
-	<a href="<%=contextPath%>/freeboard/page?p1=1&p2=1">테스트 링크 </a>
+	<a href="<%=contextPath%>/freeBoard/page?p1=1&p2=1">테스트 링크 </a>
 	
 	
 	

@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="com.kh.freeboard.vo.FreeBoardRepleVo"%>
 <%@page import="com.kh.freeboard.vo.FreeBoardVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -5,6 +7,7 @@
     
 <%
 	FreeBoardVo fvo = (FreeBoardVo)request.getAttribute("fvo");
+	List<FreeBoardRepleVo> frvoList = (List<FreeBoardRepleVo>)request.getAttribute("frvoList");
 %>    
     
 <!DOCTYPE html>
@@ -129,7 +132,7 @@
 	/* 리플창 */
 	.select-reple{
 		width: 100%;
-		height: 100px;
+		height: auto;
 		border: 1px solid pink;
 	}
 
@@ -194,34 +197,7 @@
 		<div id="d9-d" class="container">
 
 			<!-- 작성된 댓글 가져와서 보여주기 -->
-			<div class="select-reple">
-
-				<div class="reple-id"><p >작성자 id</p></div>
-				<div class="reple-comment"><p >작성내용 </p></div>
-				<div class="reple-sub"><span>작성일자</span> <a>답글쓰기</a></div>
-
-			</div>
-			<div class="select-reple">
-
-				<div class="reple-id"><p >작성자 id</p></div>
-				<div class="reple-comment"><p >작성내용 </p></div>
-				<div class="reple-sub"><span>작성일자</span> <a>답글쓰기</a></div>
-
-			</div>
-			<div class="select-reple">
-
-				<div class="reple-id"><p >작성자 id</p></div>
-				<div class="reple-comment"><p >작성내용 </p></div>
-				<div class="reple-sub"><span>작성일자</span> <a>답글쓰기</a></div>
-
-			</div>
-			<div class="select-reple">
-
-				<div class="reple-id"><p >작성자 id</p></div>
-				<div class="reple-comment"><p >작성내용 </p></div>
-				<div class="reple-sub"><span>작성일자</span> <a>답글쓰기</a></div>
-
-			</div>
+			
 			<div class="select-reple">
 
 				<div class="reple-id"><p >작성자 id</p></div>
@@ -230,14 +206,38 @@
 
 			</div>
 			
+			<%for( FreeBoardRepleVo fr : frvoList ) {%>			
+				<div class="select-reple">
+	
+					<div class="reple-id"><p ><%= fr.getWriter() %></p></div>
+					<div class="reple-comment"><p ><%= fr.getContent() %> </p></div>
+					<div class="reple-sub"><span><%= fr.getEnrollDate() %></span> <a>답글쓰기</a></div>
+	
+				</div>
+			<%} %>
 			
+		
+		
 		
 			<!-- 선추가 -->
 			<div class="fbt-top-line"></div>
-			<!-- 내가 댓글작성하기 -->
-			<div class="select-reple"><p>내가 댓글작성하는 공간</p></div>
 			
-		</div>
+			<!-- 내가 댓글작성하기 -->
+				
+					
+			</div>
+			
+			<div class="container mt-3">
+				  <h2>댓글 작성하기</h2>
+				  <p>로그인 유저 id </p>
+				  <form action="">
+					    <div class="mb-3 mt-3">
+						      <label for="comment">Comments:</label>
+						      <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
+					    </div>
+				    <button type="submit" class="btn btn-primary">댓글등록하기</button>
+				  </form>
+			</div>
 
 
 

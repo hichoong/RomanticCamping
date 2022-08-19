@@ -7,12 +7,14 @@ public class FreeBoardTradeVo {
 	
 	public FreeBoardTradeVo() {}
 	
+
 	
-	public FreeBoardTradeVo(String no, String type, String title, String content, String price, String writer, String cnt,
+	
+
+	public FreeBoardTradeVo(String no, String title, String content, String price, String writer, String cnt,
 			String enrollDate, String status) {
 		super();
 		this.no = no;
-		this.type = type;
 		this.title = title;
 		this.content = content;
 		this.price = price;
@@ -24,8 +26,9 @@ public class FreeBoardTradeVo {
 
 
 
+
+
 	private String no;
-	private String type; //작성기능 : 게시판번호 | 조회기능 : 게시판이름
 	private String title;
 	private String content;
 	private String price;
@@ -35,18 +38,11 @@ public class FreeBoardTradeVo {
 	private String status;
 	
 	
-	
 	public String getNo() {
 		return no;
 	}
 	public void setNo(String no) {
 		this.no = no;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
 	}
 	public String getTitle() {
 		return title;
@@ -92,13 +88,15 @@ public class FreeBoardTradeVo {
 	}
 	
 	
-	
 	@Override
 	public String toString() {
-		return "FreeBoardVo [no=" + no + ", type=" + type + ", title=" + title + ", content=" + content + ", price="
-				+ price + ", writer=" + writer + ", cnt=" + cnt + ", enrollDate=" + enrollDate + ", status=" + status
-				+ "]";
+		return "FreeBoardTradeVo [no=" + no + ", title=" + title + ", content=" + content + ", price=" + price
+				+ ", writer=" + writer + ", cnt=" + cnt + ", enrollDate=" + enrollDate + ", status=" + status + "]";
 	}
+	
+	
+	
+	
 	
 	
 	

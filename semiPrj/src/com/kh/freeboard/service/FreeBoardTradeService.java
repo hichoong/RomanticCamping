@@ -9,6 +9,8 @@ import static com.kh.common.JDBCTemplate.*;
 import com.kh.common.PageVo;
 import com.kh.freeboard.attachment.vo.FreeBoardAttachmentVo;
 import com.kh.freeboard.repository.FreeBoardTradeDao;
+import com.kh.freeboard.vo.FreeBoardRepleVo;
+import com.kh.freeboard.vo.FreeBoardTradeRepleVo;
 import com.kh.freeboard.vo.FreeBoardTradeVo;
 import com.kh.freeboard.vo.FreeBoardVo;
 
@@ -171,6 +173,23 @@ public class FreeBoardTradeService {
 		close(conn);		
 		
 		return fbvo;		
+	}
+
+	/*
+	 * 댓글 리스트 가져오기 
+	 */
+	public List<FreeBoardTradeRepleVo> selectReple(String num) {
+
+		Connection conn = getConnection();
+		
+		List<FreeBoardTradeRepleVo> fbrvoList = null;
+				
+		fbrvoList = dao.selectReple(conn, num);
+			
+		close(conn);
+		
+		//실행 결과 리턴
+		return fbrvoList;
 	}
 
 	

@@ -1,8 +1,11 @@
+<%@page import="com.kh.freeboard.vo.FreeBoardTradeRepleVo"%>
+<%@page import="java.util.List"%>
 <%@page import="com.kh.freeboard.vo.FreeBoardTradeVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	FreeBoardTradeVo fbvo = (FreeBoardTradeVo)request.getAttribute("fbvo");
+	List<FreeBoardTradeRepleVo> fbrvoList = (List<FreeBoardTradeRepleVo>)request.getAttribute("fbrvoList");
 %>    
 <!DOCTYPE html>
 <html>
@@ -241,50 +244,19 @@
 				<div class="reple-sub"><span>작성일자</span> <a>답글쓰기</a></div>
 
 			</div>
-			<div class="select-reple">
-
-				<div class="reple-id"><p >작성자 id</p></div>
-				<div class="reple-comment"><p >작성내용 </p></div>
-				<div class="reple-sub"><span>작성일자</span> <a>답글쓰기</a></div>
-
-			</div>
-			<div class="select-reple">
-
-				<div class="reple-id"><p >작성자 id</p></div>
-				<div class="reple-comment"><p >작성내용 </p></div>
-				<div class="reple-sub"><span>작성일자</span> <a>답글쓰기</a></div>
-
-			</div>
-			<div class="select-reple">
-
-				<div class="reple-id"><p >작성자 id</p></div>
-				<div class="reple-comment"><p >작성내용 </p></div>
-				<div class="reple-sub"><span>작성일자</span> <a>답글쓰기</a></div>
-
-			</div>
-			<div class="select-reple">
-
-				<div class="reple-id"><p >작성자 id</p></div>
-				<div class="reple-comment"><p >작성내용 </p></div>
-				<div class="reple-sub"><span>작성일자</span> <a>답글쓰기</a></div>
-
-			</div>
-			<div class="select-reple">
-
-				<div class="reple-id"><p >작성자 id</p></div>
-				<div class="reple-comment"><p >작성내용 </p></div>
-				<div class="reple-sub"><span>작성일자</span> <a>답글쓰기</a></div>
-
-			</div>
-			<div class="select-reple">
-
-				<div class="reple-id"><p >작성자 id</p></div>
-				<div class="reple-comment"><p >작성내용 </p></div>
-				<div class="reple-sub"><span>작성일자</span> <a>답글쓰기</a></div>
-
-			</div>
+	
+	
 			
-			
+	
+			<%for( FreeBoardTradeRepleVo fbr : fbrvoList ) {%>			
+				<div class="select-reple">
+	
+					<div class="reple-id"><p ><%= fbr.getWriter() %></p></div>
+					<div class="reple-comment"><p ><%= fbr.getContent() %> </p></div>
+					<div class="reple-sub"><span><%= fbr.getEnrollDate() %></span> <a>답글쓰기</a></div>
+	
+				</div>
+			<%} %>
 			
 			<!-- 선추가 -->
 			<div class="fbt-top-line"></div>

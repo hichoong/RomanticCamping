@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.freeboard.service.FreeBoardService;
 import com.kh.freeboard.vo.FreeBoardVo;
 
-@WebServlet(urlPatterns = "/freeboard/insert")
+@WebServlet(urlPatterns = "/freeBoard/insert")
 public class FreeBoardInsertController extends HttpServlet{
 
 	
@@ -23,9 +23,13 @@ public class FreeBoardInsertController extends HttpServlet{
 		
 		req.setCharacterEncoding("UTF-8");
 		
-		String no = req.getParameter("writerNo");
-		String title = req.getParameter("title");
-		String content = req.getParameter("content");
+		String no = req.getParameter("fb-writerNo");
+		String title = req.getParameter("fb-title");
+		String content = req.getParameter("fb-content");
+		
+		System.out.println(no);
+		System.out.println(title);
+		System.out.println(content);
 		
 		FreeBoardVo vo = new FreeBoardVo();
 		vo.setNo(no);
