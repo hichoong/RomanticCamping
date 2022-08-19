@@ -62,7 +62,7 @@
 			
 				<%for(FreeBoardTradeVo fblist : fbMainList) { %>
 					<div class ="menu-items">
-					<a href="<%=contextPath %>/views/freeboard/trade/detail?num=<%=fblist.getNo() %>">
+					<a href="<%=contextPath %>/freeBoard/trade/detail?num2=<%=fblist.getNo() %>">
 						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""></div>
 						<div>
 							<div class="fb1-comment-outer"><span><%=fblist.getTitle() %></span></div>
@@ -127,7 +127,7 @@
 
 			
 				<%if(fbcurrentPage != 1){ %>
-					<a class="btn btn-sm btn-primary" href="<%=contextPath %>/freeBoard/page?p2=<%=fbcurrentPage-1 %>"> &lt; </a>
+					<a class="btn btn-sm btn-outline-success" href="<%=contextPath %>/freeBoard/page?p1=1&p2=<%=fbcurrentPage-1 %>"> &lt; </a>
 				<%} %>
 				
 				
@@ -135,13 +135,13 @@
 					<%if(i==fbcurrentPage){ %>
 						<a class="btn btn-sm btn-outline-success"><%=i%></a>
 					<%} else {%>
-						<a class="btn btn-sm btn-outline-success" href="<%=contextPath%>/freeBoard/page?p2=<%=i%>"><%=i%></a>
+						<a class="btn btn-sm btn-outline-success" href="<%=contextPath%>/freeBoard/page?p1=1&p2=<%=i%>"><%=i%></a>
 					<%} %>
 				<%} %>
 				
 				
 				<%if(fbcurrentPage != fbmaxPage){ %>
-					<a class="btn btn-sm btn-outline-success" href="<%=contextPath%>/freeBoard/page?p2=<%=fbcurrentPage+1 %>"> &gt; </a>
+					<a class="btn btn-sm btn-outline-success" href="<%=contextPath%>/freeBoard/page?p1=1&p2=<%=fbcurrentPage+1 %>"> &gt; </a>
 				<%} %> 
 				
 				
@@ -178,7 +178,7 @@
 
 				<%for(FreeBoardVo flist : fMainList) { %>
 					<div class="fb2-1-story">
-						<a href="<%=contextPath %>/freeboard/detail?num=<%=flist.getNo()%>" class="fb2-1-story-outer">
+						<a href="<%=contextPath %>/freeBoard/detail?num=<%=flist.getNo()%>" class="fb2-1-story-outer">
 							<p style="font-size: 3rem;"><%=flist.getContent() %></p>
 							<p class="fb2-story-date"><%=flist.getEnrollDate() %></p>
 							<span class="fb2-story-count" >
@@ -231,7 +231,7 @@
 
 				
 				<%if(fcurrentPage != 1){ %>
-					<a class="btn btn-sm btn-outline-success" href="<%=contextPath %>/freeBoard/page?p1=<%=fcurrentPage-1 %>"> &lt; </a>
+					<a class="btn btn-sm btn-outline-success" href="<%=contextPath %>/freeBoard/page?p1=<%=fcurrentPage-1 %>&p2=1"> &lt; </a>
 				<%} %>
 				
 				
@@ -239,13 +239,13 @@
 					<%if(i==fcurrentPage){ %>
 						<a class="btn btn-sm btn-outline-success"><%=i%></a>
 					<%} else {%>
-						<a class="btn btn-sm btn-outline-success" href="<%=contextPath %>/freeBoard/page?p1=<%=i%>"><%=i%></a>
+						<a class="btn btn-sm btn-outline-success" href="<%=contextPath %>/freeBoard/page?p1=<%=i%>&p2=1"><%=i%></a>
 					<%} %>
 				<%} %>
 				
 				
 				<%if(fcurrentPage != fmaxPage){ %>
-					<a class="btn btn-sm btn-primary" href="<%=contextPath %>/freeBoard/page?p1=<%=fcurrentPage+1 %>"> &gt; </a>
+					<a class="btn btn-sm btn-outline-success" href="<%=contextPath %>/freeBoard/page?p1=<%=fcurrentPage+1 %>&p2=1"> &gt; </a>
 				<%} %> 
 			</div>
 
@@ -271,7 +271,7 @@
 				
 				const num = $(this).children().eq(0).text();
 
-				location.href='<%=contextPath%>/freeboard/detail?num='+num;
+				location.href='<%=contextPath%>/freeBoard/detail?num='+num;
 			});
 		})
 	</script>
@@ -318,7 +318,7 @@
 	      <div class="modal-body">
 	      
 			<!-- 등록하기 누르면 submit-등록 요청으로  -->	      
-	        <form action="<%=contextPath %>/freeboard/trade/insert" method="post" enctype="multipart/form-data">
+	        <form action="<%=contextPath %>/freeBoard/trade/insert" method="post" enctype="multipart/form-data">
 			  <div class="mb-3 mt-3 input-group-lg">
 			  
 			  	<!-- value값 로그인멤버 번호로 변경하기 -->
@@ -375,7 +375,7 @@
 	      <div class="modal-body">
 	      
 	      
-	        <form action="<%=contextPath %>/freeboard/insert" method="post">
+	        <form action="<%=contextPath %>/freeBoard/insert" method="post">
 	  			<div class="mb-3 mt-3 input-group-lg">
 	  			
 	  				<!-- value값 로그인멤버 번호로 변경하기 -->

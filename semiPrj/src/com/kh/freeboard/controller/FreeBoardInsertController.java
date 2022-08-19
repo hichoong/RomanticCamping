@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.freeboard.service.FreeBoardService;
 import com.kh.freeboard.vo.FreeBoardVo;
 
-@WebServlet(urlPatterns = "/freeboard/insert")
+@WebServlet(urlPatterns = "/freeBoard/insert")
 public class FreeBoardInsertController extends HttpServlet{
 
 	

@@ -25,7 +25,7 @@ import com.kh.member.vo.MemberVo;
 		maxRequestSize = 1024 * 1024 * 50*5
 	)
 
-@WebServlet(urlPatterns = "/freeboard/trade/insert")
+@WebServlet(urlPatterns = "/freeBoard/trade/insert")
 public class FreeBoardTradeInsertController extends HttpServlet{
 
 	@Override
