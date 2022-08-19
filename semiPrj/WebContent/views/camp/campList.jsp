@@ -15,6 +15,8 @@
 	List<CampInfoVo> campInfoList = (List<CampInfoVo>) request.getAttribute("campInfoList");
 	PageVo pv = (PageVo) request.getAttribute("pv");
 	
+	List<CampInfoVo> searchList = (List<CampInfoVo>) request.getAttribute("searchList"); 
+	
 	int currentPage = pv.getCurrentPage();
 	int startPage = pv.getStartPage();
 	int endPage = pv.getEndPage();

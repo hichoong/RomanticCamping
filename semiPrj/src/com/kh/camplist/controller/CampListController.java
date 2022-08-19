@@ -63,6 +63,7 @@ public class CampListController extends HttpServlet {
 		
 		
 		
+		
 		//테마 리스트 조회
 		List<ThemeVo> themeList = new CampListService().selectTheme();
 		req.setAttribute("themeList", themeList);
@@ -70,22 +71,34 @@ public class CampListController extends HttpServlet {
 		
 		//해시태그 리스트 조회
 		List<HashTagVo> hashTagList = new CampListService().selectHashTag(); 
-
 		req.setAttribute("hashTagList", hashTagList);
 		
+
+		//검색
+		
+		String keyword = (req.getParameter("keyword") == null) ? "" : req.getParameter("keyword");
+		String sido1 = (req.getParameter("sido1").equals("시/도 선택")) ? "" : req.getParameter("sido1");
+		String gugun1 = (req.getParameter("gugun1").equals("구/군 선택")) ? "" : req.getParameter("gugun1");
+		String theme = (req.getParameter("theme") == null) ? "" : req.getParameter("theme");
+		
+		//해시태그 검색값
 		String[] hashTag = req.getParameterValues("hashTag");
 		List<String> checkedHashCodes = null;
 		if(hashTag != null) {
 			checkedHashCodes = Arrays.asList(hashTag);
-//			for(String pk : checkedHashCodes) {
-//				System.out.println("입력값 => " + pk);
-//			}
+//					for(String pk : checkedHashCodes) {
+//						System.out.println("입력값 => " + pk);
+//					}
 		} else {
 			checkedHashCodes = new ArrayList<String>();
 		}
 		
+		List<CampInfoVo> searchList = new CampListService().searchList(keyword, sido1, gugun1, theme, checkedHashCodes);
+		System.out.println("컨트롤러 잘 됨");
+		
 		
 		req.setAttribute("hashTagCodeList", checkedHashCodes);
+		req.setAttribute("searchList", searchList);
 		req.getRequestDispatcher("/views/camp/campList.jsp").forward(req, resp);
 		
 		
