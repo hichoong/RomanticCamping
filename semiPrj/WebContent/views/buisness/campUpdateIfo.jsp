@@ -197,11 +197,11 @@
 							placeholder="등록일" name="" value="<%=toDay%>" disabled>
 					</div>
 
+					<div id="end">
+						<button  id="upDate" >수정요청</button>
+					</div>
 				</div>
 
-				<div id="end">
-							<button  id="upDate" >수정요청</button>
-						</div>
 			</form>
 		</div>
 		<!--content-->

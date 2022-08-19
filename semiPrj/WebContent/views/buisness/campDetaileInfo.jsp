@@ -195,12 +195,12 @@
 							placeholder="등록일" name="" value="<%=toDay%>" disabled>
 					</div>
 
-				</div>
-
-				<div id="end">
+						<div id="end">
 							<button  id="upDate" >수정</button>
 							<button id="delete" type="button" onclick="locaton.href='#'">삭제요청</button>
 						</div>
+				</div>
+
 			</form>
 		</div>
 		<!--content-->

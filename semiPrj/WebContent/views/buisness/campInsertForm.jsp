@@ -181,12 +181,12 @@
 									
 										<%if( (x%5)!=0 ){%>
 											<td>
-		                      				<input type="checkbox" class="btn-check" id="<%=vo.getHtName()%>" autocomplete="off" name="campHashTag" value="<%=vo.getHtCode()%>"> 
+		                      				<input style="display:none;" type="checkbox" class="btn-check" id="<%=vo.getHtName()%>" autocomplete="off" name="hashTag" value="<%=vo.getHtCode()%>"> 
 											<label class="btn btn-outline-success" for="<%=vo.getHtName()%>"><%=vo.getHtName()%></label><br>
 											</td>
 										<%}else{%>
 											<td>
-		                      				<input type="checkbox" class="btn-check" id="<%=vo.getHtName()%>" autocomplete="off" name="campHashTag" value="<%=vo.getHtCode()%>"> 
+		                      				<input  style="display:none;" type="checkbox" class="btn-check" id="<%=vo.getHtName()%>" autocomplete="off" name="hashTag" value="<%=vo.getHtCode()%>"> 
 											<label class="btn btn-outline-success" for="<%=vo.getHtName()%>"><%=vo.getHtName()%></label><br>
 											</td></tr>
 										<%} %>
@@ -213,30 +213,41 @@
 					<div class="mb-3">
 						<label for="" class="form-label">*구역 추가하기</label>
 						<button type="button" class="btn btn-success btnAdd"
-							onclick="addArea(); ">추가</button>
+							>추가</button>
 						<div class="addInput">
 
 							<hr>
+							<input type="hidden" id="n" value="0" min="0">
 							<div class="mb-3">
 								<label for="campZoneName" class="form-label">구역이름</label> 
-								<input class="form-control" type="text" id="campZoneName" name="campZoneName" placeholder="구역이름을 입력해주세요" required>
+								<input class="form-control" type="text" id="campZoneName" name="campZoneName0" placeholder="구역이름을 입력해주세요" required>
 							</div>
+							
 							<div class="mb-3 " style="width: 30%">
 								<label for="maxGusests" class="form-label">최대 숙박인원(:명)</label> 
-								<input class="form-control" type="number" id="maxGusests" name="maxGusests" min="1" value="1" required>
+								<input class="form-control" type="number" id="maxGusests" name="maxGusests0" min="1" value="1" required>
 							</div>
+							
+							<div class="mb-3 " style="width: 30%">
+								<label for="maxGusests" class="form-label">일별 예약가능수(:명)</label> 
+								<input class="form-control" type="number" id="maxGusests" name="zoneNor0" min="1" value="1" required>
+							</div>	
+													
 							<div class="mb-3 " style="width: 30%">
 								<label for="campAreaPrice" class="form-label">가격(:원)</label> 
-								<input class="form-control" type="number" id="campZonePrice" name="campZonePrice" min="0" value="0" required>
+								<input class="form-control" type="number" id="campZonePrice" name="campZonePrice0" min="0" value="0" required>
 							</div>
+							
 							<div class="mb-3">
 								<label for="campAreaImg" class="form-label">구역이미지</label>
-								 <input class="form-control" type="file" id="campZoneImg" name="campZoneImg" accept="image/*">
+								 <input class="form-control" type="file" id="campZoneImg" name="campZoneImg0" accept="image/*">
 							</div>
 							
 							 <button type="button" class="btn btn-danger btnRemove" disabled >※구역은 1개이상 입력해주세요</button> 
 							<br>
 							<br>
+							
+								
 
 						</div>
 					</div>
@@ -369,49 +380,68 @@
 
 					});
 </script>
-
 <script> 
-	var i = 0;
+    let i = 0;
     $(document).ready (function(){
+
         $('.btnAdd').click(function(){
-			++i;
+            console.log("add현재i:"+i);
+            console.log("+전"+i);
+            ++i;
+            console.log("+후"+i);
+            $('.btnRemove').on('click',function(){i--;console.log("-후"+i);})
+            // $('.addInput').append('<div name = zonNum>'+i+'</div>');
             $('.addInput').append(
-                '<hr>\
-				<div class="mb-3">\
-					<label for="campZoneName" class="form-label">구역이름</label> \
-					<input class="form-control" type="text" id="campZoneName" name=i placeholder="구역이름을 입력해주세요" required>\
-				</div>\
-				<div class="mb-3 " style="width: 30%">\
-					<label for="maxGusests" class="form-label">최대 숙박인원(:명)</label> \
-					<input class="form-control" type="number" id="maxGusests" name="maxGusests" min="1" value="1" required>\
-				</div>\
-				<div class="mb-3 " style="width: 30%">\
-					<label for="campAreaPrice" class="form-label">가격(:원)</label> \
-					<input class="form-control" type="number" id="campZonePrice" name="campZonePrice" min="0" value="0" required>\
-				</div>\
-				<div class="mb-3">\
-					<label for="campAreaImg" class="form-label">구역이미지</label>\
-					<input class="form-control" type="file" id="campZoneImg" name="campZoneImg" accept="image/*">\
-				</div>\
-				<button type="button" class="btn btn-danger btnRemove">삭제</button><br><br>'
+
+                '<input type="hidden" name = zonNum value='+i+'>'                
+                +'<hr>'
+                +'<div class="mb-3">'
+                    +'<label for=campZoneName'+i +' class="form-label">구역이름</label>'
+                    +'<input class="form-control" type="text" id=campZoneName'+i +' name=campZoneName'+i +' placeholder="구역이름을 입력해주세요" required>\
+                </div>\
+                <div class="mb-3 " style="width: 30%">\
+                    <label for=maxGusests'+i+' class="form-label">최대 숙박인원(:명)</label> \
+                    <input class="form-control" type="number" id=maxGusests'+i+' name=maxGusests'+i+' min="1" value="1" required>\
+                </div>\
+                <div class="mb-3 " style="width: 30%">\
+                    <label for=zoneNor'+i+' class="form-label">일별 예약가능수(:명)</label> \
+                    <input class="form-control" type="number" id=zoneNor'+i+' name=zoneNor'+i+' min="1" value="1" required>\
+                </div>\
+                <div class="mb-3 " style="width: 30%">\
+                    <label for=campZonePrice'+i+' class="form-label">가격(:원)</label> \
+                    <input class="form-control" type="number" id=campZonePrice'+i+' name=campZonePrice'+i+' min="0" value="0" required>\
+                </div>\
+                <div class="mb-3">\
+                    <label for=campZoneImg'+i+' class="form-label">구역이미지</label>\
+                    <input class="form-control" type="file" id=campZoneImg'+i+' name=campZoneImg'+i+' accept="image/*">\
+                </div>\
+                <button type="button" class="btn btn-danger btnRemove">삭제</button><br><br>'
                 );
+            
+            
             $('.btnRemove').on('click',function(){
+                console.log("rm현재i:"+i);
                 /* $(this).prev().remove(); */
-				--i;
-				$(this).prev().remove();
-				$(this).prev().remove();
-				$(this).prev().remove();
-				$(this).prev().remove();
-				$(this).prev().remove();
+                $(this).prev().remove();
+                $(this).prev().remove();
+                $(this).prev().remove();
+                $(this).prev().remove();
+                $(this).prev().remove();
+                $(this).prev().remove();
+                $(this).prev().remove();
+                
                 $(this).next().remove();
-				$(this).next().remove();
+                $(this).next().remove();
                 $(this).remove();//bt
 
-				// $(document.getElementsByClassName('addInput')).children().remove();
-				//campZoneName  maxGusests campZonePrice campZoneImg
-            })
-        })
+            })//삭제버튼클릭
+        })//추가버튼클릭
+
     })
+    
 </script>
+
+
+
 
 </html>
