@@ -272,5 +272,37 @@ public class MemberDao {
 		
 		return id;
 	}
+
+	public String findPwd(Connection conn, String id, String name, String phone) {
+
+		String sql = "SELECT PWD FROM MEMBER WHERE ID = ? AND NAME = ? AND PHONE = ? AND STATUS = 'Y'";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String pwd = null;
+		
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, name);
+			pstmt.setString(3, phone);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				pwd = rs.getString("PWD");
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return pwd;
+		
+	}
 	
 }

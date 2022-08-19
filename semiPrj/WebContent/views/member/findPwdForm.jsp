@@ -34,14 +34,14 @@
 
             <h3 class="mb-4">비밀번호 찾기</h3>
 
-            <form action="" method="post">
+            <form action="<%=contextPath%>/findPwd" method="post">
               <div class="mb-4 mt-4">
-                <label for="name" class="form-label">이름:</label>
-                <input type="text" class="form-control" id="name" placeholder="이름를 입력하세요." name="name">
+              	<label for="id" class="form-label">아이디:</label>
+                <input type="text" class="form-control" id="id" placeholder="아이디를 입력하세요." name="id">
               </div>
               <div class="mb-3">
-                <label for="id" class="form-label">아이디:</label>
-                <input type="text" class="form-control" id="text" placeholder="아이디를 입력하세요." name="phone">
+                <label for="name" class="form-label">이름:</label>
+                <input type="text" class="form-control" id="name" placeholder="이름를 입력하세요." name="name">
               </div>
               <div class="mb-3">
                 <label for="phone" class="form-label">핸드폰 번호:</label>
