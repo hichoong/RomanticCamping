@@ -10,6 +10,8 @@ import static com.kh.common.JDBCTemplate.*;
 
 import com.kh.common.PageVo;
 import com.kh.freeboard.attachment.vo.FreeBoardAttachmentVo;
+import com.kh.freeboard.vo.FreeBoardRepleVo;
+import com.kh.freeboard.vo.FreeBoardTradeRepleVo;
 import com.kh.freeboard.vo.FreeBoardTradeVo;
 
 public class FreeBoardTradeDao {
@@ -297,6 +299,52 @@ public class FreeBoardTradeDao {
 		
 		
 		return fbvo;
+	}
+	
+	
+	/*
+	 * 댓글 리스트 가져오기
+	 */
+	public List<FreeBoardTradeRepleVo> selectReple(Connection conn, String num) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<FreeBoardTradeRepleVo> fbrvoList = new ArrayList<FreeBoardTradeRepleVo>();
+		
+		try {
+			
+			String sql = "SELECT F.FBR_NO, F.FBR_CONTENT, M.NAME AS FBR_WRITER, F.FBR_ENROLL_DATE, F.FBR_STATUS FROM FB_REPLE F JOIN MEMBER M ON F.FBR_WRITER = M.NO WHERE F.FBR_REF_NO = ? AND F.FBR_STATUS ='N'";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			
+			rs = pstmt.executeQuery();
+			
+			//rs -> obj로 바꿔주는 작업 필요
+			if(rs.next()) {
+				
+				FreeBoardTradeRepleVo fbrvo = new FreeBoardTradeRepleVo();
+				
+				//vo객체에 담아주기
+				fbrvo = new FreeBoardTradeRepleVo();
+				
+				fbrvo.setNo(rs.getString("FR_NO"));
+				fbrvo.setContent(rs.getString("FR_CONTENT"));
+				fbrvo.setWriter(rs.getString("FR_WRITER"));
+				fbrvo.setEnrollDate(rs.getString("FR_ENROLL_DATE"));
+				
+				fbrvoList.add(fbrvo);
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		return fbrvoList;
 	}
 
 	

@@ -31,22 +31,25 @@ public class FreeBoardTradeInsertController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
-	
-		String title = req.getParameter("title");
-		String content = req.getParameter("content");
-		String price = req.getParameter("price");
 		
-		Part f = req.getPart("f");
+		String fbtWriterNo = req.getParameter("fbt-writerNo");
+		String title = req.getParameter("fbt-title");
+		String content = req.getParameter("fbt-content");
+		String price = req.getParameter("fbt-price");
+		
+		Part f = req.getPart("fbt-img");
 		
 		//데이터 뭉치기 
 		FreeBoardTradeVo fvo = new FreeBoardTradeVo();
-		fvo.setType("10");//10은 중고 20은 자유게시판
 		fvo.setTitle(title);
 		fvo.setContent(content);
 		fvo.setPrice(price);
+		fvo.setWriter(fbtWriterNo);
 		
-		MemberVo m = (MemberVo)req.getSession().getAttribute("loginMember");
-		fvo.setWriter(m.getNo());
+		/*
+		 * MemberVo m = (MemberVo)req.getSession().getAttribute("loginMember");
+		 * fvo.setWriter(m.getNo());
+		 */
 		
 		//0. 제출된 파일이 있는 경우에만 파일업로드 작업시작되도록 if 문!
 		FreeBoardAttachmentVo fbavo = null;
