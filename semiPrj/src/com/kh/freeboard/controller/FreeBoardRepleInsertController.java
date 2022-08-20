@@ -32,6 +32,15 @@ public class FreeBoardRepleInsertController extends HttpServlet{
 		int result = new FreeBoardService().insertRepleBoard(vo);
 		
 		
+		//다음 타자 선택
+		if(result == 1) {
+			resp.sendRedirect(req.getContextPath()+"/freeBoard/detail?num="+no);
+		} else {
+			req.setAttribute("errorMsg", "중고거래 게시글 상세 조회 실패!");
+			req.getRequestDispatcher("/views/error/errorPage.jsp").forward(req, resp);
+		}
+		
+		
 	}
 	
 	

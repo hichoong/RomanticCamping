@@ -201,6 +201,7 @@ public class FreeBoardTradeService {
 		
 		int result  = dao.insertRepleTradeBoard(conn, vo);
 		
+		
 		if(result ==1 ) {
 			commit(conn);
 		}else {

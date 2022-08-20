@@ -309,7 +309,7 @@ public class FreeBoardTradeDao {
 		
 		try {
 			
-			String sql = "SELECT FBR_NO, FBR_REF_NO, FBR_WRITER, FBR_CONTENT, FBR_ENROLL_DATE FROM FB_REPLE, FREEBOARD_TRADE WHERE ? = FREEBOARD_TRADE.FB_NO";
+			String sql = "SELECT FBR_NO, FBR_REF_NO, FBR_WRITER, FBR_CONTENT, FBR_ENROLL_DATE FROM FB_REPLE WHERE ? = FBR_REF_NO ORDER BY FBR_NO";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, num);
@@ -317,7 +317,7 @@ public class FreeBoardTradeDao {
 			rs = pstmt.executeQuery();
 			
 			//rs -> obj로 바꿔주는 작업 필요
-			if(rs.next()) {
+			while(rs.next()) {
 				
 				FreeBoardTradeRepleVo fbrvo = new FreeBoardTradeRepleVo();
 				

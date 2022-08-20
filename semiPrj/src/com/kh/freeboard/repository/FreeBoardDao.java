@@ -274,7 +274,7 @@ public class FreeBoardDao {
 		
 		try {
 			
-			String sql = "SELECT FR_NO, FR_REF_NO, FR_WRITER, FR_CONTENT, FR_ENROLL_DATE FROM F_REPLE, FREEBOARD WHERE ? = FREEBOARD.F_NO";
+			String sql = "SELECT FR_NO, FR_REF_NO, FR_WRITER, FR_CONTENT, FR_ENROLL_DATE FROM F_REPLE WHERE ? = FR_REF_NO ORDER BY FR_NO";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, num);
@@ -282,7 +282,7 @@ public class FreeBoardDao {
 			rs = pstmt.executeQuery();
 			
 			//rs -> obj로 바꿔주는 작업 필요
-			if(rs.next()) {
+			while(rs.next()) {
 				
 				FreeBoardRepleVo frvo = new FreeBoardRepleVo();
 				

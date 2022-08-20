@@ -107,20 +107,29 @@ public class FreeBoardTradeInsertController extends HttpServlet{
 		//Board 테이블 채우기 ( 보더테이블 먼저 insert )
 		int result = new FreeBoardTradeService().insertBoard(fvo, fbavo);
 		
-		
+		//결과 = 서비스 호출
+				if(result == 1) {
+					resp.sendRedirect(req.getContextPath()+"/freeBoard/page?p1=1&p2=1");
+				} else {
+					req.setAttribute("errorMsg", "중고거래 게시글 상세 조회 실패!");
+					req.getRequestDispatcher("/views/error/errorPage.jsp").forward(req, resp);
+				}
 		//결과에 따라 다음타자 선택 작업
 		if(result == 1) {
 			//성공 -> 일반게시판 목록 1페이지 + 알람띄우기 
-			
+			resp.sendRedirect(req.getContextPath()+"/freeBoard/page?p1=1&p2=1");
 		}else {
 			//실패 -> 에러페이지 + 알람띄우기
 			//실패한게 db인서트 실패한것이다. 
 			//파일업로드는 이미 이루어졌음 -> 파일 삭제해주어야 한다.
-			
-			
+			req.setAttribute("errorMsg", "중고거래 게시글 상세 조회 실패!");
+			req.getRequestDispatcher("/views/error/errorPage.jsp").forward(req, resp);
+
 			if(fbavo != null) { //첨부파일이 있음 : 업로드 이미 되어있을 수 있음
 				new File(savePath).delete();
 			}
+			
+			
 		}
 		
 		

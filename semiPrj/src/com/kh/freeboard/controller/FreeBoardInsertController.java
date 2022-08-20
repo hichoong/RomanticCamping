@@ -36,8 +36,17 @@ public class FreeBoardInsertController extends HttpServlet{
 		vo.setTitle(title);
 		vo.setContent(content);
 		
-		//결과 = 서비스 호출
 		int result = new FreeBoardService().insertBoard(vo);
+		
+		//결과 = 서비스 호출
+		if(result == 1) {
+			resp.sendRedirect(req.getContextPath()+"/freeBoard/page?p1=1&p2=1");
+		} else {
+			req.setAttribute("errorMsg", "중고거래 게시글 상세 조회 실패!");
+			req.getRequestDispatcher("/views/error/errorPage.jsp").forward(req, resp);
+		}
+		
+		
 		
 	}
 	

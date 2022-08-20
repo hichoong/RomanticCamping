@@ -221,7 +221,14 @@
 					</textarea>
 					<p class="fb2-story-date">작성시간 : <%= fbvo.getEnrollDate() %></p>
 					<p class="fb2-story-date">조회 수 : <%= fbvo.getCnt() %></p>
-					<p class="fb2-story-date">등등</p>
+					
+					
+					
+					<!-- 로그인한 사람과 현재 보는 글 보는 사람이 같으면 수정 / 삭제 버튼 보이도록 해주기  -->
+					<%-- <%if( loginMember != null && fvo.getWriter().equals(loginMember.getName()) ){ %> --%>
+						<a href="<%= contextPath %>/freeBoard/trade/edit?num=<%=fbvo.getNo()%>"  class="btn btn-warning">수정하기</a>
+						<a href="<%= contextPath %>/freeBoard/trade/delete?num=<%=fbvo.getNo()%>"  class="btn btn-warning">삭제하기</a>
+					<%-- <%} %> --%>
 			
 			
 
@@ -243,8 +250,6 @@
 			</div>
 	
 	
-			
-	
 			<%for( FreeBoardTradeRepleVo fbr : fbrvoList ) {%>			
 				<div class="select-reple">
 	
@@ -254,7 +259,7 @@
 	
 				</div>
 			<%} %>
-			
+
 			
 		</div>
 		
@@ -268,7 +273,7 @@
 			<form action="<%=contextPath%>/freeBoard/trade/reple/insert" method="post">
 				<div class="mb-3 mt-3">
 						<input type="hidden" name="num" value="<%= fbvo.getNo() %>" >
-							<input type="hidden" name="loginName" value="1<%-- <%=loginMember.getName()%> --%>">
+							<input type="hidden" name="loginName" value="admin<%-- <%=loginMember.getName()%> --%>">
 						<label for="comment">Comments:</label>
 						<textarea class="form-control" rows="5" id="comment" name="content"></textarea>
 				</div>

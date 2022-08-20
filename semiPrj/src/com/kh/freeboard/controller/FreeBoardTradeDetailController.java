@@ -37,7 +37,6 @@ public class FreeBoardTradeDetailController extends HttpServlet{
 			//디비에 가서, 특정 게시글 댓글 정보 조회
 			List<FreeBoardTradeRepleVo> fbrvoList = new FreeBoardTradeService().selectReple(num);
 			
-			
 			//정보를 req에 담아서, 다음타자한테 포워딩
 			if(fbvo != null) {
 				//성공하면 다음타자에게 포워딩
