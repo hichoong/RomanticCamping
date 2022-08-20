@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static com.kh.common.JDBCTemplate.*;
+
+import com.kh.camplist.campinfo.vo.CampInfoVo;
 import com.kh.review.vo.ReviewVo;
 
 public class ReviewDao {
@@ -122,6 +124,46 @@ public class ReviewDao {
 			close(pstmt);
 		}
 		return result;
+	}
+
+	public CampInfoVo selectCamp(Connection conn, String campCode) {
+		
+//		String sql = "SELECT R_NO, RE_NO, R_DATE, R_CONTENT, R_NUM, R_STATUS FROM REVIEW WHERE R_NO = ? AND R_STATUS = 'Y'";
+//		
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		ReviewVo vo = null;
+//	
+//		try {
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, num);
+//			
+//			rs = pstmt.executeQuery();
+//			
+//			if(rs.next()) {
+//				String rNo = rs.getString("R_NO");
+//				String reNo = rs.getString("RE_NO");
+//				String rDate = rs.getString("R_DATE");
+//				String content = rs.getString("R_CONTENT");
+//				String starScore = rs.getString("R_NUM");
+//				String status = rs.getString("R_STATUS");
+//				
+//				vo = new ReviewVo();
+//				vo.setReviewNo(rNo);
+//				vo.setReservationNo(reNo);
+//				vo.setEnrollDate(rDate);
+//				vo.setReviewContent(content);
+//				vo.setStarScore(starScore);
+//				vo.setReviewStatus(status);
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(rs);
+//			close(pstmt);
+//		}
+		
+		return null;
 	}
 		
 }

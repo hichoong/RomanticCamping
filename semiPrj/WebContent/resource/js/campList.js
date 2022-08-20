@@ -26,7 +26,7 @@ $('document').ready(function() {
     $.each(eval(area0), function() {
     $selsido.append("<option value='"+this+"'>"+this+"</option>");
     });
-    $selsido.next().append("<option value=''>구/군 선택</option>");
+    $selsido.next().append("<option value=''>구/군 선택</option>");	
   });
 
   // 시/도 선택시 구/군 설정
@@ -42,7 +42,24 @@ $('document').ready(function() {
       $gugun.append("<option value='"+this+"'>"+this+"</option>");
     });
     }
+    
+    
+    let gugunChecked = $gugun.attr("gugunChecked");
+    if(gugunChecked != ""){
+		$gugun.val(gugunChecked).prop("selected", true);
+		//검색 선택값 자동 세팅이 끝났다면 
+		//이후 선택되는 선택값에 영향을 주지 않도록 해당 값을 초기화 해주어야합니다.
+		$(this).attr("sidoChecked", "");
+		$gugun.attr("gugunChecked", "");
+	}
   });
+
+  let sidoChecked = $("select[name^=sido]").attr('sidoChecked');
+  if(sidoChecked != ""){
+    $("select[name^=sido]").val(sidoChecked).prop("selected", true);
+    $("select[name^=sido]").trigger('change');
+  }
+
 
   //해시태그 리스트 show/hide
   $(function(){

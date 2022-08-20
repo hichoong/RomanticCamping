@@ -42,50 +42,6 @@ public class CampListDao {
 		return count;
 	}
 
-	//현재 페이지에 보여질 캠핑장 리스트 조회
-	public List<CampInfoVo> selectList(Connection conn, PageVo pageVo ) {
-
-		String sql = "SELECT * FROM ( SELECT ROWNUM AS RNUM, CI.* FROM (SELECT C.CAMP_CODE, C.CAMP_NAME, C.CAMP_INTRO, C.CAMP_IMGPATH FROM CAMP_INFO C WHERE C.CAMP_STATUS = 'Y') CI ) WHERE RNUM BETWEEN ? AND ?";
-		
-		PreparedStatement pstmt = null;
-		List<CampInfoVo> list = new ArrayList<CampInfoVo>();
-		ResultSet rs = null;
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			int start = (pageVo.getCurrentPage()-1) * pageVo.getListLimit() + 1;
-			int end = start + pageVo.getListLimit() - 1;
-			
-			pstmt.setInt(1, start);
-			pstmt.setInt(2, end);
-			
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				
-				String campCode = rs.getString("CAMP_CODE");
-				String campName = rs.getString("CAMP_NAME");
-				String campIntro = rs.getString("CAMP_INTRO");
-				String campImgpath = rs.getString("CAMP_IMGPATH");
-				
-				CampInfoVo vo = new CampInfoVo();
-				vo.setCampCode(campCode);
-				vo.setCampName(campName);
-				vo.setCampIntro(campIntro);
-				vo.setCampImgpath(campImgpath);
-				
-				list.add(vo);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
-		
-		return list;
-	}
-
 	//테마 리스트 조회
 	public List<ThemeVo> selectTheme(Connection conn) {
 		
@@ -143,11 +99,11 @@ public class CampListDao {
 	}
 
 	//검색 결과 리스트 조회
-	public List<CampInfoVo> searchList(Connection conn, List<String> keywordList, String sido1, String gugun1, String theme,
+	public List<CampInfoVo> searchList(PageVo pageVo, Connection conn, List<String> keywordList, String sido1, String gugun1, String theme,
 			List<String> checkedHashCodes) {
 
 		//검색 쿼리
-		String sql = "SELECT * FROM CAMP_INFO WHERE 1=1";
+		String sql = "SELECT * FROM ( SELECT ROWNUM AS RNUM, CI.* FROM ((SELECT * FROM CAMP_INFO WHERE CAMP_STATUS = 'Y'";
 		
 		if(keywordList != null) {
 			for(int i=0; i<keywordList.size(); i++) {
@@ -169,16 +125,20 @@ public class CampListDao {
 			}
 		}
 		
-		System.out.println(sql);
+		sql += ")) CI ) WHERE RNUM BETWEEN ? AND ?";
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<CampInfoVo> list = new ArrayList<CampInfoVo>();
 		
-		System.out.println("디에이오1 잘 됨");
-		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			
+			int start = (pageVo.getCurrentPage()-1) * pageVo.getListLimit() + 1;
+			int end = start + pageVo.getListLimit() - 1;
+			
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
