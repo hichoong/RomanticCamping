@@ -5,7 +5,11 @@ import static com.kh.common.JDBCTemplate.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.kh.camplist.campinfo.vo.CampInfoVo;
 import com.kh.member.vo.MemberVo;
 
 public class MemberDao {
@@ -303,6 +307,43 @@ public class MemberDao {
 		
 		return pwd;
 		
+	}
+
+	public List<CampInfoVo> getFavorite(Connection conn, String no) {
+		
+		String sql = "SELECT C.CAMP_CODE, C.CAMP_NAME, C.CAMP_PHONE, C.CAMP_ADDRESS, C.CAMP_INTRO, C.CAMP_IMGPATH FROM CAMP_INFO C JOIN FAVORITE F ON C.CAMP_CODE = F.CAMP_CODE WHERE USER_NO = ?";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<CampInfoVo> list = new ArrayList<CampInfoVo>();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, no);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				CampInfoVo vo = new CampInfoVo();
+				
+				vo.setCampCode(rs.getString("CAMP_CODE"));
+				vo.setCampName(rs.getString("CAMP_NAME"));
+				vo.setCampPhone(rs.getString("CAMP_PHONE"));
+				vo.setCampAddress(rs.getString("CAMP_ADDRESS"));
+				vo.setCampIntro(rs.getString("CAMP_INTRO"));
+				vo.setCampImgpath(rs.getString("CAMP_IMGPATH"));
+				
+				list.add(vo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return list;
 	}
 	
 }
