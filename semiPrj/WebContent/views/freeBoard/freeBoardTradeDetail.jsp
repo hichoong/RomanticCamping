@@ -43,7 +43,7 @@
 
 
 	#fb_section{
-        height: 25%;
+        height: auto;
         margin: 0 auto;
 		padding: 0px;
         border: 1px solid red;
@@ -115,11 +115,7 @@
 
 
 	/*  */
-	.fb2-1-story-outer{
-		position: relative;
-		overflow: hidden;
-		border: 1px solid red;
-	}
+
 		
 	.fb2-story-date{
 		font-size: 2rem;
@@ -129,8 +125,9 @@
 		border: 1px solid red;
 	}
 
-	.fb2-story-content{
-		height: 50%;
+	#fb2-story-content{
+		font-size :1.5rem;
+		height: auto;
 		width: 100%;
 	}
 
@@ -219,8 +216,8 @@
 		<div id="fb_section" class="container">
 
 
-					<p style="font-size: 3rem;">글제목 보여주는 곳 <%= fbvo.getTitle() %></p>
-					<textarea style="font-size: 2rem;" class="fb2-story-content" name="" id="" ><%= fbvo.getContent() %>글 내용 보여주는 곳 durldp이렇게 엔터키를 치면 어캐보이는지? 
+					<p style="font-size: 3rem;">제목 : <%= fbvo.getTitle() %></p>
+					<textarea cols="50" rows="15" name="" id="fb2-story-content" >내용 :<%= fbvo.getContent() %> 
 					</textarea>
 					<p class="fb2-story-date">작성시간 : <%= fbvo.getEnrollDate() %></p>
 					<p class="fb2-story-date">조회 수 : <%= fbvo.getCnt() %></p>
@@ -258,14 +255,26 @@
 				</div>
 			<%} %>
 			
-			<!-- 선추가 -->
-			<div class="fbt-top-line"></div>
-			<!-- 내가 댓글작성하기 -->
-			<div id="fb_my_reple" class="select-reple"><p>내가 댓글작성하는 공간</p></div>
 			
 		</div>
-
-
+		
+		
+		<!-- 선추가 -->
+		<div class="fbt-top-line"></div>
+		<!-- 내가 댓글작성하기 -->
+		<div class="container mt-3">
+			<h2>댓글 작성하기</h2>
+			<p>로그인안햇으면 오류남 - 있을때 없을때 구분해야할 듯 밑에 HIDDEN 벨류도 조절 필요<%-- <%=loginMember.getName() %> --%> </p>
+			<form action="<%=contextPath%>/freeBoard/trade/reple/insert" method="post">
+				<div class="mb-3 mt-3">
+						<input type="hidden" name="num" value="<%= fbvo.getNo() %>" >
+							<input type="hidden" name="loginName" value="1<%-- <%=loginMember.getName()%> --%>">
+						<label for="comment">Comments:</label>
+						<textarea class="form-control" rows="5" id="comment" name="content"></textarea>
+				</div>
+			<button type="submit" class="btn btn-primary">댓글등록하기</button>
+			</form>
+	</div>
 
 
 		

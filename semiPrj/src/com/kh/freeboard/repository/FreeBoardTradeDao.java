@@ -301,13 +301,15 @@ public class FreeBoardTradeDao {
 	 * 댓글 리스트 가져오기
 	 */
 	public List<FreeBoardTradeRepleVo> selectReple(Connection conn, String num) {
+		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<FreeBoardTradeRepleVo> fbrvoList = new ArrayList<FreeBoardTradeRepleVo>();
 		
+		
 		try {
 			
-			String sql = "SELECT F.FBR_NO, F.FBR_CONTENT, M.NAME AS FBR_WRITER, F.FBR_ENROLL_DATE, F.FBR_STATUS FROM FB_REPLE F JOIN MEMBER M ON F.FBR_WRITER = M.NO WHERE F.FBR_REF_NO = ? AND F.FBR_STATUS ='N'";
+			String sql = "SELECT FBR_NO, FBR_REF_NO, FBR_WRITER, FBR_CONTENT, FBR_ENROLL_DATE FROM FB_REPLE, FREEBOARD_TRADE WHERE ? = FREEBOARD_TRADE.FB_NO";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, num);
@@ -320,12 +322,10 @@ public class FreeBoardTradeDao {
 				FreeBoardTradeRepleVo fbrvo = new FreeBoardTradeRepleVo();
 				
 				//vo객체에 담아주기
-				fbrvo = new FreeBoardTradeRepleVo();
-				
-				fbrvo.setNo(rs.getString("FR_NO"));
-				fbrvo.setContent(rs.getString("FR_CONTENT"));
-				fbrvo.setWriter(rs.getString("FR_WRITER"));
-				fbrvo.setEnrollDate(rs.getString("FR_ENROLL_DATE"));
+				fbrvo.setNo(rs.getString("FBR_NO"));
+				fbrvo.setWriter(rs.getString("FBR_WRITER"));
+				fbrvo.setContent(rs.getString("FBR_CONTENT"));
+				fbrvo.setEnrollDate(rs.getString("FBR_ENROLL_DATE"));
 				
 				fbrvoList.add(fbrvo);
 			}
@@ -341,6 +341,36 @@ public class FreeBoardTradeDao {
 		
 		return fbrvoList;
 	}
+	
+	/*
+	 * 댓글 입력 작업
+	 */
+	public int insertRepleTradeBoard(Connection conn, FreeBoardTradeRepleVo vo) {
+
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			
+			String sql = "INSERT INTO FB_REPLE ( FBR_NO, FBR_REF_NO, FBR_WRITER, FBR_CONTENT ) VALUES ( SEQ_FB_REPLE_NO.NEXTVAL, ?, ?, ? )";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getNo());
+			pstmt.setString(2, vo.getWriter());
+			pstmt.setString(3, vo.getContent());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	
+	
+	}
 
 	
-}
+}//class

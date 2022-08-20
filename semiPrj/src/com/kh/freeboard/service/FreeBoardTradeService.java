@@ -191,6 +191,28 @@ public class FreeBoardTradeService {
 		//실행 결과 리턴
 		return fbrvoList;
 	}
+	
+	/*
+	 * 댓글 입력작업
+	 */
+	public int insertRepleTradeBoard(FreeBoardTradeRepleVo vo) {
+
+		Connection conn = getConnection();
+		
+		int result  = dao.insertRepleTradeBoard(conn, vo);
+		
+		if(result ==1 ) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+			
+		close(conn);
+		
+		//결과 리턴 
+		return result;
+		
+	}
 
 	
 	

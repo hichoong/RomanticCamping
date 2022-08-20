@@ -274,7 +274,7 @@ public class FreeBoardDao {
 		
 		try {
 			
-			String sql = "SELECT F.FR_NO, F.FR_CONTENT, M.NAME AS FR_WRITER, F.FR_ENROLL_DATE, F.FR_STATUS FROM F_REPLE F JOIN MEMBER M ON F.FR_WRITER = M.NO WHERE F.FR_REF_NO = ? AND F.FR_STATUS ='N'";
+			String sql = "SELECT FR_NO, FR_REF_NO, FR_WRITER, FR_CONTENT, FR_ENROLL_DATE FROM F_REPLE, FREEBOARD WHERE ? = FREEBOARD.F_NO";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, num);
@@ -287,11 +287,9 @@ public class FreeBoardDao {
 				FreeBoardRepleVo frvo = new FreeBoardRepleVo();
 				
 				//vo객체에 담아주기
-				frvo = new FreeBoardRepleVo();
-				
 				frvo.setNo(rs.getString("FR_NO"));
-				frvo.setContent(rs.getString("FR_CONTENT"));
 				frvo.setWriter(rs.getString("FR_WRITER"));
+				frvo.setContent(rs.getString("FR_CONTENT"));
 				frvo.setEnrollDate(rs.getString("FR_ENROLL_DATE"));
 				
 				frvoList.add(frvo);
@@ -308,6 +306,33 @@ public class FreeBoardDao {
 		
 		return frvoList;
 	
+	}
+
+	/*
+	 * 댓글 insert 작업 
+	 */
+	public int insertRepleBoard(Connection conn, FreeBoardRepleVo vo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			
+			String sql = "INSERT INTO F_REPLE ( FR_NO, FR_REF_NO, FR_WRITER, FR_CONTENT ) VALUES ( SEQ_F_REPLE_NO.NEXTVAL, ?, ?, ? )";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getNo());
+			pstmt.setString(2, vo.getWriter());
+			pstmt.setString(3, vo.getContent());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 }
