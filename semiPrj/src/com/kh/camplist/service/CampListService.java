@@ -25,14 +25,6 @@ public class CampListService {
 		return result;
 	}
 
-	//현재 페이지에 보여질 캠핑장 리스트 조회
-	public List<CampInfoVo> selectList(PageVo pageVo) {
-		Connection conn = getConnection();
-		List<CampInfoVo> voList = dao.selectList(conn, pageVo);
-		close(conn);
-		return voList;
-	}
-	
 	//테마 리스트 조회
 	public List<ThemeVo> selectTheme() {
 		Connection conn = getConnection();
@@ -50,9 +42,8 @@ public class CampListService {
 	}
 
 	//검색 결과 리스트 조회
-	public List<CampInfoVo> searchList(String keyword, String sido1, String gugun1, String theme,
+	public List<CampInfoVo> searchList(PageVo pageVo, String keyword, String sido1, String gugun1, String theme,
 			List<String> checkedHashCodes) {
-
 		
 		List<String> keywordList = null;
 		if(!keyword.equals("") && keyword.contains(" ")) {
@@ -66,9 +57,8 @@ public class CampListService {
 		}
 		
 		Connection conn = getConnection();
-		List<CampInfoVo> list = dao.searchList(conn, keywordList, sido1, gugun1, theme, checkedHashCodes);
+		List<CampInfoVo> list = dao.searchList(pageVo, conn, keywordList, sido1, gugun1, theme, checkedHashCodes);
 		close(conn);
-		System.out.println("서비스 잘 됨");
 		return list;
 	}
 

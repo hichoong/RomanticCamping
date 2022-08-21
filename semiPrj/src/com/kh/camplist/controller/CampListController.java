@@ -56,48 +56,59 @@ public class CampListController extends HttpServlet {
 		pageVo.setPageLimit(pageLimit);
 		pageVo.setStartPage(startPage);
 		
-		List<CampInfoVo> campInfoVoList = new CampListService().selectList(pageVo);
-		
-		req.setAttribute("pv", pageVo);
-		req.setAttribute("campInfoList", campInfoVoList);
-		
-		
-		
-		
 		//테마 리스트 조회
 		List<ThemeVo> themeList = new CampListService().selectTheme();
-		req.setAttribute("themeList", themeList);
-		
 		
 		//해시태그 리스트 조회
 		List<HashTagVo> hashTagList = new CampListService().selectHashTag(); 
-		req.setAttribute("hashTagList", hashTagList);
 		
-
 		//검색
-		
 		String keyword = (req.getParameter("keyword") == null) ? "" : req.getParameter("keyword");
-		String sido1 = (req.getParameter("sido1").equals("시/도 선택")) ? "" : req.getParameter("sido1");
-		String gugun1 = (req.getParameter("gugun1").equals("구/군 선택")) ? "" : req.getParameter("gugun1");
+		String sido1 = req.getParameter("sido1");
+		String gugun1 = req.getParameter("gugun1");
 		String theme = (req.getParameter("theme") == null) ? "" : req.getParameter("theme");
-		
+		String[] hashTag = req.getParameterValues("hashTag"); //입력값 없을 시 null 이었던것 같아
+
+		if(sido1 == null || sido1.equals("시/도 선택")) {
+			sido1 = "";
+		}
+		if(gugun1 == null || gugun1.equals("구/군 선택")) {
+			gugun1 = "";
+		}
 		//해시태그 검색값
-		String[] hashTag = req.getParameterValues("hashTag");
 		List<String> checkedHashCodes = null;
 		if(hashTag != null) {
 			checkedHashCodes = Arrays.asList(hashTag);
-//					for(String pk : checkedHashCodes) {
-//						System.out.println("입력값 => " + pk);
-//					}
+					for(String pk : checkedHashCodes) {
+						System.out.println("입력값 => " + pk);
+					}
 		} else {
 			checkedHashCodes = new ArrayList<String>();
 		}
 		
-		List<CampInfoVo> searchList = new CampListService().searchList(keyword, sido1, gugun1, theme, checkedHashCodes);
-		System.out.println("컨트롤러 잘 됨");
+		List<CampInfoVo> searchList = new CampListService().searchList(pageVo, keyword, sido1, gugun1, theme, checkedHashCodes);
 		
 		
-		req.setAttribute("hashTagCodeList", checkedHashCodes);
+		
+		
+		
+		
+		req.setAttribute("pv", pageVo);
+		req.setAttribute("themeList", themeList);
+		req.setAttribute("hashTagList", hashTagList);
+		
+		
+		List<String> tetst = new ArrayList<>();
+		//얘가 선택되어있니?
+		tetst.contains(new HashTagVo().getHtCode());
+		
+		req.setAttribute("keyword", keyword);
+		req.setAttribute("sido1", sido1);
+		req.setAttribute("gugun1", gugun1);
+		req.setAttribute("theme", theme);
+		req.setAttribute("checkedHashCodes", checkedHashCodes);
+		
+		
 		req.setAttribute("searchList", searchList);
 		req.getRequestDispatcher("/views/camp/campList.jsp").forward(req, resp);
 		

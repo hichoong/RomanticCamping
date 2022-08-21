@@ -3,6 +3,8 @@ package com.kh.review.service;
 import java.sql.Connection;
 
 import static com.kh.common.JDBCTemplate.*;
+
+import com.kh.camplist.campinfo.vo.CampInfoVo;
 import com.kh.review.repository.ReviewDao;
 import com.kh.review.vo.ReviewVo;
 
@@ -76,6 +78,13 @@ public class ReviewService {
 		close(conn);
 		
 		return result;
+	}
+
+	public CampInfoVo selectCamp(String campCode) {
+		Connection conn = getConnection();
+		CampInfoVo vo = new ReviewDao().selectCamp(conn, campCode);
+		close(conn);
+		return vo;
 	}
 	
 	
