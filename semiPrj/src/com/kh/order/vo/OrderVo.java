@@ -2,13 +2,13 @@ package com.kh.order.vo;
 
 public class OrderVo {
 	//결제정보 객체에 넣을 컬럼
-	private String payCode; 
-	private String reservationNo;
-	private String payDate;
-	private String payAmount;
-	private String payStatus;
-	private String payMethod;
-	private String couponCode;
+	private String payCode; //결제번호
+	private String reservationNo; //예약번호
+	private String payDate; //결제일자
+	private String payAmount; //총 금액
+	private String payStatus; //결제상태
+	private String payMethod; //결제방법
+	private String couponCode; //쿠폰코드
 	//기본생성자
 	public OrderVo() {
 	
