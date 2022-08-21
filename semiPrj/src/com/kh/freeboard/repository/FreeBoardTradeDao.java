@@ -309,7 +309,7 @@ public class FreeBoardTradeDao {
 		
 		try {
 			
-			String sql = "SELECT FBR_NO, FBR_REF_NO, FBR_WRITER, FBR_CONTENT, FBR_ENROLL_DATE FROM FB_REPLE WHERE ? = FBR_REF_NO ORDER BY FBR_NO";
+			String sql = "SELECT FBR_NO, FBR_REF_NO, FBR_WRITER, FBR_CONTENT, FBR_ENROLL_DATE FROM FB_REPLE WHERE ? = FBR_REF_NO AND FBR_STATUS='N' ORDER BY FBR_NO";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, num);
@@ -370,6 +370,87 @@ public class FreeBoardTradeDao {
 		return result;
 	
 	
+	}
+	/*
+	 * 게시글 수정하기 작업
+	 */
+	public int editFreeBoardTrade(Connection conn, FreeBoardTradeVo fbvo) {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		//SQL 준비
+		String sql = "UPDATE FREEBOARD_TRADE SET FB_TITLE=?, FB_CONTENT=? WHERE FB_NO = ?";
+		
+		try {
+			
+			//SQL 객체에 담기 && SQL 완성
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fbvo.getTitle());
+			pstmt.setString(2, fbvo.getContent());
+			pstmt.setString(3, fbvo.getNo());
+			
+			//SQL실행 및 결과 저장
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		//실행결과 리턴
+		return result;
+	}
+	
+	/*
+	 * 중고거래 게시글 삭제하기
+	 */
+	public int deleteBoardTrade(Connection conn, String num) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			String sql = "UPDATE FREEBOARD_TRADE SET FB_STATUS = 'Y' WHERE FB_NO = ? ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+		
+	}
+	/*
+	 * 댓글삭제
+	 */
+	public int deleteRepleBoardTrade(Connection conn, String num) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			String sql = "UPDATE FB_REPLE SET FBR_STATUS='Y' WHERE FBR_NO=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 	
