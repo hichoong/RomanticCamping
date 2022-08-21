@@ -1,6 +1,8 @@
 package com.kh.order.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.coupon.service.CouponService;
+import com.kh.coupon.vo.CouponVo;
+import com.kh.member.vo.MemberVo;
 import com.kh.order.service.OrderService;
 import com.kh.order.vo.OrderVo;
 import com.kh.order.vo.ReservationVo;
@@ -21,13 +26,27 @@ public class OrderController extends HttpServlet {
 		 * 요청자가 선택한 것
 		 * 캠핑장
 		 * 금액
-		 * 예약일
+		 * 예약일(체크인 체크아웃 날짜)
 		 * 쿠폰 조회할 수 있는 객체가 필요 (회원정보를 통해서 ) 
+		 * 
 		 */
 		
+		MemberVo loginMember = (MemberVo)req.getSession().getAttribute("loginMember");
+		
+		//유저쿠폰을 조회할 객체 생성하기
+		List<CouponVo> couponList = new ArrayList<CouponVo>();
+		couponList = new CouponService().selectCouponList(loginMember);
+		
+		req.setAttribute("캠핑장이름", couponList);
+		req.setAttribute("캠핑장숙박인원", couponList);
+		req.setAttribute("캠핑장금액", couponList);
+		req.setAttribute("체크인", resp);
+		req.setAttribute("체크아웃", resp);
+		req.setAttribute("couponList", couponList); //유저쿠폰리스트
 		
 		req.getRequestDispatcher("/views/order/oderForm.jsp").forward(req, resp);
 	}
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -41,27 +60,37 @@ public class OrderController extends HttpServlet {
 		 * 
 		 */
 		
+		MemberVo loginMember = (MemberVo)req.getSession().getAttribute("loginMember");
 		
-		String loginMember = req.getParameter("loginMember"); 
-		String userName = req.getParameter("username");
-		String address = req.getParameter("address");
+		
+		String reservationName = req.getParameter("reservationName"); //예약자 명
+		String address = req.getParameter("address"); // 전화번호
 		String requestion = req.getParameter("requestion");
-		String paymentMethod = req.getParameter("paymentMethod");
+		String payMethod = req.getParameter("payMethod");
 		String couponName = req.getParameter("couponName");
 		String totalCost = req.getParameter("totalCost");
-		String reservaionNop = req.getParameter("reservaionNop");
+		String reservaionNop = req.getParameter("reservaionNop"); 
+		String userNo = loginMember.getNo(); //로그인 유저 번호
 		
 		//결제테이블에 들어갈 값 
 		OrderVo orderVo = new OrderVo();
 		orderVo.setCouponCode(couponName);
-		orderVo.setPayAmount(couponName);
 		orderVo.setPayAmount(totalCost);
+		orderVo.setPayMethod(payMethod);
+		orderVo.setCouponCode(couponName);
+		
+		
 		
 		//예약테이블에 들어갈 값 
 		ReservationVo reservationVo = new ReservationVo();
-		reservationVo.setRequest(requestion);
+		reservationVo.setRequest(requestion); //요청사항
+		reservationVo.setReservationName(reservationName); //예약자 명
+		reservationVo.setReservationPhone(address); //전화번호
+		reservationVo.setReservationNop(reservaionNop); //숙박인원
+		reservationVo.setReservationCheckin(reservationName); //체크인
+		reservationVo.setReservationCheckout(reservationName); //체크아웃
 		
-		reservationVo.setReservationNop(totalCost);
+		reservationVo.setReservationNop(totalCost); //총 금액
 		
 		
 		/*
@@ -69,11 +98,21 @@ public class OrderController extends HttpServlet {
 		 */
 		int paymentResult = new OrderService().insertPayment(orderVo);
 		int reservationResult = new OrderService().insertReservation(reservationVo);
+		
+		
 		/*
 		 * 결과에 따른 화면 출력
 		 * 성공 시, orderSuccess.jsp로 이동
 		 * 이동 시, 결제 데이터를 가지고서 이동...?
 		 */
 		
+		
+		// 두 작업이 모두 성공적으로 이루어 질 시
+		if(paymentResult == 1 && reservationResult == 1) {
+			req.setAttribute("orderVo", orderVo);
+			req.setAttribute("reservationVo", reservationVo);
+			req.setAttribute("alertMsg", "결제 성공");
+			req.getRequestDispatcher("/views/order/orderSuccess.jsp").forward(req, resp);
+		} 
 	}
 }
