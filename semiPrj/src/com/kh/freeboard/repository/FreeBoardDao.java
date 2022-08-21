@@ -274,7 +274,7 @@ public class FreeBoardDao {
 		
 		try {
 			
-			String sql = "SELECT FR_NO, FR_REF_NO, FR_WRITER, FR_CONTENT, FR_ENROLL_DATE FROM F_REPLE WHERE ? = FR_REF_NO ORDER BY FR_NO";
+			String sql = "SELECT FR_NO, FR_REF_NO, FR_WRITER, FR_CONTENT, FR_ENROLL_DATE FROM F_REPLE WHERE ? = FR_REF_NO AND FR_STATUS='N' ORDER BY FR_NO";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, num);
@@ -333,6 +333,91 @@ public class FreeBoardDao {
 		}
 		
 		return result;
+	}
+
+	/*
+	 * 게시글 수정 ( update )
+	 */
+	public int editFreeBoard(Connection conn, FreeBoardVo fvo) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		//SQL 준비
+		String sql = "UPDATE FREEBOARD SET F_TITLE=?, F_CONTENT=? WHERE F_NO = ?";
+		
+		try {
+			
+			//SQL 객체에 담기 && SQL 완성
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fvo.getTitle());
+			pstmt.setString(2, fvo.getContent());
+			pstmt.setString(3, fvo.getNo());
+			
+			//SQL실행 및 결과 저장
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		//실행결과 리턴
+		return result;
+	
+	}
+
+	/*
+	 * 게시판 글 삭제
+	 */
+	public int deleteBoard(Connection conn, String num) {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			String sql = "UPDATE FREEBOARD SET F_STATUS = 'Y' WHERE F_NO = ? ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+	/*
+	 * 댓글삭제
+	 */
+	public int deleteRepleBoard(Connection conn, String num) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			String sql = "UPDATE F_REPLE SET FR_STATUS='Y' WHERE FR_NO=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
 	}
 
 }

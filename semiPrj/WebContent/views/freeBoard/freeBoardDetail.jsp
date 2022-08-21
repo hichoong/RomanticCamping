@@ -163,7 +163,7 @@
 
 				<div id="fbt-left-div">
 					<div id="userId" >작성자 : <%= fvo.getWriter() %></div>
-					<div id="userGrade">회원등급 : <%= fvo.getNo() %></div>
+					<div id="userGrade">글번호 : <%= fvo.getNo() %></div>
 				</div>
 
 
@@ -181,8 +181,8 @@
 		<div class="fbt-top-line"></div>
 
 		<div id="d8-d" class="container">
-				<p style="font-size: 3rem;">글제목 보여주는 곳</p>
-				<textarea cols="50" rows="13" id="d8-d-textarea" class="fb2-story-content" name="" id="" ><%= fvo.getContent() %> 글 내용 보여주는 곳 이렇게 엔터키를 치면 어캐보이는지? 
+				<p style="font-size: 3rem;"><%= fvo.getTitle() %></p>
+				<textarea readonly cols="50" rows="13" id="d8-d-textarea" class="fb2-story-content" name="" id="" ><%= fvo.getContent() %>  
 				</textarea>
 				<p class="fb2-story-date">작성시간 : <%= fvo.getEnrollDate() %></p>
 				<p class="fb2-story-date">조회 수 : <%= fvo.getCnt() %></p>
@@ -214,7 +214,14 @@
 			<%for( FreeBoardRepleVo fr : frvoList ) {%>			
 				<div class="select-reple">
 	
-					<div class="reple-id"><p ><%= fr.getWriter() %></p></div>
+					<div class="reple-id">
+					<p><%= fr.getWriter() %></p> 
+						<!-- 로그인한 사람과 현재 보는 글 보는 사람이 같으면 수정 / 삭제 버튼 보이도록 해주기  -->
+						<%-- <%if( loginMember != null && fr.getWriter().equals(loginMember.getName()) ){ %> --%>
+							<a href="<%= contextPath %>/freeBoard/reple/edit?num=<%=fr.getNo()%>&pageNo=<%= fvo.getNo() %>"  class="btn btn-warning">수정하기</a>
+							<a href="<%= contextPath %>/freeBoard/reple/delete?num=<%=fr.getNo()%>&pageNo=<%= fvo.getNo() %>"  class="btn btn-warning">삭제하기</a>
+						<%-- <%} %> --%>
+					</div>
 					<div class="reple-comment"><p ><%= fr.getContent() %> </p></div>
 					<div class="reple-sub"><span><%= fr.getEnrollDate() %></span> <a>답글쓰기</a></div>
 	

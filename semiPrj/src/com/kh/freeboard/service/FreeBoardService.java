@@ -167,6 +167,79 @@ public class FreeBoardService {
 		return result;
 	}
 	
+	/*
+	 *  게시글 수정하기 작업 ( update ) 
+	 */
+	public int editFreeBoard(FreeBoardVo fvo) {
+		
+		//데이터 검사
+		if(fvo.getTitle().length() < 1) {
+			return -1;
+		}
+		
+		if(fvo.getContent().length() < 1) {
+			return -2;
+		}
+		
+		
+		Connection conn = getConnection();
+		
+		int result = dao.editFreeBoard(conn, fvo);
+		
+		if(result == 1 ) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		
+		return result;
+	
+	}
+	/*
+	 * 게시판 글 삭제
+	 */
+	public int deleteBoard(String num) {
+
+		Connection conn = getConnection();
+		
+		int result = dao.deleteBoard(conn, num);
+		
+		if(result == 1) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	/*
+	 * 댓글 삭제
+	 */
+	public int deleteRepleBoard(String num) {
+
+		Connection conn = getConnection();
+		
+		int result = dao.deleteRepleBoard(conn, num);
+		
+		if(result == 1) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
+		
+	
+	}
+	
 	
 
 	

@@ -27,9 +27,8 @@ public class FreeBoardInsertController extends HttpServlet{
 		String title = req.getParameter("fb-title");
 		String content = req.getParameter("fb-content");
 		
-		System.out.println(no);
-		System.out.println(title);
-		System.out.println(content);
+		
+		
 		
 		FreeBoardVo vo = new FreeBoardVo();
 		vo.setNo(no);
