@@ -8,46 +8,40 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.freeboard.service.FreeBoardService;
-import com.kh.freeboard.vo.FreeBoardVo;
+import com.kh.freeboard.service.FreeBoardTradeService;
+import com.kh.freeboard.vo.FreeBoardRepleVo;
+import com.kh.freeboard.vo.FreeBoardTradeRepleVo;
 
-@WebServlet(urlPatterns = "/freeBoard/insert")
-public class FreeBoardInsertController extends HttpServlet{
+@WebServlet(urlPatterns = "/freeBoard/trade/reple/insert")
+public class FreeBoardTradeRepleInsertController extends HttpServlet{
 
 	
-	/*
-	 * 자유게시판 글 등록 백엔드
-	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		String no = req.getParameter("num");
+		String writer = req.getParameter("loginName");
+		String content = req.getParameter("content");
+
 		
-		req.setCharacterEncoding("UTF-8");
-		
-		String no = req.getParameter("fb-writerNo");
-		String title = req.getParameter("fb-title");
-		String content = req.getParameter("fb-content");
-		
-		
-		
-		
-		FreeBoardVo vo = new FreeBoardVo();
+		FreeBoardTradeRepleVo vo = new FreeBoardTradeRepleVo();
 		vo.setNo(no);
-		vo.setTitle(title);
+		vo.setWriter(writer);
 		vo.setContent(content);
 		
-		int result = new FreeBoardService().insertBoard(vo);
-		
 		//결과 = 서비스 호출
+		int result = new FreeBoardTradeService().insertRepleTradeBoard(vo);
+		
 		if(result == 1) {
-			resp.sendRedirect(req.getContextPath()+"/freeBoard/page?p1=1&p2=1");
+			resp.sendRedirect(req.getContextPath()+"/freeBoard/trade/detail?num2="+no);
 		} else {
 			req.setAttribute("errorMsg", "중고거래 게시글 상세 조회 실패!");
 			req.getRequestDispatcher("/views/error/errorPage.jsp").forward(req, resp);
 		}
 		
 		
-		
 	}
 	
 	
-}
+	
+}//class

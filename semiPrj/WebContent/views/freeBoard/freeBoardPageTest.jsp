@@ -37,7 +37,19 @@
 	
 	 <%@ include file="/resource/css/gsFreeB.css" %>
 	
-	
+	.fb-tr-Title{
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space : nowrap;
+		width : 30%;
+	}
+
+	.fb-tr-Content{
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+		width: 50%;
+	}
 </style>
 </head>
 <body>
@@ -90,7 +102,7 @@
 							<th>글번호</th>
 							<th>글제목</th>
 							<th>작성자</th>
-							<th>조회수</th>
+							<th>판매가격</th>
 							<th>작성일</th>
 						</tr>
 					</thead>
@@ -100,10 +112,10 @@
 						<tbody>
 							
 								<tr>
-									<td><%=fbvo.getNo() %></td>
-									<td><%=fbvo.getTitle() %></td>
-									<td><%=fbvo.getContent() %></td>
-									<td><%=fbvo.getWriter() %></td>
+									<td ><%=fbvo.getNo() %></td>
+									<td class="fb-tr-Title"><%=fbvo.getTitle() %></td>
+									<td class="fb-tr-Content"><%=fbvo.getContent() %></td>
+									<td><%=fbvo.getPrice() %></td>
 									<td><%=fbvo.getEnrollDate() %></td>
 								</tr>
 							
@@ -179,7 +191,7 @@
 				<%for(FreeBoardVo flist : fMainList) { %>
 					<div class="fb2-1-story">
 						<a href="<%=contextPath %>/freeBoard/detail?num=<%=flist.getNo()%>" class="fb2-1-story-outer">
-							<p style="font-size: 3rem;"><%=flist.getContent() %></p>
+							<p id="fb2-1-pcontent"><%=flist.getContent() %></p>
 							<p class="fb2-story-date"><%=flist.getEnrollDate() %></p>
 							<span class="fb2-story-count" >
 								<span><img src="" alt="이미지">"조회수 : "<%=flist.getCnt() %></span>
@@ -199,9 +211,9 @@
 
 					<thead>
 						<tr>
-							<td>글번호</td>
-							<td>글제목</td>
-							<td>작성자</td>
+							<td>번호</td>
+							<td>제목</td>
+							<td>내용</td>
 							<td>조회수</td>
 							<td>작성일</td>
 						</tr>
@@ -212,9 +224,9 @@
 							
 								<tr>
 									<td><%= fb.getNo() %></td>
-									<td><%= fb.getTitle() %></td>
-									<td><%= fb.getContent() %></td>
-									<td><%= fb.getWriter() %></td>
+									<td class="fb-tr-Title"><%= fb.getTitle() %></td>
+									<td class="fb-tr-Content"><%= fb.getContent() %></td>
+									<td><%= fb.getCnt() %></td>
 									<td><%= fb.getEnrollDate() %></td>
 								</tr>
 							

@@ -9,10 +9,8 @@ import static com.kh.common.JDBCTemplate.*;
 import com.kh.common.PageVo;
 import com.kh.freeboard.attachment.vo.FreeBoardAttachmentVo;
 import com.kh.freeboard.repository.FreeBoardTradeDao;
-import com.kh.freeboard.vo.FreeBoardRepleVo;
 import com.kh.freeboard.vo.FreeBoardTradeRepleVo;
 import com.kh.freeboard.vo.FreeBoardTradeVo;
-import com.kh.freeboard.vo.FreeBoardVo;
 
 public class FreeBoardTradeService {
 
@@ -43,7 +41,6 @@ public class FreeBoardTradeService {
 	 */
 	public int insertBoard(FreeBoardTradeVo fvo, FreeBoardAttachmentVo fbavo) {
 
-		int result = 0;
 		Connection conn = getConnection();
 		
 		//데이터 검사
@@ -59,13 +56,16 @@ public class FreeBoardTradeService {
 		
 		//DAO 호출
 		int result1 = dao.insertBoard(conn, fvo);
+		System.out.println("======보드 인서트 " + result1);
 		
 		//파일첨부가 안되어서 인서트 작업 안되더라도 보더에는 인서트된걸로 처리되어야하므로 기본값 1로!
 		int result2 = 1;
 		if(fbavo != null) {
 			result2 = dao.insertAttachment(conn, fbavo);
+			System.out.println("======참조 인서트 " + result2);
 		}
 		
+		System.out.println("======참조222 인서트 " + result2);
 		
 		//트랜잭션 처리
 		if(result1 * result2 == 1) {
@@ -76,7 +76,7 @@ public class FreeBoardTradeService {
 		
 		close(conn);
 		
-		return result * result2;
+		return result1 * result2;
 		
 	}
 	
@@ -190,6 +190,98 @@ public class FreeBoardTradeService {
 		
 		//실행 결과 리턴
 		return fbrvoList;
+	}
+	
+	/*
+	 * 댓글 입력작업
+	 */
+	public int insertRepleTradeBoard(FreeBoardTradeRepleVo vo) {
+
+		Connection conn = getConnection();
+		
+		int result  = dao.insertRepleTradeBoard(conn, vo);
+		
+		
+		if(result ==1 ) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+			
+		close(conn);
+		
+		//결과 리턴 
+		return result;
+		
+	}
+	
+	/*
+	 * 게시글 수정 작업
+	 */
+	public int editFreeBoardTrade(FreeBoardTradeVo fbvo) {
+
+		//데이터 검사
+		if(fbvo.getTitle().length() < 1) {
+			return -1;
+		}
+		
+		if(fbvo.getContent().length() < 1) {
+			return -2;
+		}
+		
+		
+		Connection conn = getConnection();
+		
+		int result = dao.editFreeBoardTrade(conn, fbvo);
+		
+		if(result == 1 ) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		
+		return result;
+	}
+	
+	/*
+	 * 중고거래 게시글 지우기 
+	 */
+	public int deleteBoardTrade(String num) {
+		Connection conn = getConnection();
+		
+		int result = dao.deleteBoardTrade(conn, num);
+		
+		if(result == 1) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	/*
+	 * 댓글삭제
+	 */
+	public int deleteRepleBoardTrade(String num) {
+
+		Connection conn = getConnection();
+		
+		int result = dao.deleteRepleBoardTrade(conn, num);
+		
+		if(result == 1) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
 	}
 
 	

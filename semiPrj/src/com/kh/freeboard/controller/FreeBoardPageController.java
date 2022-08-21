@@ -24,8 +24,6 @@ public class FreeBoardPageController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		System.out.println(req.getParameter("p1"));
-		System.out.println(req.getParameter("p2"));
 		
 		//페이징 처리
 		//------------------ 페이징 처리 -------------------

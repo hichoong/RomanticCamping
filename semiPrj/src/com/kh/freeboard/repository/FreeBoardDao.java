@@ -274,7 +274,7 @@ public class FreeBoardDao {
 		
 		try {
 			
-			String sql = "SELECT F.FR_NO, F.FR_CONTENT, M.NAME AS FR_WRITER, F.FR_ENROLL_DATE, F.FR_STATUS FROM F_REPLE F JOIN MEMBER M ON F.FR_WRITER = M.NO WHERE F.FR_REF_NO = ? AND F.FR_STATUS ='N'";
+			String sql = "SELECT FR_NO, FR_REF_NO, FR_WRITER, FR_CONTENT, FR_ENROLL_DATE FROM F_REPLE WHERE ? = FR_REF_NO AND FR_STATUS='N' ORDER BY FR_NO";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, num);
@@ -282,16 +282,14 @@ public class FreeBoardDao {
 			rs = pstmt.executeQuery();
 			
 			//rs -> obj로 바꿔주는 작업 필요
-			if(rs.next()) {
+			while(rs.next()) {
 				
 				FreeBoardRepleVo frvo = new FreeBoardRepleVo();
 				
 				//vo객체에 담아주기
-				frvo = new FreeBoardRepleVo();
-				
 				frvo.setNo(rs.getString("FR_NO"));
-				frvo.setContent(rs.getString("FR_CONTENT"));
 				frvo.setWriter(rs.getString("FR_WRITER"));
+				frvo.setContent(rs.getString("FR_CONTENT"));
 				frvo.setEnrollDate(rs.getString("FR_ENROLL_DATE"));
 				
 				frvoList.add(frvo);
@@ -308,6 +306,118 @@ public class FreeBoardDao {
 		
 		return frvoList;
 	
+	}
+
+	/*
+	 * 댓글 insert 작업 
+	 */
+	public int insertRepleBoard(Connection conn, FreeBoardRepleVo vo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			
+			String sql = "INSERT INTO F_REPLE ( FR_NO, FR_REF_NO, FR_WRITER, FR_CONTENT ) VALUES ( SEQ_F_REPLE_NO.NEXTVAL, ?, ?, ? )";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getNo());
+			pstmt.setString(2, vo.getWriter());
+			pstmt.setString(3, vo.getContent());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	/*
+	 * 게시글 수정 ( update )
+	 */
+	public int editFreeBoard(Connection conn, FreeBoardVo fvo) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		//SQL 준비
+		String sql = "UPDATE FREEBOARD SET F_TITLE=?, F_CONTENT=? WHERE F_NO = ?";
+		
+		try {
+			
+			//SQL 객체에 담기 && SQL 완성
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fvo.getTitle());
+			pstmt.setString(2, fvo.getContent());
+			pstmt.setString(3, fvo.getNo());
+			
+			//SQL실행 및 결과 저장
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		//실행결과 리턴
+		return result;
+	
+	}
+
+	/*
+	 * 게시판 글 삭제
+	 */
+	public int deleteBoard(Connection conn, String num) {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			String sql = "UPDATE FREEBOARD SET F_STATUS = 'Y' WHERE F_NO = ? ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+	/*
+	 * 댓글삭제
+	 */
+	public int deleteRepleBoard(Connection conn, String num) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			String sql = "UPDATE F_REPLE SET FR_STATUS='Y' WHERE FR_NO=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
 	}
 
 }
