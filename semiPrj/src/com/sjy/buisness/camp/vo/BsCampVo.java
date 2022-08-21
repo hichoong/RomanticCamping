@@ -13,14 +13,15 @@ public class BsCampVo {
 	private String rgDate;			//등록일
 	private String campRefund;		//환불규정
 	private String campImgPath;		//대표이미지
-	private String theme;
+	private String theme;			//테마
 	private String campUpdated;		//최근수정일
+	private String campStatus;		//상태
 	
 	public BsCampVo() {}
 
 	public BsCampVo(String campCode, String campName, String city, String district, String campAddress,
 			String campPhone, String campIntro, String campFacility, String rgDate, String campRefund,
-			String campImgPath,String theme, String campUpdated) {
+			String campImgPath,String theme, String campUpdated, String campStatus) {
 		super();
 		this.campCode = campCode;
 		this.campName = campName;
@@ -35,6 +36,7 @@ public class BsCampVo {
 		this.campImgPath = campImgPath;
 		this.theme = theme;
 		this.campUpdated = campUpdated;
+		this.campStatus = campStatus;
 	}
 
 	public String getCampCode() {
@@ -142,13 +144,24 @@ public class BsCampVo {
 		this.campUpdated = campUpdated;
 	}
 
+	
+	public String getCampStatus() {
+		return campStatus;
+	}
+
+	public void setCampStatus(String campStatus) {
+		this.campStatus = campStatus;
+	}
+
 	@Override
 	public String toString() {
 		return "BsCampVo [campCode=" + campCode + ", campName=" + campName + ", city=" + city + ", district=" + district
 				+ ", campAddress=" + campAddress + ", campPhone=" + campPhone + ", campIntro=" + campIntro
 				+ ", campFacility=" + campFacility + ", rgDate=" + rgDate + ", campRefund=" + campRefund
-				+ ", campImgPath=" + campImgPath + ", campUpdated=" + campUpdated + "]";
+				+ ", campImgPath=" + campImgPath + ", theme=" + theme + ", campUpdated=" + campUpdated + ", campStatus="
+				+ campStatus + "]";
 	}
+	
 	
 	
 }

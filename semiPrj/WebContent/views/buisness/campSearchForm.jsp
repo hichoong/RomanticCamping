@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="com.sjy.buisness.camp.vo.BsCampVo"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -14,6 +17,11 @@
 	
 	//등록일 기본값 세팅
 	String toDay = d+"T"+t;
+	
+	List<BsCampVo> bsvo = (ArrayList<BsCampVo>)request.getAttribute("bsVo");
+	int CampNum = (int)request.getAttribute("CampNum");
+	System.out.println(bsvo);
+	System.out.println(CampNum);
 %>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -61,45 +69,23 @@
 	<main class="navbar navbar-expand-sm container">
 	<%@ include file="/views/buisness/sidebar.jsp" %>
 	
-
+	
 		<div id="content">
 			<h2>My camping</h2>
-			<span style="color:gray">&nbsp;&Tab;-&nbsp;내 캠핑장 조회</span>
+			<span style="color:gray">&nbsp;&Tab;-&nbsp;내 캠핑장 조회 </span>
 			<hr>
 
 			<div id="wrap"  style="overflow-y:scroll;">
                     <!-- 접속id에 맞는 회원의 캠핑장  -->
                      <!-- <article class=" shadow"><a href="campDetaileInfo.jsp"><img src="캠핑장메인이미지" alt=""><span>캠핑장이름</span></a></article> -->
+                     
+                     <%for(int i =0; i< CampNum; i++){%>
                     <article class=" shadow">
                     	<img src="https://placehold.jp/200x200.png" alt="">
-                    	<span>camp1</span>
+                    	<span>캠핑장이름</span>
                     </article>
-                    
-                    
-                    <article class=" shadow">
-                    	<img src="https://placehold.jp/200x200.png" alt="">
-                    	<span>camp2</span>
-                    </article>
-                    
-                    <article class=" shadow">
-                    	<img src="https://placehold.jp/200x200.png" alt="">
-                    	<span>camp3</span>
-                    </article>
-                    
-                    <article class=" shadow">
-                    	<img src="https://placehold.jp/200x200.png" alt="">
-                    	<span>camp4</span>
-                    </article>
-                    
-                    <article class=" shadow">
-                    	<img src="https://placehold.jp/200x200.png" alt="">
-                    	<span>camp5</span>
-                    </article>
-                    
-                    <article class=" shadow">
-                    	<img src="https://placehold.jp/200x200.png" alt="">
-                    	<span>camp6</span>
-                    </article>
+                    <%}%>
+
                     <!-- <article class=" shadow"><a href="campDetaileInfo.jsp"><img src="https://placehold.jp/200x200.png" alt=""><span>camp2</span></a></article> -->
                     
                     
