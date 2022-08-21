@@ -100,6 +100,21 @@ public class ReservationVo {
 	public String getReservationStatus() {
 		return reservationStatus;
 	}
+	
+	public String getReservationStatusName() {
+		
+		if(this.reservationStatus.equals("S")) {
+			return "예약완료";
+		} else if(this.reservationStatus.equals("W")) {
+			return "예약대기";
+		} else if(this.reservationStatus.equals("D")) {
+			return "이용완료";
+		} else if(this.reservationStatus.equals("N")) {
+			return "취소/환불";
+		} else {
+			return "";
+		}
+	}
 
 	public void setReservationStatus(String reservationStatus) {
 		this.reservationStatus = reservationStatus;
