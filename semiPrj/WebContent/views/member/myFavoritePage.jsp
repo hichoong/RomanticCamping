@@ -74,7 +74,7 @@
                     </div>
 
                     <div class="location-center">
-                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal">삭제하기</button>
+                        <button type="submit" class="btn btn-success" onclick="">삭제하기</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">돌아가기</button>
                     </div>
                 </div>
