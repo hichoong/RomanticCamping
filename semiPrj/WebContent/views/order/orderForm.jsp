@@ -1,5 +1,11 @@
+<%@page import="com.kh.coupon.vo.CouponVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+   		List<CouponVo> couponList = (List<CouponVo>)request.getAttribute("couponList");
+    
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +20,7 @@
 	
 	<!--전체 컨테이너  -->
 	<div class="container alert-warning" >
-		<main>
+		
 		    <div class="py-5 text-center ">
 		      <h1>결제하기</h1>
 		      <p class="lead"></p>
@@ -23,15 +29,21 @@
 		    <div class="row g-5">
 		      <div class="col-md-5 col-lg-4 order-md-last">
 		        <h4 class="d-flex justify-content-between align-items-center mb-3">
-		          <span class="text-danger"  id="캠핑장 이름"><%="캠핑장이름"%></span>
+		          <span class="text-danger"  id="캠핑장 이름" >예약할 캠핑장</span>
+		          
+		          
 		          <span class="badge bg-danger rounded-pill">1</span>
 		        </h4>
 		        <ul class="list-group mb-3">
 		          <li class="list-group-item d-flex justify-content-between lh-sm">
 		            <div>
-		              <h6 class="my-0">하늘캠핑장</h6>
-		              <small class="text-muted" id="날짜"> <%="숙박예정일~숙박예정일" %></small>
+		              <h6 class="my-0"><%="캠핑장 이름" %></h6>
+		              <input type="hidden" name="zoneName" value="">
+		              <small class="text-muted" id="reservaionCheckDate"> <%="숙박예정일~숙박예정일" %></small>
+		              <input type="hidden" name="reservationCheckin" value="">
+		              <input type="hidden" name="reservationCheckout" value="">
 		              <small class="text-muted" id="reservaionNop"><%="숙박 인원" %> </small>
+		              <input type="hidden" name="reservaionNop" value="">
 		              
 		            </div>
 		            <span class="text-muted" id="originCost"><%="120,000" %></span>
@@ -41,12 +53,15 @@
 		            <div class="text-success">
 		              <h6 class="my-0">사용할 쿠폰</h6>
 		              <small id="couponName">없음</small>
+		              <input type="hidden" name="couponName">
 		            </div>
 		            <small class="text-success" id="couponCost">0</small>
+		            <input type="hidden" name="couponCost">
 		          </li>
 		          <li class="list-group-item d-flex justify-content-between">
 		            <span>총 결제금액</span>
 		            <strong id="totalCost" ><%="토탈 금액" %></strong>
+		            <input type="hidden" name="totalCost">
 		          </li>
 		        </ul>
 		        
@@ -191,7 +206,6 @@
 		        </form>
 		      </div>
 		    </div>
-	  </main>
 	</div>
 
 
@@ -211,14 +225,14 @@
 		  소유한 쿠폰 : 
 				<select name="쿠폰선택" id="select-coupon">
 				   	<option value="0" id="select-coupon-cost">없음</option>
-				    <option value="20000" id="select-coupon-cost">비 성수기 시즌</option>
-				    <option value="10000" id="select-coupon-cost">생일 쿠폰</option>
-				    <option value="5000" id="select-coupon-cost">첫 회원가입 쿠폰</option>
-				</select>
-				<input type="hidden" value="<%="쿠폰코드"%> ">
+				 <% for(CouponVo v : couponList) {%>
+			   		<option value="<%=v.getCouponDiscount()%>" id="select-coupon-cost"><%=v.getCouponName() %></option>
+	   				<%}%>
+	   				</select>
 		</div>
 		<!-- modal footer -->
 		<div class="modal-footer">
+		 
 		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">창 닫기</button>
 		  <button type="button" class="btn btn-primary" id="coupon-button" >쿠폰 적용하기</button>
 		</div>
@@ -249,6 +263,8 @@ $(document).ready(function() {
     	var total = origin - coupon;
 
     	total = $("#totalCost").text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+	
+		
 	});
 	}); 
 	

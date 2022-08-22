@@ -25,9 +25,15 @@ public class CouponService {
 	
 		return couponVo;
 	}
-	
+
+	//유저 쿠폰 사용
+	public int useCoupon(MemberVo loginMember, String couponCode) {
+		//커넥션 얻기
+		Connection conn = null;
+		conn = JDBCTemplate.getConnection();
 		
-	
-	
-	
+		int result = new CouponDao().useCoupon(conn, loginMember, couponCode);
+		
+		return result;
+	}
 }

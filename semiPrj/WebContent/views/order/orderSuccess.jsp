@@ -1,5 +1,13 @@
+<%@page import="com.kh.order.vo.ReservationVo"%>
+<%@page import="com.kh.order.vo.OrderVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%
+    	OrderVo orderVo = (OrderVo)request.getAttribute("orderVo"); 
+   		ReservationVo reservationVo = (ReservationVo)request.getAttribute("reservationVo");
+    
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,16 +39,16 @@
 	</div>
 
 	<div class="container">
-		<h2 class="alert alert-warning"><%="캠핑장 이름" %>을 예약해 주셔서 감사합니다.</h2>
+		<h2 class="alert alert-warning"> <%="reservationVo.getCampName() "%>을 예약해 주셔서 감사합니다.</h2>
 	</div>
 
 	<div class="container" >
-		<p>예약자 명 : <%="예약자 이름" %>  </p>
-		<p>결제금액 : <%="토탈 금액" %></p>
-		<p>예약번호 : <%="예약 변호" %></p>
-		<p>예약날짜 : <%="예약 일자" %></p>
-		<p>예약인원 : <%="예약 인원" %></p>
-		<p>요청사항 : <%="요청 사항" %></p>
+		<p>예약자 명 : <%="reservationVo.getReservationName()" %>  </p>
+		<p>결제금액 :  <%="orderVo.getPayAmount()" %></p>
+		<p>예약번호 :  <%="orderVo.getPayCode()" %></p>
+		<p>예약날짜 :  <%="reservationVo.getReservationCheckin()" %>~ <%="reservationVo.getReservationCheckout()" %></p>
+		<p>예약인원 :  <%="reservationVo.getReservationNop()" %></p>
+		<p>요청사항 :  <%="reservationVo.getRequest()" %></p>
 	</div>
 
 	<div class="container">
