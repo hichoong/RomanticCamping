@@ -49,8 +49,8 @@
 	                </div>
 	            </div>
 	            <div class="location-right">
-	                <button class="reversed-btn">캠핑장 바로가기</button>
-	                <button class="reversed-btn" data-bs-toggle="modal" data-bs-target="#CancleWish" >찜삭제</button>
+	                <button class="reversed-btn" onclick="location.href='<%=contextPath%>/zone/list?num=${favorite.campCode}'">캠핑장 바로가기</button>
+	                <button class="reversed-btn" data-bs-toggle="modal" data-bs-target="#CancleWish" onclick="getCampNo(${favorite.campCode});" >찜삭제</button>
 	            </div>
 	        </div>
         </c:forEach>
@@ -74,7 +74,7 @@
                     </div>
 
                     <div class="location-center">
-                        <button type="submit" class="btn btn-success" onclick="">삭제하기</button>
+                        <button type="button" class="btn btn-success" onclick="deleteFavorite();">삭제하기</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">돌아가기</button>
                     </div>
                 </div>
@@ -83,6 +83,18 @@
     </div>
 
     <%@ include file="/views/common/footer.jsp" %>
+    
+    <script>
+    	var campNo;
+    	
+    	function getCampNo(No) {
+    		campNo = No;
+    	}
+    	
+    	function deleteFavorite() {
+    		location.href="<%=contextPath%>/member/deleteFavorite?campNo="+campNo;
+    	}
+    </script>
     
 </body>
 </html>

@@ -345,5 +345,27 @@ public class MemberDao {
 		
 		return list;
 	}
+
+	public int deleteFavorite(Connection conn, String campCode, String no) {
+
+		String sql = "DELETE FAVORITE WHERE CAMP_CODE = ? AND USER_NO = ?";
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, campCode);
+			pstmt.setString(2, no);
+			
+			result = pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 }

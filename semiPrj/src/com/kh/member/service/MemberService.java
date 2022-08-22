@@ -211,5 +211,21 @@ public class MemberService {
 		
 		return list;
 	}
+
+	public int deleteFavorite(String campCode, String no) {
+
+		Connection conn = getConnection();
+		int result = dao.deleteFavorite(conn, campCode, no);
+		
+		if(result == 1) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
 	
 }
