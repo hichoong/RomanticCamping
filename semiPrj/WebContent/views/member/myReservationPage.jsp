@@ -32,8 +32,8 @@
 
     <div class="container">
         <ul id="sub-nav" class="list-group">
-            <a href="<%=contextPath%>/member/reservationCheck?type=S" class="list-group-item list-group-item-action">예약완료</button>
-            <a href="<%=contextPath%>/member/reservationCheck?type=W" class="list-group-item list-group-item-action">예약대기</button>
+            <a href="<%=contextPath%>/member/reservationCheck?type=S" class="list-group-item list-group-item-action">예약완료</a>
+            <a href="<%=contextPath%>/member/reservationCheck?type=W" class="list-group-item list-group-item-action">예약대기</a>
             <a href="<%=contextPath%>/member/reservationCheck?type=D" class="list-group-item list-group-item-action">이용완료</a>
             <a href="<%=contextPath%>/member/reservationCheck?type=N" class="list-group-item list-group-item-action">취소/환불</a>
         </ul>
@@ -65,12 +65,12 @@
 				     </div>
 				     <c:if test="${ status eq 'S'or status eq 'W'}">
 					     <div class="location-center ">
-					         <button class="basic-btn" data-bs-toggle="modal" data-bs-target="#CancleReservation">예약취소</button>
+					         <button class="basic-btn" data-bs-toggle="modal" data-bs-target="#CancleReservation" onclick="getReservationNo(${reservation.reservationNo});">예약취소</button>
 					     </div>
 				     </c:if>
 				     <c:if test="${ status eq 'D'}">
 					     <div class="location-center ">
-		                    <button class="basic-btn" onclick="location.href='<%=contextPath%>/review/insert'">리뷰작성</button>
+		                    <button class="basic-btn" onclick="location.href='<%=contextPath%>/review/insert?reservationNo=${reservation.reservationNo}'">리뷰작성</button>
 		                </div>
 				     </c:if>
 			    </div>
@@ -97,7 +97,7 @@
                     </div>
 
                     <div class="location-center">
-                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal">예약취소</button>
+                        <button type="button" class="btn btn-success" onclick="deleteReservation();">예약취소</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">돌아가기</button>
                     </div>
                 </div>
@@ -108,7 +108,7 @@
     <%@ include file="/views/common/footer.jsp" %>
     
     <script>
-    	if(${status eq 'S'}) {
+    	$(if(${status eq 'S'}) {
     		$('#sub-nav>a:nth-child(1)').addClass("choice");
     	} else if(${status eq 'W'}) {
     		$('#sub-nav>a:nth-child(2)').addClass("choice");
@@ -116,8 +116,19 @@
     		$('#sub-nav>a:nth-child(3)').addClass("choice");
     	}  else if(${status eq 'N'}) {
     		$('#sub-nav>a:nth-child(4)').addClass("choice");
-    	}
-    </script>
+    	});
+    	
+    	
+    	var reservationNo;
+    	function getReservationNo(No) {
+    		reservationNo = No;
+    	};
     
+    	function deleteReservation() {
+    		location.href="/deleteReservation?reservationNo="+reservationNo;
+    	}
+    	
+    </script>
+       
 </body>
 </html>

@@ -35,7 +35,7 @@
                 <% if(loginMember.getType().equals("U")) { %>
 	                <div class="mb-3">
 	                    <label for="birth" class="form-label">생년월일:</label>
-	                    <input type="date" class="form-control" id="birth" value="<%=loginMember.getBirthdayToDate()%>" name="birth">
+	                    <input type="date" class="form-control" id="birth" value="${loginMember.getBirthdayToDate()}" name="birth">
 	                </div>
 	                <div class="mb-3">
 	                    성별: 

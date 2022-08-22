@@ -150,6 +150,13 @@
     <%@ include file="/views/common/footer.jsp" %>
 
 	<script>
+		
+		$(function(){
+			<%if(errorMsg != null){%>
+				alert("<%=errorMsg%>");
+			<%}%>
+		});
+		
 		function checkPwd(){
 			isSame = $('input[name=pwd]').val() == $('input[name=pwdCheck]').val();
 			if(isSame) {
@@ -160,15 +167,7 @@
 			}
 			
 		}
+		
 	</script>
-
-	<script>
-		$(function(){
-			<%if(errorMsg != null){%>
-				alert("<%=errorMsg%>");
-			<%}%>
-		});
-	</script>
-
 </body>
 </html>
