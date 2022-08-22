@@ -80,12 +80,16 @@ public class ReviewService {
 		return result;
 	}
 
-	public CampInfoVo selectCamp(String campCode) {
-		Connection conn = getConnection();
-		CampInfoVo vo = new ReviewDao().selectCamp(conn, campCode);
-		close(conn);
-		return vo;
-	}
+//	public CampInfoVo campSelect(String reservationNo) {
+//		Connection conn = getConnection();
+//		CampInfoVo vo = new ReviewDao().campSelect(conn, reservationNo);
+//		close(conn);
+//		return vo;
+//	}
+
+	//캠핑장 정보 조회
+
+	
 	
 	
 

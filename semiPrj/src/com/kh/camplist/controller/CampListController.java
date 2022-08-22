@@ -90,7 +90,7 @@ public class CampListController extends HttpServlet {
 		
 		
 		
-		
+		System.out.println(theme);
 		
 		
 		req.setAttribute("pv", pageVo);

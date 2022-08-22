@@ -12,7 +12,6 @@
 	List<String> checkedHashCodes = (List<String>) request.getAttribute("checkedHashCodes");
 	List<ThemeVo> themeList = (List<ThemeVo>) request.getAttribute("themeList");
 	
-	/* List<CampInfoVo> campInfoList = (List<CampInfoVo>) request.getAttribute("campInfoList"); */
 	PageVo pv = (PageVo) request.getAttribute("pv");
 	
 	List<CampInfoVo> searchList = (List<CampInfoVo>) request.getAttribute("searchList"); 
@@ -28,7 +27,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>낭만캠핑</title>
-	<link rel="stylesheet" href="/semiPrj/resource/css/campList.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/campList.css">
 </head>
 <body>
 	
@@ -55,12 +54,15 @@
                       <tr>
                         <td>
 	                        <%for(ThemeVo vo : themeList) { %>
-                         		<input type="radio" name="theme" value="<%=vo.getThemeCode()%>" id="<%=vo.getThemeCode()%>"><label for="<%=vo.getThemeCode()%>"><%=vo.getThemeName()%></label><br>
+                         		<input type="radio" name="theme" themeChecked="${theme }" value="<%=vo.getThemeCode()%>" id="<%=vo.getThemeCode()%>"><label for="<%=vo.getThemeCode()%>"><%=vo.getThemeName()%></label><br>
 							<%} %>
                         </td>
                       </tr>
                     </table>
                   </div>
+                  
+                  
+                  
 
                     <div class="hashtag">
                       <button type="button" class="btn btn-warning">+해시태그</button>
@@ -70,7 +72,7 @@
                       <ul class="tag-ul">
 						<%for(HashTagVo vo : hashTagList) { %>
 							<li>
-								<input hashTagKey="<%=vo.getHtCode()%>" type="hidden" name="hashTag" disabled="disabled" value="<%=vo.getHtCode()%>">
+								<input  checkedHashCodes="${checkedHashCodes}" hashTagKey="<%=vo.getHtCode()%>" type="hidden" name="hashTag" disabled="disabled" value="<%=vo.getHtCode()%>">
 								<button hashTagKey="<%=vo.getHtCode()%>" type="button" class="tag-btn" ><%=vo.getHtName()%></button>
 							</li>
 						<%} %>

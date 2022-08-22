@@ -21,6 +21,7 @@ public class ReviewEditController extends HttpServlet {
 		String num = req.getParameter("num");
 		ReviewVo vo = new ReviewService().selectOne(num);
 		
+		
 		if(vo != null) {
 			//성공
 			req.setAttribute("vo", vo);

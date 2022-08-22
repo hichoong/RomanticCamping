@@ -126,44 +126,18 @@ public class ReviewDao {
 		return result;
 	}
 
-	public CampInfoVo selectCamp(Connection conn, String campCode) {
-		
-//		String sql = "SELECT R_NO, RE_NO, R_DATE, R_CONTENT, R_NUM, R_STATUS FROM REVIEW WHERE R_NO = ? AND R_STATUS = 'Y'";
+	//캠핑장 정보 조회
+//	public CampInfoVo campSelect(Connection conn, String reservationNo) {
 //		
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//		ReviewVo vo = null;
-//	
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, num);
-//			
-//			rs = pstmt.executeQuery();
-//			
-//			if(rs.next()) {
-//				String rNo = rs.getString("R_NO");
-//				String reNo = rs.getString("RE_NO");
-//				String rDate = rs.getString("R_DATE");
-//				String content = rs.getString("R_CONTENT");
-//				String starScore = rs.getString("R_NUM");
-//				String status = rs.getString("R_STATUS");
-//				
-//				vo = new ReviewVo();
-//				vo.setReviewNo(rNo);
-//				vo.setReservationNo(reNo);
-//				vo.setEnrollDate(rDate);
-//				vo.setReviewContent(content);
-//				vo.setStarScore(starScore);
-//				vo.setReviewStatus(status);
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			close(rs);
-//			close(pstmt);
-//		}
-		
-		return null;
-	}
+//		String sql = "SELECT CAMP_CODE FROM RESERVATION WHERE RE_NO = ?";
+//		
+//		return null;
+//	}
+
+	
+
+	
+
+	
 		
 }

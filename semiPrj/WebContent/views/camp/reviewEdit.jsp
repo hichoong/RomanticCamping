@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>낭만캠핑</title>
-<link rel="stylesheet" href="/semiPrj/resource/css/reviewInsertForm.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/reviewInsertForm.css">
 </head>
 <body>
 	
