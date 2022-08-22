@@ -48,7 +48,7 @@ $('document').ready(function() {
     if(gugunChecked != ""){
 		$gugun.val(gugunChecked).prop("selected", true);
 		//검색 선택값 자동 세팅이 끝났다면 
-		//이후 선택되는 선택값에 영향을 주지 않도록 해당 값을 초기화 해주어야합니다.
+		//이후 선택되는 선택값에 영향을 주지 않도록 해당 값을 초기화
 		$(this).attr("sidoChecked", "");
 		$gugun.attr("gugunChecked", "");
 	}
@@ -60,12 +60,28 @@ $('document').ready(function() {
     $("select[name^=sido]").trigger('change');
   }
 
+});
+
+
+  // $(function(){
+  //   let themeChecked = $('input[name=theme]:checked').attr('themeChecked');
+	//   if(themeChecked != ""){
+	//     $('input[name=theme]').val(themeChecked).prop('checked', true);
+	//   }
+  // })
+
+
+  	
 
   //해시태그 리스트 show/hide
   $(function(){
     $('.hashtag').click(function(){
       $('.hashtag-list').slideToggle();
     })
+
+
+
+
   })
 
 	$(function() {
@@ -84,7 +100,7 @@ $('document').ready(function() {
 	  
 	
 
-});
+
 
 
             
