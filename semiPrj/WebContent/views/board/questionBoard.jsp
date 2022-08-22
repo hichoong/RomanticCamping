@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@page import="com.syl.board.vo.QuestionBoardVo"%>
+<%@page import="java.util.ArrayList"%>
+<% 
+	ArrayList<QuestionBoardVo> voList = (ArrayList<QuestionBoardVo>)request.getAttribute("voList"); 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,41 +85,17 @@
               </tr>
             </thead>
             <tbody>
+              
+              <%for(int i = 0; i < voList.size(); i++){%>
               <tr>
-                <th scope="row">001</th>
-                <td onClick="location.href='http://127.0.0.1:8803/semiPrj/views/board/qestionBoardDetail.jsp'">애견 동반 문의합니다</td>
-                <td>흰둥이</td>
-                <td>2022/05/01 22:07</td>
-                <td>2</td>
+                <th scope="row"><%=voList.get(i).getqNo()%></th>
+                <td><%=voList.get(i).getqTitle()%></td>
+                <td><%=voList.get(i).getqWriter()%></td>
+                <td><%=voList.get(i).getqUpdateDate()%></td>
+                <td><%=voList.get(i).getqCnt()%></td>
               </tr>
-              <tr>
-                <th scope="row">002</th>
-                <td>쿠폰 적용법 문의</td>
-                <td>봉미선</td>
-                <td>2022/05/03 15:01</td>
-                <td>5</td>
-              </tr>
-              <tr>
-                <th scope="row">003</th>
-                <td>예약 날짜 변경 문의합니다</td>
-                <td>나미리</td>
-                <td>2022/05/04 13:49</td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <th scope="row">004</th>
-                <td>천재지변으로 인한 예약취소</td>
-                <td>신짱구</td>
-                <td>2022/05/05 08:10</td>
-                <td>3</td>
-              </tr>
-              <tr>
-                <th scope="row">005</th>
-                <td>객실 타입 변경 원합니다</td>
-                <td>김철수</td>
-                <td>2022/05/06 10:11</td>
-                <td>1</td>
-              </tr>
+              <%}%>
+              
             </tbody>
           </table>
         
@@ -183,6 +165,18 @@
   
   	</div>
     
+    <script>
+		$(function(){
+			$('#table-main>tbody>tr').click(function(){
+				//행 클릭 되었을 때, 동작할 내용
+				
+				//글 번호 가져오기
+				const num = $(this).children().eq(0).text();
+				//해당 번호 이용해서 요청 보내기
+				location.href='/semiPrj/board/detail?num=' + num;
+			});
+		})
+	</script>
 	
 	<%@ include file="/views/common/footer.jsp" %>
 
