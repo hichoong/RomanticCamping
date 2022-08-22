@@ -69,7 +69,7 @@ public class FreeBoardTradeInsertController extends HttpServlet{
 			
 			//4. 아웃풋 스트림 준비(서버에 저장하기 위한)
 			//4-1. 읽은 파일 저장할 경로를 얻어올 때 다른 사람 컴퓨터에서도 사용할 수 있으므로 - 경로얻어오기 체크
-			String realPath = req.getServletContext().getRealPath("/resources/upload");
+			String realPath = req.getServletContext().getRealPath("/resource/img/freeBoardTrade");
 			
 			//4-2. 실제 저장될 파일경로를 써주어야한다. - realPath + 파일구분자 + 파일명
 			savePath = realPath + File.separator + changeName;
@@ -102,25 +102,29 @@ public class FreeBoardTradeInsertController extends HttpServlet{
 			fbavo.setChangeName(changeName);
 			fbavo.setFilePath(realPath);
 			
+			System.out.println("============== fbavo 출력되는지??" + fbavo);
 		}//if
 		
-		//Board 테이블 채우기 ( 보더테이블 먼저 insert )
+		//Board 테이블과 ATTACHMENT 테이블 채우기 ( 보더테이블 먼저 insert )
 		int result = new FreeBoardTradeService().insertBoard(fvo, fbavo);
 		
-		
+		System.out.println("====마지막 result " + result );
 		//결과에 따라 다음타자 선택 작업
 		if(result == 1) {
 			//성공 -> 일반게시판 목록 1페이지 + 알람띄우기 
-			
+			resp.sendRedirect(req.getContextPath()+"/freeBoard/page?p1=1&p2=1");
 		}else {
 			//실패 -> 에러페이지 + 알람띄우기
 			//실패한게 db인서트 실패한것이다. 
 			//파일업로드는 이미 이루어졌음 -> 파일 삭제해주어야 한다.
-			
-			
+
 			if(fbavo != null) { //첨부파일이 있음 : 업로드 이미 되어있을 수 있음
 				new File(savePath).delete();
 			}
+			
+			req.setAttribute("errorMsg", "중고거래 게시글 상세 조회 실패!");
+			req.getRequestDispatcher("/views/error/errorPage.jsp").forward(req, resp);
+			
 		}
 		
 		

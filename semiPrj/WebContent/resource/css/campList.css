@@ -140,7 +140,12 @@ select[name=sido1], select[name=gugun1]{
 .hide{
 	display: none;
 }
-
+#none-list{
+	font-size: 2rem;
+    font-weight: 900;
+    color: dimgray;
+    margin-top: 200px;
+}
 
 
 

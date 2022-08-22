@@ -11,23 +11,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.kh.member.vo.MemberVo;
 import com.kh.order.vo.ReservationVo;
 import com.kh.reservation.service.ReservationService;
 
 @WebServlet(urlPatterns = "/member/reservationCheck")
 public class ReservationCheckController extends HttpServlet {
-	
+		
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		String no = req.getParameter("userNo");
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String no = ((MemberVo)req.getSession().getAttribute("loginMember")).getNo();
+		String type = req.getParameter("type");
 			
-		List<ReservationVo> list = new ReservationService().reservationCheck(no);
+		List<ReservationVo> list = new ReservationService().reservationCheck(no, type);
 		
-		Gson g = new Gson();
-		String jsonStr = g.toJson(list);
-		resp.getWriter().write(jsonStr);
-		
+		req.setAttribute("reservationList", list);
+		req.setAttribute("status", type);
+		req.getRequestDispatcher("/views/member/myReservationPage.jsp").forward(req, resp);
 	}
 	
 }

@@ -3,6 +3,8 @@ package com.kh.review.service;
 import java.sql.Connection;
 
 import static com.kh.common.JDBCTemplate.*;
+
+import com.kh.camplist.campinfo.vo.CampInfoVo;
 import com.kh.review.repository.ReviewDao;
 import com.kh.review.vo.ReviewVo;
 
@@ -77,6 +79,17 @@ public class ReviewService {
 		
 		return result;
 	}
+
+//	public CampInfoVo campSelect(String reservationNo) {
+//		Connection conn = getConnection();
+//		CampInfoVo vo = new ReviewDao().campSelect(conn, reservationNo);
+//		close(conn);
+//		return vo;
+//	}
+
+	//캠핑장 정보 조회
+
+	
 	
 	
 

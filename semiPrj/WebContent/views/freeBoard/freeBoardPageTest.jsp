@@ -1,21 +1,21 @@
 
+<%@page import="com.kh.freeboard.attachment.vo.FreeBoardAttachmentVo"%>
 <%@page import="com.kh.freeboard.vo.FreeBoardTradeVo"%>
 <%@page import="com.kh.common.PageVo"%>
 <%@page import="com.kh.freeboard.vo.FreeBoardVo"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"  %>
     
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="fm" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <%
-	List<FreeBoardVo> fvoList = (List<FreeBoardVo>)request.getAttribute("fvoList");
 	PageVo fpageVo = (PageVo)request.getAttribute("fpageVo");
 	
-	List<FreeBoardTradeVo> fbvoList = (List<FreeBoardTradeVo>)request.getAttribute("fbvoList");
 	PageVo fbpageVo = (PageVo)request.getAttribute("fbpageVo");
 
-	List<FreeBoardVo> fMainList = (List<FreeBoardVo>)request.getAttribute("fMainList");
-	List<FreeBoardTradeVo> fbMainList = (List<FreeBoardTradeVo>)request.getAttribute("fbMainList");
+	
+	/* List<FreeBoardAttachmentVo> fbavoList = (List<FreeBoardAttachmentVo>)request.getAttribute("fbavoList"); */
 	
 	
 	int fcurrentPage = fpageVo.getCurrentPage();
@@ -47,33 +47,33 @@
 	
 	<!-- href링크는 게시글 번호로 그 번호에 맞는 상세페이지로 이동시키기 -->
 	
-	<div id="freeboard-outer" class="container">
+	<div id="freeBoardTrade-outer" class="container">
 
-		<div id="fb1" class="container">
-			<p class="fb1-title">중고거래</p>
+		<div id="tradeBoard" class="container">
+			<p class="tradeBoard-title">중고거래</p>
 			
 			
-			<p class="fb1-title-2">중고거래 인기글 </p>
+			<p class="tradeBoard-title-2">중고거래 인기글 </p>
 			
 			
-			<div id="fb1-1" class="container">
+			<div id="tradeBoard-1" class="container">
 				
 				
-			
-				<%for(FreeBoardTradeVo fblist : fbMainList) { %>
-					<div class ="menu-items">
-					<a href="<%=contextPath %>/freeBoard/trade/detail?num2=<%=fblist.getNo() %>">
-						<div id="fb1-img-outer"><img src="<%=contextPath %>/resource/img/gsTest2.jpg" alt=""></div>
-						<div>
-							<div class="fb1-comment-outer"><span><%=fblist.getTitle() %></span></div>
-							<p id="fb1-subtitle1"><%=fblist.getWriter() %></p>
-							<p id="fb1-subtitle2"><%=fblist.getPrice() %>원</p>
-						</div>
-					</a>
-				</div>
-				<%} %>
+				<c:forEach items="${fbMainList}" var="fblist" >
+						<div class ="menu-items">
+						<a href="<%=contextPath %>/freeBoard/trade/detail?num2=${fblist.no}">
+						
+							<div id="tradeBoard-img-outer"><img src="<%=contextPath %>/resource/img/gsTest3.jpg" alt=""></div>
+							<div >
+								<div class="tradeBoard-comment-outer"><span>${fblist.title}</span></div>
+								<p id="tradeBoard-subtitle1">${fblist.writer}</p>
+								<%-- <p id="tradeBoard-subtitle2">${fblist.price}원</p> --%>
+								<p><fm:setLocale value="ko_KR"/><fm:formatNumber type="currency" value="${fblist.price}" />원</p>
 
-
+							</div>
+						</a>
+					</div>
+				</c:forEach>
 				
 
 				
@@ -81,35 +81,40 @@
 			</div>
 
 
-			<div class="fb1-3" class="container">
+			<div class="Board-table-outer" class="container">
 				
-				<table id="fb-table-main" class="container">
+				<table id="Board-table-outer-main" class="container">
 
 					<thead>
 						<tr>
 							<th>글번호</th>
 							<th>글제목</th>
 							<th>작성자</th>
-							<th>조회수</th>
+							<th>판매가격</th>
 							<th>작성일</th>
 						</tr>
 					</thead>
 
-					<%for(FreeBoardTradeVo fbvo : fbvoList) {%>
+					<c:forEach items ="${fbvoList}" var="fbvo">
 					
 						<tbody>
 							
 								<tr>
-									<td><%=fbvo.getNo() %></td>
-									<td><%=fbvo.getTitle() %></td>
-									<td><%=fbvo.getContent() %></td>
-									<td><%=fbvo.getWriter() %></td>
-									<td><%=fbvo.getEnrollDate() %></td>
+									<td>${fbvo.no}</td>
+									<td class="fb-tr-Title">${fbvo.title}</td>
+									<td class="fb-tr-Content">${fbvo.content}</td>
+									<td>
+										<fm:formatNumber type="number" maxFractionDigits="3" value="${fbvo.price}" />원
+									</td>
+									<td>
+										<fm:parseDate value="${fbvo.enrollDate}" var="enrollDate" pattern="yyyy-MM-dd HH:mm:ss"></fm:parseDate>
+										<fm:formatDate value="${enrollDate}" pattern="yyyy년 MM월 dd일" />
+									</td>
 								</tr>
 							
 						</tbody>
-					<%} %>
-					
+						
+					</c:forEach>
 					
 					
 
@@ -149,13 +154,16 @@
 			</div>
 
 			
-			<div id="fb1-2" >
-				<!-- 나중에 != 으로 체인지  -->
-				<% if(loginMember == null) { %>
-				<input class="btn btn-outline-success" type="button" value="중고거래 글 작성하기" data-bs-toggle="modal" data-bs-target="#tradeWrite">
-				<%} else {%>
-				<input class="btn btn-outline-success" type="button" value="중고거래 글 작성하기" data-bs-toggle= data-bs-target="">
-				<%} %>
+			<div id="tradeBoard-2" >
+				
+				
+				<c:if test="${empty loginMember}">
+					<input class="btn btn-outline-success" type="button" value="중고거래 글 작성하기" data-bs-toggle= data-bs-target="" onclick="alert('로그인 후 작성 가능합니다.')">
+				</c:if>
+				
+				<c:if test="${not empty loginMember}">
+					<input class="btn btn-outline-success" type="button" value="중고거래 글 작성하기" data-bs-toggle="modal" data-bs-target="#tradeWrite">
+				</c:if>
 			</div>
 
 		</div>
@@ -165,62 +173,63 @@
 		
 		<!-- 자유게시판 이동 -->
 		
-		<div id="fb2" class="container">
-			<p class="fb1-title" >자유게시판</p>
+		<div id="freeBoard" class="container">
+			<p class="tradeBoard-title" >자유게시판</p>
 			
-			<p class="fb1-title-2"> 자유게시판 인기글 목록 </p>
+			<p class="tradeBoard-title-2"> 자유게시판 인기글 목록 </p>
 			
-			<div id="fb2-1" class="container">
+			<div id="freeBoard-1" class="container">
 
 
-				
-
-
-				<%for(FreeBoardVo flist : fMainList) { %>
-					<div class="fb2-1-story">
-						<a href="<%=contextPath %>/freeBoard/detail?num=<%=flist.getNo()%>" class="fb2-1-story-outer">
-							<p style="font-size: 3rem;"><%=flist.getContent() %></p>
-							<p class="fb2-story-date"><%=flist.getEnrollDate() %></p>
-							<span class="fb2-story-count" >
-								<span><img src="" alt="이미지">"조회수 : "<%=flist.getCnt() %></span>
-							</span>
-						</a>
-					</div>
-				<%} %>
-
-
+				<!-- el문으로 -->
+				<c:forEach items="${fMainList}" var="flist">
+							<div class="freeBoard-1-story">
+								<a href="<%=contextPath %>/freeBoard/detail?num=${flist.no}" class="freeBoard-1-story-outer">
+									<p id="freeBoard-1-pcontent">${flist.content}</p>
+									<p class="freeBoard-story-date">${flist.enrollDate}</p>
+									<span class="freeBoard-story-count" >
+										<span><img src="<%=contextPath %>/resource/img/freeBoardTrade/views.png" alt="이미지"" style="height:100%;">    ${flist.cnt}</span>
+									</span>
+								</a>
+							</div>
+				</c:forEach>
 
 			</div>
 
 
-			<div class="fb1-3" class="container">
+			<div class="Board-table-outer" class="container">
 				
-				<table id="f-table-main" class="container">
+				<table id="Borad-table-main" class="container">
 
 					<thead>
 						<tr>
-							<td>글번호</td>
-							<td>글제목</td>
-							<td>작성자</td>
+							<td>번호</td>
+							<td>제목</td>
+							<td>내용</td>
 							<td>조회수</td>
 							<td>작성일</td>
 						</tr>
 					</thead>
-					<%for(FreeBoardVo fb : fvoList) {%>
-						
+					
+					<!-- 자유게시판 글 전부 가져와서 보여주기 -->
+					<c:forEach items ="${fvoList}" var="fb">
+					
 						<tbody>
 							
 								<tr>
-									<td><%= fb.getNo() %></td>
-									<td><%= fb.getTitle() %></td>
-									<td><%= fb.getContent() %></td>
-									<td><%= fb.getWriter() %></td>
-									<td><%= fb.getEnrollDate() %></td>
+									<td>${fb.no}</td>
+									<td class="fb-tr-Title">${fb.title}</td>
+									<td class="fb-tr-Content">${fb.content}</td>
+									<td>${fb.cnt}</td>
+									<td>
+										<fm:parseDate value="${fb.enrollDate}" var="enrollDate" pattern="yyyy-MM-dd HH:mm:ss"></fm:parseDate>
+										<fm:formatDate value="${enrollDate}" pattern="yyyy년 MM월 dd일" />
+									</td>
 								</tr>
 							
 						</tbody>
-					<%} %>
-					
+						
+					</c:forEach>
 
 				</table>
 			</div>
@@ -250,15 +259,17 @@
 			</div>
 
 
-			<div id="fb2-2" >
-				<!-- <input class="btn btn-outline-success" type="button" onclick="" value="자유게시판 글 작성하기" data-bs-toggle="modal" data-bs-target="#freeBoardWrite"> -->
+			<div id="freeBoard-2" >
 				
-				<!-- 나중에 != 으로 체인지  -->
-				<% if(loginMember == null) { %>
-					<input class="btn btn-outline-success" type="button" value="자유게시판 글 작성하기" data-bs-toggle="modal" data-bs-target="#freeBoardWrite">
-				<%} else {%>
+				<!-- 로그인 여부에 따라 버튼 기능 차이 -->
+				<c:if test="${empty loginMember}">
 					<input class="btn btn-outline-success" type="button" value="자유게시판 글 작성하기" onclick="alert('로그인 후 작성 가능합니다.')">
-				<%} %>
+				</c:if>
+				
+				<c:if test="${not empty loginMember}">
+					<input class="btn btn-outline-success" type="button" value="자유게시판 글 작성하기" data-bs-toggle="modal" data-bs-target="#freeBoardWrite">
+				</c:if>
+				
 			</div>
 			
 			
@@ -267,7 +278,7 @@
 
 	<script>
 		$(function(){
-			$('#f-table-main>tbody>tr').click(function(){
+			$('#Borad-table-main>tbody>tr').click(function(){
 				
 				const num = $(this).children().eq(0).text();
 
@@ -277,7 +288,7 @@
 	</script>
 	<script>
 		$(function(){
-			$('#fb-table-main>tbody>tr').click(function(){
+			$('#Board-table-outer-main>tbody>tr').click(function(){
 				//행 클릭 되었을 때, 동작할 내용
 				
 				//1.글 번호 가져오기
@@ -321,10 +332,9 @@
 	        <form action="<%=contextPath %>/freeBoard/trade/insert" method="post" enctype="multipart/form-data">
 			  <div class="mb-3 mt-3 input-group-lg">
 			  
-			  	<!-- value값 로그인멤버 번호로 변경하기 -->
-			  	<input type="hidden" name="fbt-writerNo" value="1">
+			  	<input type="hidden" name="fbt-writerNo" value="${loginMember.no }">
 			    <label for="trade-img" class="form-label" ><mark>이미지 선택하기</mark></label>
-			    <input type="file" class="form-control" id="trade-img" placeholder="이미지를 선택해주세요" name="fbt-img">
+			    <input type="file" accept="Image/*" class="form-control" id="trade-img" placeholder="이미지를 선택해주세요" name="fbt-img" multiple>
 			  </div>
 			  <div class="mb-3 mt-3 input-group-lg">
 			    <label for="trade-title" class="form-label"><mark>글제목</mark></label>
@@ -379,7 +389,7 @@
 	  			<div class="mb-3 mt-3 input-group-lg">
 	  			
 	  				<!-- value값 로그인멤버 번호로 변경하기 -->
-	  				<input type="hidden" name="fb-writerNo" value="1">
+	  				<input type="hidden" name="fb-writerNo" value="${loginMember.no}">
 			    	<label for="fb-title" class="form-label h3"><mark>글제목</mark></label>
 			    	<input type="text" class="form-control" id="fb-title" placeholder="제목을 입력하세요" name="fb-title">
 				</div>

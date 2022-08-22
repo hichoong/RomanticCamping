@@ -3,12 +3,8 @@
 <%@page import="com.kh.freeboard.vo.FreeBoardVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-    
-<%
-	FreeBoardVo fvo = (FreeBoardVo)request.getAttribute("fvo");
-	List<FreeBoardRepleVo> frvoList = (List<FreeBoardRepleVo>)request.getAttribute("frvoList");
-%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+   
     
 <!DOCTYPE html>
 <html>
@@ -24,8 +20,9 @@
 
 	/* 제일큰틀 */
 	#freeboard-detail-outer{
-		border: 1px solid red;
-        height: auto;
+		height: auto;
+		border: 3px solid brown;
+		border-radius: 5px;
 	}
 
 	
@@ -34,14 +31,14 @@
         height: 30%;
         margin: 0 auto;
 		padding: 0px;
-        border: 1px solid red;
+        border: 1px solid burlywood;
     }
 
 
 	#d7-d{
 		display: flex;
         height: 5%;
-        border: 1px solid red;
+        /* border: 1px solid red; */
     }
 
 
@@ -49,8 +46,14 @@
         height: 35%;
         margin: 0 auto;
 		padding: 0px;
-        border: 1px solid red;
 		vertical-align: baseline;
+        /* border: 1px solid red; */
+    }
+    
+    #d8-d-textarea{
+    	font-size : 2rem;
+    	height:auto;
+    	width: 100%
     }
 
 	#d9-d{
@@ -58,7 +61,7 @@
 		flex-direction: column;
 		flex-wrap: nowrap;
         height: 20%;
-        border: 3px solid blue;
+        /* border: 3px solid blue; */
     }
 
 	/* 2차 틀 */
@@ -66,7 +69,7 @@
 		margin: 0 auto;
 		padding: 0px;
         height: 100%;
-        border: 2px solid darkred;
+        /* border: 2px solid darkred; */
     }
 
 	/* 꾸미기 */
@@ -78,23 +81,23 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		border: 1px solid brown;
+		/* border: 1px solid brown; */
 	}
 
 
 	#fbt-left-div{
 		display: flex;
 		margin-left: 8px;
-		border: 1px solid blue;
 		flex-direction: column;
+		/* border: 1px solid blue; */
 	}
 
 
 	#fbt-right-div{
 		display: flex;
 		margin-right: 8px;
-		border: 1px solid blue;
 		flex-direction: column;
+		/* border: 1px solid blue; */
 	}
 
 
@@ -102,7 +105,7 @@
 	/* 보더라인 */
 	.fbt-top-line{
 		width: 100%;
-        height: 1%;
+        height: 5px;
 		background-color: rgb(240, 225, 203);
         margin-bottom: 1%;
         margin-top: 1%;
@@ -113,7 +116,7 @@
 	.fb2-1-story-outer{
 		position: relative;
 		overflow: hidden;
-		border: 1px solid red;
+		/* border: 1px solid red; */
 	}
 		
 	.fb2-story-date{
@@ -121,7 +124,7 @@
 		margin-top: 6px;
 		color: darkgray;
 		height: 8%;
-		border: 1px solid red;
+		/* border: 1px solid red; */
 	}
 
 	.fb2-story-content{
@@ -132,22 +135,34 @@
 	/* 리플창 */
 	.select-reple{
 		width: 100%;
-		height: auto;
+		height: 150px;
 		border: 1px solid pink;
+		position: relative;
+		margin-bottom: 5px;
 	}
 
-		
+	.reple-id>p>a {
+		position: absolute;
+		right: 3px;
+	}
+
+	.reple-sub{
+		position: absolute;
+		bottom: 5px;
+	}	
+	
+	.reple-content{
+		height:auto;
+	}
 </style>
 </head>
 <body>
 
 <%@ include file="/views/common/header.jsp" %>	
 	
-	<h1> 여기는 중고거래게시판 상세보기 게시판</h1>
+	
 	<div id="freeboard-detail-outer" class="container">
 
-
-		
 
 		<!-- 선추가 -->
 		<div class="fbt-top-line"></div>
@@ -158,15 +173,15 @@
 			<div id="fbt-div-outer">
 
 				<div id="fbt-left-div">
-					<div id="userId" >작성자 : <%= fvo.getWriter() %></div>
-					<div id="userGrade">회원등급 : <%= fvo.getNo() %></div>
+					<div id="userId" >작성자 :${fvo.writer}</div>
+					<div id="userGrade">글번호 : ${fvo.no}</div>
 				</div>
 
 
 
 				<div id="fbt-right-div">
-					<div id="count">조회수 : <%= fvo.getCnt() %></div>
-					<div id="update_date"> 작성일자 : <%= fvo.getEnrollDate() %></div>
+					<div id="count">조회수 : ${fvo.cnt}</div>
+					<div id="update_date"> 작성일자 : ${fvo.enrollDate}</div>
 				</div>
 
 			</div>
@@ -177,17 +192,21 @@
 		<div class="fbt-top-line"></div>
 
 		<div id="d8-d" class="container">
-
-
-					<p style="font-size: 3rem;">글제목 보여주는 곳</p>
-					<textarea style="font-size: 2rem;" class="fb2-story-content" name="" id="" ><%= fvo.getContent() %> 글 내용 보여주는 곳 이렇게 엔터키를 치면 어캐보이는지? 
-					</textarea>
-					<p class="fb2-story-date">작성시간 : <%= fvo.getEnrollDate() %></p>
-					<p class="fb2-story-date">조회 수 : <%= fvo.getCnt() %></p>
-					<p class="fb2-story-date">등등</p>
+				<p style="font-size: 3rem;">${fvo.title}</p>
+				<textarea readonly cols="50" rows="13" id="d8-d-textarea" class="fb2-story-content" name="" id="" >${fvo.content}  
+				</textarea>
+				<p class="fb2-story-date">작성시간 : ${fvo.enrollDate}</p>
+				<p class="fb2-story-date">조회 수 : ${fvo.cnt}</p>
+				
+				
 			
-			
-
+				<!-- 글 작성자와 로그인한 사람이 같으면 글 수정/삭제 버튼 보여주기 -->	
+				<c:if test="${loginMember.name eq fvo.writer}">
+					<a href="<%= contextPath %>/freeBoard/edit?num=${fvo.no}"  class="btn btn-outline-info">게시글 수정하기</a>
+					<a href="<%= contextPath %>/freeBoard/delete?num=${fvo.no}"  class="btn btn-outline-danger">게시글 삭제하기</a>
+				</c:if>
+				
+				
 		</div>
 
 
@@ -196,54 +215,61 @@
 
 		<div id="d9-d" class="container">
 
-			<!-- 작성된 댓글 가져와서 보여주기 -->
+				<!-- 작성된 댓글 가져와서 보여주기 -->
+			<h2>댓글 목록</h2>
 			
-			<div class="select-reple">
-
-				<div class="reple-id"><p >작성자 id</p></div>
-				<div class="reple-comment"><p >작성내용 </p></div>
-				<div class="reple-sub"><span>작성일자</span> <a>답글쓰기</a></div>
-
-			</div>
 			
-			<%for( FreeBoardRepleVo fr : frvoList ) {%>			
+			<c:forEach items="${frvoList}" var="fr">
 				<div class="select-reple">
 	
-					<div class="reple-id"><p ><%= fr.getWriter() %></p></div>
-					<div class="reple-comment"><p ><%= fr.getContent() %> </p></div>
-					<div class="reple-sub"><span><%= fr.getEnrollDate() %></span> <a>답글쓰기</a></div>
+					<div class="reple-id">
+						<p>${fr.writer}
+							
+							<c:if test="${loginMember.name eq fr.writer}">
+								<a href="<%= contextPath %>/freeBoard/reple/delete?num=${fr.no}&pageNo=${fvo.no}"  class="btn btn-outline-danger">삭제하기</a>
+							</c:if>
+						</p> 
+					</div>
+					<div class="reple-content"><p >${fr.content} </p></div>
+					<div class="reple-sub"><span>${fr.enrollDate}</span> <a>답글쓰기</a></div>
 	
 				</div>
-			<%} %>
 			
-		
-		
-		
-			<!-- 선추가 -->
-			<div class="fbt-top-line"></div>
 			
-			<!-- 내가 댓글작성하기 -->
-				
+			</c:forEach>
+			
+		</div>	
+		
+		
+		
+		<!-- 선추가 -->
+		<div class="fbt-top-line"></div>
+		
+		<!-- 내가 댓글작성하기 -->
+			
+		<div class="container mt-3">
+				<h2>댓글 작성하기</h2>
+				<p>${login.name}</p>
+				<form action="<%=contextPath%>/freeBoard/reple/insert" method="post">
+					<div class="mb-3 mt-3">
+							<input type="hidden" name="num" value="${fvo.no}" >
+							<input type="hidden" name="loginName" value="${loginMember.name}">
+							<label for="comment">Comments:</label>
+							<textarea class="form-control" rows="5" id="comment" name="content"></textarea>
+					</div>
 					
-			</div>
-			
-			<div class="container mt-3">
-				  <h2>댓글 작성하기</h2>
-				  <p>로그인 유저 id </p>
-				  <form action="">
-					    <div class="mb-3 mt-3">
-						      <label for="comment">Comments:</label>
-						      <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
-					    </div>
-				    <button type="submit" class="btn btn-primary">댓글등록하기</button>
-				  </form>
-			</div>
-
-
-
-
+				<c:if test="${not empty loginMember}">
+					<button type="submit" class="btn btn-primary">댓글등록하기</button>
+				</c:if>
+				<c:if test="${empty loginMember}">
+					<button type="button" class="btn btn-primary" onclick="alert('로그인 후 작성 가능합니다.')">댓글등록하기</button>
+				</c:if>
+					
+				</form>
+		</div>
 		
-	</div>
+		
+		
 
 	</div>
 

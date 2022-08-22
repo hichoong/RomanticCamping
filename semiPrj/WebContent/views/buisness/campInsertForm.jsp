@@ -105,7 +105,7 @@
 							    
 							    <input type="checkbox" name="facility" id="ft6" class="facility" value="f">
 							    <label for="ft6">장작판매</label>
-							    <input type="checkbox" name="facility" id="ft7" class="facility" value="p">
+							    <input type="checkbox" name="facility" id="ft7" class="facility" value="g">
 							    <label for="ft7">운동장</label>
 							    <input type="checkbox" name="facility" id="ft8" class="facility" value="t">
 							    <label for="ft8">산책로</label>
@@ -114,47 +114,7 @@
 							    
 					</div>
  					
-					<!--
-					<div class="md-3" id="tdTheme">
-						<label for="campTheme" class="form-label">* 테마:(테마를선 택해주세요)</label>
-						<table>
-							<tr>
-								<td><input type="checkbox" class="btn-check" id="beach" autocomplete="off" name="theme" value="beach"> 
-									<label class="btn btn-outline-success" for="beach">해변</label><br>
-								</td>
-
-								<td><input type="checkbox" class="btn-check" id="forest" autocomplete="off" name="theme" value="forest">
-									<label class="btn btn-outline-success" for="forest">숲</label><br>
-								</td>
-
-								<td><input type="checkbox" class="btn-check" id="island" autocomplete="off" name="theme" value="island"> 
-									<label class="btn btn-outline-success" for="island">섬</label><br>
-								</td>
-
-								<td><input type="checkbox" class="btn-check" id="lake" autocomplete="off" name="theme" value="lake">  
-									<label class="btn btn-outline-success" for="lake">호수</label><br>
-								</td>
-
-								<td><input type="checkbox" class="btn-check" id="downtown" autocomplete="off" name="theme" value="downtown"> 
-								<label class="btn btn-outline-success" for="downtown">도심</label><br>
-								</td>
-
-								<td><input type="checkbox" class="btn-check" id="valley" autocomplete="off" name="theme" value="valley"> 
-									<label class="btn btn-outline-success" for="valley">계곡</label><br>
-								</td>
-
-								<td><input type="checkbox" class="btn-check" id="mountain" autocomplete="off" name="theme" value="mountain"> 
-									<label class="btn btn-outline-success" for="mountain">산</label><br>
-								</td>
-
-								<td><input type="checkbox" class="btn-check" id="river" autocomplete="off" name="theme" value="river"> 
-									<label class="btn btn-outline-success" for="river">강</label><br>
-								</td>
-
-							</tr>
-						</table>
-					</div>
-					 -->
+					
 					 <div class="md-3" id="tdTheme">
 					 	<label for="campTheme" class="form-label">* 테마:(테마를선 택해주세요)</label>
 						<table>
@@ -171,27 +131,27 @@
 					
 					<div class="md-3" id="hashTag">
 						<label for="campHashTag" class="form-label">* 태그:(해쉬태그를 선택해주세요)</label>
-						
+						<input type="hidden" value="0" name="hashNum" disabled>
 						<table>
-								<tr>
+								<tr >
 								<%for(HashTagVo vo : hashTagList) { %>
-								<%  String x1 = vo.getHtCode();
-									int x =Integer.parseInt(x1);
-									%>
+									<%  String x1 = vo.getHtCode();
+									int x =Integer.parseInt(x1);%>
 									
 										<%if( (x%5)!=0 ){%>
 											<td>
-		                      				<input style="display:none;" type="checkbox" class="btn-check" id="<%=vo.getHtName()%>" autocomplete="off" name="hashTag" value="<%=vo.getHtCode()%>"> 
-											<label class="btn btn-outline-success" for="<%=vo.getHtName()%>"><%=vo.getHtName()%></label><br>
+		                      				<input style="margin: 10px" type="checkbox" class="btn-check"  
+		                      				id="<%=vo.getHtName()%>" autocomplete="off" name="hashTag" value="<%=vo.getHtCode()%>" onclick="getHashNum();"> 
+											<label class="btn btn-outline-success" for="<%=vo.getHtName()%>"><%=vo.getHtName()%></label>
 											</td>
 										<%}else{%>
 											<td>
-		                      				<input  style="display:none;" type="checkbox" class="btn-check" id="<%=vo.getHtName()%>" autocomplete="off" name="hashTag" value="<%=vo.getHtCode()%>"> 
-											<label class="btn btn-outline-success" for="<%=vo.getHtName()%>"><%=vo.getHtName()%></label><br>
+		                      				<input style="margin: 10px" type="checkbox" class="btn-check" 
+		                      				id="<%=vo.getHtName()%>" autocomplete="off" name="hashTag" value="<%=vo.getHtCode()%>" onclick="getHashNum();"> 
+											<label class="btn btn-outline-success" for="<%=vo.getHtName()%>"><%=vo.getHtName()%></label>
 											</td></tr>
 										<%} %>
-								<%} %>
-								
+									<%} %>
 						</table>
 					</div>
 					
@@ -272,7 +232,7 @@
 	</main>
 
 	<%@ include file="/views/common/footer.jsp"%>
-</body>
+
 
 <script>
 	console.log("hi");
@@ -441,7 +401,24 @@
     
 </script>
 
+<script>
+
+    function getHashNum() {
+        // 선택된 목록 가져오기
+        const query = 'input[name="hashTag"]:checked';
+        const selectedElements =
+            document.querySelectorAll(query);
+
+        // 선택된 목록의 갯수 세기
+        const selectedElementsCnt =
+            selectedElements.length;
+
+        // 출력
+
+        $('input[name=hashNum]').attr('value',selectedElementsCnt)
+    }
+</script>
 
 
-
+</body>
 </html>

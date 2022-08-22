@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static com.kh.common.JDBCTemplate.*;
+
+import com.kh.camplist.campinfo.vo.CampInfoVo;
 import com.kh.review.vo.ReviewVo;
 
 public class ReviewDao {
@@ -123,5 +125,19 @@ public class ReviewDao {
 		}
 		return result;
 	}
+
+	//캠핑장 정보 조회
+//	public CampInfoVo campSelect(Connection conn, String reservationNo) {
+//		
+//		String sql = "SELECT CAMP_CODE FROM RESERVATION WHERE RE_NO = ?";
+//		
+//		return null;
+//	}
+
+	
+
+	
+
+	
 		
 }

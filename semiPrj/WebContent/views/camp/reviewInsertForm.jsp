@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>낭만캠핑</title>
-<link rel="stylesheet" href="/semiPrj/resource/css/reviewInsertForm.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/reviewInsertForm.css">
 </head>
 <body>
 	
@@ -13,6 +13,8 @@
 	
 	<div class="container">
         <section>
+        
+        	
             <div id="camp-info">
                 <div class="card mb-3" style="max-width: 1000px;">
                     <div class="row no-gutters">
@@ -23,14 +25,15 @@
                         <div class="card-body">
                           <h5 class="card-title">캠핑장1</h5>
                           <p class="card-text">여유로움을 즐길 수 있는 캠핑장1 입니다</p>
-                          <p class="card-text"><small class="text-muted">#여유 #힐링</small></p>
+                          <p class="card-text"><small class="text-muted"></small></p>
                         </div>
                       </div>
                     </div>
                 </div>
-            </div>
+            </div> 
 
             <form action="<%=contextPath%>/review/insert" method="post" id="review-write">
+            	
                 <div class="review-star">
                     <span class="text-bold">별점을 선택해주세요</span>
                     <input type="radio" name="reviewStar" value="5" id="rate1"><label

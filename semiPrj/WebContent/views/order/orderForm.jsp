@@ -23,30 +23,30 @@
 		    <div class="row g-5">
 		      <div class="col-md-5 col-lg-4 order-md-last">
 		        <h4 class="d-flex justify-content-between align-items-center mb-3">
-		          <span class="text-danger"  id="캠핑장 이름">예약할 캠핑장</span>
+		          <span class="text-danger"  id="캠핑장 이름"><%="캠핑장이름"%></span>
 		          <span class="badge bg-danger rounded-pill">1</span>
 		        </h4>
 		        <ul class="list-group mb-3">
 		          <li class="list-group-item d-flex justify-content-between lh-sm">
 		            <div>
 		              <h6 class="my-0">하늘캠핑장</h6>
-		              <small class="text-muted" id="날짜"> 날짜 : 2022.08.14~22.08.15</small>
-		              <small class="text-muted" id="reservaionNop">숙박 인원 : 5명 </small>
+		              <small class="text-muted" id="날짜"> <%="숙박예정일~숙박예정일" %></small>
+		              <small class="text-muted" id="reservaionNop"><%="숙박 인원" %> </small>
 		              
 		            </div>
-		            <span class="text-muted" id="originCost">120,000</span>
+		            <span class="text-muted" id="originCost"><%="120,000" %></span>
 		          </li>
 		          
 		          <li class="list-group-item d-flex justify-content-between bg-light">
 		            <div class="text-success">
 		              <h6 class="my-0">사용할 쿠폰</h6>
-		              <small id="coupoName">없음</small>
+		              <small id="couponName">없음</small>
 		            </div>
 		            <small class="text-success" id="couponCost">0</small>
 		          </li>
 		          <li class="list-group-item d-flex justify-content-between">
 		            <span>총 결제금액</span>
-		            <strong id="totalCost" >120,000</strong>
+		            <strong id="totalCost" ><%="토탈 금액" %></strong>
 		          </li>
 		        </ul>
 		        
@@ -66,10 +66,10 @@
 		          <div class="row g-3 alert-light">
 		        	<h4 class="mb-3 " >사용자 정보</h4>
 		            <div class="col-12">
-		              <label for="username" class="form-label">이름</label>
+		              <label for="userName" class="form-label">이름</label>
 		              <div class="input-group has-validation">
 		                <span class="input-group-text">*</span>
-		                <input type="text" class="form-control" id="username"  value="김충희" placeholder="예약자명" required>
+		                <input type="text" class="form-control" id="reservationName"  value="<%="캠핑예약자명" %>" placeholder="예약자명" required>
 		              <div class="invalid-feedback">
 		                  이름 작성 필수.
 		                </div>
@@ -85,7 +85,7 @@
 		
 		            <div class="col-12">
 		              <label for="address" class="form-label">연락처</label>
-		              <input type="tel" class="form-control" id="address" placeholder="-부호 제외" required>
+		              <input type="tel" class="form-control" minlength="10" id="address" placeholder="-부호 제외" required>
 		              <div class="invalid-feedback">
 		               연락처를 입력해 주세요.
 		              </div>
@@ -93,7 +93,7 @@
 		
 		            <div class="col-12">
 		              <label for="address2" class="form-label">요청사항<span class="text-muted">(선택사항)</span></label>
-		              <input type="text" class="form-control" id="requestion" placeholder="">
+		              <input type="text" class="form-control" id="requestion" placeholder="" value="없음">
 		            </div>
 					<br><br><br><br><br>
 		          </div>
@@ -136,7 +136,7 @@
 					<div class="my-3 alert-waring">
 		      		<h4 class="mb-3" >결제방법</h4>
 		            <div class="form-check">
-		              <input id="paymentMethod" name="credit" type="radio" class="form-check-input" value="카드결제" checked required>
+		              <input id="payMethod" name="credit" type="radio" class="form-check-input" value="카드결제" checked required>
 		              <label class="form-check-label" for="credit">카드결제</label>
 		            </div>
 		          </div>
@@ -162,7 +162,7 @@
 		
 		            <div class="col-md-6">
 		              <label for="cc-number" class="form-label">카드번호</label>
-		              <input type="text" class="form-control" id="cc-number" placeholder="ex)xxxx-xxxx-xxxx-xxxx" required>
+		              <input type="text" class="form-control" id="cc-number" placeholder="ex)xxxx-xxxx-xxxx-xxxx" minlength="19" required>
 		              <div class="invalid-feedback">
 		                카드 번호를 입력해 주세요.
 		              </div>
@@ -170,7 +170,7 @@
 		
 		            <div class="col-md-3">
 		              <label for="cc-expiration" class="form-label">만료일</label>
-		              <input type="text" class="form-control" id="cc-expiration" placeholder="ex) 08/22" required>
+		              <input type="text" class="form-control" id="cc-expiration" placeholder="ex) 08/22" minlength="5" required>
 		              <div class="invalid-feedback">
 		               기간 만료일을 기입해 주세요.
 		              </div>
@@ -178,7 +178,7 @@
 		
 		            <div class="col-md-3">
 		              <label for="cc-cvv" class="form-label">CVV번호</label>
-		              <input type="text" class="form-control" id="cc-cvv" placeholder="3자리" required >
+		              <input type="text" class="form-control" id="cc-cvv" placeholder="3자리" minlength="3" required >
 		              <div class="invalid-feedback">
 		                CVV번호 3자를 입력해 주세요.
 		              </div>
@@ -211,10 +211,11 @@
 		  소유한 쿠폰 : 
 				<select name="쿠폰선택" id="select-coupon">
 				   	<option value="0" id="select-coupon-cost">없음</option>
-				    <option value="20,000" id="select-coupon-cost">비 성수기 시즌</option>
-				    <option value="10,000" id="select-coupon-cost">생일 쿠폰</option>
-				    <option value="5,000" id="select-coupon-cost">첫 회원가입 쿠폰</option>
+				    <option value="20000" id="select-coupon-cost">비 성수기 시즌</option>
+				    <option value="10000" id="select-coupon-cost">생일 쿠폰</option>
+				    <option value="5000" id="select-coupon-cost">첫 회원가입 쿠폰</option>
 				</select>
+				<input type="hidden" value="<%="쿠폰코드"%> ">
 		</div>
 		<!-- modal footer -->
 		<div class="modal-footer">
@@ -238,7 +239,7 @@ $(document).ready(function() {
 	$("#coupon-button").click(function(){
     	
 		$("#couponCost").text($("#select-coupon").val());
-    	$("#coupoName").text($("#select-coupon option:selected").text());
+    	$("#couponName").text($("#select-coupon option:selected").text());
     	
     	
     	var  origin= $("#originCost").text().replace(/,/g, '') ; 

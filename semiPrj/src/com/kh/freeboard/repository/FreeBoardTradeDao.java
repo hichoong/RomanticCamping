@@ -301,13 +301,15 @@ public class FreeBoardTradeDao {
 	 * 댓글 리스트 가져오기
 	 */
 	public List<FreeBoardTradeRepleVo> selectReple(Connection conn, String num) {
+		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<FreeBoardTradeRepleVo> fbrvoList = new ArrayList<FreeBoardTradeRepleVo>();
 		
+		
 		try {
 			
-			String sql = "SELECT F.FBR_NO, F.FBR_CONTENT, M.NAME AS FBR_WRITER, F.FBR_ENROLL_DATE, F.FBR_STATUS FROM FB_REPLE F JOIN MEMBER M ON F.FBR_WRITER = M.NO WHERE F.FBR_REF_NO = ? AND F.FBR_STATUS ='N'";
+			String sql = "SELECT FBR_NO, FBR_REF_NO, FBR_WRITER, FBR_CONTENT, FBR_ENROLL_DATE FROM FB_REPLE WHERE ? = FBR_REF_NO AND FBR_STATUS='N' ORDER BY FBR_NO";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, num);
@@ -315,17 +317,15 @@ public class FreeBoardTradeDao {
 			rs = pstmt.executeQuery();
 			
 			//rs -> obj로 바꿔주는 작업 필요
-			if(rs.next()) {
+			while(rs.next()) {
 				
 				FreeBoardTradeRepleVo fbrvo = new FreeBoardTradeRepleVo();
 				
 				//vo객체에 담아주기
-				fbrvo = new FreeBoardTradeRepleVo();
-				
-				fbrvo.setNo(rs.getString("FR_NO"));
-				fbrvo.setContent(rs.getString("FR_CONTENT"));
-				fbrvo.setWriter(rs.getString("FR_WRITER"));
-				fbrvo.setEnrollDate(rs.getString("FR_ENROLL_DATE"));
+				fbrvo.setNo(rs.getString("FBR_NO"));
+				fbrvo.setWriter(rs.getString("FBR_WRITER"));
+				fbrvo.setContent(rs.getString("FBR_CONTENT"));
+				fbrvo.setEnrollDate(rs.getString("FBR_ENROLL_DATE"));
 				
 				fbrvoList.add(fbrvo);
 			}
@@ -341,6 +341,216 @@ public class FreeBoardTradeDao {
 		
 		return fbrvoList;
 	}
+	
+	/*
+	 * 댓글 입력 작업
+	 */
+	public int insertRepleTradeBoard(Connection conn, FreeBoardTradeRepleVo vo) {
+
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			
+			String sql = "INSERT INTO FB_REPLE ( FBR_NO, FBR_REF_NO, FBR_WRITER, FBR_CONTENT ) VALUES ( SEQ_FB_REPLE_NO.NEXTVAL, ?, ?, ? )";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getNo());
+			pstmt.setString(2, vo.getWriter());
+			pstmt.setString(3, vo.getContent());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	
+	
+	}
+	/*
+	 * 게시글 수정하기 작업
+	 */
+	public int editFreeBoardTrade(Connection conn, FreeBoardTradeVo fbvo) {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		//SQL 준비
+		String sql = "UPDATE FREEBOARD_TRADE SET FB_TITLE=?, FB_CONTENT=? WHERE FB_NO = ?";
+		
+		try {
+			
+			//SQL 객체에 담기 && SQL 완성
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fbvo.getTitle());
+			pstmt.setString(2, fbvo.getContent());
+			pstmt.setString(3, fbvo.getNo());
+			
+			//SQL실행 및 결과 저장
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		//실행결과 리턴
+		return result;
+	}
+	
+	/*
+	 * 중고거래 게시글 삭제하기
+	 */
+	public int deleteBoardTrade(Connection conn, String num) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			String sql = "UPDATE FREEBOARD_TRADE SET FB_STATUS = 'Y' WHERE FB_NO = ? ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+		
+	}
+	/*
+	 * 댓글삭제
+	 */
+	public int deleteRepleBoardTrade(Connection conn, String num) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			String sql = "UPDATE FB_REPLE SET FBR_STATUS='Y' WHERE FBR_NO=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	/*
+	 * 파일 조회
+	 */
+	public List<FreeBoardAttachmentVo> selectFile(Connection conn, String num) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<FreeBoardAttachmentVo> fbavoList = new ArrayList<FreeBoardAttachmentVo>();
+		
+		try {
+			
+			String sql = "SELECT FBA_NO ,FBA_REF_NO ,FBA_ORIGIN_NAME ,FBA_CHANGE_NAME ,FBA_FILE_PATH FROM FB_ATTACHMENT WHERE FBA_REF_NO = ? AND FBA_STATUS ='N' ORDER BY FBA_NO";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			
+			rs = pstmt.executeQuery();
+			
+			//rs -> obj로 바꿔주는 작업 필요
+			if(rs.next()) {
+				
+				
+				
+				//vo객체에 담아주기
+				FreeBoardAttachmentVo fbavo = new FreeBoardAttachmentVo();
+				
+				
+				fbavo.setNo(rs.getString("FBA_NO"));
+				fbavo.setRefBno(rs.getString("FBA_REF_NO"));
+				fbavo.setOriginName(rs.getString("FBA_ORIGIN_NAME"));
+				fbavo.setChangeName(rs.getString("FBA_CHANGE_NAME"));
+				fbavo.setFilePath(rs.getString("FBA_FILE_PATH"));
+				
+				fbavoList.add(fbavo);
+				
+				}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		
+		return fbavoList;
+		
+	}
+	/*
+	 * 메인파일 조회
+	 */
+	public FreeBoardAttachmentVo selectMainFile(Connection conn, String no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		FreeBoardAttachmentVo fbavo = null;
+		
+		try {
+			
+			String sql = "SELECT FBA_NO ,FBA_REF_NO ,FBA_ORIGIN_NAME ,FBA_CHANGE_NAME ,FBA_FILE_PATH FROM FB_ATTACHMENT WHERE FBA_REF_NO = ? AND FBA_STATUS ='N' ORDER BY FBA_NO";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, no);
+			
+			rs = pstmt.executeQuery();
+			
+			//rs -> obj로 바꿔주는 작업 필요
+			if(rs.next()) {
+				
+				
+				
+				//vo객체에 담아주기
+				fbavo = new FreeBoardAttachmentVo();
+				
+				
+				fbavo.setNo(rs.getString("FBA_NO"));
+				fbavo.setRefBno(rs.getString("FBA_REF_NO"));
+				fbavo.setOriginName(rs.getString("FBA_ORIGIN_NAME"));
+				fbavo.setChangeName(rs.getString("FBA_CHANGE_NAME"));
+				fbavo.setFilePath(rs.getString("FBA_FILE_PATH"));
+				
+				
+				}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		
+		return fbavo;
+	
+	}
 
 	
-}
+}//class

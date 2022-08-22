@@ -1,6 +1,7 @@
 package com.kh.freeboard.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.common.PageVo;
+import com.kh.freeboard.attachment.vo.FreeBoardAttachmentVo;
 import com.kh.freeboard.service.FreeBoardService;
 import com.kh.freeboard.service.FreeBoardTradeService;
 import com.kh.freeboard.vo.FreeBoardTradeVo;
@@ -24,8 +26,6 @@ public class FreeBoardPageController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		System.out.println(req.getParameter("p1"));
-		System.out.println(req.getParameter("p2"));
 		
 		//페이징 처리
 		//------------------ 페이징 처리 -------------------
@@ -111,16 +111,26 @@ public class FreeBoardPageController extends HttpServlet{
 		//자유게시판 페이징 글 조회 백엔드작업
 		List<FreeBoardVo> fvoList = new FreeBoardService().selectList(fpageVo);
 		
-		//중고거래게시판 페이징 글 조회 백엔드 작업
-		List<FreeBoardTradeVo> fbvoList = new FreeBoardTradeService().selecList(fbpageVo);
-		
 		//자유게시판 인기글 조회 백엔드 작업
 		List<FreeBoardVo> fMainList = new FreeBoardService().selectMainList();
+
+		
+		//중고거래게시판 페이징 글 조회 백엔드 작업
+		List<FreeBoardTradeVo> fbvoList = new FreeBoardTradeService().selecList(fbpageVo);
 		
 		//중고거래게시판 인기글 조회 백엔드 작업
 		List<FreeBoardTradeVo> fbMainList = new FreeBoardTradeService().selectMainList();
 		
-		
+		//중고거래게시판 파일 조회 백엔드 작업
+		/*
+		 * List<FreeBoardAttachmentVo> fbavoList = new
+		 * ArrayList<FreeBoardAttachmentVo>();
+		 * 
+		 * for(int i=0; i<fbMainList.size(); i++) { String checkNo =
+		 * fbMainList.get(i).getNo(); System.out.println(checkNo); FreeBoardAttachmentVo
+		 * fbao = new FreeBoardTradeService().selectMainFile(checkNo);
+		 * fbavoList.add(fbao); }
+		 */
 		//결과에 따라 다음 타자 정하기
 		req.setAttribute("fpageVo", fpageVo);
 		req.setAttribute("fvoList", fvoList);
@@ -131,6 +141,8 @@ public class FreeBoardPageController extends HttpServlet{
 		
 		req.setAttribute("fMainList", fMainList);
 		req.setAttribute("fbMainList", fbMainList);
+		
+//		req.setAttribute("fbavoList", fbavoList);
 		
 		req.getRequestDispatcher("/views/freeBoard/freeBoardPageTest.jsp").forward(req, resp);
 	}

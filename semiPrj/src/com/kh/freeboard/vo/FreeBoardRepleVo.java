@@ -7,7 +7,6 @@ public class FreeBoardRepleVo {
 	public FreeBoardRepleVo() {}
 	
 	
-	
 	public FreeBoardRepleVo(String no, String content, String writer, String enrollDate) {
 		super();
 		this.no = no;

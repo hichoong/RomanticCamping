@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.freeboard.attachment.vo.FreeBoardAttachmentVo;
 import com.kh.freeboard.service.FreeBoardService;
 import com.kh.freeboard.service.FreeBoardTradeService;
 import com.kh.freeboard.vo.FreeBoardRepleVo;
@@ -31,17 +32,20 @@ public class FreeBoardTradeDetailController extends HttpServlet{
 	
 		if(result ==1) {
 			
-			//디비에 가서, 특정 공지사항 정보 조회
+			//디비에 가서, 특정 게시글 정보 조회
 			FreeBoardTradeVo fbvo = new FreeBoardTradeService().selectOne(num);
+			
+			//디비에 가서, 특정 게시글에 맞는 파일 조회
+			List<FreeBoardAttachmentVo> fbavoList = new FreeBoardTradeService().selectFile(num);
 			
 			//디비에 가서, 특정 게시글 댓글 정보 조회
 			List<FreeBoardTradeRepleVo> fbrvoList = new FreeBoardTradeService().selectReple(num);
-			
 			
 			//정보를 req에 담아서, 다음타자한테 포워딩
 			if(fbvo != null) {
 				//성공하면 다음타자에게 포워딩
 				req.setAttribute("fbvo", fbvo);
+				req.setAttribute("fbavoList", fbavoList);
 				req.setAttribute("fbrvoList", fbrvoList);
 				req.getRequestDispatcher("/views/freeBoard/freeBoardTradeDetail.jsp").forward(req, resp);
 			}else {

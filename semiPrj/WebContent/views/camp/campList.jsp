@@ -12,7 +12,6 @@
 	List<String> checkedHashCodes = (List<String>) request.getAttribute("checkedHashCodes");
 	List<ThemeVo> themeList = (List<ThemeVo>) request.getAttribute("themeList");
 	
-	List<CampInfoVo> campInfoList = (List<CampInfoVo>) request.getAttribute("campInfoList");
 	PageVo pv = (PageVo) request.getAttribute("pv");
 	
 	List<CampInfoVo> searchList = (List<CampInfoVo>) request.getAttribute("searchList"); 
@@ -28,7 +27,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>낭만캠핑</title>
-	<link rel="stylesheet" href="/semiPrj/resource/css/campList.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/campList.css">
 </head>
 <body>
 	
@@ -41,12 +40,11 @@
               <!-- 새로고침,서브밋 했을 때 검색내용 유지기능 필요  -->
               <form class="search-form" action="<%=contextPath %>/camp/campList" method="get">
               	  <input type="hidden" name="p" value="1">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword" >
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword" value="${keyword}">
                   <div id="search-addr">
-                    <select name="sido1" id="sido1"></select>
-                    <select name="gugun1" id="gugun1"></select>
+                    <select name="sido1" id="sido1" sidoChecked="${sido1}"></select>
+                    <select name="gugun1" id="gugun1" gugunChecked="${gugun1}"></select>
                   </div>
-                  
                   <div class="check-theme">
                     
                     <table>
@@ -56,12 +54,15 @@
                       <tr>
                         <td>
 	                        <%for(ThemeVo vo : themeList) { %>
-                         		<input type="radio" name="theme" value="<%=vo.getThemeCode()%>" id="<%=vo.getThemeCode()%>"><label for="<%=vo.getThemeCode()%>"><%=vo.getThemeName()%></label><br>
+                         		<input type="radio" name="theme" themeChecked="${theme }" value="<%=vo.getThemeCode()%>" id="<%=vo.getThemeCode()%>"><label for="<%=vo.getThemeCode()%>"><%=vo.getThemeName()%></label><br>
 							<%} %>
                         </td>
                       </tr>
                     </table>
                   </div>
+                  
+                  
+                  
 
                     <div class="hashtag">
                       <button type="button" class="btn btn-warning">+해시태그</button>
@@ -71,7 +72,7 @@
                       <ul class="tag-ul">
 						<%for(HashTagVo vo : hashTagList) { %>
 							<li>
-								<input hashTagKey="<%=vo.getHtCode()%>" type="hidden" name="hashTag" disabled="disabled" value="<%=vo.getHtCode()%>">
+								<input  checkedHashCodes="${checkedHashCodes}" hashTagKey="<%=vo.getHtCode()%>" type="hidden" name="hashTag" disabled="disabled" value="<%=vo.getHtCode()%>">
 								<button hashTagKey="<%=vo.getHtCode()%>" type="button" class="tag-btn" ><%=vo.getHtName()%></button>
 							</li>
 						<%} %>
@@ -85,40 +86,52 @@
 
             <div class="camp-list">
                
-				<%for(CampInfoVo c : campInfoList) { %>
-	                 <div class="card mb-3" style="max-width: 800px;" onclick="location.href='<%=contextPath %>/views/camp/campZoneList.jsp'">
-	                    <div class="row no-gutters">
-	                      <div class="col-md-4">
-	                        <img src="<%=c.getCampImgpath()%>" class="card-img" alt="캠핑장 대표이미지">
-	                      </div>
-	                      <div class="col-md-8">
-	                        <div class="card-body">
-	                          <h5 class="card-title"><%=c.getCampName() %></h5>
-	                          <p class="card-text"><%=c.getCampIntro() %></p>
-	                          <p class="card-text"><small class="text-muted"></small></p>
-	                        </div>
-	                      </div>
-	                    </div>
-	                </div>
-				<%} %>
-                
-                <ul class="pagination mt-4">
-                	<%if(currentPage != 1) { %>
-	                	<li class="page-item"><a class="page-link" href="<%=contextPath%>/camp/campList?p=<%=currentPage-1%>">Previous</a></li>
-	                <%} %>
-	                
-	                <%for(int i = startPage; i <= endPage; i++) { %>
-						<%if(i == currentPage){ %>
-							<li class="page-item"><a class="page-link"><%=i %></a></li>
-						<%}else { %>
-							<li class="page-item"><a class="page-link" href="<%=contextPath%>/camp/campList?p=<%=i %>"><%=i %></a></li>
+               
+               <c:choose>
+               		<c:when test="${not empty searchList}">
+               			<%for(CampInfoVo c : searchList) { %>
+			                 <div class="card mb-3" style="max-width: 800px;" onclick="location.href='<%=contextPath %>/views/camp/campZoneList.jsp'">
+			                    <div class="row no-gutters">
+			                      <div class="col-md-4">
+			                        <img src="<%=c.getCampImgpath()%>" class="card-img" alt="캠핑장 대표이미지">
+			                      </div>
+			                      <div class="col-md-8">
+			                        <div class="card-body">
+			                          <h5 class="card-title"><%=c.getCampName() %></h5>
+			                          <p class="card-text"><%=c.getCampIntro() %></p>
+			                          <p class="card-text"><small class="text-muted"></small></p>
+			                        </div>
+			                      </div>
+			                    </div>
+			                </div>
 						<%} %>
-					<%} %>
-	                
-	                <%if(currentPage != maxPage) { %>
-	                	<li class="page-item"><a class="page-link" href="<%=contextPath%>/camp/campList?p=<%=currentPage+1%>">Next</a></li>
-               		<%} %>
-                </ul>
+						
+						<ul class="pagination mt-4">
+		                	<%if(currentPage != 1) { %>
+			                	<li class="page-item"><a class="page-link" href="<%=contextPath%>/camp/campList?p=<%=currentPage-1%>">Previous</a></li>
+			                <%} %>
+			                
+			                <%for(int i = startPage; i <= endPage; i++) { %>
+								<%if(i == currentPage){ %>
+									<li class="page-item"><a class="page-link"><%=i %></a></li>
+								<%}else { %>
+									<li class="page-item"><a class="page-link" href="<%=contextPath%>/camp/campList?p=<%=i %>"><%=i %></a></li>
+								<%} %>
+							<%} %>
+			                
+			                <%if(currentPage != maxPage) { %>
+			                	<li class="page-item"><a class="page-link" href="<%=contextPath%>/camp/campList?p=<%=currentPage+1%>">Next</a></li>
+		               		<%} %>
+		                </ul>
+               		</c:when>
+               		
+               		<c:when test="${empty searchList}">
+               			<div id="none-list">
+               				<span>검색 결과가 존재하지 않습니다.</span>
+               			</div>
+               		</c:when>
+               
+               </c:choose>
 	           	  
             </div>
         </section>

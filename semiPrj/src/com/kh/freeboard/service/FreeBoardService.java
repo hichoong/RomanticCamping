@@ -8,6 +8,7 @@ import java.util.List;
 import com.kh.common.PageVo;
 import com.kh.freeboard.repository.FreeBoardDao;
 import com.kh.freeboard.vo.FreeBoardRepleVo;
+import com.kh.freeboard.vo.FreeBoardTradeRepleVo;
 import com.kh.freeboard.vo.FreeBoardVo;
 
 public class FreeBoardService {
@@ -143,6 +144,103 @@ public class FreeBoardService {
 		//실행 결과 리턴
 		return frvoList;
 	}
+
+	/*
+	 * 댓글테이블에 입력해주기
+	 */
+	public int insertRepleBoard(FreeBoardRepleVo vo) {
+
+		//선언먼저~
+		Connection conn = getConnection();
+		
+		int result  = dao.insertRepleBoard(conn, vo);
+		
+		if(result ==1 ) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+			
+		close(conn);
+		
+		//결과 리턴 
+		return result;
+	}
+	
+	/*
+	 *  게시글 수정하기 작업 ( update ) 
+	 */
+	public int editFreeBoard(FreeBoardVo fvo) {
+		
+		//데이터 검사
+		if(fvo.getTitle().length() < 1) {
+			return -1;
+		}
+		
+		if(fvo.getContent().length() < 1) {
+			return -2;
+		}
+		
+		
+		Connection conn = getConnection();
+		
+		int result = dao.editFreeBoard(conn, fvo);
+		
+		if(result == 1 ) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		
+		return result;
+	
+	}
+	/*
+	 * 게시판 글 삭제
+	 */
+	public int deleteBoard(String num) {
+
+		Connection conn = getConnection();
+		
+		int result = dao.deleteBoard(conn, num);
+		
+		if(result == 1) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	/*
+	 * 댓글 삭제
+	 */
+	public int deleteRepleBoard(String num) {
+
+		Connection conn = getConnection();
+		
+		int result = dao.deleteRepleBoard(conn, num);
+		
+		if(result == 1) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
+		
+	
+	}
+	
+	
 
 	
 	
