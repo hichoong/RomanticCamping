@@ -452,6 +452,105 @@ public class FreeBoardTradeDao {
 		
 		return result;
 	}
+	
+	/*
+	 * 파일 조회
+	 */
+	public List<FreeBoardAttachmentVo> selectFile(Connection conn, String num) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<FreeBoardAttachmentVo> fbavoList = new ArrayList<FreeBoardAttachmentVo>();
+		
+		try {
+			
+			String sql = "SELECT FBA_NO ,FBA_REF_NO ,FBA_ORIGIN_NAME ,FBA_CHANGE_NAME ,FBA_FILE_PATH FROM FB_ATTACHMENT WHERE FBA_REF_NO = ? AND FBA_STATUS ='N' ORDER BY FBA_NO";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			
+			rs = pstmt.executeQuery();
+			
+			//rs -> obj로 바꿔주는 작업 필요
+			if(rs.next()) {
+				
+				
+				
+				//vo객체에 담아주기
+				FreeBoardAttachmentVo fbavo = new FreeBoardAttachmentVo();
+				
+				
+				fbavo.setNo(rs.getString("FBA_NO"));
+				fbavo.setRefBno(rs.getString("FBA_REF_NO"));
+				fbavo.setOriginName(rs.getString("FBA_ORIGIN_NAME"));
+				fbavo.setChangeName(rs.getString("FBA_CHANGE_NAME"));
+				fbavo.setFilePath(rs.getString("FBA_FILE_PATH"));
+				
+				fbavoList.add(fbavo);
+				
+				}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		
+		return fbavoList;
+		
+	}
+	/*
+	 * 메인파일 조회
+	 */
+	public FreeBoardAttachmentVo selectMainFile(Connection conn, String no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		FreeBoardAttachmentVo fbavo = null;
+		
+		try {
+			
+			String sql = "SELECT FBA_NO ,FBA_REF_NO ,FBA_ORIGIN_NAME ,FBA_CHANGE_NAME ,FBA_FILE_PATH FROM FB_ATTACHMENT WHERE FBA_REF_NO = ? AND FBA_STATUS ='N' ORDER BY FBA_NO";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, no);
+			
+			rs = pstmt.executeQuery();
+			
+			//rs -> obj로 바꿔주는 작업 필요
+			if(rs.next()) {
+				
+				
+				
+				//vo객체에 담아주기
+				fbavo = new FreeBoardAttachmentVo();
+				
+				
+				fbavo.setNo(rs.getString("FBA_NO"));
+				fbavo.setRefBno(rs.getString("FBA_REF_NO"));
+				fbavo.setOriginName(rs.getString("FBA_ORIGIN_NAME"));
+				fbavo.setChangeName(rs.getString("FBA_CHANGE_NAME"));
+				fbavo.setFilePath(rs.getString("FBA_FILE_PATH"));
+				
+				
+				}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		
+		return fbavo;
+	
+	}
 
 	
 }//class

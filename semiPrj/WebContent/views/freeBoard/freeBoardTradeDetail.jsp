@@ -1,12 +1,12 @@
+<%@page import="com.kh.freeboard.attachment.vo.FreeBoardAttachmentVo"%>
 <%@page import="com.kh.freeboard.vo.FreeBoardTradeRepleVo"%>
 <%@page import="java.util.List"%>
 <%@page import="com.kh.freeboard.vo.FreeBoardTradeVo"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	FreeBoardTradeVo fbvo = (FreeBoardTradeVo)request.getAttribute("fbvo");
-	List<FreeBoardTradeRepleVo> fbrvoList = (List<FreeBoardTradeRepleVo>)request.getAttribute("fbrvoList");
-%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>     
+    
+  
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,8 +21,9 @@
 
 	/* 제일큰틀 */
 	#freeboard-trade-detail-outer{
-		border: 1px solid red;
+		border: 3px solid brown;
         height: auto;
+		border-radius: 5px;
 	}
 
 	
@@ -31,14 +32,14 @@
         height: 28%;
         margin: 0 auto;
 		padding: 0px;
-        border: 1px solid red;
+        /* border: 1px solid red; */
     }
 
 
 	#fb_info{
 		display: flex;
         height: 5%;
-        border: 1px solid red;
+        /* border: 1px solid red; */
     }
 
 
@@ -46,8 +47,8 @@
         height: auto;
         margin: 0 auto;
 		padding: 0px;
-        border: 1px solid red;
 		vertical-align: baseline;
+        /* border: 1px solid red; */
     }
 
 	#fb_reple{
@@ -55,7 +56,7 @@
 		flex-direction: column;
 		flex-wrap: nowrap;
         height: auto;
-        border: 3px solid blue;
+        /* border: 3px solid blue; */
     }
     
     #fb_my_reple{
@@ -63,7 +64,7 @@
 		flex-direction: column;
     	height:100px;
     	width:100%;
-    	border: 1px solid red;
+    	/* border: 1px solid red; */
     }
 
 	/* 2차 틀 */
@@ -71,7 +72,7 @@
 		margin: 0 auto;
 		padding: 0px;
         height: 100%;
-        border: 2px solid darkred;
+        /* border: 2px solid darkred; */
     }
 
 	/* 꾸미기 */
@@ -90,16 +91,16 @@
 	#fbt-left-div{
 		display: flex;
 		margin-left: 8px;
-		border: 1px solid blue;
 		flex-direction: column;
+		/* border: 1px solid blue; */
 	}
 
 
 	#fbt-right-div{
 		display: flex;
 		margin-right: 8px;
-		border: 1px solid blue;
 		flex-direction: column;
+		/* border: 1px solid blue; */
 	}
 
 
@@ -107,7 +108,7 @@
 	/* 보더라인 */
 	.fbt-top-line{
 		width: 100%;
-        height: 1%;
+        height: 5px;
 		background-color: rgb(240, 225, 203);
         margin-bottom: 1%;
         margin-top: 1%;
@@ -122,7 +123,7 @@
 		margin-top: 6px;
 		color: darkgray;
 		height: 8%;
-		border: 1px solid red;
+		/* border: 1px solid red; */
 	}
 
 	#fb2-story-content{
@@ -134,11 +135,25 @@
 	/* 리플창 */
 	.select-reple{
 		width: 100%;
-		height: 100px;
-		border: 1px solid pink;
+		height: 150px;
+		border: 1px solid blue;
+		position: relative;
+		margin-bottom: 5px;
 	}
 
+	.reple-id>p>a {
+		position: absolute;
+		right: 3px;
+	}
 
+	.reple-sub{
+		position: absolute;
+		bottom: 5px;
+	}
+	
+	.reple-content{
+		height:auto;
+	}
 		
 </style>
 </head>
@@ -151,6 +166,8 @@
 
 
 		<div id="fb_img" class="container">
+		
+		
 			<!-- Carousel -->
 			<div id="demo" class="carousel container " data-bs-ride="carousel">
 	
@@ -163,15 +180,17 @@
 					
 				<!-- The slideshow/carousel -->
 				<div class="carousel-inner container" style="width: 100%; height:600px;">
-					<div class="carousel-item active">
-							<img  src="<%=contextPath %>/resource/img/gsTest1.jpg" class="img-thumbnail" alt="Los Angeles" class="d-block" style="width:100%;">
-					</div>
-					<div class="carousel-item">
-							<img  src="<%=contextPath %>/resource/img/gsTest2.jpg" class="img-thumbnail" alt="Chicago" class="d-block" style="width:100%; ">
-					</div>
-					<div class="carousel-item">
-							<img  src="<%=contextPath %>/resource/img/gsTest3.jpg" class="img-thumbnail" alt="New York" class="d-block" style="width:100%; ">
-					</div>
+				
+					
+					<c:forEach items="${fbavoList}" var="fbao">
+					
+						<div class="carousel-item active">
+								<img  src="<%=contextPath %>/resource/img/freeBoardTrade/${fbao.changeName}" class="img-thumbnail" alt="중고거래 이미지 불러오기 실패" class="d-block" style="width:100%;">
+						</div>
+					
+					</c:forEach>
+					
+					
 				</div>
 					
 				<!-- Left and right controls/icons -->
@@ -195,15 +214,15 @@
 			<div id="fbt-div-outer">
 
 				<div id="fbt-left-div">
-					<div id="userId" >작성자 :<%= fbvo.getWriter() %></div>
-					<div id="userGrade">회원등급 : <%= fbvo.getCnt() %></div>
+					<div id="userId" >작성자 :${fbvo.writer}</div>
+					<div id="userGrade">글번호 : ${fbvo.no}</div>
 				</div>
 
 
 
 				<div id="fbt-right-div">
-					<div id="count">조회수 : <%= fbvo.getCnt() %></div>
-					<div id="update_date"> 작성일자 : <%= fbvo.getEnrollDate() %></div>
+					<div id="count">조회수 : ${fbvo.cnt}</div>
+					<div id="update_date"> 작성일자 : ${fbvo.enrollDate}</div>
 				</div>
 
 			</div>
@@ -216,21 +235,18 @@
 		<div id="fb_section" class="container">
 
 
-					<p style="font-size: 3rem;"><%= fbvo.getTitle() %></p>
-					<textarea readonly cols="50" rows="15" name="" id="fb2-story-content" ><%= fbvo.getContent() %> 
+					<p style="font-size: 3rem;">${fbvo.title}</p>
+					<textarea readonly cols="50" rows="15" name="" id="fb2-story-content" >${fbvo.content} 
 					</textarea>
-					<p class="fb2-story-date">작성시간 : <%= fbvo.getEnrollDate() %></p>
-					<p class="fb2-story-date">조회 수 : <%= fbvo.getCnt() %></p>
+					<p class="fb2-story-date">작성시간 : ${fbvo.enrollDate}</p>
+					<p class="fb2-story-date">조회 수 : ${fbvo.cnt}</p>
 					
 					
-					
-					<!-- 로그인한 사람과 현재 보는 글 보는 사람이 같으면 수정 / 삭제 버튼 보이도록 해주기  -->
-					<%-- <%if( loginMember != null && fvo.getWriter().equals(loginMember.getName()) ){ %> --%>
-						<a href="<%= contextPath %>/freeBoard/trade/edit?num=<%=fbvo.getNo()%>"  class="btn btn-warning">수정하기</a>
-						<a href="<%= contextPath %>/freeBoard/trade/delete?num=<%=fbvo.getNo()%>"  class="btn btn-warning">삭제하기</a>
-					<%-- <%} %> --%>
-			
-			
+					<!-- 글 작성자와 로그인한 사람이 같으면 글 수정/삭제 버튼 보여주기 -->	
+					<c:if test="${loginMember.name eq fbvo.writer}">
+						<a href="<%= contextPath %>/freeBoard/trade/edit?num=${fbvo.no}"  class="btn btn-outline-info">게시글 수정하기</a>
+						<a href="<%= contextPath %>/freeBoard/trade/delete?num=${fbvo.no}"  class="btn btn-outline-danger">게시글 삭제하기</a>
+					</c:if>
 
 		</div>
 
@@ -240,32 +256,31 @@
 
 		<div id="fb_reple" class="container">
 
+			
+			
+	
 			<!-- 작성된 댓글 가져와서 보여주기 -->
-			<div class="select-reple">
-
-				<div class="reple-id"><p >작성자 id</p></div>
-				<div class="reple-comment"><p >작성내용 </p></div>
-				<div class="reple-sub"><span>작성일자</span> <a>답글쓰기</a></div>
-
-			</div>
-	
-	
-			<%for( FreeBoardTradeRepleVo fbr : fbrvoList ) {%>			
-				<div class="select-reple">
+			<h2>댓글 목록</h2>
+			
+			<c:forEach items="${fbrvoList}" var="fbr">
+				
+				<div class="select-reple container">
 	
 					<div class="reple-id">
-						<p><%= fbr.getWriter() %></p>
-						<!-- 로그인한 사람과 현재 보는 글 보는 사람이 같으면 수정 / 삭제 버튼 보이도록 해주기  -->
-						<%-- <%if( loginMember != null && fbr.getWriter().equals(loginMember.getName()) ){ %> --%>
-							<a href="<%= contextPath %>/freeBoard/trade/reple/edit?num=<%=fbr.getNo()%>&pageNo=<%= fbvo.getNo() %>"  class="btn btn-warning">수정하기</a>
-							<a href="<%= contextPath %>/freeBoard/trade/reple/delete?num=<%=fbr.getNo()%>&pageNo=<%= fbvo.getNo() %>"  class="btn btn-warning">삭제하기</a>
-						<%-- <%} %> --%>
+						<p>${fbr.writer}
+							<!-- 로그인한 사람과 현재 보는 글 보는 사람이 같으면 수정 / 삭제 버튼 보이도록 해주기  -->
+							<c:if test="${loginMember.name eq fbr.writer}">
+								<a href="<%= contextPath %>/freeBoard/trade/reple/delete?num=${fbr.no}&pageNo=${fbvo.no}"  class="btn btn btn-outline-danger">삭제하기</a>
+							</c:if>
+						</p>
 					</div>
-					<div class="reple-comment"><p ><%= fbr.getContent() %> </p></div>
-					<div class="reple-sub"><span><%= fbr.getEnrollDate() %></span> <a>답글쓰기</a></div>
+					<div class="reple-content"><p >${fbr.content} </p></div>
+					<div class="reple-sub"><span>${fbr.enrollDate}</span> <a>답글쓰기</a></div>
 	
 				</div>
-			<%} %>
+				
+			</c:forEach>
+			
 
 			
 		</div>
@@ -273,18 +288,26 @@
 		
 		<!-- 선추가 -->
 		<div class="fbt-top-line"></div>
+		
 		<!-- 내가 댓글작성하기 -->
 		<div class="container mt-3">
 			<h2>댓글 작성하기</h2>
-			<p>로그인안햇으면 오류남 - 있을때 없을때 구분해야할 듯 밑에 HIDDEN 벨류도 조절 필요<%-- <%=loginMember.getName() %> --%> </p>
+			<p>${loginMember.name }</p>
 			<form action="<%=contextPath%>/freeBoard/trade/reple/insert" method="post">
 				<div class="mb-3 mt-3">
-						<input type="hidden" name="num" value="<%= fbvo.getNo() %>" >
-							<input type="hidden" name="loginName" value="admin<%-- <%=loginMember.getName()%> --%>">
+						<input type="hidden" name="num" value="${fbvo.no}" >
+							<input type="hidden" name="loginName" value="${loginMember.name }">
 						<label for="comment">Comments:</label>
 						<textarea class="form-control" rows="5" id="comment" name="content"></textarea>
 				</div>
-			<button type="submit" class="btn btn-primary">댓글등록하기</button>
+				
+			<c:if test="${not empty loginMember}">
+					<button type="submit" class="btn btn-primary">댓글등록하기</button>
+			</c:if>
+			<c:if test="${empty loginMember}">
+				<button type="button" class="btn btn-primary" onclick="alert('로그인 후 작성 가능합니다.')">댓글등록하기</button>
+			</c:if>
+			
 			</form>
 	</div>
 
