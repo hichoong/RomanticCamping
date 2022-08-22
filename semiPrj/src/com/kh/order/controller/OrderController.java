@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.campzonelist.campzone.vo.CampZoneVo;
 import com.kh.coupon.service.CouponService;
 import com.kh.coupon.vo.CouponVo;
 import com.kh.member.vo.MemberVo;
@@ -31,17 +32,18 @@ public class OrderController extends HttpServlet {
 		 * 
 		 */
 		
-		MemberVo loginMember = (MemberVo)req.getSession().getAttribute("loginMember");
+		MemberVo loginMember = (MemberVo)req.getSession().getAttribute("loginMember"); //로그인 유저 정보
+		CampZoneVo campZoneVo = (CampZoneVo)req.getAttribute("campZone"); //캠핑장 구역 정보
 		
 		//유저쿠폰을 조회할 객체 생성하기
 		List<CouponVo> couponList = new ArrayList<CouponVo>();
 		couponList = new CouponService().selectCouponList(loginMember);
 		
-		req.setAttribute("캠핑장이름", couponList);
-		req.setAttribute("캠핑장숙박인원", couponList);
-		req.setAttribute("캠핑장금액", couponList);
-		req.setAttribute("체크인", resp);
-		req.setAttribute("체크아웃", resp);
+		req.setAttribute("캠핑장이름", campZoneVo.getZoneName());
+		req.setAttribute("캠핑장숙박인원", campZoneVo.getZoneStayMax());
+		req.setAttribute("캠핑장금액", campZoneVo.getZonePrice());
+		req.setAttribute("체크인", "해당날짜");
+		req.setAttribute("체크아웃", "해당날짜");
 		req.setAttribute("couponList", couponList); //유저쿠폰리스트
 		
 		req.getRequestDispatcher("/views/order/oderForm.jsp").forward(req, resp);
@@ -60,24 +62,28 @@ public class OrderController extends HttpServlet {
 		 * 
 		 */
 		
-		MemberVo loginMember = (MemberVo)req.getSession().getAttribute("loginMember");
+		MemberVo loginMember = (MemberVo)req.getSession().getAttribute("loginMember"); //로그인 유저 정보
+		CampZoneVo campZoneVo = (CampZoneVo)req.getAttribute("campZone"); //캠핑장 구역 정보
+		
+		
 		
 		
 		String reservationName = req.getParameter("reservationName"); //예약자 명
 		String address = req.getParameter("address"); // 전화번호
-		String requestion = req.getParameter("requestion");
-		String payMethod = req.getParameter("payMethod");
-		String couponName = req.getParameter("couponName");
-		String totalCost = req.getParameter("totalCost");
-		String reservaionNop = req.getParameter("reservaionNop"); 
+		String requestion = req.getParameter("requestion"); //요청사항
+		String payMethod = req.getParameter("payMethod"); //결제방법
+		String couponCode = req.getParameter("couponCode"); //쿠폰번호
+		String totalCost = req.getParameter("totalCost"); //쿠폰 가격
+		String reservaionNop = req.getParameter("reservaionNop"); //숙박인원
 		String userNo = loginMember.getNo(); //로그인 유저 번호
+		
+		
 		
 		//결제테이블에 들어갈 값 
 		OrderVo orderVo = new OrderVo();
-		orderVo.setCouponCode(couponName);
+		orderVo.setCouponCode(couponCode);
 		orderVo.setPayAmount(totalCost);
 		orderVo.setPayMethod(payMethod);
-		orderVo.setCouponCode(couponName);
 		
 		
 		
@@ -89,6 +95,8 @@ public class OrderController extends HttpServlet {
 		reservationVo.setReservationNop(reservaionNop); //숙박인원
 		reservationVo.setReservationCheckin(reservationName); //체크인
 		reservationVo.setReservationCheckout(reservationName); //체크아웃
+		reservationVo.setUserNo(userNo); //유저벊호
+		reservationVo.setZoneNo(campZoneVo.getZoneNo());
 		
 		reservationVo.setReservationNop(totalCost); //총 금액
 		
@@ -109,6 +117,10 @@ public class OrderController extends HttpServlet {
 		
 		// 두 작업이 모두 성공적으로 이루어 질 시
 		if(paymentResult == 1 && reservationResult == 1) {
+			//쿠폰 사용 확인
+			new CouponService().useCoupon(loginMember, couponCode);
+			
+			
 			req.setAttribute("orderVo", orderVo);
 			req.setAttribute("reservationVo", reservationVo);
 			req.setAttribute("alertMsg", "결제 성공");
