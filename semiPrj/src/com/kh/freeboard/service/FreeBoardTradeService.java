@@ -283,6 +283,37 @@ public class FreeBoardTradeService {
 		
 		return result;
 	}
+	/*
+	 * 파일 조회
+	 */
+	public List<FreeBoardAttachmentVo> selectFile(String num) {
+
+
+		Connection conn = getConnection();
+		
+		List<FreeBoardAttachmentVo> fbavoList = null;
+		
+		fbavoList = dao.selectFile(conn, num); 
+		
+		close(conn);		
+		
+		return fbavoList;	
+		
+	}
+	/*
+	 * 메인 파일 조회
+	 */
+	public FreeBoardAttachmentVo selectMainFile(String no) {
+
+		Connection conn = getConnection();
+		
+		FreeBoardAttachmentVo fbao = dao.selectMainFile(conn, no);
+		
+		close(conn);
+		
+		return fbao;
+	
+	}
 
 	
 	

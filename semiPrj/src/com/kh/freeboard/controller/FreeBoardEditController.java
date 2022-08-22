@@ -2,6 +2,7 @@ package com.kh.freeboard.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -62,6 +63,8 @@ public class FreeBoardEditController extends HttpServlet{
 		}else {
 			//실패
 			req.setAttribute("errorMsg", "공지사항 수정 실패");
+			
+			
 			req.getRequestDispatcher("/views/error/errorPage.jsp").forward(req, resp);
 		}
 		

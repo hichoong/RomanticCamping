@@ -1,11 +1,8 @@
 <%@page import="com.kh.freeboard.vo.FreeBoardVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%
-	FreeBoardVo fvo = (FreeBoardVo)request.getAttribute("fvo");
-%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -162,15 +159,15 @@
 			<div id="fbt-div-outer">
 
 				<div id="fbt-left-div">
-					<div id="userId" >작성자 : <%= fvo.getWriter() %></div>
-					<div id="userGrade">글번호 : <%= fvo.getNo() %></div>
+					<div id="userId" >작성자 :${fvo.writer}</div>
+					<div id="userGrade">글번호 : ${fvo.no}</div>
 				</div>
 
 
 
 				<div id="fbt-right-div">
-					<div id="count">조회수 : <%= fvo.getCnt() %></div>
-					<div id="update_date"> 작성일자 : <%= fvo.getEnrollDate() %></div>
+					<div id="count">조회수 : ${fvo.cnt}</div>
+					<div id="update_date"> 작성일자 : ${fvo.enrollDate}</div>
 				</div>
 
 			</div>
@@ -183,12 +180,12 @@
 		<div id="d8-d" class="container">
 
 			<form action="<%=contextPath%>/freeBoard/edit" method="post">
-				<input type="hidden" value="<%= fvo.getNo() %>" name="feditNo">
-				<input type="text" value="<%= fvo.getTitle() %>" name="feditTitle">
-				<textarea cols="50" rows="13" id="d8-d-textarea" class="fb2-story-content" name="feditContent" id="" ><%= fvo.getContent() %> </textarea>
+				<input type="hidden" value="${fvo.no}" name="feditNo">
+				<input type="text" value="${fvo.title}" name="feditTitle">
+				<textarea cols="50" rows="13" id="d8-d-textarea" class="fb2-story-content" name="feditContent" id="" >${fvo.contetnt}</textarea>
 				
-				<p class="fb2-story-date">작성시간 : <%= fvo.getEnrollDate() %></p>
-				<p class="fb2-story-date">조회 수 : <%= fvo.getCnt() %></p>
+				<p class="fb2-story-date">작성시간 : ${fvo.enrollDate}</p>
+				<p class="fb2-story-date">조회 수 : ${fvo.cnt}</p>
 				
 				
 				<div id="div-btn-area">

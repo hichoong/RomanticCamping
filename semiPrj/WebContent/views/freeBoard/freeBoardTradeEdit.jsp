@@ -1,9 +1,8 @@
 <%@page import="com.kh.freeboard.vo.FreeBoardTradeVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	FreeBoardTradeVo fbvo = (FreeBoardTradeVo)request.getAttribute("fbvo");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -195,15 +194,15 @@
 			<div id="fbt-div-outer">
 
 				<div id="fbt-left-div">
-					<div id="userId" >작성자 :<%= fbvo.getWriter() %></div>
-					<div id="userGrade">회원등급 : <%= fbvo.getCnt() %></div>
+					<div id="userId" >작성자 :${fbvo.writer }</div>
+					<div id="userGrade">회원등급 : ${fbvo.cnt }</div>
 				</div>
 
 
 
 				<div id="fbt-right-div">
-					<div id="count">조회수 : <%= fbvo.getCnt() %></div>
-					<div id="update_date"> 작성일자 : <%= fbvo.getEnrollDate() %></div>
+					<div id="count">조회수 : ${fbvo.cnt }</div>
+					<div id="update_date"> 작성일자 : ${fbvo.enrollDate }</div>
 				</div>
 
 			</div>
@@ -216,12 +215,12 @@
 		<div id="fb_section" class="container">
 
 			<form action="<%=contextPath%>/freeBoard/trade/edit" method="post">
-				<input type="hidden" value="<%= fbvo.getNo() %>" name="fbeditNo">
-				<input type="text" value="<%= fbvo.getTitle() %>" name="fbeditTitle" id="fbeditTitle">
-				<textarea cols="130%" rows="13" id="d8-d-textarea" class="fb2-story-content" name="fbeditContent" id="fbeditContent" ><%= fbvo.getContent() %> </textarea>
+				<input type="hidden" value="${fbvo.no}" name="fbeditNo">
+				<input type="text" value="${fbvo.title}" name="fbeditTitle" id="fbeditTitle">
+				<textarea cols="130%" rows="13" id="d8-d-textarea" class="fb2-story-content" name="fbeditContent" id="fbeditContent" >${fbvo.content} </textarea>
 				
-				<p class="fb2-story-date">작성시간 : <%= fbvo.getEnrollDate() %></p>
-				<p class="fb2-story-date">조회 수 : <%= fbvo.getCnt() %></p>
+				<p class="fb2-story-date">작성시간 : ${fbvo.enrollDate}</p>
+				<p class="fb2-story-date">조회 수 : ${fbvo.cnt}</p>
 				
 				
 				<div id="div-btn-area">
