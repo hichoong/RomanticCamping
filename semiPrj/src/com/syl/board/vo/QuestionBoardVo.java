@@ -15,8 +15,7 @@ public class QuestionBoardVo {
 	private String qWriter;
 	private String aWriter;
 	private String qCnt;
-	
-	
+		
 	public QuestionBoardVo(String qNo, String qTitle, String qContent, String qUpdateDate, String qTag,
 			String qAnswerYN, String qAnswer, String freq, String qWriter, String aWriter, String qCnt) {
 		super();
@@ -62,7 +61,6 @@ public class QuestionBoardVo {
 	public void setqContent(String qContent) {
 		this.qContent = qContent;
 	}
-
 
 	public String getqUpdateDate() {
 		return qUpdateDate;
