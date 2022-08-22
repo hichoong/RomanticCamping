@@ -29,12 +29,12 @@ import com.sjy.buisness.camp.vo.BsCampVo;
 import com.sjy.buisness.camp.vo.BsCampZoneVo;
 import com.sjy.buisness.camp.vo.CampAttachmentVo;
 
-//@MultipartConfig(
-//		//fileSizeThreshold = 1024*1024, //size : byte단위
-//		//location = ""
-//		maxFileSize = 1024 * 1024 * 50 ,
-//		maxRequestSize = 1024 * 1024 * 50 *5
-//		)
+@MultipartConfig(
+		//fileSizeThreshold = 1024*1024, //size : byte단위
+		//location = ""
+		maxFileSize = 1024 * 1024 * 50 ,
+		maxRequestSize = 1024 * 1024 * 50 *5
+		)
 @WebServlet(urlPatterns = ("/bscamp/insert"))
 public class BsCampInsertController extends HttpServlet{
 	
@@ -66,6 +66,7 @@ public class BsCampInsertController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
+		int result = 0;
 		//캠핑장 등록정보 가져오기
 		String campName = req.getParameter("campName");				//캠핑장이름
 		String city = req.getParameter("city");						//주소 시/도
@@ -75,7 +76,7 @@ public class BsCampInsertController extends HttpServlet{
 		String campIntro = req.getParameter("campIntro");			//시설소개
 		String[] f = req.getParameterValues("facility");			//시설현황
 		String[] t = req.getParameterValues("theme");				//테마
-		//String hash = req.getParameter("hashTag");					//해쉬태그
+		String hash = req.getParameter("hashTag");					//해쉬태그
 		String[] h = req.getParameterValues("hashTag");				//해쉬태그
 		String campRefund = req.getParameter("campRefund");			//환불규정
 		String campRepImg = req.getParameter("campRepImg");
@@ -145,77 +146,85 @@ public class BsCampInsertController extends HttpServlet{
         System.out.println(campRepImg);
         
         
-//		BsCampVo campVo = new BsCampVo(); 
-//        campVo.setCampName(campName);
-//        campVo.setCity(city);
-//        campVo.setDistrict(district);
-//        campVo.setCampAddress(campDetailAdd);
-//        campVo.setCampPhone(campPhone);
-//        campVo.setCampIntro(campIntro);
-//        campVo.setTheme(theme);
-//        //등록일 sysdate
-//        campVo.setCampRefund(campRefund);
-//        
-//        
-//		// 해시태그 맵핑테이블에 현재 입력하는 캠핑장 번호와 해쉬태그 번호 입력
-//        // 해쉬태그 선택한 만큼 insert 시켜주기
-//        // 체크박스 체그된 개수 가져오기
-//        int hashNum = Integer.parseInt(req.getParameter("hashNum"));
-//        int hashResult = 0;
-//        for (int i = 0; i < hashNum; i++) {
-//        	HashTagVo hashVo = new HashTagVo();
-//        	hashVo.setHtCode(hash);
-//        	hashResult =new BsCampService().insertHash(hashVo);
-//        	
-//        	if (hashResult != 1) {
-//				//등록 실패(해쉬태그 등록 오류)
-//        		req.setAttribute("errorMsg", "해쉬태그 등록오류");
-//			}
-//			
-//		}
-//        
-//        
-//		//캠핑장 대표이미지 넣기
-//		CampAttachmentVo ahVo = new CampAttachmentVo();
-//		String savePath ="";
-//		if (mainImg.getSubmittedFileName().length()>0) {//제출 파일이 있을경우
-//			//파일 업로드
-//			String originName = mainImg.getSubmittedFileName(); //원본 파일명 얻기
-//			String changeName = new BsCampService().createChangeName(originName);
-//			
-//			
-//			//인풋 스트림 준비
-//			InputStream is = mainImg.getInputStream();
-//			BufferedInputStream bis = new BufferedInputStream(is);
-//			
-//			//아웃풋 스트림 준비(서버에 저장하기위한)
-//			String realPath = req.getServletContext().getRealPath("/resource/upload/camping"); //서블릿이 들어있는| 프로젝트가 실행되고있는 바구나
-//			savePath = realPath + File.separator+ changeName;
-//			FileOutputStream os = new FileOutputStream(realPath + File.separator+ changeName); //File.separator: os환경에 맞는 경로가져오기 window: '/' 
-//			BufferedOutputStream bos = new BufferedOutputStream(os);
-//		
-//			byte[] buf = new byte[1024];
-//			int size = 0;
-//			while((size = bis.read(buf)) != -1) {
-//				 //read의 리턴값도 
-//				//존재 만약 2000이 들어오면 => 1024 976 | 0 0 0 0 ......
-//				bos.write(buf, 0, size);
-//			}
-//			
-//			bos.flush();
-//			bis.close();
-//			bos.close();
-//			
-//			ahVo = new CampAttachmentVo();
-//			ahVo.setZaOrignName(originName);
-//			ahVo.setZaChangeName(changeName);
-//			ahVo.setZaPath(realPath);
-//		}
-//		
-//        //캠핑장 테이블 insert
-//        int resultCamp = new BsCampService().campInsert(campVo,ahVo);
-//
-//		// 캠핑장 구역 정보가져오기 및 입력
+		BsCampVo campVo = new BsCampVo(); 
+        campVo.setCampName(campName);
+        campVo.setCity(city);
+        campVo.setDistrict(district);
+        campVo.setCampAddress(campDetailAdd);
+        campVo.setCampPhone(campPhone);
+        campVo.setCampIntro(campIntro);
+        campVo.setTheme(theme);
+        //등록일 sysdate
+        campVo.setCampRefund(campRefund);
+        
+        
+        
+		//캠핑장 대표이미지 넣기
+		CampAttachmentVo ahVo = null;
+		String savePath ="";
+		if (mainImg.getSubmittedFileName().length()>0) {//제출 파일이 있을경우
+			//파일 업로드
+			String originName = mainImg.getSubmittedFileName(); //원본 파일명 얻기
+			String changeName = new BsCampService().createChangeName(originName);
+			
+			
+			//인풋 스트림 준비
+			InputStream is = mainImg.getInputStream();
+			BufferedInputStream bis = new BufferedInputStream(is);
+			
+			//아웃풋 스트림 준비(서버에 저장하기위한)
+			String realPath = req.getServletContext().getRealPath("/resource/upload/campImg"); //서블릿이 들어있는| 프로젝트가 실행되고있는 바구나
+			savePath = realPath + File.separator+ changeName;
+			FileOutputStream os = new FileOutputStream(realPath + File.separator+ changeName); //File.separator: os환경에 맞는 경로가져오기 window: '/' 
+			BufferedOutputStream bos = new BufferedOutputStream(os);
+		
+			byte[] buf = new byte[1024];
+			int size = 0;
+			while((size = bis.read(buf)) != -1) {
+				 //read의 리턴값도 
+				//존재 만약 2000이 들어오면 => 1024 976 | 0 0 0 0 ......
+				bos.write(buf, 0, size);
+			}
+			
+			bos.flush();
+			bis.close();
+			bos.close();
+			
+			ahVo = new CampAttachmentVo();
+			ahVo.setCampOrignName(originName);
+			ahVo.setCampChangeName(changeName);
+			ahVo.setCampPath(realPath);
+		}
+		
+        //캠핑장 테이블 insert
+        int resultCamp = new BsCampService().campInsert(campVo,ahVo);
+        if (resultCamp != 1) {
+			result = -2;
+			System.out.println("캠핑장 테이블 등록오류");
+			
+		}
+        
+		// 해시태그 맵핑테이블에 현재 입력하는 캠핑장 번호와 해쉬태그 번호 입력
+        // 해쉬태그 선택한 만큼 insert 시켜주기
+        // 체크박스 체그된 개수 가져오기
+        String hs = req.getParameter("hashNum");
+        System.out.println("hidden_hashNum::"+hs);
+        int hashNum = Integer.parseInt(hs);
+        int hashResult = 0;
+        for (int i = 0; i < hashNum; i++) {
+        	HashTagVo hashVo = new HashTagVo();
+        	hashVo.setHtCode(hash);
+        	hashResult =new BsCampService().insertHash(hashVo);
+        	
+        	if (hashResult != 1) {
+				//등록 실패(해쉬태그 등록 오류)
+        		System.out.println("해쉬태그 등록오류");
+        		result = -1;
+        		req.setAttribute("errorMsg", "해쉬태그 등록오류");
+        	}
+		}
+        
+		// 캠핑장 구역 정보가져오기 및 입력
 		int zonNum = Integer.parseInt(req.getParameter("zonNum"))+1;//캠핑장 구역 개수 0부터
 		String num = req.getParameter("zonNum");
 		System.out.println("zonNum::"+zonNum);
@@ -225,7 +234,7 @@ public class BsCampInsertController extends HttpServlet{
 		String[] zoneNor = new String[zonNum];
 		String[] campZonePrice = new String[zonNum];
 		String[] campZoneImg = new String[zonNum];
-		
+		Part[] ZoneImg = new Part[zonNum];
 		
 		for (int i = 0; i < zonNum; i++) {
 			 String n = Integer.toString(i);
@@ -248,17 +257,64 @@ public class BsCampInsertController extends HttpServlet{
 			 System.out.println( campZoneImg[i] );
 			 System.out.println("--------------------------");
 			 
+			//캠핑장 구역이미지넣기
+				CampAttachmentVo ahVo2 = null;
+				String savePath2 ="";
+				if (ZoneImg[i].getSubmittedFileName().length()>0) {//제출 파일이 있을경우
+					//파일 업로드
+					String originName2 = ZoneImg[i].getSubmittedFileName(); //원본 파일명 얻기
+					String changeName2 = new BsCampService().createChangeName(originName2);
+					
+					
+					//인풋 스트림 준비
+					InputStream is2 = mainImg.getInputStream();
+					BufferedInputStream bis2 = new BufferedInputStream(is2);
+					
+					//아웃풋 스트림 준비(서버에 저장하기위한)
+					String realPath2 = req.getServletContext().getRealPath("/resource/upload/campImg"); //서블릿이 들어있는| 프로젝트가 실행되고있는 바구나
+					savePath2 = realPath2 + File.separator+ changeName2;
+					FileOutputStream os2 = new FileOutputStream(realPath2 + File.separator+ changeName2); //File.separator: os환경에 맞는 경로가져오기 window: '/' 
+					BufferedOutputStream bos2 = new BufferedOutputStream(os2);
+				
+					byte[] buf2 = new byte[1024];
+					int size2 = 0;
+					while((size2 = bis2.read(buf2)) != -1) {
+						 //read의 리턴값도 
+						//존재 만약 2000이 들어오면 => 1024 976 | 0 0 0 0 ......
+						bos2.write(buf2, 0, size2);
+					}
+					
+					bos2.flush();
+					bis2.close();
+					bos2.close();
+					
+					ahVo2 = new CampAttachmentVo();
+					ahVo2.setCampOrignName(originName2);
+					ahVo2.setCampChangeName(changeName2);
+					ahVo2.setCampPath(realPath2);
+				}
+			 
+			 
 			 //정보들  insert처리하기
-//			BsCampZoneVo[] zoneVo = new BsCampZoneVo[i];
-//			int result = new BsCampService().campZoneInsert(zoneVo,i);
-//			if (result != 1) {
-//				req.setAttribute("errorMsg", "캠핑장 구역 입력오류");
-//			}
+			BsCampZoneVo[] zoneVo = new BsCampZoneVo[i];
+			result = new BsCampService().campZoneInsert(zoneVo,i, ahVo2);
+			if (result != 1) {
+				System.out.println("캠핑장 구역 입력오류");
+				req.setAttribute("errorMsg", "캠핑장 구역 입력오류");
+			}
 		}
 		
 		
-		//모든 등록이 완료되면 화면이동
-		req.getRequestDispatcher("/views/buisness/campSearchForm.jsp").forward(req, resp);
+		
+		
+		
+		
+		
+		
+		if (result==1) {
+			//모든 등록이 완료되면 화면이동
+			req.getRequestDispatcher("/views/buisness/campSearchForm.jsp").forward(req, resp);
+		}
 	}
-	
-}
+}	
+
