@@ -10,9 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kh.camplist.hashtag.vo.HashTagVo;
+import com.kh.camplist.theme.vo.ThemeVo;
 import com.sjy.buisness.camp.vo.BsCampVo;
 import com.sjy.buisness.camp.vo.BsCampZoneVo;
 import com.sjy.buisness.camp.vo.CampAttachmentVo;
+import com.sjy.buisness.hashmapping.vo.HashMappingVo;
 
 public class BsCampDao {
 /*
@@ -122,6 +124,49 @@ public class BsCampDao {
 	}
 	
 	
+	/*
+	 * 선택한 캠핑장 세부정보 가져오기
+	 */
+
+	public BsCampVo selectOneCamp(Connection conn, String no, String campCode) {
+		//SQL 준비
+		String sql = "SELECT * FROM CAMP_INFO WHERE NO = ? AND CAMP_CODE=? AND CAMP_STATUS ='Y'";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		BsCampVo vo  = new BsCampVo();
+		
+		try {
+			//SQL 객체 담기 및 완성
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, no);
+			pstmt.setString(2, campCode);
+			rs =  pstmt.executeQuery();
+			
+			if(rs.next()) {
+				vo.setCampCode(rs.getString("CAMP_CODE"));
+				vo.setCampName(rs.getString("CAMP_NAME"));
+				vo.setCity(rs.getString("CITY"));
+				vo.setDistrict(rs.getString("DISTRICT"));
+				vo.setCampAddress(rs.getString("CAMP_ADDRESS"));
+				vo.setCampPhone(rs.getString("CAMP_PHONE"));
+				vo.setCampIntro(rs.getString("CAMP_INTRO"));
+				vo.setRgDate(rs.getString("RG_DATE"));
+				vo.setCampRefund(rs.getString("CAMP_REFUND"));
+				vo.setCampImgPath(rs.getString("CAMP_IMGPATH"));
+				vo.setTheme(rs.getString("THEME_CODE"));
+				vo.setCampUpdated(rs.getString("CAMP_UPDATED"));
+				vo.setCampStatus(rs.getString("CAMP_STATUS"));
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		//결과리턴
+		return vo;
+	}
 	
 	/*
 	 * insert 준비사항
@@ -165,7 +210,7 @@ public class BsCampDao {
 			pstmt.setString(5, campVo.getCampPhone());
 			pstmt.setString(6, campVo.getCampIntro());
 			pstmt.setString(7, campVo.getCampRefund());
-			pstmt.setString(8, ahVo.getZaPath());//이미지는 업로드된파일에서 
+			pstmt.setString(8, ahVo.getCampPath());//이미지는 업로드된파일에서 
 			pstmt.setString(9, campVo.getTheme());
 			
 			//SQL 실행 및 결과 저장
@@ -261,9 +306,149 @@ public class BsCampDao {
 
 	}
 
+	/*
+	 * 메인 이미지 첨푸파일 테이블에 저장
+	 */
+	public int insertMainAh(Connection conn, CampAttachmentVo ahVo) {
+		//SQL 준비
+		String sql = "INSERT INTO CAMP_ATTACHMENT ( ATCH_NO ,CAMP_NO ,CAMP_ORIGNNAME ,CAMP_CHANGENAME ,CAMP_PATH, IMGTYPE ) VALUES( SEQ_CAMP_ATTACHMENT_NO.NEXTVAL , SEQ_BOARD_NO.CURRVAL , ? , ? , ? ,M)";
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			//SQL 객체 담기 및 완성
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ahVo.getCampOrignName());
+			pstmt.setString(2, ahVo.getCampChangeName());
+			pstmt.setString(3, ahVo.getCampPath());
+			
+			//SQL 실행 및 결과 저장
+			result =  pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		//결과리턴
+		return result;
+	}
 
+	/*
+	 * 구역 이미지 넣기 
+	 */
+	public int ZoneImgInsert(Connection conn, CampAttachmentVo ahVo2, int i) {
+		String sql = "INSERT INTO CAMP_ATTACHMENT ( ATCH_NO ,CAMP_NO ,CAMP_ORIGNNAME ,CAMP_CHANGENAME ,CAMP_PATH, IMGTYPE ) VALUES( SEQ_CAMP_ATTACHMENT_NO.NEXTVAL , SEQ_BOARD_NO.CURRVAL , ? , ? , ? , Z)";
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			//SQL 객체 담기 및 완성
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ahVo2.getCampOrignName());
+			pstmt.setString(2, ahVo2.getCampChangeName());
+			pstmt.setString(3, ahVo2.getCampPath());
+			
+			//SQL 실행 및 결과 저장
+			result =  pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		//결과리턴
+		return result;
+	}
 
+	/*
+	 * 선택한 캠핑장에서 테마, 해쉬태그 , 시설현황 가져오기
+	 */
+	public BsCampVo selectOneTheme(Connection conn, String campCode) {
+		String sql = "SELECT CAMP_CODE, THEME_CODE FROM CAMP_INFO WHERE CAMP_CODE =?";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		BsCampVo vo = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, campCode);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				
+				vo = new BsCampVo();
+				vo.setTheme(rs.getString("THEME_CODE"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return vo;
+	}
 
+	public List<HashMappingVo> selectOneHashTag(Connection conn, String campCode) {
+		String sql = "SELECT CAMP_CODE, HT_CODE FROM HASHTAG_MAPPING WHERE CAMP_CODE =?";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<HashMappingVo> list = new ArrayList<HashMappingVo>();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, campCode);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				list.add(new HashMappingVo(
+							rs.getString("CAMP_CODE"),
+							rs.getString("HT_CODE")
+						));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
+	public List<HashTagVo> selecOnetF(Connection conn, String campCode) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-
+	public List<BsCampZoneVo> selectZoneAll(Connection conn, String campCode) {
+		String sql = "SELECT Z_NO, Z_STAYMAX, Z_PRICE, Z_NAME ,Z_NOR FROM CAMP_ZONE WHERE CAMP_CODE =?";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<BsCampZoneVo> list = new ArrayList<BsCampZoneVo>();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, campCode);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				list.add(new BsCampZoneVo(
+							rs.getString("Z_NO")
+							,rs.getString("Z_STAYMAX")
+							,rs.getString("Z_PRICE")
+							,rs.getString("Z_NAME")
+							,rs.getString("Z_NOR")
+							
+						));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 }

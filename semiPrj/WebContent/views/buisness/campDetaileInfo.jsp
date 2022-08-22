@@ -1,3 +1,9 @@
+<%@page import="com.sjy.buisness.camp.vo.BsCampZoneVo"%>
+<%@page import="com.sjy.buisness.hashmapping.vo.HashMappingVo"%>
+<%@page import="com.kh.camplist.theme.vo.ThemeVo"%>
+<%@page import="com.kh.camplist.hashtag.vo.HashTagVo"%>
+<%@page import="java.util.List"%>
+<%@page import="com.sjy.buisness.camp.vo.BsCampVo"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -14,8 +20,23 @@
 	
 	//등록일 기본값 세팅
 	String toDay = d+"T"+t;
-	String num = (String)request.getAttribute("num");
-	System.out.println(num);
+	//모든 리스트가져오기 태마 해쉬태그
+	List<HashTagVo> hashTagList = (List<HashTagVo>) request.getAttribute("hashTagList");
+	List<ThemeVo> themeList = (List<ThemeVo>) request.getAttribute("themeList");
+	
+	//선택한 리스트가져오기 태마 해쉬태그
+	BsCampVo myTheme = (BsCampVo) request.getAttribute("myTheme");
+	List<HashMappingVo> myHashMappingList = (List<HashMappingVo>) request.getAttribute("myHashMappingList");
+	String mappings = "";
+	for(HashMappingVo vo : myHashMappingList) { 
+		mappings = String.join(",",vo.getHtCode());
+	}
+	
+	//캠핑장 구역 정보가져오기
+	List<BsCampZoneVo> zoneList = (List<BsCampZoneVo>)request.getAttribute("zoneList");
+	
+	BsCampVo bsvo = (BsCampVo)request.getAttribute("bsVo");
+	System.out.println("bsvo"+bsvo);
 %>
 <head>
 
@@ -44,17 +65,17 @@
 				
 				<hr>
 				<div style="overflow-x: hidden; width: 100%; height: 700px; padding-right: 10%">
-					<div><%=num %>캠핑장</div>
+					<div><%=bsvo.getCampName() %></div>
 					<div class="md-3">
 						<label for="campName" class="form-label">* 이름:</label> 
 							<input type="text" class="form-control" id="campName"
-							placeholder="캠핑장 이름 입력" name="campName" disabled>
+							placeholder="캠핑장 이름 입력" name="campName" value="<%=bsvo.getCampName() %>" disabled>
 					</div>
 
 					<div class="md-3 ">
 						<label for="campAdd" class="form-label">* 주소:</label> 
-						<select name="city" class="form-select" id="city"></select> 
-						<select name="district" class="form-select" id="district"></select>
+						<select name="city" class="form-select" id="city" disabled><option value="none" ><%=bsvo.getCity() %></option></select> 
+						<select name="district" class="form-select" id="district" disabled><option value="none" "><%=bsvo.getDistrict() %></option></select>
 					</div>
 
 
@@ -62,19 +83,19 @@
 					<div class="md-3">
 						<label for="campDetailAdd">상세주소:</label>
 						<textarea class="form-control" rows="3" id="campDetailAdd"
-							placeholder="상세주소 입력" name="campDetailAdd"></textarea>
+							placeholder="상세주소 입력" name="campDetailAdd" disabled><%=bsvo.getCampAddress() %></textarea>
 					</div>
 
 					<div class="md-3">
 						<label for="campPhone" class="form-label">* 연락처:</label> <input
 							type="text" class="form-control" id="campPhone" maxlength="13"
-							placeholder="캠핑장 연락처 입력" name="campPhone" disabled>
+							placeholder="캠핑장 연락처 입력" name="campPhone" disabled value="<%=bsvo.getCampPhone() %>">
 					</div>
 
 					<div class="md-3">
 						<label for="campIntro" class="form-label">* 시설소개:</label> <input
 							type="text" class="form-control" id="campIntro"
-							placeholder="시설소개" name="campIntro" disabled>
+							placeholder="시설소개" name="campIntro" disabled value="<%=bsvo.getCampIntro() %>">
 					</div>
 
 					<div class="md-3">
@@ -110,80 +131,85 @@
 						<!-- <input type="text" class="form-control" id="camp"  placeholder="해변 숲 섬 호수 도심 계곡 산 강" name="camp" disabled> -->
 						<table>
 							<tr>
-								<td><input type="checkbox" class="btn-check" id="beach" autocomplete="off" name="theme" value="beach"> 
-									<label class="btn btn-outline-success" for="beach">해변</label><br>
-								</td>
-
-								<td><input type="checkbox" class="btn-check" id="forest" autocomplete="off" name="theme" value="forest">
-									<label class="btn btn-outline-success" for="forest">숲</label><br>
-								</td>
-
-								<td><input type="checkbox" class="btn-check" id="island" autocomplete="off" name="theme" value="island"> 
-									<label class="btn btn-outline-success" for="island">섬</label><br>
-								</td>
-
-								<td><input type="checkbox" class="btn-check" id="lake" autocomplete="off" name="theme" value="lake">  
-									<label class="btn btn-outline-success" for="lake">호수</label><br>
-								</td>
-
-								<td><input type="checkbox" class="btn-check" id="downtown" autocomplete="off" name="theme" value="downtown"> 
-								<label class="btn btn-outline-success" for="downtown">도심</label><br>
-								</td>
-
-								<td><input type="checkbox" class="btn-check" id="valley" autocomplete="off" name="theme" value="valley"> 
-									<label class="btn btn-outline-success" for="valley">계곡</label><br>
-								</td>
-
-								<td><input type="checkbox" class="btn-check" id="mountain" autocomplete="off" name="theme" value="mountain"> 
-									<label class="btn btn-outline-success" for="mountain">산</label><br>
-								</td>
-
-								<td><input type="checkbox" class="btn-check" id="river" autocomplete="off" name="theme" value="river"> 
-									<label class="btn btn-outline-success" for="river">강</label><br>
-								</td>
-
+								<%for(ThemeVo vo : themeList) { %>
+		                      		<td>
+		                      		<input type="checkbox" disabled class="btn-check" id="<%=vo.getThemeCode()%>" autocomplete="off" name="theme" value="<%=vo.getThemeCode()%>"> 
+									<label class="btn btn-outline-success" for="<%=vo.getThemeCode()%>"><%=vo.getThemeName()%></label>
+									</td>
+								<%} %>	
 							</tr>
+						</table>
+					</div>
+					
+										<div class="md-3" id="hashTag">
+						<label for="campHashTag" class="form-label">* 태그:(해쉬태그를 선택해주세요)</label>
+						<input type="hidden" value="0" name="hashNum" disabled>
+						<table>
+								<tr >
+								<%for(HashTagVo vo : hashTagList) { %>
+									<%  String x1 = vo.getHtCode();
+									int x =Integer.parseInt(x1);%>
+									
+										<%if( (x%5)!=0 ){%>
+											<td>
+		                      				<input style="margin: 10px" type="checkbox" class="btn-check"  disabled
+		                      				id="<%=vo.getHtName()%>" autocomplete="off" name="hashTag" value="<%=vo.getHtCode()%>" onclick="getHashNum();"> 
+											<label class="btn btn-outline-success" for="<%=vo.getHtName()%>"><%=vo.getHtName()%></label>
+											</td>
+										<%}else{%>
+											<td>
+		                      				<input style="margin: 10px" type="checkbox" class="btn-check" disabled
+		                      				id="<%=vo.getHtName()%>" autocomplete="off" name="hashTag" value="<%=vo.getHtCode()%>" onclick="getHashNum();"> 
+											<label class="btn btn-outline-success" for="<%=vo.getHtName()%>"><%=vo.getHtName()%></label>
+											</td></tr>
+										<%} %>
+									<%} %>
 						</table>
 					</div>
 					
 					<div class="md-3">
 						<label for="campRefund" class="form-label">* 환불규정:</label> <input
 							type="text" class="form-control" id="campRefund"
-							placeholder="환불규정" name="campRefund" disabled>
+							placeholder="환불규정" name="campRefund" disabled value="<%=bsvo.getCampRefund()%>">
 					</div>
 
 
 					<div class="mb-3">
 						<label for="campRepImg" class="form-label">* 대표이미지:</label> <input
-							class="form-control" type="file" name="campRepImg"
+							class="form-control" type="file" name="campRepImg" value="<%=bsvo.getCampImgPath()%>"
 							id="campRepImg">
 					</div>
 
 
-
+					<!-- detailController에서 캠핑장 코드 번호와 일치하는 구역들을 리스트에 담아서 가져오기 -->
 					<div class="mb-3">
 						<div class="addInput">
-
-							<hr>
-							<div class="mb-3">
-								<label for="campZoneName" class="form-label">구역이름</label> 
-								<input class="form-control" type="text" id="campZoneName" name="campZoneName" placeholder="구역이름을 입력해주세요" disabled>
-							</div>
-							<div class="mb-3 " style="width: 30%">
-								<label for="maxGusests" class="form-label">최대 숙박인원(:명)</label> 
-								<input class="form-control" type="number" id="maxGusests" name="maxGusests" min="1" value="1" disabled>
-							</div>
-							<div class="mb-3 " style="width: 30%">
-								<label for="campAreaPrice" class="form-label">가격(:원)</label> 
-								<input class="form-control" type="number" id="campZonePrice" name="campZonePrice" min="0" value="0" disabled>
-							</div>
-							<div class="mb-3">
-								<label for="campAreaImg" class="form-label">구역이미지</label>
-								 <input class="form-control" type="file" id="campZoneImg" name="campZoneImg">
-							</div>
-							
-							 
-							<br>
+								<%System.out.println("zoneList"+zoneList);
+								for(BsCampZoneVo vo : zoneList) { %>
+									<hr>
+									<div class="mb-3">
+										<label for="campZoneName" class="form-label">구역이름</label> 
+										<input class="form-control" type="text" id="campZoneName" name="campZoneName" value="<%=vo.getZoneName() %>" disabled>
+									</div>
+									<div class="mb-3 " style="width: 30%">
+										<label for="maxGusests" class="form-label">최대 숙박인원(:명)</label> 
+										<input class="form-control" type="number" id="maxGusests" name="maxGusests" value="<%=vo.getZoneStayMax() %>" disabled>
+									</div>
+									<div class="mb-3 " style="width: 30%">
+										<label for="maxGusests" class="form-label">일별 예약가능수(:명)</label> 
+										<input class="form-control" type="number" id="maxGusests" name="zoneNor0" min="1" value="<%=vo.getZoneNor() %>"" disabled>
+									</div>	
+									<div class="mb-3 " style="width: 30%">
+										<label for="campAreaPrice" class="form-label">가격(:원)</label> 
+										<input class="form-control" type="number" id="campZonePrice" name="campZonePrice" min="0" value="<%=vo.getZonePrice() %>" disabled>
+									</div>
+									<div class="mb-3">
+										<label for="campAreaImg" class="form-label">구역이미지</label>
+										<img alt="" src="<%=bsvo.getCampImgPath()%>" width="100px" height="100px">
+										 <input class="form-control" type="file" id="campZoneImg" name="campZoneImg" >
+									</div>
+									<br>
+								<%} %>
 							<br>
 
 						</div>
@@ -210,114 +236,7 @@
 	</main>
 
 	<%@ include file="/views/common/footer.jsp"%>
-</body>
 
-<script>
-	
-	$('document')
-			.ready(
-					function() {
-						var area0 = [ "시/도 선택", "서울특별시", "인천광역시", "대전광역시",
-								"광주광역시", "대구광역시", "울산광역시", "부산광역시", "경기도",
-								"강원도", "충청북도", "충청남도", "전라북도", "전라남도", "경상북도",
-								"경상남도", "제주도" ];
-						var area1 = [ "강남구", "강동구", "강북구", "강서구", "관악구", "광진구",
-								"구로구", "금천구", "노원구", "도봉구", "동대문구", "동작구",
-								"마포구", "서대문구", "서초구", "성동구", "성북구", "송파구",
-								"양천구", "영등포구", "용산구", "은평구", "종로구", "중구", "중랑구" ];
-						var area2 = [ "계양구", "남구", "남동구", "동구", "부평구", "서구",
-								"연수구", "중구", "강화군", "옹진군" ];
-						var area3 = [ "대덕구", "동구", "서구", "유성구", "중구" ];
-						var area4 = [ "광산구", "남구", "동구", "북구", "서구" ];
-						var area5 = [ "남구", "달서구", "동구", "북구", "서구", "수성구",
-								"중구", "달성군" ];
-						var area6 = [ "남구", "동구", "북구", "중구", "울주군" ];
-						var area7 = [ "강서구", "금정구", "남구", "동구", "동래구", "부산진구",
-								"북구", "사상구", "사하구", "서구", "수영구", "연제구", "영도구",
-								"중구", "해운대구", "기장군" ];
-						var area8 = [ "고양시", "과천시", "광명시", "광주시", "구리시", "군포시",
-								"김포시", "남양주시", "동두천시", "부천시", "성남시", "수원시",
-								"시흥시", "안산시", "안성시", "안양시", "양주시", "오산시",
-								"용인시", "의왕시", "의정부시", "이천시", "파주시", "평택시",
-								"포천시", "하남시", "화성시", "가평군", "양평군", "여주군", "연천군" ];
-						var area9 = [ "강릉시", "동해시", "삼척시", "속초시", "원주시", "춘천시",
-								"태백시", "고성군", "양구군", "양양군", "영월군", "인제군",
-								"정선군", "철원군", "평창군", "홍천군", "화천군", "횡성군" ];
-						var area10 = [ "제천시", "청주시", "충주시", "괴산군", "단양군",
-								"보은군", "영동군", "옥천군", "음성군", "증평군", "진천군", "청원군" ];
-						var area11 = [ "계룡시", "공주시", "논산시", "보령시", "서산시",
-								"아산시", "천안시", "금산군", "당진군", "부여군", "서천군",
-								"연기군", "예산군", "청양군", "태안군", "홍성군" ];
-						var area12 = [ "군산시", "김제시", "남원시", "익산시", "전주시",
-								"정읍시", "고창군", "무주군", "부안군", "순창군", "완주군",
-								"임실군", "장수군", "진안군" ];
-						var area13 = [ "광양시", "나주시", "목포시", "순천시", "여수시",
-								"강진군", "고흥군", "곡성군", "구례군", "담양군", "무안군",
-								"보성군", "신안군", "영광군", "영암군", "완도군", "장성군",
-								"장흥군", "진도군", "함평군", "해남군", "화순군" ];
-						var area14 = [ "경산시", "경주시", "구미시", "김천시", "문경시",
-								"상주시", "안동시", "영주시", "영천시", "포항시", "고령군",
-								"군위군", "봉화군", "성주군", "영덕군", "영양군", "예천군",
-								"울릉군", "울진군", "의성군", "청도군", "청송군", "칠곡군" ];
-						var area15 = [ "거제시", "김해시", "마산시", "밀양시", "사천시",
-								"양산시", "진주시", "진해시", "창원시", "통영시", "거창군",
-								"고성군", "남해군", "산청군", "의령군", "창녕군", "하동군",
-								"함안군", "함양군", "합천군" ];
-						var area16 = [ "서귀포시", "제주시", "남제주군", "북제주군" ];
-
-						// 시/도 선택 박스 초기화
-
-						$("select[name^=city]")
-								.each(
-										function() {
-											$selsido = $(this);
-											$
-													.each(
-															eval(area0),
-															function() {
-																$selsido
-																		.append("<option value='" + this + "'>"
-																				+ this
-																				+ "</option>");
-															});
-											$selsido
-													.next()
-													.append(
-															"<option value=''>구/군 선택</option>");
-										});
-
-						// 시/도 선택시 구/군 설정
-
-						$("select[name^=city]")
-								.change(
-										function() {
-											var area = "area"
-													+ $("option", $(this))
-															.index(
-																	$(
-																			"option:selected",
-																			$(this))); // 선택지역의 구군 Array
-											var $district = $(this).next(); // 선택영역 군구 객체
-											$("option", $district).remove(); // 구군 초기화
-
-											if (area == "area0")
-												$district
-														.append("<option value=''>구/군 선택</option>");
-											else {
-												$
-														.each(
-																eval(area),
-																function() {
-																	$district
-																			.append("<option value='" + this + "'>"
-																					+ this
-																					+ "</option>");
-																});
-											}
-										});
-
-					});
-</script>
 
 <script> 
     $(document).ready (function(){
@@ -358,5 +277,51 @@
         })
     })
 </script>
+
+<script>
+		$(function() {
+
+			//캠핑장 테마 가져오기
+			const theme = '<%=myTheme.getTheme()%>';
+			console.log(theme);
+			
+			//체크박스가져오기
+			$('input[name=theme]').each(function(){
+				var result = theme.indexOf(this.value);
+				console.log(result);
+				if (result != -1) {
+					this.checked = true;
+				}
+				
+				
+			});
+			
+		})
+		
+</script>
+
+<script>
+		$(function() {
+
+			//캠핑장 테마 가져오기
+			const theme = '<%=mappings%>';
+			console.log(theme);
+			
+			//체크박스가져오기
+			$('input[name=hashTag]').each(function(){
+				var result = theme.indexOf(this.value);
+				console.log(result);
+				if (result != -1) {
+					this.checked = true;
+				}
+				
+				
+			});
+			
+		})
+		
+	</script>
+	
+</body>
 
 </html>

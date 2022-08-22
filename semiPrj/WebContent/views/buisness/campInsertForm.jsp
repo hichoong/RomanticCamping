@@ -19,8 +19,8 @@
 	String toDay = d+"T"+t;
 	
 	List<HashTagVo> hashTagList = (List<HashTagVo>) request.getAttribute("hashTagList");
-	List<String> checkedHashCodes = (List<String>) request.getAttribute("checkedHashCodes");
 	List<ThemeVo> themeList = (List<ThemeVo>) request.getAttribute("themeList");
+	List<String> checkedHashCodes = (List<String>) request.getAttribute("checkedHashCodes");
 	/* System.out.println(themeList);
 	System.out.println(hashTagList);
 	System.out.println(checkedHashCodes); */
@@ -48,7 +48,7 @@
 		<div id="content">
 
 
-			<form action="<%=contextPath %>/bscamp/insert" method="post">
+			<form action="<%=contextPath %>/bscamp/insert" method="post" enctype="multipart/form-data">
 				<h2>캠핑장 등록</h2>
 				
 				<hr>
@@ -62,7 +62,7 @@
 
 					<div class="md-3 ">
 						<label for="campAdd" class="form-label">* 주소:</label> 
-						<select name="city" class="form-select" id="city"></select> 
+						<select name="city" class="form-select" id="city" ></select> 
 						<select name="district" class="form-select" id="district"></select>
 					</div>
 
@@ -129,9 +129,9 @@
 						</table>	
 					</div>
 					
+					<input type="hidden" value="0" name="hashNum">
 					<div class="md-3" id="hashTag">
 						<label for="campHashTag" class="form-label">* 태그:(해쉬태그를 선택해주세요)</label>
-						<input type="hidden" value="0" name="hashNum" disabled>
 						<table>
 								<tr >
 								<%for(HashTagVo vo : hashTagList) { %>
@@ -302,10 +302,7 @@
 																				+ this
 																				+ "</option>");
 															});
-											$selsido
-													.next()
-													.append(
-															"<option value=''>구/군 선택</option>");
+											 $selsido.next().append("<option value=''>구/군 선택</option>");
 										});
 
 						// 시/도 선택시 구/군 설정
@@ -323,8 +320,7 @@
 											$("option", $district).remove(); // 구군 초기화
 
 											if (area == "area0")
-												$district
-														.append("<option value=''>구/군 선택</option>");
+												 $district.append("<option value=''>구/군 선택</option>"); 
 											else {
 												$
 														.each(

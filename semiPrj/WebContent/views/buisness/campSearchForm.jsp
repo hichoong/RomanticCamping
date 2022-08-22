@@ -20,8 +20,6 @@
 	
 	List<BsCampVo> bsvo = (ArrayList<BsCampVo>)request.getAttribute("bsVo");
 	int CampNum = (int)request.getAttribute("CampNum");
-	System.out.println(bsvo);
-	System.out.println(CampNum);
 %>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -79,10 +77,11 @@
                     <!-- 접속id에 맞는 회원의 캠핑장  -->
                      <!-- <article class=" shadow"><a href="campDetaileInfo.jsp"><img src="캠핑장메인이미지" alt=""><span>캠핑장이름</span></a></article> -->
                      
-                     <%for(int i =0; i< CampNum; i++){%>
+                     <%for(BsCampVo vo : bsvo){%>
                     <article class=" shadow">
                     	<img src="https://placehold.jp/200x200.png" alt="">
-                    	<span>캠핑장이름</span>
+                    	<input type="hidden" value="<%=vo.getCampCode()%>">
+                    	<span><%=vo.getCampName() %></span>
                     </article>
                     <%}%>
 
@@ -103,10 +102,10 @@
 		$(function(){
 			$('#wrap>article').click(function(){
 				//글번호 가져오기
-				const num = $(this).children().eq(1).text();
-				console.log(num);
+				const campCode = $(this).children().eq(1).val();
+				console.log(campCode);
 				//해당 번호로 요청 보내기
-				location.href='<%=contextPath%>/bscamp/detail?num=' + num;
+				location.href='<%=contextPath%>/bscamp/detail?campCode=' + campCode;
 				
 			});
 		})
