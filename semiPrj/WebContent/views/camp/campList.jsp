@@ -12,6 +12,7 @@
 	List<String> checkedHashCodes = (List<String>) request.getAttribute("checkedHashCodes");
 	List<ThemeVo> themeList = (List<ThemeVo>) request.getAttribute("themeList");
 	
+	
 	PageVo pv = (PageVo) request.getAttribute("pv");
 	
 	List<CampInfoVo> searchList = (List<CampInfoVo>) request.getAttribute("searchList"); 
@@ -36,7 +37,8 @@
     <div class="container">
         <section>
             <div id="search-box">
-              
+              <input type="hidden" id ="themeChecked" themeChecked="${theme}">
+			  <input type="hidden" id ="checkedHashCodes" themeChecked="${checkedHashCodes}">
               <!-- 새로고침,서브밋 했을 때 검색내용 유지기능 필요  -->
               <form class="search-form" action="<%=contextPath %>/camp/campList" method="get">
               	  <input type="hidden" name="p" value="1">
@@ -54,16 +56,13 @@
                       <tr>
                         <td>
 	                        <%for(ThemeVo vo : themeList) { %>
-                         		<input type="radio" name="theme" themeChecked="${theme }" value="<%=vo.getThemeCode()%>" id="<%=vo.getThemeCode()%>"><label for="<%=vo.getThemeCode()%>"><%=vo.getThemeName()%></label><br>
+                         		<input type="radio" name="theme" value="<%=vo.getThemeCode()%>" id="<%=vo.getThemeCode()%>"><label for="<%=vo.getThemeCode()%>"><%=vo.getThemeName()%></label><br>
 							<%} %>
                         </td>
                       </tr>
                     </table>
                   </div>
                   
-                  
-                  
-
                     <div class="hashtag">
                       <button type="button" class="btn btn-warning">+해시태그</button>
                     </div>
@@ -71,13 +70,26 @@
                     <div class="hashtag-list hide">
                       <ul class="tag-ul">
 						<%for(HashTagVo vo : hashTagList) { %>
-							<li>
-								<input  checkedHashCodes="${checkedHashCodes}" hashTagKey="<%=vo.getHtCode()%>" type="hidden" name="hashTag" disabled="disabled" value="<%=vo.getHtCode()%>">
+							<li>	
+								<input  hashTagKey="<%=vo.getHtCode()%>" type="hidden" name="hashTag" id="hashTag" disabled="disabled" value="<%=vo.getHtCode()%>">
 								<button hashTagKey="<%=vo.getHtCode()%>" type="button" class="tag-btn" ><%=vo.getHtName()%></button>
 							</li>
 						<%} %>
-						
                       </ul>
+                      
+                      <c:if test="${not empty checkedHashCodes}">
+                      	<!-- hidden input 만들기 -->
+                      </c:if>
+                      
+                      <script>
+                      	//해시태그 검색조건 유지
+                      	if(${checkedHashCodes.size()} > 0){
+                      		$('.hashtag-list').css('display', 'block');
+                      	}
+                      	
+                      	const checkedTags = JSON.parse();
+                      	
+                      </script>
                     </div>
                     <input type="submit" value="search" class="btn btn-warning">
               </form>
@@ -90,7 +102,8 @@
                <c:choose>
                		<c:when test="${not empty searchList}">
                			<%for(CampInfoVo c : searchList) { %>
-			                 <div class="card mb-3" style="max-width: 800px;" onclick="location.href='<%=contextPath %>/views/camp/campZoneList.jsp'">
+		                    <input type="hidden" name="campCode" value="<%=c.getCampCode() %>">
+			                 <div class="card mb-3" style="max-width: 800px;" onclick="location.href='<%=contextPath %>/zone/list?campCode=<%=c.getCampCode()%>'">
 			                    <div class="row no-gutters">
 			                      <div class="col-md-4">
 			                        <img src="<%=c.getCampImgpath()%>" class="card-img" alt="캠핑장 대표이미지">

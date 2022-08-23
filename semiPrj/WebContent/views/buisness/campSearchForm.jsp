@@ -19,6 +19,7 @@
 	String toDay = d+"T"+t;
 	
 	List<BsCampVo> bsvo = (ArrayList<BsCampVo>)request.getAttribute("bsVo");
+	System.out.println("BsCampVo_isEmpt::"+bsvo.isEmpty());
 	int CampNum = (int)request.getAttribute("CampNum");
 %>
 <head>
@@ -77,14 +78,17 @@
                     <!-- 접속id에 맞는 회원의 캠핑장  -->
                      <!-- <article class=" shadow"><a href="campDetaileInfo.jsp"><img src="캠핑장메인이미지" alt=""><span>캠핑장이름</span></a></article> -->
                      
+                     <%if(!bsvo.isEmpty()){ %>
                      <%for(BsCampVo vo : bsvo){%>
                     <article class=" shadow">
                     	<img src="https://placehold.jp/200x200.png" alt="">
                     	<input type="hidden" value="<%=vo.getCampCode()%>">
                     	<span><%=vo.getCampName() %></span>
                     </article>
-                    <%}%>
-
+					<%} %>
+                    <%}else{%>
+						<div>등록된 캠핑장이 없습니다..</div>
+					<%} %>
                     <!-- <article class=" shadow"><a href="campDetaileInfo.jsp"><img src="https://placehold.jp/200x200.png" alt=""><span>camp2</span></a></article> -->
                     
                     
@@ -101,7 +105,7 @@
 	<script>
 		$(function(){
 			$('#wrap>article').click(function(){
-				//글번호 가져오기
+				//캠핑장번호 가져오기
 				const campCode = $(this).children().eq(1).val();
 				console.log(campCode);
 				//해당 번호로 요청 보내기

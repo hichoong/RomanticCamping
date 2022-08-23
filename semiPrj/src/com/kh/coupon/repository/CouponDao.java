@@ -63,4 +63,39 @@ public class CouponDao {
 		}
 		return result;
 	}
+
+	public List<CouponVo> selectCouponListInfo(Connection conn, String no) {
+		
+		List<CouponVo> list = new ArrayList<CouponVo>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT * FROM (SELECT C.CODE, C.NAME, C.DISCOUNT, TO_CHAR(C.STARTDAY , 'YYYY/MM/DD') STARTDAY, TO_CHAR(C.ENDDAY , 'YYYY/MM/DD') ENDDAY, (C.ENDDAY - TRUNC(SYSDATE)) AS DDAY FROM COUPON_LIST C JOIN USER_COUPON_LIST L ON C.CODE = L.C_CODE WHERE L.USER_NO = ? AND C.STATUS = 'Y' AND L.U_STATUS = 'N') WHERE DDAY >= 0";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, no);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				CouponVo vo = new CouponVo();
+
+				vo.setCouponCode(rs.getString("CODE"));
+				vo.setCouponName(rs.getString("NAME"));
+				vo.setCouponDiscount(rs.getString("DISCOUNT"));
+				vo.setCouponStartDay(rs.getString("STARTDAY"));
+				vo.setCouponEndDay(rs.getString("ENDDAY"));
+				vo.setCouponDDay(rs.getString("DDAY"));
+				
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rs);
+		}
+		
+		return list;
+	}
 }

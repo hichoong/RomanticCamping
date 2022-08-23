@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../../resource/css/qestionBoardDetail.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/qestionBoardDetail.css">
 <title>문의글 수정</title>
 </head>
 <body>

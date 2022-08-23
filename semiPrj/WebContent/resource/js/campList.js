@@ -1,5 +1,24 @@
-
 $('document').ready(function() {
+	
+  //해시태그 리스트 show/hide
+  $(function(){
+    $('.hashtag').click(function(){
+      $('.hashtag-list').slideToggle();
+    })
+  })
+	$(function() {
+		$('.tag-btn').click(function(e) {
+			let inputHash = $("input[hashTagKey='" +  $(this).attr('hashTagKey') + "']");
+						
+			if(inputHash.attr("disabled") == 'disabled'){
+   			 $(this).css('background-color','#FFA000');
+   			 inputHash.removeAttr("disabled");
+			} else{
+          $(this).css('background-color', '');
+          inputHash.attr("disabled","disabled");
+      }
+		})
+	})
    
     var area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
     var area1 = ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"];
@@ -59,48 +78,14 @@ $('document').ready(function() {
     $("select[name^=sido]").val(sidoChecked).prop("selected", true);
     $("select[name^=sido]").trigger('change');
   }
-
-});
-
-
-  // $(function(){
-  //   let themeChecked = $('input[name=theme]:checked').attr('themeChecked');
-	//   if(themeChecked != ""){
-	//     $('input[name=theme]').val(themeChecked).prop('checked', true);
-	//   }
-  // })
-
-
-  	
-
-  //해시태그 리스트 show/hide
+  
   $(function(){
-    $('.hashtag').click(function(){
-      $('.hashtag-list').slideToggle();
-    })
-
-
-
-
+    let themeChecked = $('#themeChecked').attr('themeChecked');
+    if(themeChecked != ""){
+      $("input:radio[name='theme']:radio[value='" + themeChecked + "']").prop('checked', true)
+    }
   })
 
-	$(function() {
-		$('.tag-btn').click(function(e) {
-			let inputHash = $("input[hashTagKey='" +  $(this).attr('hashTagKey') + "']");
-						
-			if(inputHash.attr("disabled") == 'disabled'){
-   			 $(this).css('background-color','#FFA000');
-   			 inputHash.removeAttr("disabled");
-			} else{
-	      	 $(this).css('background-color', '');
-	      	 inputHash.attr("disabled","disabled");
-	      	}
-		})
-	})
-	  
-	
+  
 
-
-
-
-            
+});

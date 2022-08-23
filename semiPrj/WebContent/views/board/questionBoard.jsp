@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>낭만캠프</title>
-<link rel="stylesheet" href="../../resource/css/qestionBoard.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/qestionBoard.css">
 </head>
 <body>
 	
@@ -84,8 +84,8 @@
                 <th scope="col">조회수</th>
               </tr>
             </thead>
+            
             <tbody>
-              
               <%for(int i = 0; i < voList.size(); i++){%>
               <tr>
                 <th scope="row"><%=voList.get(i).getqNo()%></th>
@@ -95,8 +95,8 @@
                 <td><%=voList.get(i).getqCnt()%></td>
               </tr>
               <%}%>
-              
             </tbody>
+            
           </table>
         
 	<!-- 페이지네이션 -->
@@ -111,69 +111,22 @@
         </ul>
 
 
-    <button type="button" id="btn" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button type="button" id="btn" class="btn btn-warning" onclick="location.href='<%=request.getContextPath()%>/question/insert'" >
 			작성하기
 	</button>
     
     
-    <!-- 모달 -->
-			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			  <div class="modal-dialog">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <h5 class="modal-title" id="exampleModalLabel">문의글 작성하기</h5>
-			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			      </div>
-			      
-			      <div class="modal-body">
-			        
-			        <!-- 분류 선택 -->
-					<select class="form-select" aria-label="Default select example">
-						<option selected>문의 카테고리 선택</option>
-						<option value="1">예약</option>
-						<option value="2">대여</option>
-						<option value="3">결제</option>
-						<option value="4">기타</option>
-					</select>
-					
-					<!-- 글 제목 / 글 내용 입력-->
-					<div class="mb-3">
-						<label for="exampleFormControlInput1" class="form-label">제목 : </label>
-						<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="문의합니다.">
-					</div>
-					<div class="mb-3">
-						<label for="exampleFormControlTextarea1" class="form-label">내용 : </label>
-						<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-					</div>
-		
-					<!-- 파일 첨부 -->
-					  <div class="mb-3">
-						<label for="formFile" class="form-label"></label>
-						<input class="form-control" type="file" id="formFile">
-					  </div>
-			        
-			      </div>
-
-				  <!-- 모달_작성하기 버튼 -->
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-warning">작성하기</button>
-			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-			      </div>
-			    </div>
-			  </div>
-			</div>
-  
   	</div>
     
     <script>
 		$(function(){
-			$('#table-main>tbody>tr').click(function(){
+			$('#board>tbody>tr').click(function(){
 				//행 클릭 되었을 때, 동작할 내용
 				
 				//글 번호 가져오기
 				const num = $(this).children().eq(0).text();
 				//해당 번호 이용해서 요청 보내기
-				location.href='/semiPrj/board/detail?num=' + num;
+				location.href='/semiPrj/question/detail?num=' + num;
 			});
 		})
 	</script>

@@ -1,3 +1,4 @@
+<%@page import="com.sjy.buisness.camp.vo.BsCampFacVo"%>
 <%@page import="com.sjy.buisness.camp.vo.BsCampZoneVo"%>
 <%@page import="com.sjy.buisness.hashmapping.vo.HashMappingVo"%>
 <%@page import="com.kh.camplist.theme.vo.ThemeVo"%>
@@ -31,6 +32,44 @@
 	for(HashMappingVo vo : myHashMappingList) { 
 		mappings = String.join(",",vo.getHtCode());
 	}
+	System.out.println("mappings"+mappings);
+	String facs = "";
+	BsCampFacVo facVo = (BsCampFacVo) request.getAttribute("facVo");
+	System.out.println(facVo);
+	
+	System.out.println("facs::"+facVo.getHotWater());
+	
+	
+	//fac테이블에 있는데이터 null값여부 판별후 아닌경우만 문자열 병합
+	if(facVo.getWifi() != null ){
+		facs = facs+facVo.getWifi()+",";}
+	
+	 if(facVo.getElectro() != null){
+		 facs = facs+facVo.getElectro()+",";}
+	
+	 if(facVo.getHotWater() != null){
+		 facs = facs+facVo.getHotWater()+",";}
+	
+	 if(facVo.getPet() != null){
+		 facs = facs+facVo.getPet()+",";}
+	
+	 if(facVo.getStore() != null){
+		 facs = facs+facVo.getStore()+",";}
+	
+	 if(facVo.getFwood() != null){
+		 facs = facs+facVo.getFwood()+",";}
+	
+	 if(facVo.getPlayGround() != null){
+		 facs = facs+facVo.getPlayGround()+",";}
+	
+	 if(facVo.getTrail() != null){
+		 facs = facs+facVo.getTrail()+",";}
+	
+	 if(facVo.getPool() != null){
+		 facs = facs+facVo.getPool()+",";}
+	
+	 facs = facs.substring(0, facs.length()-1);
+	System.out.println("facs::"+facs);
 	
 	//캠핑장 구역 정보가져오기
 	List<BsCampZoneVo> zoneList = (List<BsCampZoneVo>)request.getAttribute("zoneList");
@@ -104,24 +143,24 @@
 							placeholder="와이파이 전기 온수 반려견동반 매점 장작판매 운동장 산책로 물놀이장" name="camp"
 							disabled>
 								
-							    <input type="checkbox" name="facility" id="ft1" class="facility" value="w">
+							    <input type="checkbox" name="facility" id="ft1" class="facility" value="w" disabled>
 							    <label for="ft1" >와이파이</label>
-							    <input type="checkbox" name="facility" id="ft2" class="facility" value="e">
+							    <input type="checkbox" name="facility" id="ft2" class="facility" value="e" disabled>
 							    <label for="ft2">전기</label>
-							    <input type="checkbox" name="facility" id="ft3" class="facility" value="h">
+							    <input type="checkbox" name="facility" id="ft3" class="facility" value="h" disabled>
 							    <label for="ft3">온수</label>
-							    <input type="checkbox" name="facility" id="ft4" class="facility" value="p">
+							    <input type="checkbox" name="facility" id="ft4" class="facility" value="p" disabled>
 							    <label for="ft4">반려견동반</label>
-							    <input type="checkbox" name="facility" id="ft5" class="facility" value="s">
+							    <input type="checkbox" name="facility" id="ft5" class="facility" value="s" disabled>
 							    <label for="ft5">매점</label>
 							    
-							    <input type="checkbox" name="facility" id="ft6" class="facility" value="f">
+							    <input type="checkbox" name="facility" id="ft6" class="facility" value="f" disabled>
 							    <label for="ft6">장작판매</label>
-							    <input type="checkbox" name="facility" id="ft7" class="facility" value="p">
+							    <input type="checkbox" name="facility" id="ft7" class="facility" value="g" disabled>
 							    <label for="ft7">운동장</label>
-							    <input type="checkbox" name="facility" id="ft8" class="facility" value="t">
+							    <input type="checkbox" name="facility" id="ft8" class="facility" value="t" disabled>
 							    <label for="ft8">산책로</label>
-							    <input type="checkbox" name="facility" id="ft9" class="facility" value="o">
+							    <input type="checkbox" name="facility" id="ft9" class="facility" value="o" disabled>
 							    <label for="ft9">물놀이장</label>
 							    
 					</div>
@@ -175,9 +214,9 @@
 
 
 					<div class="mb-3">
-						<label for="campRepImg" class="form-label">* 대표이미지:</label> <input
-							class="form-control" type="file" name="campRepImg" value="<%=bsvo.getCampImgPath()%>"
-							id="campRepImg">
+						<label for="campRepImg" class="form-label">* 대표이미지:</label> 
+						<%=bsvo.getCampImgPath()%>
+						<img alt="" src="<%=bsvo.getCampImgPath()%>" width="200px" height="200px">
 					</div>
 
 
@@ -205,8 +244,13 @@
 									</div>
 									<div class="mb-3">
 										<label for="campAreaImg" class="form-label">구역이미지</label>
-										<img alt="" src="<%=bsvo.getCampImgPath()%>" width="100px" height="100px">
-										 <input class="form-control" type="file" id="campZoneImg" name="campZoneImg" >
+										<br>
+										<%=vo.getZoneImg() %>
+										<img src="<%=vo.getZoneImg() %>" width="100" height="100">
+										<img src="https://www.w3schools.com/images/lamp.jpg" width="100" height="100">
+										<img alt="" src="../resource/upload/campImg/test1.png" width="100" height="100">
+										
+										
 									</div>
 									<br>
 								<%} %>
@@ -283,7 +327,7 @@
 
 			//캠핑장 테마 가져오기
 			const theme = '<%=myTheme.getTheme()%>';
-			console.log(theme);
+			console.log("테마:"+theme);
 			
 			//체크박스가져오기
 			$('input[name=theme]').each(function(){
@@ -302,14 +346,13 @@
 
 <script>
 		$(function() {
-
 			//캠핑장 테마 가져오기
-			const theme = '<%=mappings%>';
-			console.log(theme);
+			const map = '<%=mappings%>';
+			console.log("해쉬"+map);
 			
 			//체크박스가져오기
 			$('input[name=hashTag]').each(function(){
-				var result = theme.indexOf(this.value);
+				var result = map.indexOf(this.value);
 				console.log(result);
 				if (result != -1) {
 					this.checked = true;
@@ -321,7 +364,41 @@
 		})
 		
 	</script>
-	
+
+
+<script>
+		$(function() {
+
+			//캠핑장 테마 가져오기
+			const fac = '<%=facs%>';
+			console.log("시설:"+fac);
+			
+			//체크박스가져오기
+			$('input[name=facility]').each(function(){
+				var result = fac.indexOf(this.value);
+				console.log(result);
+				if (result != -1) {
+					this.checked = true;
+				}
+				
+				
+			});
+			
+		})
+		
+</script>	
+
+	<script>
+		$(function(){
+			$('#delete').click(function(){
+				
+				//해당 번호로 요청 보내기
+				location.href="<%=contextPath%>/bscamp/deleteCamp?campCode=" + <%=bsvo.getCampCode()%>;
+				
+				
+			});
+		})
+	</script>
 </body>
 
 </html>

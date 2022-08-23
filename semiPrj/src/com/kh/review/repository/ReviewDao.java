@@ -12,10 +12,53 @@ import com.kh.review.vo.ReviewVo;
 
 public class ReviewDao {
 	
-	//리뷰 조회
-	public ReviewVo selectOne(Connection conn, String num) {
+	//캠핑장 정보 조회
+	public CampInfoVo campSelect(Connection conn, String reservationNo) {
+		
+		String sql = "SELECT CAMP_CODE, CAMP_NAME, CITY, DISTRICT, CAMP_ADDRESS, CAMP_INTRO, CAMP_IMGPATH FROM CAMP_INFO WHERE CAMP_CODE IN (SELECT CAMP_CODE FROM RESERVATION WHERE RE_NO = ? ) AND CAMP_STATUS = 'Y'";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		CampInfoVo vo = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, reservationNo);
+
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				String campCode = rs.getString("CAMP_CODE");
+				String campName = rs.getString("CAMP_NAME");
+				String city = rs.getString("CITY");
+				String district = rs.getString("DISTRICT");
+				String address = rs.getString("CAMP_ADDRESS");
+				String campIntro = rs.getString("CAMP_INTRO");
+				String campImgpath = rs.getString("CAMP_IMGPATH");
+
+				vo = new CampInfoVo();
+				vo.setCampCode(campCode);
+				vo.setCampName(campName);
+				vo.setCity(city);
+				vo.setDistrict(district);
+				vo.setCampAddress(address);
+				vo.setCampIntro(campIntro);
+				vo.setCampImgpath(campImgpath);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return vo;
+	}
 	
-		String sql = "SELECT R_NO, RE_NO, R_DATE, R_CONTENT, R_NUM, R_STATUS FROM REVIEW WHERE R_NO = ? AND R_STATUS = 'Y'";
+	//리뷰 조회
+	public ReviewVo selectOne(Connection conn, String reservationNo) {
+	
+		String sql = "SELECT R_NO, RE_NO, R_DATE, R_CONTENT, R_NUM, R_STATUS FROM REVIEW WHERE RE_NO = ? AND R_STATUS = 'Y'";
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -23,7 +66,7 @@ public class ReviewDao {
 	
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, num);
+			pstmt.setString(1, reservationNo);
 			
 			rs = pstmt.executeQuery();
 			
@@ -56,16 +99,18 @@ public class ReviewDao {
 	//리뷰 작성
 	public int reviewInsert(Connection conn, ReviewVo vo) {
 
-		String sql = "INSERT INTO REVIEW ( R_NO ,RE_NO ,R_CONTENT ,R_NUM, CAMP_CODE) VALUES ( SEQ_REVIEW_NO.NEXTVAL , 1 , ? , ?, ? )";
+		String sql = "INSERT INTO REVIEW ( R_NO ,RE_NO ,R_CONTENT ,R_NUM, CAMP_CODE) VALUES ( SEQ_REVIEW_NO.NEXTVAL , ? , ? , ?, ? )";
 		
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vo.getReviewContent());
-			pstmt.setString(2, vo.getStarScore());
-			pstmt.setString(3, "1"); //캠핑장 번호 받아오기
+			
+			pstmt.setString(1, vo.getReservationNo());
+			pstmt.setString(2, vo.getReviewContent());
+			pstmt.setString(3, vo.getStarScore());
+			pstmt.setString(4, vo.getCampCode()); //캠핑장 번호 받아오기
 
 			//SQL 실행
 			result = pstmt.executeUpdate();
@@ -85,13 +130,13 @@ public class ReviewDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
-		String sql = "UPDATE REVIEW SET R_NUM = ?, R_CONTENT = ?, R_UPDATED = SYSDATE WHERE R_NO = ?";
+		String sql = "UPDATE REVIEW SET R_NUM = ?, R_CONTENT = ?, R_UPDATED = SYSDATE WHERE RE_NO = ? AND R_STATUS = 'Y'";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getStarScore());
 			pstmt.setString(2, vo.getReviewContent());
-			pstmt.setString(3, vo.getReviewNo());
+			pstmt.setString(3, vo.getReservationNo());
 		
 			result = pstmt.executeUpdate();
 		
@@ -106,17 +151,16 @@ public class ReviewDao {
 	}
 
 	//리뷰 삭제
-	public int delete(Connection conn, String num) {
+	public int delete(Connection conn, String reservationNo) {
 		
-		String sql = "UPDATE REVIEW SET R_STATUS = 'N' WHERE R_NO = ?";
+		String sql = "UPDATE REVIEW SET R_STATUS = 'N' WHERE RE_NO = ?";
 		
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, num);
-			
+			pstmt.setString(1, reservationNo);
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -126,13 +170,8 @@ public class ReviewDao {
 		return result;
 	}
 
-	//캠핑장 정보 조회
-//	public CampInfoVo campSelect(Connection conn, String reservationNo) {
-//		
-//		String sql = "SELECT CAMP_CODE FROM RESERVATION WHERE RE_NO = ?";
-//		
-//		return null;
-//	}
+
+	
 
 	
 

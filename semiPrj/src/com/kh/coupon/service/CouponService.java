@@ -35,4 +35,14 @@ public class CouponService {
 		}
 		return result;
 	}
+
+	public List<CouponVo> selectCouponList(String no) {
+
+		Connection conn = JDBCTemplate.getConnection();
+		List<CouponVo> list = new CouponDao().selectCouponList(conn, no);
+		
+		JDBCTemplate.close(conn);
+		
+		return list;
+	}
 }

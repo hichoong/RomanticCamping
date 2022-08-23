@@ -18,16 +18,15 @@ import com.kh.review.vo.ReviewVo;
 
 @WebServlet(urlPatterns = "/review/insert")
 public class ReviewInsertController extends HttpServlet {
-	
-	private ReviewVo vo = new ReviewVo();
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		String reservationNo = req.getParameter("reservationNo");
-//		vo.setReservationNo(reservationNo);
-//		
-//		CampInfoVo campInfoVo = new ReviewService().campSelect(reservationNo);
+		String reservationNo = req.getParameter("reservationNo");
+//		String reservationNo = "1";
+		CampInfoVo campInfoVo = new ReviewService().campSelect(reservationNo);
 		
+		req.setAttribute("reservationNo", reservationNo);
+		req.setAttribute("campInfoVo", campInfoVo);
 		req.getRequestDispatcher("/views/camp/reviewInsertForm.jsp").forward(req, resp);
 	}
 	
@@ -37,11 +36,19 @@ public class ReviewInsertController extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String starScore = req.getParameter("reviewStar");
 		String content = req.getParameter("review-content");
+		String reservationNo = req.getParameter("reservationNo");
+		String campCode = req.getParameter("campCode");
 		
+		ReviewVo vo = new ReviewVo();
 		vo.setStarScore(starScore);
 		vo.setReviewContent(content);
+		vo.setReservationNo(reservationNo);
+		vo.setCampCode(campCode);
+		
+		System.out.println(reservationNo);
 		
 		int result = new ReviewService().reviewInsert(vo);
+		
 		
 		if(result == 1) {
 			req.getSession().setAttribute("alertMsg", "리뷰 작성 완료!");

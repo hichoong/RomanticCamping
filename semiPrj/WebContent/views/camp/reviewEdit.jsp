@@ -17,38 +17,22 @@
                 <div class="card mb-3" style="max-width: 1000px;">
                     <div class="row no-gutters">
                       <div class="col-md-4">
-                        <img src="logo.png" class="card-img" alt="캠핑장 대표이미지">
+                        <img src="${campInfoVo.campImgpath}" class="card-img" alt="캠핑장 대표이미지">
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
-                          <h5 class="card-title">캠핑장1</h5>
-                          <p class="card-text">여유로움을 즐길 수 있는 캠핑장1 입니다</p>
-                          <p class="card-text"><small class="text-muted">#여유 #힐링</small></p>
+                          <h5 class="card-title">${campInfoVo.campName}</h5>
+                          <p class="card-text">${campInfoVo.campIntro}</p>
+                          <p class="card-text"><small class="text-muted"></small></p>
                         </div>
                       </div>
                     </div>
                 </div>
-            </div>
+            </div> 
 
-            <form action="<%=contextPath%>/review/edit?num=${vo.reviewNo}" method="post" id="review-write">
-            	<input type="hidden" name="camp-code" value="캠핑장 코드">
-				<div id="camp-info">
-                <div class="card mb-3" style="max-width: 1000px;">
-                    <div class="row no-gutters">
-                      <div class="col-md-4">
-                        <img src="logo.png" class="card-img" alt="캠핑장 대표이미지">
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title">캠핑장1</h5>
-                          <p class="card-text">여유로움을 즐길 수 있는 캠핑장1 입니다</p>
-                          <p class="card-text"><small class="text-muted">#여유 #힐링</small></p>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-         	   </div>	                
-				                
+            <form action="<%=contextPath%>/review/edit" method="post" id="review-write">
+            	<input type="hidden" name="reservationNo" value="${param.reservationNo}">
+			                
                 <div class="review-star">
                     <span class="text-bold">별점을 선택해주세요</span>
                     <input type="hidden" name="rNum" value="${vo.starScore}">
@@ -88,7 +72,7 @@
 
                 <div id="review-update-buttons">
                     <input type="submit" value="리뷰 수정하기" id="review-update" class="btn btn-warning">
-                    <button type="button" class="btn btn-warning" id="review-delete" onclick="location.href='<%=contextPath%>/review/delete?num=${vo.reviewNo }'">삭제하기</button>
+                    <button type="button" class="btn btn-warning" id="review-delete" onclick="location.href='<%=contextPath%>/review/delete?reservationNo=${param.reservationNo}'">삭제하기</button>
                 </div>
                 
             </form>
