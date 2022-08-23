@@ -37,4 +37,14 @@ public class ReservationService {
 		return result;
 	}
 
+	public String enrollCheck(String reservationNo) {
+		
+		Connection conn = getConnection();
+		String result = dao.enrollCheck(conn, reservationNo);
+		
+		close(conn);
+		
+		return result;
+	}
+
 }

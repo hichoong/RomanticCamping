@@ -71,7 +71,7 @@
 				     </c:if>
 				     <c:if test="${ status eq 'D'}">
 					     <div class="location-center ">
-		                    <button class="basic-btn" onclick="location.href='<%=contextPath%>/review/insert?reservationNo=${reservation.reservationNo}'">리뷰작성</button>
+		                    <button id="rbtn" class="basic-btn" onclick="checkDoReview(${reservation.reservationNo});">리뷰작성</button>
 		                </div>
 				     </c:if>
 			    </div>
@@ -128,6 +128,27 @@
     	function cancleReservation() {
     		location.href="<%=contextPath%>/member/cancleReservation?reservationNo="+reservationNo;
     	}
+    	
+    	function checkDoReview(No) {
+			var temp = No;
+			$.ajax({
+				url : "/member/doReview",
+				method : "GET",
+				dataType : "String",
+				data : {reservationNo : temp},
+				success : function(data){ 
+					console.log(data);
+					if(data != "Y"){
+						location.href="<%=contextPath%>/review/insert?reservationNo="+temp;
+					} else {
+						alert("이미 리뷰를 작성하셨습니다.");
+					}
+				},
+				error : function(eee){
+					alert("오류가 발생했습니다. 나중에 다시 시도해주세요.");
+				}
+			});
+		}
     	
     </script>
        

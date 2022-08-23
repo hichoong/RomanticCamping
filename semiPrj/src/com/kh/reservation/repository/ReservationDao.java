@@ -83,4 +83,32 @@ public class ReservationDao {
 		return result;
 	}
 
+	public String enrollCheck(Connection conn, String reservationNo) {
+
+		String sql = "";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String result = "";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, reservationNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return result;
+	}
+
 }
