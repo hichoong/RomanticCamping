@@ -25,6 +25,5 @@ public class MyCouponListController extends HttpServlet{
 		
 		req.setAttribute("couponList", list);
 		req.getRequestDispatcher("/views/member/myCouponList.jsp").forward(req, resp);
-		
 	}
 }

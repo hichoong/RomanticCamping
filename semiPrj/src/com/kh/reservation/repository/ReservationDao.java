@@ -14,7 +14,7 @@ public class ReservationDao {
 
 	public List<ReservationVo> reservationCheck(Connection conn, String no, String type) {
 
-		String sql = "SELECT R.NO, R.PHONE, R.CHECKIN, R.CHECKOUT, R.NOP, R.REQUEST, R.RESERVATION_DATE, R.STATUS, R.CAMP_CODE, R.Z_NO, R.USER_NO, C.CAMP_NAME, C.CAMP_PHONE, C.CAMP_ADDRESS, Z.Z_NAME FROM RESERVATION R JOIN CAMP_INFO C ON R.CAMP_CODE = C.CAMP_CODE JOIN CAMP_ZONE Z ON R.Z_NO = Z.Z_NO WHERE R.USER_NO = ? AND R.STATUS = ?  ORDER BY RESERVATION_DATE DESC";
+		String sql = "SELECT R.NO, R.NAME, R.PHONE, TO_CHAR(R.CHECKIN, 'YYYY-MM-DD') CHECKIN, TO_CHAR(R.CHECKOUT, 'YYYY-MM-DD') CHECKOUT, R.NOP, R.REQUEST, R.RESERVATION_DATE, R.STATUS, R.CAMP_CODE, R.Z_NO, R.USER_NO, C.CAMP_NAME, C.CAMP_PHONE, C.CAMP_ADDRESS, Z.Z_NAME FROM RESERVATION R JOIN CAMP_INFO C ON R.CAMP_CODE = C.CAMP_CODE JOIN CAMP_ZONE Z ON R.Z_NO = Z.Z_NO WHERE R.USER_NO = ? AND R.STATUS = ?  ORDER BY RESERVATION_DATE DESC";
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -31,6 +31,7 @@ public class ReservationDao {
 				ReservationVo vo = new ReservationVo();
 				
 				vo.setReservationNo(rs.getString("NO"));
+				vo.setReservationName(rs.getString("NAME"));
 				vo.setReservationPhone(rs.getString("PHONE"));
 				vo.setReservationCheckin(rs.getString("CHECKIN"));
 				vo.setReservationCheckout(rs.getString("CHECKOUT"));
@@ -57,6 +58,57 @@ public class ReservationDao {
 		}
 		
 		return list;
+	}
+
+	public int cancleReservation(Connection conn, String no) {
+
+		String sql = "UPDATE RESERVATION SET STATUS = 'N' WHERE NO = ?";
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, no);
+			
+			result = pstmt.executeUpdate();
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public String enrollCheck(Connection conn, String reservationNo) {
+
+		String sql = "";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String result = "";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, reservationNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return result;
 	}
 
 }

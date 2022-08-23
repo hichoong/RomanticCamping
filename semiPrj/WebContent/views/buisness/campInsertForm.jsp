@@ -85,7 +85,8 @@
 							type="text" class="form-control" id="campIntro"
 							placeholder="시설소개" name="campIntro" required>
 					</div>
-
+					
+					<input type="hidden" value="0" name="facNum">
 					<div class="md-3">
 						<label for="campFacility" class="form-label">* 시설현황:(※선택: 이미지 아이콘)</label> <input
 							type="text" class="form-control" id="campFacility"
@@ -121,7 +122,7 @@
 							<tr>
 								<%for(ThemeVo vo : themeList) { %>
 		                      		<td>
-		                      		<input type="checkbox" class="btn-check" id="<%=vo.getThemeCode()%>" autocomplete="off" name="theme" value="<%=vo.getThemeCode()%>"> 
+		                      		<input type="radio" class="btn-check" id="<%=vo.getThemeCode()%>" autocomplete="off" name="theme" value="<%=vo.getThemeCode()%>"> 
 									<label class="btn btn-outline-success" for="<%=vo.getThemeCode()%>"><%=vo.getThemeName()%></label>
 									</td>
 								<%} %>
@@ -177,7 +178,7 @@
 						<div class="addInput">
 
 							<hr>
-							<input type="hidden" id="n" value="0" min="0">
+							<input type="hidden" id="zonNum" value="1" min="1">
 							<div class="mb-3">
 								<label for="campZoneName" class="form-label">구역이름</label> 
 								<input class="form-control" type="text" id="campZoneName" name="campZoneName0" placeholder="구역이름을 입력해주세요" required>
@@ -415,6 +416,25 @@
     }
 </script>
 
+
+
+<script>
+
+    function getHashNum() {
+        // 선택된 목록 가져오기
+        const query = 'input[name="facility"]:checked';
+        const selectedElements =
+            document.querySelectorAll(query);
+
+        // 선택된 목록의 갯수 세기
+        const selectedElementsCnt =
+            selectedElements.length;
+
+        // 출력
+
+        $('input[name=facNum]').attr('value',selectedElementsCnt)
+    }
+</script>
 
 </body>
 </html>

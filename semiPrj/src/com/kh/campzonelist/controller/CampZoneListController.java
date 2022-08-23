@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.camplist.campinfo.vo.CampInfoVo;
 import com.kh.campzonelist.campzone.vo.CampZoneVo;
 import com.kh.campzonelist.service.CampZoneListService;
 
@@ -18,10 +19,14 @@ public class CampZoneListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String num = req.getParameter("num");
+		String campCode = req.getParameter("campCode");
 		
-		List<CampZoneVo> zoneList = new CampZoneListService().selectList(num);
+		CampInfoVo campInfoVo = new CampZoneListService().selectCamp(campCode);
 		
+		List<CampZoneVo> zoneList = new CampZoneListService().selectList(campCode);
+		
+		
+		req.setAttribute("campInfoVo", campInfoVo);
 		req.setAttribute("zoneList", zoneList);
 		req.getRequestDispatcher("/views/camp/campZoneList.jsp").forward(req, resp);
 	}

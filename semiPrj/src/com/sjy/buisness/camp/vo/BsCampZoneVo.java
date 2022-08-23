@@ -7,18 +7,20 @@ public class BsCampZoneVo {
 	private String zonePrice ; //가격
 	private String zoneName ; //구역이름
 	private String zoneNor ; //일별예약가능수
+	private String zoneImg ; //구역이미지
 	
 	public BsCampZoneVo() {}
 
 	
 	
-	public BsCampZoneVo(String zoneNo, String zoneStayMax, String zonePrice, String zoneName, String zoneNor) {
+	public BsCampZoneVo(String zoneNo, String zoneStayMax, String zonePrice, String zoneName, String zoneNor, String zoneImg) {
 		super();
 		this.zoneNo = zoneNo;
 		this.zoneStayMax = zoneStayMax;
 		this.zonePrice = zonePrice;
 		this.zoneName = zoneName;
 		this.zoneNor = zoneNor;
+		this.zoneImg = zoneImg;
 	}
 
 
@@ -62,12 +64,29 @@ public class BsCampZoneVo {
 	public void setZoneNor(String zoneNor) {
 		this.zoneNor = zoneNor;
 	}
+	
+	
+	public String getZoneImg() {
+		return zoneImg;
+	}
+
+
+
+	public void setZoneImg(String zoneImg) {
+		this.zoneImg = zoneImg;
+	}
+
+
 
 	@Override
 	public String toString() {
 		return "BsCampZoneVo [zoneNo=" + zoneNo + ", zoneStayMax=" + zoneStayMax + ", zonePrice=" + zonePrice
-				+ ", zoneName=" + zoneName + ", zoneNor=" + zoneNor + "]";
+				+ ", zoneName=" + zoneName + ", zoneNor=" + zoneNor + ", zoneImg=" + zoneImg + "]";
 	}
+
+
+
+	
 	
 	
 	

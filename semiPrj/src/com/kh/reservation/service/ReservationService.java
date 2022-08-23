@@ -21,4 +21,30 @@ public class ReservationService {
 		return list;
 	}
 
+	public int cancleReservation(String no) {
+
+		Connection conn = getConnection();
+		int result = dao.cancleReservation(conn, no);
+		
+		if(result == 1) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public String enrollCheck(String reservationNo) {
+		
+		Connection conn = getConnection();
+		String result = dao.enrollCheck(conn, reservationNo);
+		
+		close(conn);
+		
+		return result;
+	}
+
 }
