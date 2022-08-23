@@ -36,10 +36,10 @@ public class CouponService {
 		return result;
 	}
 
-	public List<CouponVo> selectCouponList(String no) {
+	public List<CouponVo> selectCouponListInfo(String no) {
 
 		Connection conn = JDBCTemplate.getConnection();
-		List<CouponVo> list = new CouponDao().selectCouponList(conn, no);
+		List<CouponVo> list = new CouponDao().selectCouponListInfo(conn, no);
 		
 		JDBCTemplate.close(conn);
 		

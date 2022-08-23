@@ -21,7 +21,7 @@ public class MyCouponListController extends HttpServlet{
 		
 		String no = ((MemberVo)req.getSession().getAttribute("loginMember")).getNo();
 		
-		List<CouponVo> list = new CouponService().selectCouponList(no);
+		List<CouponVo> list = new CouponService().selectCouponListInfo(no);
 		
 		req.setAttribute("couponList", list);
 		req.getRequestDispatcher("/views/member/myCouponList.jsp").forward(req, resp);
