@@ -28,6 +28,8 @@ public class ReviewVo {
 	private String reviewStatus;
 	private String campCode;
 	
+	private String campName;
+	
 	public String getReviewNo() {
 		return reviewNo;
 	}
@@ -90,6 +92,14 @@ public class ReviewVo {
 
 	public void setCampCode(String campCode) {
 		this.campCode = campCode;
+	}
+
+	public String getCampName() {
+		return campName;
+	}
+
+	public void setCampName(String campName) {
+		this.campName = campName;
 	}
 
 	@Override
