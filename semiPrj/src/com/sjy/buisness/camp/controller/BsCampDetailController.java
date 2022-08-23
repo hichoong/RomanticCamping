@@ -15,6 +15,7 @@ import com.kh.camplist.service.CampListService;
 import com.kh.camplist.theme.vo.ThemeVo;
 import com.kh.member.vo.MemberVo;
 import com.sjy.buisness.camp.service.BsCampService;
+import com.sjy.buisness.camp.vo.BsCampFacVo;
 import com.sjy.buisness.camp.vo.BsCampVo;
 import com.sjy.buisness.camp.vo.BsCampZoneVo;
 import com.sjy.buisness.hashmapping.vo.HashMappingVo;
@@ -37,6 +38,9 @@ public class BsCampDetailController extends HttpServlet{
 		List<ThemeVo> themeList = new CampListService().selectTheme();
 		req.setAttribute("themeList", themeList);
 		
+		//선택된 캠핑장 시설현황 조회
+		BsCampFacVo facVo = new BsCampService().selectOneFac(campCode);
+		req.setAttribute("facVo", facVo);
 		
 		//선택된 캠핑장  해시태그 조회
 		List<HashTagVo> hashTagList = new BsCampService().selectHashTag(); 
