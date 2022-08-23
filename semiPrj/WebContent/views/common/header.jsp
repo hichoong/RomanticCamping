@@ -87,7 +87,7 @@
           <a class="nav-link menu-text" href="<%=contextPath%>/camp/campList?p=1">캠핑장</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link menu-text" href="<%=contextPath%>/views/freeBoard/freeBoardPage.jsp">자유게시판</a>
+          <a class="nav-link menu-text" href="<%=contextPath%>/freeBoard/page?p1=1&p2=1">자유게시판</a>
         </li>
         <li class="nav-item">
           <a class="nav-link menu-text" href="<%=contextPath%>/question/list">고객센터</a>
@@ -108,9 +108,9 @@
 	        <li><a class="dropdown-item" href="<%=contextPath%>/member/myPage">마이페이지</a></li>
 	        <li><a class="dropdown-item" href="<%=contextPath%>/member/myReservation">캠핑 예약확인</a></li>
 	        <li><hr class="dropdown-divider"></hr></li>
-	        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/myBoardList.jsp">내가 쓴 글</a></li>
+	        <li><a class="dropdown-item" href="<%=contextPath%>/member/userBoard?type=F">내가 쓴 글</a></li>
 	        <li><a class="dropdown-item" href="<%=contextPath%>/member/favorite">찜목록</a></li>
-	        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/myCouponList.jsp">내 쿠폰함</a></li>
+	        <li><a class="dropdown-item" href="<%=contextPath%>/member/coupon">내 쿠폰함</a></li>
 	        <li><hr class="dropdown-divider"></hr></li>
 	        <li><a class="dropdown-item" href="<%=contextPath%>/member/logout">로그아웃</a></li>
         <%} else if(loginMember.getType().equals("B")) { %>

@@ -61,6 +61,7 @@
 				        <span>예약일자 : <strong>${reservation.reservationDate}</strong></span>
 				        <span>처리상태 : <strong>${reservation.getReservationStatusName()}</strong></span>
 				        <br>
+				        <span>예약자 이름 : <strong>${reservation.reservationName}</strong></span>
 				        <span>예약자 전화번호 : <strong>${reservation.reservationPhone}</strong></span>
 				     </div>
 				     <c:if test="${ status eq 'S'or status eq 'W'}">
@@ -70,7 +71,7 @@
 				     </c:if>
 				     <c:if test="${ status eq 'D'}">
 					     <div class="location-center ">
-		                    <button class="basic-btn" onclick="location.href='<%=contextPath%>/review/insert?reservationNo=${reservation.reservationNo}'">리뷰작성</button>
+		                    <button id="rbtn" class="basic-btn" onclick="checkDoReview(${reservation.reservationNo});">리뷰작성</button>
 		                </div>
 				     </c:if>
 			    </div>
@@ -97,7 +98,7 @@
                     </div>
 
                     <div class="location-center">
-                        <button type="button" class="btn btn-success" onclick="deleteReservation();">예약취소</button>
+                        <button type="button" class="btn btn-success" onclick="cancleReservation();">예약취소</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">돌아가기</button>
                     </div>
                 </div>
@@ -108,7 +109,7 @@
     <%@ include file="/views/common/footer.jsp" %>
     
     <script>
-    	$(if(${status eq 'S'}) {
+    	if(${status eq 'S'}) {
     		$('#sub-nav>a:nth-child(1)').addClass("choice");
     	} else if(${status eq 'W'}) {
     		$('#sub-nav>a:nth-child(2)').addClass("choice");
@@ -116,7 +117,7 @@
     		$('#sub-nav>a:nth-child(3)').addClass("choice");
     	}  else if(${status eq 'N'}) {
     		$('#sub-nav>a:nth-child(4)').addClass("choice");
-    	});
+    	}
     	
     	
     	var reservationNo;
@@ -124,9 +125,30 @@
     		reservationNo = No;
     	};
     
-    	function deleteReservation() {
-    		location.href="/deleteReservation?reservationNo="+reservationNo;
+    	function cancleReservation() {
+    		location.href="<%=contextPath%>/member/cancleReservation?reservationNo="+reservationNo;
     	}
+    	
+    	function checkDoReview(No) {
+			var temp = No;
+			$.ajax({
+				url : "/member/doReview",
+				method : "GET",
+				dataType : "String",
+				data : {reservationNo : temp},
+				success : function(data){ 
+					console.log(data);
+					if(data != "Y"){
+						location.href="<%=contextPath%>/review/insert?reservationNo="+temp;
+					} else {
+						alert("이미 리뷰를 작성하셨습니다.");
+					}
+				},
+				error : function(eee){
+					alert("오류가 발생했습니다. 나중에 다시 시도해주세요.");
+				}
+			});
+		}
     	
     </script>
        
