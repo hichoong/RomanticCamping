@@ -9,78 +9,62 @@ import java.util.List;
 
 import com.kh.common.JDBCTemplate;
 import com.kh.coupon.vo.CouponVo;
-import com.kh.member.vo.MemberVo;
 
 public class CouponDao {
 
 	//유저 쿠폰리스트 조회하기
-	public List<CouponVo> selectCouponList(Connection conn, MemberVo loginMember) {
+	public List<CouponVo> selectCouponList(Connection conn, String no) {
 		//기본작업
-		List<CouponVo> couponVo = new ArrayList<CouponVo>();
+		List<CouponVo> couponList = new ArrayList<CouponVo>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		//sql 작성하기
-		String sql = "SELECT C.C_NAME AS NAME , C.C_DISCOUNT AS COST, C.C_CODE AS CODE FROM COUPON_LIST C JOIN USER_COUPON_LIST U ON C.C_CODE = U.C_CODE "
+		String sql = "SELECT C.NAME AS NAME , C.DISCOUNT AS COST, C.CODE AS CODE FROM USER_COUPON_LIST U JOIN COUPON_LIST C ON U.C_CODE = C.CODE "
 				+ "WHERE U.U_STATUS = 'N' AND U.USER_NO = ?";
-		
+		System.out.println("쿠폰조회 sql :::" + sql);
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, loginMember.getNo());
+			pstmt.setString(1, no);
 			rs = pstmt.executeQuery();
-			
 			while(rs.next()) {
 				String name = rs.getString("NAME");
 				String cost = rs.getString("COST");
 				String code = rs.getString("CODE");
-				
 				CouponVo vo = new CouponVo();
 				vo.setCouponName(name);
 				vo.setCouponDiscount(cost);
 				vo.setCouponCode(code);
-				
-			}
-		
-		
+				couponList.add(vo);
+			}		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(pstmt);
 			JDBCTemplate.close(rs);
 		}
-		
-		
-		
-		return couponVo;
+		return couponList;
 	}
-	
-	
 	//유저 쿠폰 사용
-	public int useCoupon(Connection conn, MemberVo loginMember, String couponCode) {
-		
+	public int useCoupon(Connection conn, String no, String couponCode) {	
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = "UPDATE USER_COUPON_LIST SET U_STATUS = 'Y' WHERE USER_NO = ? , AND C_CODE = ? ";
+		String sql = "UPDATE ( "
+				+ "SELECT U.U_STATUS FROM COUPON_LIST C JOIN USER_COUPON_LIST U ON C.CODE = U.C_CODE WHERE U.U_STATUS = 'N' AND U.USER_NO = ? AND C. NAME = ? "
+				+ ") SET U_STATUS = 'Y'";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, loginMember.getNo());
+			pstmt.setString(1, no);
 			pstmt.setString(2, couponCode);
-			
 			result = pstmt.executeUpdate();
-		
-		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(pstmt);
 		}
-		
-		
-		
 		return result;
 	}
 
-
-	public List<CouponVo> selectCouponList(Connection conn, String no) {
+	public List<CouponVo> selectCouponListInfo(Connection conn, String no) {
 		
 		List<CouponVo> list = new ArrayList<CouponVo>();
 		PreparedStatement pstmt = null;
@@ -114,5 +98,4 @@ public class CouponDao {
 		
 		return list;
 	}
-	
 }

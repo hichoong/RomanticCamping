@@ -2,11 +2,10 @@
 <%@page import="com.kh.order.vo.OrderVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%
     	OrderVo orderVo = (OrderVo)request.getAttribute("orderVo"); 
    		ReservationVo reservationVo = (ReservationVo)request.getAttribute("reservationVo");
-    
     %>
 <!DOCTYPE html>
 <html>
@@ -37,20 +36,16 @@
 			<h1 class="display-3">예약완료</h1>
 		</div>
 	</div>
-
 	<div class="container">
 		<h2 class="alert alert-warning"> <%="reservationVo.getCampName() "%>을 예약해 주셔서 감사합니다.</h2>
 	</div>
-
 	<div class="container" >
 		<p>예약자 명 : <%="reservationVo.getReservationName()" %>  </p>
 		<p>결제금액 :  <%="orderVo.getPayAmount()" %></p>
-		<p>예약번호 :  <%="orderVo.getPayCode()" %></p>
 		<p>예약날짜 :  <%="reservationVo.getReservationCheckin()" %>~ <%="reservationVo.getReservationCheckout()" %></p>
-		<p>예약인원 :  <%="reservationVo.getReservationNop()" %></p>
+		<p>숙박인원 :  <%="reservationVo.getReservationNop()" %></p>
 		<p>요청사항 :  <%="reservationVo.getRequest()" %></p>
 	</div>
-
 	<div class="container">
 			<p><a href="<%=contextPath%>" class="btn btn-warning ">
 			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-backspace-fill" viewBox="0 0 16 16">
