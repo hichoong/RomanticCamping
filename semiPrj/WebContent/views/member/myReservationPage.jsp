@@ -61,6 +61,7 @@
 				        <span>예약일자 : <strong>${reservation.reservationDate}</strong></span>
 				        <span>처리상태 : <strong>${reservation.getReservationStatusName()}</strong></span>
 				        <br>
+				        <span>예약자 이름 : <strong>${reservation.reservationName}</strong></span>
 				        <span>예약자 전화번호 : <strong>${reservation.reservationPhone}</strong></span>
 				     </div>
 				     <c:if test="${ status eq 'S'or status eq 'W'}">
@@ -97,7 +98,7 @@
                     </div>
 
                     <div class="location-center">
-                        <button type="button" class="btn btn-success" onclick="deleteReservation();">예약취소</button>
+                        <button type="button" class="btn btn-success" onclick="cancleReservation();">예약취소</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">돌아가기</button>
                     </div>
                 </div>
@@ -124,8 +125,8 @@
     		reservationNo = No;
     	};
     
-    	function deleteReservation() {
-    		location.href="/deleteReservation?reservationNo="+reservationNo;
+    	function cancleReservation() {
+    		location.href="<%=contextPath%>/member/cancleReservation?reservationNo="+reservationNo;
     	}
     	
     </script>
