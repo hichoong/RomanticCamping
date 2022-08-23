@@ -85,7 +85,7 @@ public class ReservationDao {
 
 	public String enrollCheck(Connection conn, String reservationNo) {
 
-		String sql = "";
+		String sql = "SELECT NVL(R.R_STATUS, 'E') STATUS FROM RESERVATION RE LEFT JOIN REVIEW R ON RE.NO = R.RE_NO WHERE RE.USER_NO = 2 AND RE.STATUS = 'D' AND RE.NO = ? ORDER BY R_NO";
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -98,7 +98,7 @@ public class ReservationDao {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				
+				result = rs.getString("STATUS");
 			}
 			
 		} catch (SQLException e) {

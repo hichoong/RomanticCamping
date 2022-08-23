@@ -132,16 +132,16 @@
     	function checkDoReview(No) {
 			var temp = No;
 			$.ajax({
-				url : "/member/doReview",
+				url : "<%=contextPath%>/member/doReview",
 				method : "GET",
-				dataType : "String",
 				data : {reservationNo : temp},
 				success : function(data){ 
-					console.log(data);
-					if(data != "Y"){
+					if(data == 'E' || data == 'N'){
 						location.href="<%=contextPath%>/review/insert?reservationNo="+temp;
-					} else {
+					} else if(data == 'Y') {
 						alert("이미 리뷰를 작성하셨습니다.");
+					} else {
+						alert("오류가 발생했습니다. 나중에 다시 시도해주세요.")
 					}
 				},
 				error : function(eee){
