@@ -1,8 +1,14 @@
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-    
+<%
+	List<String> hashTag = (List<String>)request.getAttribute("hashTag");
+	LocalDate todayDate = LocalDate.now();
+%>    
     
 <!DOCTYPE html>
 <html>
@@ -19,17 +25,13 @@
 
 	<%@ include file="/views/common/header.jsp" %>
 
-	<h1>여기다가 이제 구역 상세 페이지123</h1>
-	
-	
-	
 
     <div id="detail-outer" class="container">
 
 	    <div class="cdetail-top-line container"></div>
         <header class="container">
-            <div id="cd-back"><button type="button" id="btn-back" name="btn-back" class="btn btn-outline-warning" onclik="history.back()" >&lg;</button></div>
-            <div id="cd-name"><p class="btn btn-outline-warning" >캠핑장 이름</p></div>
+            <div id="cd-back"><button type="button" id="btn-back" name="btn-back" class="btn btn-outline-warning" onclik="history.back()" >&lt;</button></div>
+            <div id="cd-name"><p class="btn btn-outline-warning" >${campVo.name} - 캠핑장 이름</p></div>
             <div id="cd-name2"></div>
         </header>
 
@@ -54,9 +56,11 @@
                         <div class="carousel-item">
                                 <img  src="<%=contextPath %>/resource/img/gsTest2.jpg" class="img-thumbnail" alt="Chicago" class="d-block" style="width:100%; height: 650px;">
                         </div>
+                        
+                         <!-- 경로 수정되면 이걸로 사용하기 -->
                         <div class="carousel-item">
-                                <img  src="<%=contextPath %>/resource/img/gsTest3.jpg" class="img-thumbnail" alt="New York" class="d-block" style="width:100%; height: 650px;">
-                        </div>
+                        	<img  src="<%=contextPath %>/resource/img/upload/camping/${campAttachVo.campChangeName}" class="img-thumbnail" alt="New York" class="d-block" style="width:100%; height: 650px;">
+                        </div> 
                     </div>
                         
                     <!-- Left and right controls/icons -->
@@ -81,15 +85,20 @@
             <div id="d2-d">
                 <div id="d2-1"  class="display-5 display-5-gplus">캠핑장 소개</div>
                 <div id="d2-2" >
-                    <p class="display-6">캠핑장 구역 이름 -(  )</p>
+                    <p class="display-6">"${campVo.name} ---- ${campVo.getzName()}</p>
                     <br>
-                    <p class="d2-2-campInfo">캠핑장구역설명 - ( CAMP-INTRO ) 사랑이 넘치는 우리의 보금자리 합천 꿈꾸는 캠핑장</p>
-                    <p class="d2-2-campInfo"> 구역 최대 숙박인원 / 가격 / 일별 예약가능 수 </p>
+                    <p class="d2-2-campInfo"> 캠핑장 소개 - ${campVo.intro}</p>
+                    <p class="d2-2-campInfo"> 캠핑장 테마 - ${campVo.themeCode}</p>
+                    <p class="d2-2-campInfo"> 구역 최대 숙박인원 - ${campVo.stayMax} 명 </p>
+                    <p class="d2-2-campInfo"> 일별 예약가능 팀 수 - ${campVo.getzNor()} 팀</p>
                 </div>
                 <div id="d2-3">
-                    <span class="d2-3-sp">##캠핑장 코드(CAMP_INFO)와 해시태그(HASHTAG_MAPPING) 맵핑</span>
-                    <span class="d2-3-sp">##CAMP_CODE 와 HT_CODE JOIN HASGTAG 테이블에서 HT_NAME가져오기</span>
-                    <span class="d2-3-sp">#합천꿈꾸는캠핑장</span>
+                   
+                    <%for(int i=0; i<hashTag.size(); i++) {%>
+                    	<span class="d2-3-sp"><%=hashTag.get(i)%></span>
+                    <%} %>	
+                    
+                    
                 </div>
             </div>    
         </div>
@@ -97,17 +106,18 @@
 
 
         <div class="cdetail-top-line container"></div>
+        
         <!-- 3. 캠핑장 기본정보 부분 -->
         <div id="d3" class="container">
             <div id="d3-d">
                 <div id="d3-1" class="display-5 display-5-gplus">캠핑장 기본정보</div>
                 <div id="d3-2" class="menu-content">
                     <ul>
-                        <li><div class="info-title">캠핑장 이름</div><p class="info-content">CAMP_NAME</p></li>
-                        <li><div class="info-title">캠핑 테마</div><p class="info-content">THEME_CODE</p></li>
-                        <li><div class="info-title">캠핑장 주소</div><p class="info-content">CITY + DISTRICT</p></li>
-                        <li><div class="info-title">전화번호</div><p class="info-content">CAMP_PHONE</p></li>
-                        <li><div class="info-title">등록일</div><p class="info-content">RG_DATE</p></li>
+                        <li><div class="info-title">캠핑장 이름</div><p class="info-content">"${campVo.name} ---- ${campVo.getzName()}</p></li>
+                        <li><div class="info-title">캠핑 가격</div><p class="info-content">${campVo.price}원  (1박기준)</p></li>
+                        <li><div class="info-title">캠핑장 주소</div><p class="info-content">${campVo.city}  ${campVo.district}  ${campVo.address}</p></li>
+                        <li><div class="info-title">전화번호</div><p class="info-content">${campVo.phone}</p></li>
+                        <li><div class="info-title">등록일</div><p class="info-content">${campVo.rgDate}</p></li>
                     </ul>
                 </div>
             </div>    
@@ -167,15 +177,10 @@
                 <div id="d6-2" class="menu-content">
                     <div id="d6-2-1">
                         <div class="info-title" style="width: 100%;">캠핑장이 마음에 들었다면 예약을 진행해보세요</div>
-                        <div class="info-content" style="width: 100%; margin:0px;">예약하기버튼을 통해 예약가능날짜 확인 및 세부사항을 확인하고 진행할 수 있습니다.</div>
-                   
-                        <form action="">
-                           가는날 선택 : <input type="date" value="2022-08-16" min="2022-08-16" max="2022-10-16">
-                           오는날 선택 : <input type="date" value="2022-08-16" min="2022-08-16" max="2022-10-16">
-                        </form>
+                        <div class="info-content" style="width: 100%; margin:0px;">예약하기버튼을 통해 예약날짜 선택 및 세부사항을 확인하고 진행할 수 있습니다.</div>
                     </div>
 
-                    <button type="button" id="d6-2-2" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#"><span>캠핑장 예약하기</span></button>
+                    <button type="button" id="d6-2-2" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#camp-reservation"><span>캠핑장 예약하기</span></button>
                     
                 </div>
             </div>  
@@ -282,8 +287,8 @@
 	
 	
 	
-	<!-- The Modal -->
-	<div class="modal" id="camp-policy">
+	<!-- 캠핑장 운영정책 더보기 모달 -->
+	<div class="modal" id="camp-policy" >
 	  <div class="modal-dialog modal-xl">
 	    <div class="modal-content">
 	
@@ -297,16 +302,102 @@
 	      <div class="modal-body">
 	        <div class="mb-3 mt-3 input-group-lg">
 			    <label for="trade-title" class="camp-name"><mark>캠핑장 이름</mark></label>
-			    <input type="text" class="form-control" id="camp-name" name="camp-name" value="캠핑장 이름(CAMP_NAME)">
+			    <input type="text" readonly class="form-control" id="camp-name" name="camp-name" value="${campVo.name}">
 			</div>
 			<div class="mb-3 mt-3 input-group-lg">
 			    <label for="trade-title" class="camp-refund"><mark>환불 규정</mark></label>
-			    <input type="text" class="form-control" id="camp-refund" name="camp-refund" value="환불규정내용이 들어올 칸입니다.(CAMP_REFUND)">
+			    <input type="text" readonly class="form-control" id="camp-refund" name="camp-refund" value="${campVo.refund}">
 			</div>
 	        <div class="mb-3 mt-3 input-group-lg">
 			    <label for="trade-title" class="camp-phone"><mark>캠핑장 연락처</mark></label>
-			    <input type="text" class="form-control" id="camp-phone" name="camp-phone" value="캠핑장 전화번호(CAMP_PHONE)">
+			    <input type="text" readonly class="form-control" id="camp-phone" name="camp-phone" value="${campVo.phone}">
 			</div>
+	      </div>
+	
+	     
+	
+	    </div>
+	  </div>
+	</div>
+	
+	
+	
+	
+	<!-- 캠핑장 예약하기 모달 -->
+	<div class="modal" id="camp-reservation" data-bs-backdrop="static" data-bs-keyboard="false">
+	  <div class="modal-dialog modal-xl">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="camp-policy--title">캠핑장 예약하기</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	        <div class="mb-3 mt-3 input-group-lg">
+			    <label for="trade-title" class="camp-name"><mark>캠핑장 이름</mark></label>
+			    <input type="text" readonly class="form-control" id="camp-name"  value="${campVo.name} ---- ${campVo.getzName()}">
+			</div>
+			<div class="mb-3 mt-3 input-group-lg">
+			    <label for="trade-title" class="camp-refund"><mark>환불 규정</mark></label>
+			    <input type="text" readonly class="form-control" id="camp-refund" value="${campVo.refund}">
+			</div>
+	        <div class="mb-3 mt-3 input-group-lg">
+			    <label for="trade-title" class="camp-phone"><mark>캠핑장 연락처</mark></label>
+			    <input type="text" readonly class="form-control" id="camp-phone"  value="${campVo.phone}">
+			</div>
+			<div class="mb-3 mt-3 input-group-lg">
+			    <label for="trade-title" class="camp-price"><mark>캠핑장 연락처</mark></label>
+			    <input type="text" readonly class="form-control" id="camp-price"  value="${campVo.price} 원">
+			</div>
+			
+			<div style="width:100%; height:auto; border-bottom: 2px dashed lightgray; border-top: 2px dashed lightgray;">
+				가는날 선택 : <input type="date" value="<%= todayDate%>" min="<%= todayDate%>" max="2022-10-16" name="checkin">
+                오는날 선택 : <input type="date" value="<%= todayDate%>" min="<%= todayDate%>" max="2022-10-16" name="checkout">
+			</div>
+			
+			<!-- 추가한 내용  -->
+			<form action="<%=contextPath %>/order/orderForm" method="get">
+			  <div class="mb-3 mt-3">
+			  	<input type="hidden" value="${campVo.code }" name="campCode">
+			  	<input type="hidden" value="${campVo.sectionNo }" name="zoneNo">
+			  	<input type="hidden" value="${campVo.price}" name="campPrice">
+			  	<input type="hidden" value="${campVo.name}" name="campName">
+			  	<input type="hidden" value="${campVo.getzName()}" name="zoneName">
+			    <label for="reser-name" class="form-label">예약자명:</label>
+			    <input type="email" class="form-control" id="reser-name" placeholder="예약자분 이름을 입력해 주세요" name="reservationName">
+			  </div>
+			  <div class="mb-3">
+			    <label for="reser-phone" class="form-label">전화번호:</label>
+			    <input type="password" class="form-control" id="reser-phone" placeholder="예시) 01012345678" name="reservationPhone">
+			  </div>
+			  
+			  
+			  <div>	  
+			  	   <label for="sel1" class="form-label">인원수를 체크해주세요</label>
+				    <select class="form-select" id="sel1" name="reservationNop">
+				      <option>1</option>
+				      <option>2</option>
+				      <option>3</option>
+				      <option>4</option>
+				      <option>5</option>
+				      <option>6</option>
+				    </select>
+			  </div>
+			  <div style="margin: 5px;">
+				  <label for="comment">요청사항:</label>
+				  <textarea class="form-control" rows="5" id="comment" name="reservationComment"></textarea>
+			  </div>
+			  
+			  <input type="submit" class="btn btn-success" value="예약하기" >
+		      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">취소하기</button>
+			</form>
+			
+			
+			
+			
 	      </div>
 	
 	     

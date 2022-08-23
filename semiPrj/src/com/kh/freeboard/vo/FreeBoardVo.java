@@ -17,6 +17,7 @@ public class FreeBoardVo {
 		this.status = status;
 	}
 
+
 	private String no;
 	private String title;
 	private String content;

@@ -26,8 +26,28 @@ public class FreeBoardTradeVo {
 
 
 
+	
+	
+	
+	
+	public FreeBoardTradeVo(String changeName, String no, String title, String content, String price, String writer,
+			String cnt, String enrollDate, String status) {
+		super();
+		this.changeName = changeName;
+		this.no = no;
+		this.title = title;
+		this.content = content;
+		this.price = price;
+		this.writer = writer;
+		this.cnt = cnt;
+		this.enrollDate = enrollDate;
+		this.status = status;
+	}
 
-
+	//끝 
+	
+	
+	
 	private String no;
 	private String title;
 	private String content;
@@ -95,7 +115,17 @@ public class FreeBoardTradeVo {
 	}
 	
 	
+	//메인글 사진 가져오기 위해 추가한 내용
+	private String changeName;
+		
+		
+	public String getChangeName() {
+			return changeName;
+		}
 	
+	public void setChangeName(String changeName) {
+		this.changeName = changeName;
+	}
 	
 	
 	
