@@ -17,9 +17,9 @@ public class ReviewDeleteController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String num = req.getParameter("num");
+		String reservationNo = req.getParameter("reservationNo");
 		
-		int result = new ReviewService().delete(num);
+		int result = new ReviewService().delete(reservationNo);
 		
 		if(result == 1) {
 			req.getSession().setAttribute("alertMsg", "리뷰 삭제 성공!");

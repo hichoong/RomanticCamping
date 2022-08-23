@@ -18,12 +18,14 @@ public class ReviewEditController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String num = req.getParameter("num");
-		ReviewVo vo = new ReviewService().selectOne(num);
+		String reservationNo = req.getParameter("reservationNo");
+		ReviewVo vo = new ReviewService().selectOne(reservationNo);
 		
+		CampInfoVo campInfoVo = new ReviewService().campSelect(reservationNo);
 		
 		if(vo != null) {
 			//성공
+			req.setAttribute("campInfoVo", campInfoVo);
 			req.setAttribute("vo", vo);
 			req.getRequestDispatcher("/views/camp/reviewEdit.jsp").forward(req, resp);
 		} else {
@@ -39,19 +41,15 @@ public class ReviewEditController extends HttpServlet {
 		
 		req.setCharacterEncoding("UTF-8");
 		
-		String campCode = req.getParameter("camp-code");
 		String starScore = req.getParameter("reviewStar"); 
 		String content = req.getParameter("review-content");
-		String num = req.getParameter("num");
-		
-		//정보 불러오기
-		CampInfoVo campVo = new ReviewService().selectCamp(campCode);
+		String reservationNo = req.getParameter("reservationNo");
 		
 		
 		ReviewVo vo = new ReviewVo();
 		vo.setStarScore(starScore);
 		vo.setReviewContent(content);
-		vo.setReviewNo(num);
+		vo.setReservationNo(reservationNo);
 		
 		int result = new ReviewService().edit(vo);
 		

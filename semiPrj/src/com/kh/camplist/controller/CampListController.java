@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.kh.camplist.campinfo.vo.CampInfoVo;
 import com.kh.camplist.hashtag.vo.HashTagVo;
 import com.kh.camplist.service.CampListService;
@@ -79,35 +80,31 @@ public class CampListController extends HttpServlet {
 		List<String> checkedHashCodes = null;
 		if(hashTag != null) {
 			checkedHashCodes = Arrays.asList(hashTag);
-					for(String pk : checkedHashCodes) {
-						System.out.println("입력값 => " + pk);
-					}
+//			for(String pk : checkedHashCodes) {
+//				System.out.println("입력값 => " + pk);
+//			}
 		} else {
 			checkedHashCodes = new ArrayList<String>();
 		}
 		
 		List<CampInfoVo> searchList = new CampListService().searchList(pageVo, keyword, sido1, gugun1, theme, checkedHashCodes);
 		
+		Gson g = new Gson();
+		String checkedTags = g.toJson(checkedHashCodes);
+		req.setAttribute("checkedTags", checkedTags);
 		
 		
-		System.out.println(theme);
-		
+		//String 으로 해쓰인까 인풋에 집어넣을때 
 		
 		req.setAttribute("pv", pageVo);
 		req.setAttribute("themeList", themeList);
 		req.setAttribute("hashTagList", hashTagList);
-		
-		
-		List<String> tetst = new ArrayList<>();
-		//얘가 선택되어있니?
-		tetst.contains(new HashTagVo().getHtCode());
 		
 		req.setAttribute("keyword", keyword);
 		req.setAttribute("sido1", sido1);
 		req.setAttribute("gugun1", gugun1);
 		req.setAttribute("theme", theme);
 		req.setAttribute("checkedHashCodes", checkedHashCodes);
-		
 		
 		req.setAttribute("searchList", searchList);
 		req.getRequestDispatcher("/views/camp/campList.jsp").forward(req, resp);
