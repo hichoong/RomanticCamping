@@ -110,7 +110,7 @@
 	        <li><hr class="dropdown-divider"></hr></li>
 	        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/myBoardList.jsp">내가 쓴 글</a></li>
 	        <li><a class="dropdown-item" href="<%=contextPath%>/member/favorite">찜목록</a></li>
-	        <li><a class="dropdown-item" href="<%=contextPath%>/views/member/myCouponList.jsp">내 쿠폰함</a></li>
+	        <li><a class="dropdown-item" href="<%=contextPath%>/member/coupon">내 쿠폰함</a></li>
 	        <li><hr class="dropdown-divider"></hr></li>
 	        <li><a class="dropdown-item" href="<%=contextPath%>/member/logout">로그아웃</a></li>
         <%} else if(loginMember.getType().equals("B")) { %>
