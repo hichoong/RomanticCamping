@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+.outer{
+    background: #febc4b;
+    color: white;
+    width: 60%;
+    height: 500px;
+    margin: auto;
+    padding-top: 50px;
+}
+
+#enroll-form table{
+    margin:auto;
+}
+#enroll-form input, #enroll-form textarea{
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#btn{
+    background-color: white;
+    border: 1px solid #fcc15a;
+    color: #ffab1a;
+    margin-top: 30px;
+    margin-bottom: 100px;
+}
+
+#btn:hover{
+    background-color: #ffa200;
+    border: 1px solid #ffa200;
+    color: white;
+}
