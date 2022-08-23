@@ -17,12 +17,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.kh.camplist.campinfo.vo.CampInfoVo;
 import com.kh.camplist.hashtag.vo.HashTagVo;
 import com.kh.camplist.service.CampListService;
 import com.kh.camplist.theme.vo.ThemeVo;
+import com.kh.member.vo.MemberVo;
 import com.sjy.buisness.camp.service.BsCampService;
 import com.sjy.buisness.camp.vo.BsCampFacVo;
 import com.sjy.buisness.camp.vo.BsCampVo;
@@ -67,6 +69,11 @@ public class BsCampInsertController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		int result = 0;
+		int resultCamp =0;
+		//로그인한 회원번호 가져오기
+		HttpSession ss = req.getSession();
+		MemberVo mvo = (MemberVo)ss.getAttribute("loginMember");
+		
 		//캠핑장 등록정보 가져오기
 		String campName = req.getParameter("campName");				//캠핑장이름
 		String city = req.getParameter("city");						//주소 시/도
@@ -76,7 +83,7 @@ public class BsCampInsertController extends HttpServlet{
 		String campIntro = req.getParameter("campIntro");			//시설소개
 		String[] f = req.getParameterValues("facility");			//시설현황
 		String[] t = req.getParameterValues("theme");				//테마
-		String hash = req.getParameter("hashTag");					//해쉬태그
+		String[] hash = req.getParameterValues("hashTag");					//해쉬태그
 		String[] h = req.getParameterValues("hashTag");				//해쉬태그
 		String campRefund = req.getParameter("campRefund");			//환불규정
 		String campRepImg = req.getParameter("campRepImg");
@@ -84,37 +91,7 @@ public class BsCampInsertController extends HttpServlet{
 		
 		System.out.println("f::" +f);
 		
-		// 시설현황 테이블에 insert
-//		BsCampFacVo faVo = new BsCampFacVo();
-//		for (int i = 0; i < 9; i++) {
-//			if (f.equals("w")) {
-//				faVo.setWifi(f);
-//			}
-//			if (f.equals("e")) {
-//				faVo.setFwood(f);
-//			}
-//			if (f.equals("h")) {
-//				faVo.setHotWater(f);
-//			}
-//			if (f.equals("p")) {
-//				faVo.setPet(f);
-//			}
-//			if (f.equals("s")) {
-//				faVo.setStore(f);
-//			}
-//			if (f.equals("f")) {
-//				faVo.setFwood(f);
-//			}
-//			if (f.equals("g")) {
-//				faVo.setPlayGround(f);
-//			}
-//			if (f.equals("t")) {
-//				faVo.setTrail(f);
-//			}
-//			if (f.equals("o")) {
-//				faVo.setPool(f);
-//			}
-//		}
+
 		
 		// 캠핑장 정보가져온것들 insert처리하기 캠핑장 정보테이블 
 		//checkbox 데이터 배열로 받은것 처리
@@ -132,6 +109,42 @@ public class BsCampInsertController extends HttpServlet{
 		}
 		
 		
+		String fac = req.getParameter("facNum");
+        int facNum = Integer.parseInt(fac);
+        System.out.println("hidden_facNum::"+fac);
+		// 시설현황 테이블에 insert
+		BsCampFacVo faVo = new BsCampFacVo();
+		for (int i = 0; i < facNum; i++) {
+			if (f[i].equals("w")) {
+				faVo.setWifi(f[i]);
+			}
+			if (f[i].equals("e")) {
+				faVo.setElectro(f[i]);
+			}
+			if (f[i].equals("h")) {
+				faVo.setHotWater(f[i]);
+			}
+			if (f[i].equals("p")) {
+				faVo.setPet(f[i]);
+			}
+			if (f[i].equals("s")) {
+				faVo.setStore(f[i]);
+			}
+			if (f[i].equals("f")) {
+				faVo.setFwood(f[i]);
+			}
+			if (f[i].equals("g")) {
+				faVo.setPlayGround(f[i]);
+			}
+			if (f[i].equals("t")) {
+				faVo.setTrail(f[i]);
+			}
+			if (f[i].equals("o")) {
+				faVo.setPool(f[i]);
+			}
+			
+			System.out.println(faVo);
+		}
 		
         System.out.println(campName);
         System.out.println(city);
@@ -142,6 +155,7 @@ public class BsCampInsertController extends HttpServlet{
         System.out.println(facility);
         System.out.println(theme);
         System.out.println(hashTag);
+        System.out.println(hash);
         System.out.println(campRefund);
         System.out.println(campRepImg);
         
@@ -196,37 +210,34 @@ public class BsCampInsertController extends HttpServlet{
 			ahVo.setCampPath(realPath);
 		}
 		
-        //캠핑장 테이블 insert
-        int resultCamp = new BsCampService().campInsert(campVo,ahVo);
-        if (resultCamp != 1) {
-			result = -2;
-			System.out.println("캠핑장 테이블 등록오류");
-			
-		}
-        
-		// 해시태그 맵핑테이블에 현재 입력하는 캠핑장 번호와 해쉬태그 번호 입력
+        // 해시태그 맵핑테이블에 현재 입력하는 캠핑장 번호와 해쉬태그 번호 입력
         // 해쉬태그 선택한 만큼 insert 시켜주기
         // 체크박스 체그된 개수 가져오기
         String hs = req.getParameter("hashNum");
-        System.out.println("hidden_hashNum::"+hs);
         int hashNum = Integer.parseInt(hs);
-        int hashResult = 0;
-        for (int i = 0; i < hashNum; i++) {
-        	HashTagVo hashVo = new HashTagVo();
-        	hashVo.setHtCode(hash);
-        	hashResult =new BsCampService().insertHash(hashVo);
-        	
-        	if (hashResult != 1) {
-				//등록 실패(해쉬태그 등록 오류)
-        		System.out.println("해쉬태그 등록오류");
-        		result = -1;
-        		req.setAttribute("errorMsg", "해쉬태그 등록오류");
-        	}
-		}
-        
+        System.out.println("hidden_hashNum::"+hs);
+//      HashTagVo hashVo = new HashTagVo();
+
+        //        String[] hashs = new String[hashNum];
+        //String[] hash = req.getParameterValues("hashTag");					//해쉬태그
+//        int hashResult = 0;
+//        for (int i = 0; i < hashNum; i++) {
+//        	hashs[i] = req.getParameter("hashTag");
+//        	hashVo.setHtCode(hashs[i]);
+//        	hashResult =new BsCampService().insertHash(hashVo);
+//        	
+//        	if (hashResult != 1) {
+//        		//등록 실패(해쉬태그 등록 오류)
+//        		System.out.println("해쉬태그 등록오류");
+//        		result = -1;
+//        		req.setAttribute("errorMsg", "해쉬태그 등록오류");
+//        	}
+//        }
+
 		// 캠핑장 구역 정보가져오기 및 입력
-		int zonNum = Integer.parseInt(req.getParameter("zonNum"))+1;//캠핑장 구역 개수 0부터
-		String num = req.getParameter("zonNum");
+		String num = (req.getParameter("zonNum"));//캠핑장 구역 개수 0부터
+		if (num== null) {num = "0";}
+		int zonNum = Integer.parseInt(num)+1;
 		System.out.println("zonNum::"+zonNum);
 		//캠핑장 구역개수만큼 insert시키기위한 작업
 		String[] campZoneName = new String[zonNum];
@@ -235,8 +246,10 @@ public class BsCampInsertController extends HttpServlet{
 		String[] campZonePrice = new String[zonNum];
 		String[] campZoneImg = new String[zonNum];
 		Part[] ZoneImg = new Part[zonNum];
-		
+		BsCampZoneVo[] zoneVo = new BsCampZoneVo[zonNum];
+		CampAttachmentVo[] ahVo2 = new CampAttachmentVo[zonNum];
 		for (int i = 0; i < zonNum; i++) {
+			 zoneVo[i] = new BsCampZoneVo(); 
 			 String n = Integer.toString(i);
 			 System.out.println(i);
 			 System.out.println("campZoneName".concat(n));
@@ -248,26 +261,32 @@ public class BsCampInsertController extends HttpServlet{
 			 maxGusests[i] = req.getParameter("maxGusests".concat(n));
 			 zoneNor[i] = req.getParameter("zoneNor".concat(n));
 			 campZonePrice[i] = req.getParameter("campZonePrice".concat(n));
-			 campZoneImg[i] = req.getParameter("campZoneImg".concat(n));
+			 ZoneImg[i] = req.getPart("campZoneImg".concat(n));
 			 
 			 System.out.println(campZoneName[i] );
 			 System.out.println(maxGusests[i]);
 			 System.out.println(zoneNor[i]);
 			 System.out.println(campZonePrice[i]);
-			 System.out.println( campZoneImg[i] );
-			 System.out.println("--------------------------");
+			 System.out.println( ZoneImg[i] );
 			 
+			 zoneVo[i].setZoneName(campZoneName[i]);
+			 zoneVo[i].setZoneStayMax(maxGusests[i]);
+			 zoneVo[i].setZoneNor(zoneNor[i]);
+			 zoneVo[i].setZonePrice(campZonePrice[i]);
+			 
+			 System.out.println(zoneVo[i]);
+			 System.out.println("--------------------------");
 			//캠핑장 구역이미지넣기
-				CampAttachmentVo ahVo2 = null;
+				
 				String savePath2 ="";
 				if (ZoneImg[i].getSubmittedFileName().length()>0) {//제출 파일이 있을경우
 					//파일 업로드
 					String originName2 = ZoneImg[i].getSubmittedFileName(); //원본 파일명 얻기
-					String changeName2 = new BsCampService().createChangeName(originName2);
+					String changeName2 = new BsCampService().createChangeZoneName(originName2);
 					
 					
 					//인풋 스트림 준비
-					InputStream is2 = mainImg.getInputStream();
+					InputStream is2 = ZoneImg[i].getInputStream();
 					BufferedInputStream bis2 = new BufferedInputStream(is2);
 					
 					//아웃풋 스트림 준비(서버에 저장하기위한)
@@ -288,33 +307,32 @@ public class BsCampInsertController extends HttpServlet{
 					bis2.close();
 					bos2.close();
 					
-					ahVo2 = new CampAttachmentVo();
-					ahVo2.setCampOrignName(originName2);
-					ahVo2.setCampChangeName(changeName2);
-					ahVo2.setCampPath(realPath2);
+					ahVo2[i] = new CampAttachmentVo();
+					ahVo2[i].setCampOrignName(originName2);
+					ahVo2[i].setCampChangeName(changeName2);
+					ahVo2[i].setCampPath(realPath2);
 				}
 			 
 			 
 			 //정보들  insert처리하기
-			BsCampZoneVo[] zoneVo = new BsCampZoneVo[i];
-			result = new BsCampService().campZoneInsert(zoneVo,i, ahVo2);
-			if (result != 1) {
-				System.out.println("캠핑장 구역 입력오류");
-				req.setAttribute("errorMsg", "캠핑장 구역 입력오류");
-			}
-		}
+			
+			//result = new BsCampService().campZoneInsert(zoneVo[i],i, ahVo2);
 		
+		}//FOR (i <zonNum)
+		resultCamp = new BsCampService().camp( campVo,ahVo,  hashNum ,hashTag, mvo.getNo(), zoneVo, ahVo2, zonNum, faVo);
 		
-		
-		
-		
-		
-		
-		
-		if (result==1) {
+        //캠핑장 테이블 inserts
+        //resultCamp = new BsCampService().camp( campVo,ahVo,  hashNum ,hashTag, mvo.getNo());
+        if (resultCamp != 1) {
+			System.out.println("캠핑장 등록오류");
+			
+		}else {
 			//모든 등록이 완료되면 화면이동
-			req.getRequestDispatcher("/views/buisness/campSearchForm.jsp").forward(req, resp);
+			//req.setAttribute("alertMsg", "등록완료");
+			//req.getRequestDispatcher(req.getContextPath()).forward(req, resp);
+			resp.sendRedirect(req.getContextPath());
 		}
+		
 	}
 }	
 
