@@ -12,28 +12,27 @@ import com.kh.member.vo.MemberVo;
 public class CouponService {
 
 	//유저 쿠폰리스트 보여주기
-	public List<CouponVo> selectCouponList (MemberVo loginMember) {
-		
+	public List<CouponVo> selectCouponList (String no) {
 		//커넥션 얻기
 		Connection conn = null;
-		
 		conn = JDBCTemplate.getConnection();
 		//유저 쿠폰리스트 조회하기
-		List<CouponVo> couponVo = new ArrayList<CouponVo>();
-		couponVo = new CouponDao().selectCouponList(conn, loginMember);
-	
-	
-		return couponVo;
+		List<CouponVo> couponList = new ArrayList<CouponVo>();
+		couponList = new CouponDao().selectCouponList(conn, no);
+		return couponList;
 	}
 
 	//유저 쿠폰 사용
-	public int useCoupon(MemberVo loginMember, String couponCode) {
+	public int useCoupon(String no, String couponCode) {
 		//커넥션 얻기
 		Connection conn = null;
 		conn = JDBCTemplate.getConnection();
-		
-		int result = new CouponDao().useCoupon(conn, loginMember, couponCode);
-		
+		int result = new CouponDao().useCoupon(conn, no, couponCode);
+		if(result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
 		return result;
 	}
 }
