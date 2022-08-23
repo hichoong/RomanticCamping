@@ -108,7 +108,7 @@
     <%@ include file="/views/common/footer.jsp" %>
     
     <script>
-    	$(if(${status eq 'S'}) {
+    	if(${status eq 'S'}) {
     		$('#sub-nav>a:nth-child(1)').addClass("choice");
     	} else if(${status eq 'W'}) {
     		$('#sub-nav>a:nth-child(2)').addClass("choice");
@@ -116,7 +116,7 @@
     		$('#sub-nav>a:nth-child(3)').addClass("choice");
     	}  else if(${status eq 'N'}) {
     		$('#sub-nav>a:nth-child(4)').addClass("choice");
-    	});
+    	}
     	
     	
     	var reservationNo;
