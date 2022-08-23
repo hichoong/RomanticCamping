@@ -177,7 +177,7 @@ public class FreeBoardTradeDao {
 		ArrayList<FreeBoardTradeVo> fbMainList = new ArrayList<FreeBoardTradeVo>();
 		
 		//SQL 준비
-		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT B.FB_NO ,B.FB_TITLE ,B.FB_CONTENT ,B.FB_PRICE, B.FB_CNT ,B.FB_ENROLL_DATE ,M.ID AS FB_WRITER FROM FREEBOARD_TRADE B JOIN MEMBER M ON B.FB_WRITER = M.NO WHERE B.FB_STATUS='N' ORDER BY B.FB_CNT DESC ) T ) WHERE RNUM BETWEEN 1 AND 6";
+		String sql = "SELECT * FROM (   SELECT ROWNUM RNUM, T.*, FA.FBA_CHANGE_NAME FROM ( SELECT B.FB_NO ,B.FB_TITLE ,B.FB_CONTENT ,B.FB_PRICE, B.FB_CNT ,B.FB_ENROLL_DATE ,M.ID AS FB_WRITER FROM FREEBOARD_TRADE B JOIN MEMBER M ON B.FB_WRITER = M.NO WHERE B.FB_STATUS='N' ORDER BY B.FB_CNT DESC ) T JOIN FB_ATTACHMENT FA ON T.FB_NO = FA.FBA_REF_NO ) WHERE RNUM BETWEEN 1 AND 6";
 		
 		try {
 
@@ -200,7 +200,7 @@ public class FreeBoardTradeDao {
 				vo.setPrice(rs.getString("FB_PRICE"));
 				vo.setCnt(rs.getString("FB_CNT"));
 				vo.setEnrollDate(rs.getString("FB_ENROLL_DATE"));
-				
+				vo.setChangeName(rs.getString("FBA_CHANGE_NAME"));
 				//실행될 때마다 voList에 vo하나씩 담아주기
 				fbMainList.add(vo);
 				

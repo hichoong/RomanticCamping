@@ -122,15 +122,11 @@ public class FreeBoardPageController extends HttpServlet{
 		List<FreeBoardTradeVo> fbMainList = new FreeBoardTradeService().selectMainList();
 		
 		//중고거래게시판 파일 조회 백엔드 작업
-		/*
-		 * List<FreeBoardAttachmentVo> fbavoList = new
-		 * ArrayList<FreeBoardAttachmentVo>();
-		 * 
-		 * for(int i=0; i<fbMainList.size(); i++) { String checkNo =
-		 * fbMainList.get(i).getNo(); System.out.println(checkNo); FreeBoardAttachmentVo
-		 * fbao = new FreeBoardTradeService().selectMainFile(checkNo);
-		 * fbavoList.add(fbao); }
-		 */
+		List<FreeBoardAttachmentVo> fbavoList = new ArrayList<FreeBoardAttachmentVo>();
+		
+		
+		
+		
 		//결과에 따라 다음 타자 정하기
 		req.setAttribute("fpageVo", fpageVo);
 		req.setAttribute("fvoList", fvoList);
@@ -142,9 +138,8 @@ public class FreeBoardPageController extends HttpServlet{
 		req.setAttribute("fMainList", fMainList);
 		req.setAttribute("fbMainList", fbMainList);
 		
-//		req.setAttribute("fbavoList", fbavoList);
 		
-		req.getRequestDispatcher("/views/freeBoard/freeBoardPageTest.jsp").forward(req, resp);
+		req.getRequestDispatcher("/views/freeBoard/freeBoardPage.jsp").forward(req, resp);
 	}
 	
 	

@@ -87,7 +87,9 @@
           <a class="nav-link menu-text" href="<%=contextPath%>/camp/campList?p=1">캠핑장</a>
         </li>
         <li class="nav-item">
+
           <a class="nav-link menu-text" href="<%=contextPath%>/freeBoard/page?p1=1&p2=1">자유게시판</a>
+
         </li>
         <li class="nav-item">
           <a class="nav-link menu-text" href="<%=contextPath%>/question/list">고객센터</a>

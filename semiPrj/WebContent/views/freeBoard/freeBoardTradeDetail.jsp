@@ -185,7 +185,7 @@
 					<c:forEach items="${fbavoList}" var="fbao">
 					
 						<div class="carousel-item active">
-								<img  src="<%=contextPath %>/resource/img/freeBoardTrade/${fbao.changeName}" class="img-thumbnail" alt="중고거래 이미지 불러오기 실패" class="d-block" style="width:100%;">
+								<img  src="<%=contextPath %>/resource/img/freeBoardTrade/${fbao.changeName}" class="img-thumbnail" alt="중고거래 이미지 불러오기 실패" class="d-block" style="width:100%; height:600px;">
 						</div>
 					
 					</c:forEach>
