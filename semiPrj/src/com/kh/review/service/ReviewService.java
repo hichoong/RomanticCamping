@@ -12,10 +12,18 @@ public class ReviewService {
 	
 	private final ReviewDao dao = new ReviewDao();
 	
-	//리뷰 조회
-	public ReviewVo selectOne(String num) {
+	//캠핑장 정보 조회
+	public CampInfoVo campSelect(String reservationNo) {
 		Connection conn = getConnection();
-		ReviewVo vo = new ReviewDao().selectOne(conn, num);
+		CampInfoVo vo = new ReviewDao().campSelect(conn, reservationNo);
+		close(conn);
+		return vo;
+	}
+	
+	//리뷰 조회
+	public ReviewVo selectOne(String reservationNo) {
+		Connection conn = getConnection();
+		ReviewVo vo = new ReviewDao().selectOne(conn, reservationNo);
 		close(conn);
 		return vo;
 	}
@@ -65,10 +73,10 @@ public class ReviewService {
 	}
 
 	//리뷰 삭제
-	public int delete(String num) {
+	public int delete(String reservationNo) {
 		
 		Connection conn = getConnection();
-		int result = dao.delete(conn,num);
+		int result = dao.delete(conn, reservationNo);
 		
 		if(result == 1) {
 			commit(conn);
@@ -80,14 +88,9 @@ public class ReviewService {
 		return result;
 	}
 
-//	public CampInfoVo campSelect(String reservationNo) {
-//		Connection conn = getConnection();
-//		CampInfoVo vo = new ReviewDao().campSelect(conn, reservationNo);
-//		close(conn);
-//		return vo;
-//	}
 
-	//캠핑장 정보 조회
+	
+
 
 	
 	
