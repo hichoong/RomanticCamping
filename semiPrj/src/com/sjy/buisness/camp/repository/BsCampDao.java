@@ -134,7 +134,7 @@ public class BsCampDao {
 		String sql = "SELECT * FROM CAMP_INFO WHERE NO = ? AND CAMP_CODE=? AND CAMP_STATUS ='Y'";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		BsCampVo vo  = new BsCampVo();
+		BsCampVo vo  = null;
 		
 		try {
 			//SQL 객체 담기 및 완성
@@ -144,6 +144,7 @@ public class BsCampDao {
 			rs =  pstmt.executeQuery();
 			
 			if(rs.next()) {
+				vo = new BsCampVo();
 				vo.setCampCode(rs.getString("CAMP_CODE"));
 				vo.setCampName(rs.getString("CAMP_NAME"));
 				vo.setCity(rs.getString("CITY"));
@@ -157,6 +158,7 @@ public class BsCampDao {
 				vo.setTheme(rs.getString("THEME_CODE"));
 				vo.setCampUpdated(rs.getString("CAMP_UPDATED"));
 				vo.setCampStatus(rs.getString("CAMP_STATUS"));
+				
 				
 			}
 		} catch (Exception e) {
@@ -358,7 +360,7 @@ public class BsCampDao {
 	public int insertMainAh(Connection conn, CampAttachmentVo ahVo) {
 		//SQL 준비
 		//String sql = "INSERT INTO CAMP_ATTACHMENT (ZA_NO ,Z_NO ,ZA_ORIGNNAME ,ZA_CHANGENAME ,ZA_PATH, IMGTYPE ) VALUES( SEQ_CAMP_ATTACHMENT_NO.NEXTVAL , SEQ_CAMP_INFO_CODE.CURRVAL , ? , ? , ? ,'M')";
-		String sql = "INSERT INTO CAMP_ATTACHMENT (F_NO ,CAMP_NO, Z_NO ,ORIGNNAME ,CHANGENAME ,F_PATH, IMG_TYPE ) VALUES( SEQ_CAMP_ATTACHMENT_NO.NEXTVAL , SEQ_CAMP_INFO_CODE.CURRVAL ,0, ? , ? , ? ,'M')";
+		String sql = "INSERT INTO CAMP_ATTACHMENT (F_ID ,CAMP_NO, Z_NO ,ORIGNNAME ,CHANGENAME ,F_PATH, IMG_TYPE ) VALUES( SEQ_CAMP_ATTACHMENT_NO.NEXTVAL , SEQ_CAMP_INFO_CODE.CURRVAL ,0, ? , ? , ? ,'M')";
 		PreparedStatement pstmt = null;
 		int result = 0;
 		try {
@@ -385,7 +387,7 @@ public class BsCampDao {
 	 */
 	public int ZoneImgInsert(Connection conn, CampAttachmentVo ahVo2, int i) {
 		//String sql = "INSERT INTO CAMP_ATTACHMENT ( ATCH_NO ,CAMP_NO ,CAMP_ORIGNNAME ,CAMP_CHANGENAME ,CAMP_PATH, IMGTYPE ) VALUES( SEQ_CAMP_ATTACHMENT_NO.NEXTVAL , SEQ_BOARD_NO.CURRVAL , ? , ? , ? , Z)";
-		String sql = "INSERT INTO CAMP_ATTACHMENT (F_NO ,CAMP_NO, Z_NO ,ORIGNNAME ,CHANGENAME ,F_PATH, IMG_TYPE ) VALUES( SEQ_CAMP_ATTACHMENT_NO.NEXTVAL , SEQ_CAMP_INFO_CODE.CURRVAL ,SEQ_CAMP_ZONE_NO.CURRVAL, ? , ? , ? ,'Z')";
+		String sql = "INSERT INTO CAMP_ATTACHMENT (F_ID ,CAMP_NO, Z_NO ,ORIGNNAME ,CHANGENAME ,F_PATH, IMG_TYPE ) VALUES( SEQ_CAMP_ATTACHMENT_NO.NEXTVAL , SEQ_CAMP_INFO_CODE.CURRVAL ,SEQ_CAMP_ZONE_NO.CURRVAL, ? , ? , ? ,'Z')";
 		PreparedStatement pstmt = null;
 		int result = 0;
 		try {

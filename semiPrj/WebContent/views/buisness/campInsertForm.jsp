@@ -93,24 +93,24 @@
 							placeholder="와이파이 전기 온수 반려견동반 매점 장작판매 운동장 산책로 물놀이장" name="camp"
 							disabled>
 								
-							    <input type="checkbox" name="facility" id="ft1" class="facility" value="w">
+							    <input type="checkbox" name="facility" id="ft1" class="facility" value="w" onclick="getftNum();">
 							    <label for="ft1" >와이파이</label>
-							    <input type="checkbox" name="facility" id="ft2" class="facility" value="e">
+							    <input type="checkbox" name="facility" id="ft2" class="facility" value="e" onclick="getftNum();">
 							    <label for="ft2">전기</label>
-							    <input type="checkbox" name="facility" id="ft3" class="facility" value="h">
+							    <input type="checkbox" name="facility" id="ft3" class="facility" value="h" onclick="getftNum();">
 							    <label for="ft3">온수</label>
-							    <input type="checkbox" name="facility" id="ft4" class="facility" value="p">
+							    <input type="checkbox" name="facility" id="ft4" class="facility" value="p" onclick="getftNum();">
 							    <label for="ft4">반려견동반</label>
-							    <input type="checkbox" name="facility" id="ft5" class="facility" value="s">
+							    <input type="checkbox" name="facility" id="ft5" class="facility" value="s" onclick="getftNum();">
 							    <label for="ft5">매점</label>
 							    
-							    <input type="checkbox" name="facility" id="ft6" class="facility" value="f">
+							    <input type="checkbox" name="facility" id="ft6" class="facility" value="f" onclick="getftNum();">
 							    <label for="ft6">장작판매</label>
-							    <input type="checkbox" name="facility" id="ft7" class="facility" value="g">
+							    <input type="checkbox" name="facility" id="ft7" class="facility" value="g" onclick="getftNum();">
 							    <label for="ft7">운동장</label>
-							    <input type="checkbox" name="facility" id="ft8" class="facility" value="t">
+							    <input type="checkbox" name="facility" id="ft8" class="facility" value="t" onclick="getftNum();">
 							    <label for="ft8">산책로</label>
-							    <input type="checkbox" name="facility" id="ft9" class="facility" value="o">
+							    <input type="checkbox" name="facility" id="ft9" class="facility" value="o" onclick="getftNum();">
 							    <label for="ft9">물놀이장</label>
 							    
 					</div>
@@ -165,8 +165,7 @@
 
 					<div class="mb-3">
 						<label for="campRepImg" class="form-label">* 대표이미지:</label> <input
-							class="form-control" type="file" name="campRepImg" accept="image/*"
-							id="campRepImg">
+							class="form-control" type="file" name="campRepImg" accept="image/*" id="campRepImg" required>
 					</div>
 
 
@@ -201,7 +200,7 @@
 							
 							<div class="mb-3">
 								<label for="campAreaImg" class="form-label">구역이미지</label>
-								 <input class="form-control" type="file" id="campZoneImg" name="campZoneImg0" accept="image/*">
+								 <input class="form-control" type="file" id="campZoneImg" name="campZoneImg0" accept="image/* required">
 							</div>
 							
 							 <button type="button" class="btn btn-danger btnRemove" disabled >※구역은 1개이상 입력해주세요</button> 
@@ -390,7 +389,7 @@
                 </div>\
                 <div class="mb-3">\
                     <label for=campZoneImg'+i+' class="form-label">구역이미지</label>\
-                    <input class="form-control" type="file" id=campZoneImg'+i+' name=campZoneImg'+i+' accept="image/*">\
+                    <input class="form-control" type="file" id=campZoneImg'+i+' name=campZoneImg'+i+' accept="image/*"required>\
                 </div>\
                 <button type="button" class="btn btn-danger btnRemove">삭제</button><br><br>'
                 );
@@ -421,7 +420,7 @@
 
 <script>
 
-    function getHashNum() {
+    function getftNum() {
         // 선택된 목록 가져오기
         const query = 'input[name="facility"]:checked';
         const selectedElements =
@@ -436,6 +435,8 @@
         $('input[name=facNum]').attr('value',selectedElementsCnt)
     }
 </script>
+
+
 
 </body>
 </html>

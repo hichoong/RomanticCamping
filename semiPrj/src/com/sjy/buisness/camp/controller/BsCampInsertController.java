@@ -319,17 +319,18 @@ public class BsCampInsertController extends HttpServlet{
 		
 		}//FOR (i <zonNum)
 		resultCamp = new BsCampService().camp( campVo,ahVo,  hashNum ,hashTag, mvo.getNo(), zoneVo, ahVo2, zonNum, faVo);
-		
+		System.out.println("결과 숫자::"+resultCamp);
         //캠핑장 테이블 inserts
         //resultCamp = new BsCampService().camp( campVo,ahVo,  hashNum ,hashTag, mvo.getNo());
         if (resultCamp != 1) {
 			System.out.println("캠핑장 등록오류");
-			
+			req.getSession().setAttribute("alertMsg", "등록실패..");
+			req.getRequestDispatcher(req.getContextPath()).forward(req, resp);
 		}else {
 			//모든 등록이 완료되면 화면이동
-			//req.setAttribute("alertMsg", "등록완료");
-			//req.getRequestDispatcher(req.getContextPath()).forward(req, resp);
-			resp.sendRedirect(req.getContextPath());
+			req.getSession().setAttribute("alertMsg", "등록완료");
+			req.getRequestDispatcher("").forward(req, resp);
+			//resp.sendRedirect(req.getContextPath());
 		}
 		
 	}
