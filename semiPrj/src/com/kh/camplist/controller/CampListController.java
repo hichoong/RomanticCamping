@@ -91,10 +91,14 @@ public class CampListController extends HttpServlet {
 		
 		Gson g = new Gson();
 		String checkedTags = g.toJson(checkedHashCodes);
+		// 여기서 받은 값을 그대로 사용하면 input value에 담을때 html이 깨집니다.
+		// 이유는 " 쌍따옴표 때문입니다.
+		// 그래서 쌍따옴표를 &quot; 로 치환하여 이 문제를 해결했습니다.
+		// &quot;는 쌍따옴표를 표현하는 또다른 표현식입니다.
+		checkedTags = checkedTags.replaceAll("\"", "&quot;");
 		req.setAttribute("checkedTags", checkedTags);
 		
 		
-		//String 으로 해쓰인까 인풋에 집어넣을때 
 		
 		req.setAttribute("pv", pageVo);
 		req.setAttribute("themeList", themeList);

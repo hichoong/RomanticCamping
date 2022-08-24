@@ -21,7 +21,9 @@
 	int startPage = pv.getStartPage();
 	int endPage = pv.getEndPage();
 	int maxPage = pv.getMaxPage();
-
+	
+	
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -31,15 +33,15 @@
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/campList.css">
 </head>
 <body>
-	
 	<%@include file="/views/common/header.jsp" %>
+	
 	
     <div class="container">
         <section>
             <div id="search-box">
-              <input type="hidden" id ="themeChecked" themeChecked="${theme}">
-			  <input type="hidden" id ="checkedHashCodes" themeChecked="${checkedHashCodes}">
-              <!-- 새로고침,서브밋 했을 때 검색내용 유지기능 필요  -->
+              <input type="hidden" id ="themeChecked" value="${theme}">
+              <input type="hidden" id ="checkedTags" value="${checkedTags}">
+			  
               <form class="search-form" action="<%=contextPath %>/camp/campList" method="get">
               	  <input type="hidden" name="p" value="1">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword" value="${keyword}">
@@ -71,24 +73,17 @@
                       <ul class="tag-ul">
 						<%for(HashTagVo vo : hashTagList) { %>
 							<li>	
-								<input  hashTagKey="<%=vo.getHtCode()%>" type="hidden" name="hashTag" id="hashTag" disabled="disabled" value="<%=vo.getHtCode()%>">
-								<button hashTagKey="<%=vo.getHtCode()%>" type="button" class="tag-btn" ><%=vo.getHtName()%></button>
+								<input  hashTagKey="<%=vo.getHtCode()%>" type="hidden" name="hashTag" disabled="disabled" value="<%=vo.getHtCode()%>">
+								<button hashTagKey="<%=vo.getHtCode()%>" type="button" class="tag-btn" tagid="tagid<%=vo.getHtCode()%>" ><%=vo.getHtName()%></button>
 							</li>
 						<%} %>
                       </ul>
-                      
-                      <c:if test="${not empty checkedHashCodes}">
-                      	<!-- hidden input 만들기 -->
-                      </c:if>
                       
                       <script>
                       	//해시태그 검색조건 유지
                       	if(${checkedHashCodes.size()} > 0){
                       		$('.hashtag-list').css('display', 'block');
                       	}
-                      	
-                      	const checkedTags = JSON.parse();
-                      	
                       </script>
                     </div>
                     <input type="submit" value="search" class="btn btn-warning">
@@ -152,7 +147,7 @@
     </div>
     
     <%@include file="/views/common/footer.jsp" %>
-
-  	<script src="<%=contextPath %>/resource/js/campList.js"></script>
+	<script src="<%=request.getContextPath()%>/resource/js/campList.js"></script>
+  	
 </body>
 </html>

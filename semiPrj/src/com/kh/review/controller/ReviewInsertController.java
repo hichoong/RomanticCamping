@@ -22,7 +22,6 @@ public class ReviewInsertController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String reservationNo = req.getParameter("reservationNo");
-//		String reservationNo = "1";
 		CampInfoVo campInfoVo = new ReviewService().campSelect(reservationNo);
 		
 		req.setAttribute("reservationNo", reservationNo);
