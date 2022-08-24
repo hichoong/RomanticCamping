@@ -11,6 +11,9 @@
 <!DOCTYPE html>
 <html>
 <%
+	/* request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+contextPath+"/"
+	http://localhost:8803/camp/resource/upload/campImg/test1.jpg */
+	
 	//오늘 날짜 구하기
 	Date today = new Date();
 	
@@ -32,7 +35,7 @@
 	for(HashMappingVo vo : myHashMappingList) { 
 		mappings = String.join(",",vo.getHtCode());
 	}
-	System.out.println("mappings"+mappings);
+		System.out.println("mappings: "+mappings);
 	String facs = "";
 	BsCampFacVo facVo = (BsCampFacVo) request.getAttribute("facVo");
 	System.out.println(facVo);
@@ -74,8 +77,13 @@
 	//캠핑장 구역 정보가져오기
 	List<BsCampZoneVo> zoneList = (List<BsCampZoneVo>)request.getAttribute("zoneList");
 	
+	
 	BsCampVo bsvo = (BsCampVo)request.getAttribute("bsVo");
 	System.out.println("bsvo"+bsvo);
+	
+	String kk =(bsvo.getCampImgPath()).replaceAll("''\'", "/");
+	String mainImgPath = kk.substring(41);
+	
 %>
 <head>
 
@@ -99,12 +107,13 @@
 		<div id="content">
 
 
-			<form action="<%=contextPath%>/views/buisness/campUpdateIfo.jsp" method="post">
+			<form action="<%=contextPath %>/bscamp/update" method="get">
 				<h2>캠핑장 조회 </h2>
 				
 				<hr>
 				<div style="overflow-x: hidden; width: 100%; height: 700px; padding-right: 10%">
 					<div><%=bsvo.getCampName() %></div>
+					<input type="hidden" name="campCode" value="<%=bsvo.getCampCode()%>">
 					<div class="md-3">
 						<label for="campName" class="form-label">* 이름:</label> 
 							<input type="text" class="form-control" id="campName"
@@ -113,8 +122,8 @@
 
 					<div class="md-3 ">
 						<label for="campAdd" class="form-label">* 주소:</label> 
-						<select name="city" class="form-select" id="city" disabled><option value="none" ><%=bsvo.getCity() %></option></select> 
-						<select name="district" class="form-select" id="district" disabled><option value="none" "><%=bsvo.getDistrict() %></option></select>
+						<select name="city" class="form-select" id="city" disabled><option><%=bsvo.getCity() %></option></select> 
+						<select name="district" class="form-select" id="district" disabled><option ><%=bsvo.getDistrict() %></option></select>
 					</div>
 
 
@@ -215,8 +224,10 @@
 
 					<div class="mb-3">
 						<label for="campRepImg" class="form-label">* 대표이미지:</label> 
-						<%=bsvo.getCampImgPath()%>
-						<img alt="" src="<%=bsvo.getCampImgPath()%>" width="200px" height="200px">
+						<input type="hidden" value="<%=bsvo.getCampImgPath()%>" name="campMainImgPath">
+						
+						<%System.out.println(contextPath+mainImgPath); %>
+						<img alt="" src="<%=contextPath%><%=mainImgPath %>" width="200px" height="200px"> 
 					</div>
 
 
@@ -226,6 +237,7 @@
 								<%System.out.println("zoneList"+zoneList);
 								for(BsCampZoneVo vo : zoneList) { %>
 									<hr>
+									<input type="hidden" value="<%=zoneList.size() %>" name="zoneNum">
 									<div class="mb-3">
 										<label for="campZoneName" class="form-label">구역이름</label> 
 										<input class="form-control" type="text" id="campZoneName" name="campZoneName" value="<%=vo.getZoneName() %>" disabled>
@@ -236,7 +248,7 @@
 									</div>
 									<div class="mb-3 " style="width: 30%">
 										<label for="maxGusests" class="form-label">일별 예약가능수(:명)</label> 
-										<input class="form-control" type="number" id="maxGusests" name="zoneNor0" min="1" value="<%=vo.getZoneNor() %>"" disabled>
+										<input class="form-control" type="number" id="maxGusests" name="zoneNor" min="1" value="<%=vo.getZoneNor() %>" disabled>
 									</div>	
 									<div class="mb-3 " style="width: 30%">
 										<label for="campAreaPrice" class="form-label">가격(:원)</label> 
@@ -246,11 +258,11 @@
 										<label for="campAreaImg" class="form-label">구역이미지</label>
 										<br>
 										<%=vo.getZoneImg() %>
+										<hr>
+										<%=contextPath %>
+										<input type="hidden" value="<%=vo.getZoneImg() %>" name="zoneImgPath"> 
 										<img src="<%=vo.getZoneImg() %>" width="100" height="100">
-										<img src="https://www.w3schools.com/images/lamp.jpg" width="100" height="100">
-										<img alt="" src="../resource/upload/campImg/test1.png" width="100" height="100">
-										
-										
+											
 									</div>
 									<br>
 								<%} %>
@@ -266,8 +278,8 @@
 					</div>
 
 						<div id="end">
-							<button  id="upDate" >수정</button>
-							<button id="delete" type="button" onclick="locaton.href='#'">삭제요청</button>
+							<button type="button"  id="upDate" >수정</button>
+							<button id="delete" type="button">삭제요청</button>
 						</div>
 				</div>
 
@@ -315,7 +327,6 @@
                 $(this).next().remove();
 				$(this).next().remove();
                 $(this).remove();//bt
-
 				// $(document.getElementsByClassName('addInput')).children().remove();
             })
         })
@@ -324,7 +335,6 @@
 
 <script>
 		$(function() {
-
 			//캠핑장 테마 가져오기
 			const theme = '<%=myTheme.getTheme()%>';
 			console.log("테마:"+theme);
@@ -368,7 +378,6 @@
 
 <script>
 		$(function() {
-
 			//캠핑장 테마 가져오기
 			const fac = '<%=facs%>';
 			console.log("시설:"+fac);
@@ -388,6 +397,18 @@
 		
 </script>	
 
+<script>
+		$(function(){
+			$('#upDate').click(function(){
+				//해당 번호로 요청 보내기
+				location.href="<%=contextPath%>/bscamp/update?campCode=" + <%=bsvo.getCampCode()%>;
+				
+				
+			});
+		})
+	</script>
+
+
 	<script>
 		$(function(){
 			$('#delete').click(function(){
@@ -399,6 +420,7 @@
 			});
 		})
 	</script>
+
 </body>
 
 </html>
