@@ -7,201 +7,73 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>자유게시판 게시글 수정 페이지</title>
 <style>
-	*{
-		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
-	}
 
-	/* 제일큰틀 */
-	#freeboard-detail-outer{
-		border: 1px solid red;
-        height: auto;
-	}
-
-	
-	#d6-d{
-        display: flex;
-        height: 30%;
-        margin: 0 auto;
-		padding: 0px;
-        border: 1px solid red;
-    }
-
-
-	#d7-d{
-		display: flex;
-        height: 5%;
-        border: 1px solid red;
-    }
-
-
-	#d8-d{
-        height: 35%;
-        margin: 0 auto;
-		padding: 0px;
-        border: 1px solid red;
-		vertical-align: baseline;
-    }
-    
-    #d8-d>form>input{
-    	width:100%;
-    	font-size: 3rem;
-    }
-    
-    #d8-d-textarea{
-    	font-size : 2rem;
-    	height:auto;
-    	width: 100%
-    }
-
-	#d9-d{
-		display: flex;
-		flex-direction: column;
-		flex-wrap: nowrap;
-        height: 20%;
-        border: 3px solid blue;
-    }
-
-	/* 2차 틀 */
-	#d6-d>div{
-		margin: 0 auto;
-		padding: 0px;
-        height: 100%;
-        border: 2px solid darkred;
-    }
-
-	/* 꾸미기 */
-
-	#fbt-div-outer{
-		margin: 0 auto;
-		height: 100%;
-		width: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		border: 1px solid brown;
-	}
-
-
-	#fbt-left-div{
-		display: flex;
-		margin-left: 8px;
-		border: 1px solid blue;
-		flex-direction: column;
-	}
-
-
-	#fbt-right-div{
-		display: flex;
-		margin-right: 8px;
-		border: 1px solid blue;
-		flex-direction: column;
-	}
-
-
-
-	/* 보더라인 */
-	.fbt-top-line{
-		width: 100%;
-        height: 1%;
-		background-color: rgb(240, 225, 203);
-        margin-bottom: 1%;
-        margin-top: 1%;
-	}
-
-
-	/*  */
-	.fb2-1-story-outer{
-		position: relative;
-		overflow: hidden;
-		border: 1px solid red;
-	}
-		
-	.fb2-story-date{
-		font-size: 2rem;
-		margin-top: 6px;
-		color: darkgray;
-		height: 8%;
-		border: 1px solid red;
-	}
-
-	.fb2-story-content{
-		height: 50%;
-		width: 100%;
-	}
-
-	#div-btn-area{
-    width: 38%;
-    margin: auto;
-    margin-top: 30px;
-   }
-
-		
+	 <%@ include file="/resource/css/freeBoardCSS/freeBoardEdit.css" %>
+	 
 </style>
 </head>
+	<%@ include file="/views/common/header.jsp" %>
+		
 <body>
 	
-	<%@ include file="/views/common/header.jsp" %>	
-	
-	<h1> 여기는 중고거래게시판 상세보기 게시판</h1>
-	<div id="freeboard-detail-outer" class="container">
+	<div id="freeboard-edit-outer" class="container">
 
 
 		<!-- 선추가 -->
 		<div class="fbt-top-line"></div>
 
+		<!-- 작성자의 기본 정보 보여주는 곳 -->
+		<div id="edit-info-outer" class="container">
 
-		<div id="d7-d" class="container">
+			<div id="edit-info-div-outer">
 
-			<div id="fbt-div-outer">
-
-				<div id="fbt-left-div">
-					<div id="userId" >작성자 :${fvo.writer}</div>
-					<div id="userGrade">글번호 : ${fvo.no}</div>
+				<div id="edit-left-div">
+					<div id="userGrade"><kbd>글번호 : ${fvo.no}</kbd></div>
+					<div id="userId" ><kbd>작성자 : ${fvo.writer}</kbd></div>
 				</div>
 
 
 
-				<div id="fbt-right-div">
-					<div id="count">조회수 : ${fvo.cnt}</div>
-					<div id="update_date"> 작성일자 : ${fvo.enrollDate}</div>
+				<div id="edit-right-div">
+					<div id="count"><kbd>조회수 : ${fvo.cnt}</kbd></div>
+					<div id="update_date"> <kbd>작성일자 : ${fvo.enrollDate}</kbd></div>
 				</div>
 
 			</div>
 
 		</div>
 
+
 		<!-- 선추가 -->
 		<div class="fbt-top-line"></div>
 
-		<div id="d8-d" class="container">
+		<!-- 원래 본문의 글 내용 보여주는 곳 - ( 내용 수정할 수 있도록 input readonly 속성 제거 ) -->
+		<div id="edit-info-main" class="container">
 
 			<form action="<%=contextPath%>/freeBoard/edit" method="post">
 				<input type="hidden" value="${fvo.no}" name="feditNo">
-				<input type="text" value="${fvo.title}" name="feditTitle">
-				<textarea cols="50" rows="13" id="d8-d-textarea" class="fb2-story-content" name="feditContent" id="" >${fvo.contetnt}</textarea>
+				<input id="edit-info-main-title" type="text" value="${fvo.title}" name="feditTitle">
+				<textarea cols="50" rows="13" id="edit-info-main-textarea"  name="feditContent" id="" >${fvo.content}</textarea>
 				
-				<p class="fb2-story-date">작성시간 : ${fvo.enrollDate}</p>
-				<p class="fb2-story-date">조회 수 : ${fvo.cnt}</p>
+				<p class="edit-info-main-items">작성자 : ${fvo.writer}</p>
+				<p class="edit-info-main-items">조회 수 : ${fvo.cnt} </p>
+				<p class="edit-info-main-items">작성일자 : ${fvo.enrollDate}</p>
 				
+				<!-- 선추가 -->
+				<div class="fbt-top-line"></div>
 				
-				<div id="div-btn-area">
-					<input class="btn btn-success" type="submit" value="수정하기">
-					<input class="btn btn-success" type="reset" value="초기화">
-					<input class="btn btn-success" type="button" value="뒤로가기" onclick="history.go(-1)">
+				<!-- 버튼 영역 - 수정(update)요청  -->
+				<div id="edit-info-main-btn">
+					<input class="btn btn-primary" type="submit" value="수정하기">
+					<input class="btn btn-primary" type="reset" value="초기화">
+					<input class="btn btn-outline-light text-dark" type="button" value="뒤로가기" onclick="history.go(-1)">
 				</div>
 			</form>		
 
 
 		</div>
-
-
-
-
-		
 		
 		
 		

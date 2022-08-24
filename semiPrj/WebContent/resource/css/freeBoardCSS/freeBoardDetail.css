@@ -1,0 +1,135 @@
+/* 제일큰틀 */
+
+	*{
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	
+	#freeboard-detail-outer{
+		height: auto;
+		border: 3px solid brown;
+		border-radius: 5px;
+	}
+
+
+	#freeBoard-info{
+		display: flex;
+        height: 5%;
+    }
+
+
+	#freeBoard-section{
+        height: 35%;
+        margin: 0 auto;
+		padding: 0px;
+		vertical-align: baseline;
+    }
+    
+	
+    #freeBoard-section-textarea{
+    	font-size : 2rem;
+    	height:auto;
+    	width: 100%
+    }
+
+	
+
+	
+
+	/* 글제목 - 글내용 - 정보들 */
+
+	#freeBoard-info-outer{
+		margin: 0 auto;
+		height: 100%;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+
+	#fbt-left-div{
+		display: flex;
+		margin-left: 8px;
+		flex-direction: column;
+		font-size: 1.5rem;
+	}
+
+
+	#fbt-right-div{
+		display: flex;
+		margin-right: 8px;
+		flex-direction: column;
+		font-size: 1.5rem;
+	}
+
+		
+	.freeBoard-section-itmes{
+		font-size: 2rem;
+		margin-top: 6px;
+		color: darkgray;
+		height: 8%;
+	}
+
+	.freeBoard-section-content{
+		height: 50%;
+		width: 100%;
+	}
+
+
+
+	/* 댓글 목록과 댓글 입력 */
+
+	#freeBoard-reple-list{
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+        height: 20%;
+    }
+
+	.select-reple{
+		width: 100%;
+		height: 150px;
+		border-radius: 10px;
+		border: 5px solid blanchedalmond;
+		position: relative;
+		margin-bottom: 5px;
+	}
+
+	.reple-id>p{
+		margin-top: 3px;
+		font-size: 1.2rem;
+		font-weight: 800;
+		color: brown
+	}
+
+	.reple-id>p>a {
+		position: absolute;
+		right: 3px;
+	}
+
+	.reple-sub{
+		position: absolute;
+		bottom: 5px;
+	}
+	
+	.reple-content{
+		height:auto;
+	}
+
+	#reple-empty-text{
+		text-align : center;
+		color : lightgray;
+		margin-bottom: 20px;
+	}
+
+	/* 라인 */
+	.fbt-top-line{
+		width: 100%;
+        height: 5px;
+		background-color: rgb(240, 225, 203);
+        margin-bottom: 1%;
+        margin-top: 1%;
+	}

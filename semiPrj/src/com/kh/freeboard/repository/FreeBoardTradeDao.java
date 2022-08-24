@@ -60,7 +60,7 @@ public class FreeBoardTradeDao {
 		
 		
 		String sql = "INSERT INTO FB_ATTACHMENT (FBA_NO, FBA_REF_NO, FBA_ORIGIN_NAME, FBA_CHANGE_NAME, FBA_FILE_PATH) VALUES(SEQ_FB_ATTACHMENT_NO.NEXTVAL, SEQ_FREEBOARD_TRADE_NO.CURRVAL, ?, ?, ?)";
-
+		
 
 		try {
 			
@@ -465,7 +465,7 @@ public class FreeBoardTradeDao {
 		try {
 			
 			String sql = "SELECT FBA_NO ,FBA_REF_NO ,FBA_ORIGIN_NAME ,FBA_CHANGE_NAME ,FBA_FILE_PATH FROM FB_ATTACHMENT WHERE FBA_REF_NO = ? AND FBA_STATUS ='N' ORDER BY FBA_NO";
-			
+
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, num);
 			
