@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.camplist.campinfo.vo.CampInfoVo;
-import com.kh.member.service.MemberService;
+import com.kh.member.service.MemberFavoriteService;
 import com.kh.member.vo.MemberVo;
 
 @WebServlet(urlPatterns = "/member/favorite")
@@ -21,7 +21,7 @@ public class GetFavoriteController extends HttpServlet{
 
 		String no = ((MemberVo)req.getSession().getAttribute("loginMember")).getNo();
 		
-		List<CampInfoVo> list = new MemberService().getFavorite(no);
+		List<CampInfoVo> list = new MemberFavoriteService().getFavorite(no);
 		
 		req.setAttribute("favoriteList", list);
 		req.getRequestDispatcher("/views/member/myFavoritePage.jsp").forward(req, resp);
