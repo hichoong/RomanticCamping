@@ -63,8 +63,9 @@ public class BsCampDetailController extends HttpServlet{
 		req.setAttribute("myHashMappingList", myHashMappingList);
 		
 		//캠핑장 정보 가져오기
+		System.out.println("campCode::"+campCode);
 		BsCampVo bsVo = new BsCampService().selectOneCamp(mvo.getNo(), campCode);
-				
+		System.out.println("bsvo:"+bsVo);
 		req.setAttribute("bsVo", bsVo);
 		req.getRequestDispatcher("/views/buisness/campDetaileInfo.jsp").forward(req, resp);
 	}

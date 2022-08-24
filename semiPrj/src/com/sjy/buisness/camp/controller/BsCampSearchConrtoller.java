@@ -31,7 +31,7 @@ public class BsCampSearchConrtoller extends HttpServlet{
 		
 		//등록된 캠핑장 갯수 가져오기
 		int CampNum = new BsCampService().MyCampNum(mvo.getNo());
-		
+		System.out.println("캠핑장개수"+CampNum);
 		req.setAttribute("bsVo", bsVo);
 		req.setAttribute("CampNum", CampNum);
 		req.getRequestDispatcher("/views/buisness/campSearchForm.jsp").forward(req, resp);
