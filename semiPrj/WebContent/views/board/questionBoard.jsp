@@ -4,7 +4,8 @@
 <%@page import="com.syl.board.vo.QuestionBoardVo"%>
 <%@page import="java.util.ArrayList"%>
 <% 
-	ArrayList<QuestionBoardVo> voList = (ArrayList<QuestionBoardVo>)request.getAttribute("voList"); 
+	ArrayList<QuestionBoardVo> voList = (ArrayList<QuestionBoardVo>)request.getAttribute("voList");
+	QuestionBoardVo vo = (QuestionBoardVo)request.getAttribute("vo");
 %>
 <!DOCTYPE html>
 <html>
@@ -110,11 +111,11 @@
             <li class="page-item"><a class="page-link" href="#">Next</a></li>
         </ul>
 
-
-    <button type="button" id="btn" class="btn btn-warning" onclick="location.href='<%=request.getContextPath()%>/question/insert'" >
+	<%if(loginMember != null){ %>
+    <button type="button" id="btn" class="btn btn-warning" onclick="location.href='<%=contextPath%>/question/insert'" >
 			작성하기
 	</button>
-    
+    <% } %>
     
   	</div>
     
@@ -126,7 +127,7 @@
 				//글 번호 가져오기
 				const num = $(this).children().eq(0).text();
 				//해당 번호 이용해서 요청 보내기
-				location.href='/semiPrj/question/detail?num=' + num;
+				location.href='<%=contextPath%>/question/detail?num=' + num;
 			});
 		})
 	</script>

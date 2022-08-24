@@ -149,7 +149,54 @@ public class QuestionBoardDao {
 			return vo;
 		}
 	
+		
+		/////////////////문의글 삭제///////////////////
+		public int delete(Connection conn, String num) {
+			
+			String sql = "UPDATE QUESTIONBOARD SET Q_FREQ = 'Y' WHERE Q_NO = ?";
+			
+			PreparedStatement pstmt = null;
+			int result = 0;
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, num);
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
+			
+			return result;
+		}
 	
-	
+		/////////////////문의글 수정///////////////////
+		public int edit(Connection conn, QuestionBoardVo vo) {
+			
+			PreparedStatement pstmt = null;
+			int result = 0;
+			
+			try {
+				String sql = "UPDATE QUESTIONBOARD SET Q_TITLE = ? , Q_CONTENT = ? WHERE Q_NO = ?";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, vo.getqTitle());
+				pstmt.setString(2, vo.getqContent());
+				pstmt.setString(3, vo.getqNo());
+				
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
+			return result;
+		}		
+		
+		
 	
 }//class

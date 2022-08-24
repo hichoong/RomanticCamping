@@ -50,11 +50,13 @@
             </form>
           </div>
          
-
             <button id="btn" class="b1 btn btn-warning" onclick="location.href='<%=contextPath%>/question/list'">목록</button>
-            <button id="btn" class="b1 btn btn-danger" onclick="history.back();">삭제</button>
-            <button id="btn" class="b1 btn btn-warning" onclick="location.href='http://127.0.0.1:8803/semiPrj/views/board/questionBoardRevise.jsp'">수정</button>
-              
+			
+         	<!-- 작성자 본인만 수정/삭제가능 -->
+			<%if(loginMember != null && vo.getqWriter().equals(loginMember.getName())){ %>
+            <button id="btn" class="b1 btn btn-danger" onclick="location.href='<%=contextPath%>/question/delete?num=<%=vo.getqNo()%>'">삭제</button>
+            <button id="btn" class="b1 btn btn-warning" onclick="location.href='<%=contextPath%>/question/edit?num=<%=vo.getqNo()%>'">수정</button>
+            <% } %>
    </div>
    
    

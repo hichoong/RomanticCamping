@@ -15,12 +15,11 @@
 
 	 <div class="outer">
 
-        <form id="enroll-form" action="" method="post" enctype="multipart/form-data">
+        <form id="enroll-form" action="<%=contextPath%>/question/insert" method="post">
 
-            <!-- 카테고리, 제목, 내용, 첨부파일 한개 -->
             <table>
                 <tr>
-                    <th width="70px">카테고리</th>
+                    <th width="70px"></th>
                     <td width="500px">
                         
                     </td>
@@ -41,7 +40,7 @@
 
             <div align="center">
                 <button type="submit" id="btn" class="b1 btn btn-warning">작성하기</button>
-                <button type="reset" id="btn" class="b1 btn btn-warning">취소하기</button>
+                <button type="reset" id="btn" class="b1 btn btn-warning" onclick="history.go(-1)">취소하기</button>
             </div>
 
         </form>
