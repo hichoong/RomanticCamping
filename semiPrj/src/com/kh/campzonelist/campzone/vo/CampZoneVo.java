@@ -7,7 +7,7 @@ public class CampZoneVo {
 	}
 	
 	public CampZoneVo(String zoneNo, String zoneStayMax, String zonePrice, String zoneName, String zoneNor,
-			String campCode) {
+			String campCode, String zoneImgPath) {
 		super();
 		this.zoneNo = zoneNo;
 		this.zoneStayMax = zoneStayMax;
@@ -15,15 +15,16 @@ public class CampZoneVo {
 		this.zoneName = zoneName;
 		this.zoneNor = zoneNor;
 		this.campCode = campCode;
+		this.zoneImgPath = zoneImgPath;
 	}
-	
+
 	private String zoneNo; 
 	private String zoneStayMax;
 	private String zonePrice;
 	private String zoneName;
 	private String zoneNor;
 	private String campCode;
-	
+	private String zoneImgPath;
 	public String getZoneNo() {
 		return zoneNo;
 	}
@@ -72,10 +73,19 @@ public class CampZoneVo {
 		this.campCode = campCode;
 	}
 
+	public String getZoneImgPath() {
+		return zoneImgPath;
+	}
+
+	public void setZoneImgPath(String zoneImgPath) {
+		this.zoneImgPath = zoneImgPath;
+	}
+
 	@Override
 	public String toString() {
 		return "CampZoneVo [zoneNo=" + zoneNo + ", zoneStayMax=" + zoneStayMax + ", zonePrice=" + zonePrice
-				+ ", zoneName=" + zoneName + ", zoneNor=" + zoneNor + ", campCode=" + campCode + "]";
+				+ ", zoneName=" + zoneName + ", zoneNor=" + zoneNor + ", campCode=" + campCode + ", zoneImgPath="
+				+ zoneImgPath + "]";
 	}
 	
 	

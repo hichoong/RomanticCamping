@@ -24,7 +24,21 @@
 		height: 700px;
 	}
 
-
+	.main-img{
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		width: 100%;
+	}
+	.img-wrap{
+		width: auto;
+		margin: 10px;
+		margin-top: 70px;
+	}
+	.img-wrap > img{
+		width: 400px;
+		height: 500px;
+	}
 </style>
 </head>
 <body>
@@ -61,6 +75,26 @@
 			<span class="carousel-control-next-icon"></span>
 			</button>
 		</div>
+
+
+		<div class="main-img">
+
+			<div class="img-wrap">
+				<img src="<%=contextPath%>/resource/img/camp/mainImg1.jpg" alt="이미지1">
+			</div>
+			<div class="img-wrap">
+				<img src="<%=contextPath%>/resource/img/camp/mainImg2.jpg" alt="이미지2">
+			</div>
+			<div class="img-wrap">
+				<img src="<%=contextPath%>/resource/img/camp/mainImg3.jpg" alt="이미지3">
+			</div>
+
+		</div>
+
+
+
+
+
 	</div>
 
 	<%@ include file="/views/common/footer.jsp" %>

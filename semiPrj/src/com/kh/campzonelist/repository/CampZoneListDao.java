@@ -16,7 +16,7 @@ public class CampZoneListDao {
 	//구역상세 리스트 조회
 	public List<CampZoneVo> selectList(Connection conn, String campCode) {
 		
-		String sql = "SELECT Z_NO, Z_STAYMAX, Z_PRICE, Z_NAME, Z_NOR, CAMP_CODE FROM CAMP_ZONE WHERE CAMP_CODE = ?";
+		String sql = "SELECT Z_NO, Z_STAYMAX, Z_PRICE, Z_NAME, Z_NOR, CAMP_CODE, Z_IMGPATH FROM CAMP_ZONE WHERE CAMP_CODE = ?";
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -36,6 +36,7 @@ public class CampZoneListDao {
 				String zoneName = rs.getString("Z_NAME");
 				String zoneNor = rs.getString("Z_NOR");
 				String zCampCode = rs.getString("CAMP_CODE");
+				String zoneImgPath = rs.getString("Z_IMGPATH");
 				
 				CampZoneVo vo = new CampZoneVo();
 				vo.setZoneNo(zoneNo);
@@ -44,9 +45,9 @@ public class CampZoneListDao {
 				vo.setZoneName(zoneName);
 				vo.setZoneNor(zoneNor);
 				vo.setCampCode(zCampCode);
+				vo.setZoneImgPath(zoneImgPath);
 				
 				list.add(vo);
-				System.out.println(vo);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
