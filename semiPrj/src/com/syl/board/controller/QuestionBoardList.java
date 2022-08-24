@@ -23,15 +23,12 @@ public class QuestionBoardList extends HttpServlet {
 			
 		req.setAttribute("voList", voList);
 		req.getRequestDispatcher("/views/board/questionBoard.jsp").forward(req, resp);
+		
+		
+		
+		
+		
+		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }//class

@@ -13,7 +13,7 @@ public class QuestionBoardService {
 
 	private final QuestionBoardDao dao = new QuestionBoardDao();
 	
-		/////////////////////문의글 목록//////////////////// 
+	/////////////////////문의글 목록//////////////////// 
 	public ArrayList<QuestionBoardVo> selectList() {
 		
 		Connection conn = null;
@@ -33,14 +33,13 @@ public class QuestionBoardService {
 		return voList;
 	}
 	
-		/////////////////////문의글 작성//////////////////////
+	/////////////////////문의글 작성//////////////////////
 	public int insertBoard(QuestionBoardVo vo) {
-		//비지니스로직
+		
 		Connection conn = null;
 		int result = 0;
 		
 		try {
-			//DAO 호출
 			conn = getConnection();
 			result = new QuestionBoardDao().insertBoard(vo, conn);
 			
@@ -55,12 +54,11 @@ public class QuestionBoardService {
 			close(conn);
 		}
 		
-		//결과 리턴
 		return result;
 	
 	}
 
-		 /////////////////////문의글 조회수 증가/////////////////////
+		/////////////////////문의글 조회수 증가/////////////////////
 		public int increaseBoard(String num) {
 			
 			Connection conn = null;
@@ -70,7 +68,6 @@ public class QuestionBoardService {
 				
 				conn = getConnection();
 				
-				//DAO 호출
 				result = new QuestionBoardDao().increaseBoard(conn, num);
 				
 				if(result == 1) {
@@ -89,7 +86,7 @@ public class QuestionBoardService {
 		}
 
 		
-		///////////////// 조회수 ////////////////////
+		///////////////// 조회수 증가 ////////////////////
 		public QuestionBoardVo selectOne(String num) {
 			
 			Connection conn = null;
@@ -98,7 +95,6 @@ public class QuestionBoardService {
 			try {
 				conn = getConnection();
 				
-				//DAO 호출
 				vo = new QuestionBoardDao().selectOne(conn, num);
 			}catch(Exception e){
 				e.printStackTrace();
@@ -108,6 +104,63 @@ public class QuestionBoardService {
 			return vo;
 		}
 	
+		///////////////// 문의글 삭제 ////////////////////
+		public int delete(String num) {
+			
+			Connection conn = null;
+			int result = 0;
+			
+			try {
+				conn = getConnection();
+				
+				result = new QuestionBoardDao().delete(conn, num);
+				
+				if(result == 1) {
+					commit(conn);
+				}else {
+					rollback(conn);
+				}
+			}catch(Exception e){
+				rollback(conn);
+				e.printStackTrace();
+			}finally {
+				close(conn);
+			}
+			
+			return result;
+		}
+		
+		///////////////// 문의글 수정 ////////////////////
+		public int edit(QuestionBoardVo vo) {
+			
+			if(vo.getqTitle().length() < 1) {
+				return -1;
+			}
+			
+			if(vo.getqContent().length() < 1) {
+				return -2;
+			}
+			Connection conn = null;
+			int result = 0;
+			
+			conn = getConnection();
+			try {
+			
+				result = dao.edit(conn, vo);
+				
+				if(result == 1) {
+					commit(conn);
+				}else {
+					rollback(conn);
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+				rollback(conn);
+			}finally {
+				close(conn);
+			}
+			return result;
+		}
 		
 		
 	
