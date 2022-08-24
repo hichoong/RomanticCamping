@@ -178,7 +178,7 @@
 						<div class="addInput">
 
 							<hr>
-							<input type="hidden" id="zonNum" value="1" min="1">
+							<input type="hidden" id="zonNum" value="0" min="0">
 							<div class="mb-3">
 								<label for="campZoneName" class="form-label">구역이름</label> 
 								<input class="form-control" type="text" id="campZoneName" name="campZoneName0" placeholder="구역이름을 입력해주세요" required>
@@ -337,6 +337,26 @@
 
 					});
 </script>
+
+
+<script>
+
+    function getHashNum() {
+        // 선택된 목록 가져오기
+        const query = 'input[name="hashTag"]:checked';
+        const selectedElements =
+            document.querySelectorAll(query);
+
+        // 선택된 목록의 갯수 세기
+        const selectedElementsCnt =
+            selectedElements.length;
+
+        // 출력
+
+        $('input[name=hashNum]').attr('value',selectedElementsCnt)
+    }
+</script>
+
 <script> 
     let i = 0;
     $(document).ready (function(){
@@ -397,25 +417,6 @@
     })
     
 </script>
-
-<script>
-
-    function getHashNum() {
-        // 선택된 목록 가져오기
-        const query = 'input[name="hashTag"]:checked';
-        const selectedElements =
-            document.querySelectorAll(query);
-
-        // 선택된 목록의 갯수 세기
-        const selectedElementsCnt =
-            selectedElements.length;
-
-        // 출력
-
-        $('input[name=hashNum]').attr('value',selectedElementsCnt)
-    }
-</script>
-
 
 
 <script>

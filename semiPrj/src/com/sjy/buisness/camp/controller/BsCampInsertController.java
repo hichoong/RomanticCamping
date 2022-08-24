@@ -55,7 +55,6 @@ public class BsCampInsertController extends HttpServlet{
 		String[] hashTag = req.getParameterValues("hashTag");
 
 		
-		//시설현황 데이터 받아오기
 		
 		//화면 불러오기
 		req.getRequestDispatcher("/views/buisness/campInsertForm.jsp").forward(req, resp);
