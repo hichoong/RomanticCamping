@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.campdetail.service.CampDetailService;
 import com.kh.campdetail.vo.CampDetailVo;
+import com.kh.review.vo.ReviewVo;
 import com.sjy.buisness.camp.vo.CampAttachmentVo;
 
 @WebServlet(urlPatterns = "/camp/detail")
@@ -24,7 +25,7 @@ public class CampDetailController extends HttpServlet{
 		String zoneNo = req.getParameter("zoneNo");
 		
 		//데이터 받아오면 삭제할 부분
-//		campCode = "1";
+//		campCode = "2";
 //		zoneNo = "2";
 		
 		//캠핑장 화면 표현 필요한 정보 얻어오기 
@@ -39,10 +40,14 @@ public class CampDetailController extends HttpServlet{
 		//구역 상세 이미지 경로와 이름 얻어오기
 		CampAttachmentVo campAttachVo = new CampDetailService().selectImg(campCode);
 		
+		//리뷰 얻어오기
+		ReviewVo reviewVo = new CampDetailService().selectReview(campCode);
+		
 		
 		req.setAttribute("campVo", campVo);
 		req.setAttribute("hashTag", hashTag);
 		req.setAttribute("facList", facList);
+		req.setAttribute("reviewVo", reviewVo);
 		req.setAttribute("campAttachVo", campAttachVo);
 		
 		req.getRequestDispatcher("/views/campDetailPage/campDetailPage.jsp").forward(req, resp);

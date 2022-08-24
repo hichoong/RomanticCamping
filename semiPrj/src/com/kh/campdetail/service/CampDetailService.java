@@ -9,6 +9,7 @@ import java.util.List;
 import com.kh.campdetail.repository.CampDetailDao;
 import com.kh.campdetail.vo.CampDetailVo;
 import com.kh.campzonelist.campzone.vo.CampZoneVo;
+import com.kh.review.vo.ReviewVo;
 import com.sjy.buisness.camp.vo.CampAttachmentVo;
 
 public class CampDetailService {
@@ -73,6 +74,23 @@ public class CampDetailService {
 		close(conn);		
 		
 		return facList;	
+	}
+	
+	/*
+	 * 리뷰 얻어오기
+	 */
+	public ReviewVo selectReview(String campCode) {
+		
+		Connection conn = getConnection();
+		
+		ReviewVo reviewVo = null;
+		reviewVo = dao.selectReview(conn, campCode); 
+		
+		close(conn);		
+		
+		return reviewVo;	
+		
+	
 	}
 
 }//class
