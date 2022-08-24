@@ -7,149 +7,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>중고게시판 상세보기 페이지</title>
 <style>
-	*{
-		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
-	}
 
-	/* 제일큰틀 */
-	#freeboard-trade-detail-outer{
-		border: 1px solid red;
-        height: auto;
-	}
+	<%@ include file="/resource/css/freeBoardCSS/freeBoardTradeEdit.css" %>
 
-	
-	#fb_img{
-        display: flex;
-        height: 28%;
-        margin: 0 auto;
-		padding: 0px;
-        border: 1px solid red;
-    }
-
-
-	#fb_info{
-		display: flex;
-        height: 5%;
-        border: 1px solid red;
-    }
-
-
-	#fb_section{
-        height: auto;
-        margin: 0 auto;
-		padding: 0px;
-        border: 1px solid red;
-		vertical-align: baseline;
-    }
-
-	#fbeditTitle{
-		width : 100%;
-		font-size : 3rem;
-	}
-	
-	#textarea{
-		width : 100%;
-		border :1px solid red;
-	}
-	
-	#fb_reple{
-		display: flex;
-		flex-direction: column;
-		flex-wrap: nowrap;
-        height: auto;
-        border: 3px solid blue;
-    }
-    
-    #fb_my_reple{
-    	display: flex;
-		flex-direction: column;
-    	height:100px;
-    	width:100%;
-    	border: 1px solid red;
-    }
-
-	/* 2차 틀 */
-	#fb_img>div{
-		margin: 0 auto;
-		padding: 0px;
-        height: 100%;
-        border: 2px solid darkred;
-    }
-
-	/* 꾸미기 */
-
-	#fbt-div-outer{
-		margin: 0 auto;
-		height: 100%;
-		width: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		border: 1px solid brown;
-	}
-
-
-	#fbt-left-div{
-		display: flex;
-		margin-left: 8px;
-		border: 1px solid blue;
-		flex-direction: column;
-	}
-
-
-	#fbt-right-div{
-		display: flex;
-		margin-right: 8px;
-		border: 1px solid blue;
-		flex-direction: column;
-	}
-
-
-
-	/* 보더라인 */
-	.fbt-top-line{
-		width: 100%;
-        height: 1%;
-		background-color: rgb(240, 225, 203);
-        margin-bottom: 1%;
-        margin-top: 1%;
-	}
-
-
-	/*  */
-
-		
-	.fb2-story-date{
-		font-size: 2rem;
-		margin-top: 6px;
-		color: darkgray;
-		height: 8%;
-		border: 1px solid red;
-	}
-
-	#fb2-story-content{
-		font-size :1.5rem;
-		height: auto;
-		width: 100%;
-	}
-
-
-
-		
 </style>
 </head>
 <body>
 	<%@ include file="/views/common/header.jsp" %>	
 	
-	<h1> 여기는 중고거래게시판 상세보기 게시판</h1>
-	<div id="freeboard-trade-detail-outer" class="container">
+	
+		
+	<div id="freeboard-trade-edit-outer" class="container">
+	
+		<!-- 선추가 -->
+		<div class="fbt-top-line"></div>
+		
+		<h1 style="text-align:center;">게시글 수정하기 페이지</h1>
+		
+		<!-- 선추가 -->
+		<div class="fbt-top-line"></div>
 
-
-		<div id="fb_img" class="container">
+		<div id="trade-edit-img-outer" class="container">
 			<!-- Carousel -->
 			<div id="demo" class="carousel container " data-bs-ride="carousel">
 	
@@ -162,15 +42,16 @@
 					
 				<!-- The slideshow/carousel -->
 				<div class="carousel-inner container" style="width: 100%; height:600px;">
-					<div class="carousel-item active">
-							<img  src="<%=contextPath %>/resource/img/gsTest1.jpg" class="img-thumbnail" alt="Los Angeles" class="d-block" style="width:100%;">
-					</div>
-					<div class="carousel-item">
-							<img  src="<%=contextPath %>/resource/img/gsTest2.jpg" class="img-thumbnail" alt="Chicago" class="d-block" style="width:100%; ">
-					</div>
-					<div class="carousel-item">
-							<img  src="<%=contextPath %>/resource/img/gsTest3.jpg" class="img-thumbnail" alt="New York" class="d-block" style="width:100%; ">
-					</div>
+					
+					<c:forEach items="${fbavoList}" var="fbao">
+					
+						<div class="carousel-item active">
+								<img  src="<%=contextPath %>/resource/img/freeBoardTrade/${fbao.changeName}" class="img-thumbnail" alt="중고거래 이미지 불러오기 실패" class="d-block" style="width:100%; height:600px;">
+						</div>
+					
+					</c:forEach>
+					
+					
 				</div>
 					
 				<!-- Left and right controls/icons -->
@@ -189,20 +70,19 @@
 		<div class="fbt-top-line"></div>
 
 
-		<div id="fb_info" class="container">
+		<div id="trade-edit-info" class="container">
 
-			<div id="fbt-div-outer">
+			<div id="trade-edit-info-items">
 
 				<div id="fbt-left-div">
-					<div id="userId" >작성자 :${fbvo.writer }</div>
-					<div id="userGrade">회원등급 : ${fbvo.cnt }</div>
+					<div id="userGrade"><kbd>글번호 : ${fbvo.no }</kbd></div>
+					<div id="userId" ><kbd>작성자 :${fbvo.writer }</kbd></div>
 				</div>
 
 
-
 				<div id="fbt-right-div">
-					<div id="count">조회수 : ${fbvo.cnt }</div>
-					<div id="update_date"> 작성일자 : ${fbvo.enrollDate }</div>
+					<div id="count"><kbd>조회수 : ${fbvo.cnt }</kbd></div>
+					<div id="update_date"> <kbd>작성일자 : ${fbvo.enrollDate}</kbd></div>
 				</div>
 
 			</div>
@@ -212,21 +92,23 @@
 		<!-- 선추가 -->
 		<div class="fbt-top-line"></div>
 
-		<div id="fb_section" class="container">
+		<div id="trade-edit-section-main" class="container">
 
 			<form action="<%=contextPath%>/freeBoard/trade/edit" method="post">
 				<input type="hidden" value="${fbvo.no}" name="fbeditNo">
 				<input type="text" value="${fbvo.title}" name="fbeditTitle" id="fbeditTitle">
-				<textarea cols="130%" rows="13" id="d8-d-textarea" class="fb2-story-content" name="fbeditContent" id="fbeditContent" >${fbvo.content} </textarea>
+				<textarea cols="130%" rows="13"   name="fbeditContent" id="trade-edit-main-textarea" >${fbvo.content} </textarea>
 				
-				<p class="fb2-story-date">작성시간 : ${fbvo.enrollDate}</p>
-				<p class="fb2-story-date">조회 수 : ${fbvo.cnt}</p>
+				<p class="trade-edit-main-items">작성시간 : ${fbvo.enrollDate}</p>
+				<p class="trade-edit-main-items">조회 수 : ${fbvo.cnt}</p>
 				
+				<!-- 선추가 -->
+				<div class="fbt-top-line"></div>
 				
-				<div id="div-btn-area">
-					<input class="btn btn-success" type="submit" value="수정하기">
-					<input class="btn btn-success" type="reset" value="초기화">
-					<input class="btn btn-success" type="button" value="뒤로가기" onclick="history.go(-1)">
+				<div id="trade-edit-btn" class="container">
+					<input class="btn btn-primary" type="submit" value="수정하기">
+					<input class="btn btn-primary" type="reset" value="초기화">
+					<input class="btn btn-outline-light text-dark" type="button" value="뒤로가기" onclick="history.go(-1)">
 				</div>
 			</form>		
 			

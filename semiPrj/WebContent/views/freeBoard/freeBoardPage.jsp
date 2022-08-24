@@ -32,7 +32,7 @@
 <title>자유게시판</title>
 <style>
 	
-	 <%@ include file="/resource/css/gsFreeB.css" %>
+	 <%@ include file="/resource/css/freeBoardCSS/freeBoardMainPage.css" %>
 	
 	
 </style>
@@ -42,19 +42,17 @@
 	<%@ include file="/views/common/header.jsp" %>
 	
 	
-	<!-- href링크는 게시글 번호로 그 번호에 맞는 상세페이지로 이동시키기 -->
-	
+		
 	<div id="freeBoardTrade-outer" class="container">
-
+		
+		<!-- 중고거래 게시판 영역 -->
 		<div id="tradeBoard" class="container">
+		
 			<p class="tradeBoard-title">중고거래</p>
-			
-			
 			<p class="tradeBoard-title-2">중고거래 인기글 </p>
 			
-			
-			<div id="tradeBoard-1" class="container">
-				
+			<!-- 중고거래 인기글 영역 ( 현재 조회 수 높은 6개 보여주고 있음 ) -->			
+			<div id="tradeBoard-main-item" class="container">
 				
 				<c:forEach items="${fbMainList}" var="fblist" >
 						<div class ="menu-items">
@@ -70,14 +68,11 @@
 						</a>
 					</div>
 				</c:forEach>
-				
 			
 
 			</div>
-
-
+			<!-- 중고거래 게시글 영역  -->
 			<div class="Board-table-outer" class="container">
-				
 				<table id="Board-table-outer-main" class="container">
 
 					<thead>
@@ -89,7 +84,8 @@
 							<th>작성일</th>
 						</tr>
 					</thead>
-
+					
+					<!-- 중고거래 모든 글 가져오기 -->
 					<c:forEach items ="${fbvoList}" var="fbvo">
 					
 						<tbody>
@@ -111,18 +107,14 @@
 						
 					</c:forEach>
 					
-					
 
 
 				</table>
-				
-			
 			</div>
 
 
-
-
-
+			
+			<!-- 중고거래 페이징 처리( pageLimit 과 boardLimit 5개씩 보여주도록 처리 )  -->
 			<div class="fb-page-area">
 
 			
@@ -145,10 +137,9 @@
 				<%} %> 
 				
 				
-				
 			</div>
 
-			
+			<!-- 글 작성 버튼 영역 ( 로그인한 유저만 글 작성하도록 처리 )  -->	
 			<div id="tradeBoard-2" >
 				
 				
@@ -166,17 +157,17 @@
 
 
 		
-		<!-- 자유게시판 이동 -->
 		
+		<!-- 자유게시판 영역 -->
 		<div id="freeBoard" class="container">
+
 			<p class="tradeBoard-title" >자유게시판</p>
-			
 			<p class="tradeBoard-title-2"> 자유게시판 인기글 목록 </p>
-			
+						
+						
+			<!-- 자유게시판 인기글 영역 ( 현재 조회 수 높은 6개 보여주고 있음 ) -->	
 			<div id="freeBoard-1" class="container">
 
-
-				<!-- el문으로 -->
 				<c:forEach items="${fMainList}" var="flist">
 							<div class="freeBoard-1-story">
 								<a href="<%=contextPath %>/freeBoard/detail?num=${flist.no}" class="freeBoard-1-story-outer">
@@ -192,6 +183,7 @@
 			</div>
 
 
+			<!-- 자유게시판 게시글 영역  -->
 			<div class="Board-table-outer" class="container">
 				
 				<table id="Borad-table-main" class="container">
@@ -230,7 +222,7 @@
 			</div>
 
 
-
+			<!-- 자유게시판 페이징 처리( pageLimit 과 boardLimit 5개씩 보여주도록 처리 )  -->
 			<div class="fb-page-area">
 
 				
@@ -271,6 +263,8 @@
 		</div>
 
 
+
+	<!-- 각각의 게시글 목록에서 게시글 선택하면 상세페이지로 이동하도록 이벤트 걸어주기 -->
 	<script>
 		$(function(){
 			$('#Borad-table-main>tbody>tr').click(function(){
@@ -281,6 +275,8 @@
 			});
 		})
 	</script>
+	
+	
 	<script>
 		$(function(){
 			$('#Board-table-outer-main>tbody>tr').click(function(){
@@ -307,6 +303,8 @@
 	</div><!-- body 끝 -->
 
 	<%@include file="/views/common/footer.jsp" %>
+	
+	
 	
 	
 	<!-- 중고거래 작성 모달 The Modal -->

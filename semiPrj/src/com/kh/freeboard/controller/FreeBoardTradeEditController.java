@@ -1,6 +1,7 @@
 package com.kh.freeboard.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.freeboard.attachment.vo.FreeBoardAttachmentVo;
 import com.kh.freeboard.service.FreeBoardService;
 import com.kh.freeboard.service.FreeBoardTradeService;
 import com.kh.freeboard.vo.FreeBoardTradeVo;
@@ -26,10 +28,18 @@ public class FreeBoardTradeEditController extends HttpServlet{
 		//서비스호출 - 만들어놓은 조회해오는 메서드활용
 		FreeBoardTradeVo fbvo = new FreeBoardTradeService().selectOne(num);
 		
+		
 		//결과에 따라, 화면 선택
 		if(fbvo != null) {
 			//성공 //수정하기 화면 보여주기
+			
+			//디비에 가서, 특정 게시글에 맞는 파일 조회
+			List<FreeBoardAttachmentVo> fbavoList = new FreeBoardTradeService().selectFile(num);
+			
+			req.setAttribute("fbavoList", fbavoList);
 			req.setAttribute("fbvo", fbvo);
+			
+			
 			req.getRequestDispatcher("/views/freeBoard/freeBoardTradeEdit.jsp").forward(req, resp);
 		}else {
 			//실패

@@ -60,4 +60,19 @@ public class CampDetailService {
 		return campAttachVo;	
 	}
 
+	/*
+	 * 시설물 얻어오기
+	 */
+	public List<String> selectFac(String campCode) {
+		
+		Connection conn = getConnection();
+		
+		List<String> facList = null;
+		facList = dao.selectfac(conn, campCode); 
+		
+		close(conn);		
+		
+		return facList;	
+	}
+
 }//class

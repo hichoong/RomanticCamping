@@ -77,9 +77,8 @@ public class CampDetailDao {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		//해시태그 10개까지만 받기
+		
 		List<String> hashCode = new ArrayList<String>();
-		int check = 0;
 		String sql = "SELECT HM.*, H.HT_NAME FROM( SELECT CAMP_CODE, HT_CODE FROM HASHTAG_MAPPING WHERE CAMP_CODE = ? )HM JOIN HASHTAG H ON HM.HT_CODE = H.HT_CODE";
 		
 		
@@ -152,7 +151,74 @@ public class CampDetailDao {
 		
 		return campAttachVo;
 		
-		return null;
+	}
+	/*
+	 * 시설 리스트 얻어오기
+	 */
+	public List<String> selectfac(Connection conn, String campCode) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<String> facList = new ArrayList<String>();
+		String sql = "SELECT WIFI, ELECTRO, HOTWATER, PET, STORE, FWOOD, PLAYGROUND, TRAIL, POOL FROM CAMP_FAC WHERE CAMP_CODE=?";
+		
+		
+		try{
+		
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, campCode);
+		
+		rs = pstmt.executeQuery();
+		
+		//rs -> obj로 바꿔주는 작업 필요
+		if(rs.next()) {
+			if(rs.getString("WIFI")!= null) {
+				facList.add("와이파이");
+			}
+			
+			if(rs.getString("ELECTRO")!= null) {
+				facList.add("전기");
+			}
+			
+			if(rs.getString("HOTWATER")!= null) {
+				facList.add("온수");
+			}
+			
+			if(rs.getString("PET")!= null) {
+				facList.add("반려견동반");
+			}
+			
+			if(rs.getString("STORE")!= null) {
+				facList.add("매점");
+			}
+			
+			if(rs.getString("FWOOD")!= null) {
+				facList.add("장작판매");
+			}
+			
+			if(rs.getString("PLAYGROUND")!= null) {
+				facList.add("운동장");
+			}
+			
+			if(rs.getString("TRAIL")!= null) {
+				facList.add("산책로");
+			}
+			
+			if(rs.getString("POOL")!= null) {
+				facList.add("물놀이장");
+			}
+		}
+		
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return facList;
 	}
 
 }//class

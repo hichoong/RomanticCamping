@@ -23,15 +23,18 @@ public class CampDetailController extends HttpServlet{
 		String campCode = req.getParameter("campCode");
 		String zoneNo = req.getParameter("zoneNo");
 		
-		//받아오면 삭제할 부분
-		campCode = "1";
-		zoneNo = "2";
+		//데이터 받아오면 삭제할 부분
+//		campCode = "1";
+//		zoneNo = "2";
 		
 		//캠핑장 화면 표현 필요한 정보 얻어오기 
 		CampDetailVo campVo = new CampDetailService().selectOne(campCode,zoneNo);
 		
-		//테마 보여주기 위해 가져오기
+		//해시태그 보여주기 위해 가져오기
 		List<String> hashTag = new CampDetailService().selectHashTag(campCode);
+		
+		//시설물 보여주기 위해 가져오기
+		List<String> facList = new CampDetailService().selectFac(campCode);
 		
 		//구역 상세 이미지 경로와 이름 얻어오기
 		CampAttachmentVo campAttachVo = new CampDetailService().selectImg(campCode);
@@ -39,6 +42,7 @@ public class CampDetailController extends HttpServlet{
 		
 		req.setAttribute("campVo", campVo);
 		req.setAttribute("hashTag", hashTag);
+		req.setAttribute("facList", facList);
 		req.setAttribute("campAttachVo", campAttachVo);
 		
 		req.getRequestDispatcher("/views/campDetailPage/campDetailPage.jsp").forward(req, resp);
