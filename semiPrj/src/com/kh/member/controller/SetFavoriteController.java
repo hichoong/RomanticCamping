@@ -1,7 +1,6 @@
 package com.kh.member.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,23 +8,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.camplist.campinfo.vo.CampInfoVo;
 import com.kh.member.service.MemberFavoriteService;
 import com.kh.member.vo.MemberVo;
 
-@WebServlet(urlPatterns = "/member/favorite")
-public class GetFavoriteController extends HttpServlet{
-	
+@WebServlet(urlPatterns = "/member/setFavorite")
+public class SetFavoriteController extends HttpServlet{
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		String campCode = req.getParameter("campCode");
 		String no = ((MemberVo)req.getSession().getAttribute("loginMember")).getNo();
+		int result = -1;
+		if(campCode != null) {			
+			result = new MemberFavoriteService().setFavorite(campCode, no);
+		}
 		
-		List<CampInfoVo> list = new MemberFavoriteService().getFavorite(no);
 		
-		req.setAttribute("favoriteList", list);
-		req.getRequestDispatcher("/views/member/myFavoritePage.jsp").forward(req, resp);
-	
+		if(result == 1) {
+			resp.getWriter().write("T");
+		} else {
+			resp.getWriter().write("F");
+		}
+		
 	}
-
 }

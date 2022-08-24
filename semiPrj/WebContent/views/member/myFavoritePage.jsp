@@ -49,7 +49,7 @@
 	                </div>
 	            </div>
 	            <div class="location-right">
-	                <button class="reversed-btn" onclick="location.href='<%=contextPath%>/zone/list?num=${favorite.campCode}'">캠핑장 바로가기</button>
+	                <button class="reversed-btn" onclick="location.href='<%=contextPath%>/zone/list?campCode=${favorite.campCode}'">캠핑장 바로가기</button>
 	                <button class="reversed-btn" data-bs-toggle="modal" data-bs-target="#CancleWish" onclick="getCampNo(${favorite.campCode});" >찜삭제</button>
 	            </div>
 	        </div>
@@ -92,7 +92,7 @@
     	}
     	
     	function deleteFavorite() {
-    		location.href="<%=contextPath%>/member/deleteFavorite?campNo="+campNo;
+    		location.href="<%=contextPath%>/member/deleteFavorite?campCode="+campNo;
     	}
     </script>
     

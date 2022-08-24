@@ -98,7 +98,7 @@
 		                </div>
 		                <span>리뷰 내용 : ${board.reviewContent} </span>
 		                <div class="location-right">
-		                	<button class="basic-btn" onclick="location.href='<%=contextPath%>/zone/list?num=${board.campCode}'">캠핑장 가기</button>
+		                	<button class="basic-btn" onclick="location.href='<%=contextPath%>/zone/list?campCode=${board.campCode}'">캠핑장 가기</button>
 		                	<button class="basic-btn" onclick="location.href='<%=contextPath%>/review/edit?reservationNo=${board.reservationNo}'">리뷰 수정</button>
 		                </div>
 		            </div>
@@ -107,7 +107,7 @@
 
 			 <c:if test="${ status eq 'Q' }">
     		 	<c:forEach items="${boardList}" var="board">
-		            <div class="contentBox clickBox" onclick="">
+		            <div class="contentBox clickBox" onclick="location.href='<%=contextPath%>/question/detail?num=${board.qNo}'">
 		            	<div class="flexstyle-sb">
 		                    <span>제목 : ${board.qTitle}</span>
 		                    <span>문의일자 : ${board.qUpdateDate}</span>

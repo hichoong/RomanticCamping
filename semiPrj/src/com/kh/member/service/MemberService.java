@@ -201,31 +201,5 @@ public class MemberService {
 		
 		return pwd;
 	}
-
-	public List<CampInfoVo> getFavorite(String no) {
-		
-		Connection conn = getConnection();
-		List<CampInfoVo> list = dao.getFavorite(conn, no);
-		
-		close(conn);
-		
-		return list;
-	}
-
-	public int deleteFavorite(String campCode, String no) {
-
-		Connection conn = getConnection();
-		int result = dao.deleteFavorite(conn, campCode, no);
-		
-		if(result == 1) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		}
-		
-		close(conn);
-		
-		return result;
-	}
 	
 }

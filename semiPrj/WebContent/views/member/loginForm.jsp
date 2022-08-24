@@ -48,11 +48,11 @@
                   <label for="pwd" class="form-label">비밀번호:</label>
                   <input type="password" class="form-control" id="pwd" placeholder="비밀번호를 입력하세요." name="pwd">
                 </div>
-                <div class="form-check mb-3">
+                <!-- <div class="form-check mb-3">
                   <label class="form-check-label">
                     <input class="form-check-input" type="checkbox" name="remember"> 아이디 저장
                   </label>
-                </div>
+                </div> -->
                 <div class="errorDiv">
                 	${empty errorMsg ? "" : errorMsg }
                 </div>

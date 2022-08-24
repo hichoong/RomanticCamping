@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.camplist.campinfo.vo.CampInfoVo;
 import com.kh.campzonelist.campzone.vo.CampZoneVo;
 import com.kh.campzonelist.service.CampZoneListService;
+import com.kh.member.service.MemberFavoriteService;
+import com.kh.member.vo.MemberVo;
 
 @WebServlet(urlPatterns = "/zone/list")
 public class CampZoneListController extends HttpServlet {
@@ -25,17 +27,17 @@ public class CampZoneListController extends HttpServlet {
 		
 		List<CampZoneVo> zoneList = new CampZoneListService().selectList(campCode);
 		
+		int check = -1;
+		if(req.getSession().getAttribute("loginMember") != null && ((MemberVo)req.getSession().getAttribute("loginMember")).getType().equals("U")) {
+			String no = ((MemberVo)req.getSession().getAttribute("loginMember")).getNo();
+			check = new MemberFavoriteService().checkFavorite(campCode, no);
+		}
 		
 		req.setAttribute("campInfoVo", campInfoVo);
 		req.setAttribute("zoneList", zoneList);
+		req.setAttribute("check", check);
 		req.getRequestDispatcher("/views/camp/campZoneList.jsp").forward(req, resp);
 	}
-	
-	
-	
-	
-	
-	
 	
 	
 }
