@@ -21,7 +21,7 @@
         <section>
             <div id="info-box">
               <div class="camp-name">${campInfoVo.campName}</div>
-              <img id="camp-zone-img" src="<%=contextPath%>/resource/img/test.jpg" alt="캠핑장 대표 이미지">
+              <img id="camp-zone-img" src="${campInfoVo.campImgpath}" alt="캠핑장 대표 이미지">
               <div id="camp-addr">${campInfoVo.city} ${campInfoVo.district} ${campInfoVo.campAddress}</div>  
               <div id="camp-phone">${campInfoVo.campPhone}</div>
 	          <c:if test="${not empty loginMember}">
@@ -40,7 +40,7 @@
 		                 <div class="card mb-3" style="max-width: 800px;" onclick="location.href='<%=contextPath %>/camp/detail?campCode=${campInfoVo.campCode}&zoneNo=<%=z.getZoneNo()%>'">
 		                    <div class="row no-gutters">
 		                      <div class="col-md-4">
-		                        <img src="<%=contextPath %>/resource/img/test.jpg" class="card-img" alt="캠핑장 구역이미지">
+		                        <img src="<%=z.getZoneImgPath() %>" class="card-img" alt="캠핑장 구역이미지">
 		                      </div>
 		                      <div class="col-md-8">
 		                        <div class="card-body">

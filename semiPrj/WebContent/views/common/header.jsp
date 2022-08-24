@@ -73,8 +73,8 @@
 
   <header class="header">
     <div>
-      <span>tel: 000-0000-0000</span>
-      <span>email: 000</span>
+      <span>tel: 02-1472-1472</span> |
+      <span>email: nm1472@nangmancamping.me</span>
     </div>
   </header>
 
@@ -117,14 +117,15 @@
 	        <li><a class="dropdown-item" href="<%=contextPath%>/member/logout">로그아웃</a></li>
         <%} else if(loginMember.getType().equals("B")) { %>
 	        <li><a class="dropdown-item" href="<%=contextPath%>/member/myPage">마이페이지</a></li>
-        	<li><a class="dropdown-item" href="<%=contextPath%>/views/buisness/campRsvForm.jsp">예약 확인</a></li>
-	        <li><a class="dropdown-item" href="<%=contextPath%>/views/buisness/campSearchForm.jsp">내 캠핑장</a></li>
+        	<li><a class="dropdown-item" href="<%=contextPath%>/bscamp/reservation">예약 확인</a></li>
+	        <li><a class="dropdown-item" href="<%=contextPath%>/bscamp/search">내 캠핑장</a></li>
 	        <li><hr class="dropdown-divider"></hr></li>
 	        <li><a class="dropdown-item" href="<%=contextPath%>/views/buisness/campQuestion.jsp">캠핑장 문의사항</a></li>
 	        <li><a class="dropdown-item" href="<%=contextPath%>/views/buisness/campSvcCenter.jsp">고객센터 Q&A</a></li>
 	        <li><hr class="dropdown-divider"></hr></li>
 	        <li><a class="dropdown-item" href="<%=contextPath%>/member/logout">로그아웃</a></li>
         <%} else if(loginMember.getType().equals("A")) { %>  
+        	<li><a class="dropdown-item" href="<%=contextPath%>/views/campRequest/campDetailRequest.jsp">캠핑장 등록 확인</a></li>
         	<li><a class="dropdown-item" href="<%=contextPath%>">문의글 확인</a></li>
         	<li><hr class="dropdown-divider"></hr></li>
 	        <li><a class="dropdown-item" href="<%=contextPath%>/member/logout">로그아웃</a></li>
