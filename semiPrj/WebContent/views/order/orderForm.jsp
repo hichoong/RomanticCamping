@@ -9,9 +9,12 @@
 <html>
 <head>
     <title>상품 예약</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <style>
+    	
+    </style>
 </head>
 <body>
 	<!--헤더  -->
@@ -34,12 +37,11 @@
 		          <li class="list-group-item d-flex justify-content-between lh-sm">
 		            <div>
 		              <h6 class="my-0">${zoneName}</h6>
-		              <input type="hidden" name="zoneName" id="zoneName">
+		              <input type="hidden" name="zoneName" id="zoneName" value="${zoneName}">
 		              <small class="text-muted" id="reservaionCheckDate"> ${checkin}~${checkout}</small>	
 		              <small class="text-muted" id="reservaionNop">숙박인원 : ${reservaionNop} </small>
 		            </div>
-		            <span class="text-muted" id="campPrice"> ${campPrice}</span>
-		            
+		            <span class="text-muted" id="campPrice"> ${campPrice}  </span>
 		          </li>
 		          
 		          <li class="list-group-item d-flex justify-content-between bg-light">
@@ -52,12 +54,11 @@
 		          </li>
 		          <li class="list-group-item d-flex justify-content-between">
 		            <span>총 결제금액</span>
-		            <strong id="totalCost">${campPrice}</strong>
-		            <input type="hidden" id="campPrice" name="campPrice">
+		            <input type="text" id="totalCost" name="totalCost" readonly style="text-align:right" value="${campPrice}">   
+		            
+		            <%-- <strong id="totalCost">${campPrice}</strong> --%>
 		          </li>
 		        </ul>
-		        
-		        
 		          <div class="input-group">
 		            <input type="text" class="form-control" placeholder="프로모션 코드">
 		            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#selectCoupon">제출</button>
@@ -76,7 +77,7 @@
 		              <label for="userName" class="form-label">이름</label>
 		              <div class="input-group has-validation">
 		                <span class="input-group-text">*</span>
-		                <input type="text" class="form-control" name="reName" id="reName"  value="" placeholder="예약자명" required>
+		                <input type="text" class="form-control" name="reName" id="reName"  value="${reservationName}" placeholder="예약자명" required>
 		              <div class="invalid-feedback">
 		                  이름 작성 필수.
 		                </div>
@@ -92,7 +93,7 @@
 		
 		            <div class="col-12">
 		              <label for="address" class="form-label">연락처</label>
-		              <input type="tel" class="form-control" minlength="10" name="address" id="address" placeholder="-부호 제외" required>
+		              <input type="tel" class="form-control" minlength="10" name="address" id="address" placeholder="-부호 제외" required value="${address}">
 		              <div class="invalid-feedback">
 		               연락처를 입력해 주세요.
 		              </div>
@@ -100,7 +101,7 @@
 		
 		            <div class="col-12">
 		              <label for="address2" class="form-label">요청사항<span class="text-muted">(선택사항)</span></label>
-		              <input type="text" class="form-control" name="requestion" id="requestion" placeholder="" value="없음">
+		              <input type="text" class="form-control" name="requestion" id="requestion" placeholder="" value="${requestion}">
 		            </div>
 					<br><br><br><br><br>
 		          </div>
@@ -201,7 +202,7 @@
 	             <input type="hidden"  id="reservationAddr" value="${reservationAddr}" name="reservationAddr">
 	             <input type="hidden"  id="Checkin" value="${checkin}"  name="Checkin">
 		         <input type="hidden"  id="Checkout" value="${checkout}" name="Checkout" >
-	             <input type="hidden"  id="couponName" value="${couponName}" name="couponName">
+	             <input type="hidden"  id="couponCode" value="" name="couponCode">
 		          <button class="w-100 btn btn-primary btn-lg btn btn-danger" type="submit">결제하기</button>
 		        </form>
 		      </div>
@@ -224,9 +225,8 @@
 		<div class="modal-body">
 		  소유한 쿠폰 : 
 				<select name="쿠폰선택" id="select-coupon">
-				   	<option value="0" id="select-coupon-cost">없음</option>
-				 
-				 if(couponList != null && couponList != "") <%{%>
+				   	<option value="0" id="select-coupon-cost">없음</option> 
+				 <% if(couponList != null ) {%>
 				 	 <% for(CouponVo v : couponList) {%>
 			   		<option value="<%=v.getCouponDiscount()%>" id="select-coupon-cost"><%=v.getCouponName()%></option>
 	   				<%}%>
@@ -256,20 +256,13 @@ $(document).ready(function() {
 
 	// 쿠폰 모달창 선택 시 이벤트
 	$("#coupon-button").click(function(){
-    	
 		$("#couponCost").text($("#select-coupon").val());
     	$("#couponName").text($("#select-coupon option:selected").text());
-    	
-    	
+    	$("#couponCode").val($("#select-coupon option:selected").text());
     	var  origin= $("#campPrice").text().replace(/,/g, '') ; 
-    	
     	var  coupon = $("#select-coupon").val().replace(/,/g, '') ; 
-    	
     	var total = origin - coupon;
-
-    	total = $("#totalCost").text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-    	
-		
+    	total = $("#totalCost").val(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 	});
 	}); 
 	

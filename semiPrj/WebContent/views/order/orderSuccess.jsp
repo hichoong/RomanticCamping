@@ -37,14 +37,14 @@
 		</div>
 	</div>
 	<div class="container">
-		<h2 class="alert alert-warning"> <%="reservationVo.getCampName() "%>을 예약해 주셔서 감사합니다.</h2>
+		<h2 class="alert alert-warning"> <%=reservationVo.getCampName()%>을 예약해 주셔서 감사합니다.</h2>
 	</div>
 	<div class="container" >
-		<p>예약자 명 : <%="reservationVo.getReservationName()" %>  </p>
-		<p>결제금액 :  <%="orderVo.getPayAmount()" %></p>
-		<p>예약날짜 :  <%="reservationVo.getReservationCheckin()" %>~ <%="reservationVo.getReservationCheckout()" %></p>
-		<p>숙박인원 :  <%="reservationVo.getReservationNop()" %></p>
-		<p>요청사항 :  <%="reservationVo.getRequest()" %></p>
+		<p>예약자 명 : <%=reservationVo.getReservationName() %>  </p>
+		<p>결제금액 :  <%=orderVo.getPayAmount() %></p>
+		<p>예약날짜 :  <%=reservationVo.getReservationCheckin() %> ~ <%=reservationVo.getReservationCheckout() %></p>
+		<p>숙박인원 :  <%=reservationVo.getReservationNop() %></p>
+		<p>요청사항 :  <%=reservationVo.getRequest() %></p>
 	</div>
 	<div class="container">
 			<p><a href="<%=contextPath%>" class="btn btn-warning ">
