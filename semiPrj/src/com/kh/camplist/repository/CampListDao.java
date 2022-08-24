@@ -163,7 +163,6 @@ public class CampListDao {
 			close(rs);
 			close(pstmt);
 		}
-		
 		return list;
 		
 	}

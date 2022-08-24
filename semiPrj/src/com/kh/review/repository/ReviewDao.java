@@ -15,7 +15,7 @@ public class ReviewDao {
 	//캠핑장 정보 조회
 	public CampInfoVo campSelect(Connection conn, String reservationNo) {
 		
-		String sql = "SELECT CAMP_CODE, CAMP_NAME, CITY, DISTRICT, CAMP_ADDRESS, CAMP_INTRO, CAMP_IMGPATH FROM CAMP_INFO WHERE CAMP_CODE IN (SELECT CAMP_CODE FROM RESERVATION WHERE RE_NO = ? ) AND CAMP_STATUS = 'Y'";
+		String sql = "SELECT CAMP_CODE, CAMP_NAME, CITY, DISTRICT, CAMP_ADDRESS, CAMP_INTRO, CAMP_IMGPATH FROM CAMP_INFO WHERE CAMP_CODE IN (SELECT CAMP_CODE FROM RESERVATION WHERE NO = ? ) AND CAMP_STATUS = 'Y'";
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -110,9 +110,8 @@ public class ReviewDao {
 			pstmt.setString(1, vo.getReservationNo());
 			pstmt.setString(2, vo.getReviewContent());
 			pstmt.setString(3, vo.getStarScore());
-			pstmt.setString(4, vo.getCampCode()); //캠핑장 번호 받아오기
+			pstmt.setString(4, vo.getCampCode());
 
-			//SQL 실행
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -73,19 +73,31 @@ $('document').ready(function() {
 	}
   });
 
+	//지역 검색 조건 유지
   let sidoChecked = $("select[name^=sido]").attr('sidoChecked');
   if(sidoChecked != ""){
     $("select[name^=sido]").val(sidoChecked).prop("selected", true);
     $("select[name^=sido]").trigger('change');
   }
   
+  //테마 검색 조건 유지
   $(function(){
-    let themeChecked = $('#themeChecked').attr('themeChecked');
+    let themeChecked = $('#themeChecked').val();
     if(themeChecked != ""){
       $("input:radio[name='theme']:radio[value='" + themeChecked + "']").prop('checked', true)
     }
   })
+	
+	//해시태그 검색 조건 유지
+  $(function(){
+    let checkedTags = $('#checkedTags').val();
+    let checkedTagList = JSON.parse(checkedTags);
 
+    for(let i=0; checkedTagList.length > i ; i++){
+      let value = checkedTagList[i];
+      $("[tagid='tagid" + value + "']").click();
+    }      
+  })
   
 
 });
