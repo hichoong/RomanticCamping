@@ -1,6 +1,7 @@
 package com.kh.order.service;
 
 import java.sql.Connection;
+import java.text.SimpleDateFormat;
 
 import com.kh.common.JDBCTemplate;
 import com.kh.order.repository.OrderDao;
@@ -8,7 +9,6 @@ import com.kh.order.vo.OrderVo;
 import com.kh.order.vo.ReservationVo;
 
 public class OrderService {
-	
 	//결제정보에 들어갈 비지니스 로직
 	public int insertPayment (OrderVo orderVo) {
 		//커넥션 준비

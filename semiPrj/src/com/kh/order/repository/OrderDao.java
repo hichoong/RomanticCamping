@@ -13,7 +13,7 @@ public class OrderDao {
 	public int insertPayment(Connection conn, OrderVo orderVo) {
 		PreparedStatement pstmt = null;
 		int result = 0; 
-		String sql = "INSERT INTO PAYMENT( PAY_CODE , RE_NO , PAY_AMOUNT , PAY_METHOD , C_CODE ) VALUES( SEQ_PAYMENT_NO.NEXTVAL , SEQ_RESERVATION_NO.CURRVAL , ? , ? , ? )";
+		String sql = "INSERT INTO PAYMENT( PAY_CODE , RE_NO , PAY_AMOUNT , PAY_METHOD , C_CODE ) VALUES( SEQ_PAYMENT_NO.NEXTVAL , SEQ_PAYMENT_NO.CURRVAL , ? , ? , ? )";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
