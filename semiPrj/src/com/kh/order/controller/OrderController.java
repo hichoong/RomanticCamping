@@ -25,8 +25,10 @@ public class OrderController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			
-		if(((MemberVo)req.getSession().getAttribute("loginMember")).getNo() != null ) {
-			
+		if(((MemberVo)req.getSession().getAttribute("loginMember")).getNo() == null ) {
+			req.setAttribute("errorMsg", "오류 발생");
+			req.getRequestDispatcher("/views/error/errorPage.jsp").forward(req, resp);
+		}else {
 			//숙박일수 구하기
 			long days = 0;
 			try {
@@ -37,8 +39,26 @@ public class OrderController extends HttpServlet {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			//숙박일에 따른 가격
+			//숙박일계산로직
 			int price = Integer.parseInt(req.getParameter("campPrice")) ;
+			//숙박인원에 따른 가격 추가?
+			int nop = Integer.parseInt(req.getParameter("reservationNop"));
+			if(nop == 3) {
+				price = price + 10000;
+			}
+			else if(nop == 4) {
+				price = price + 20000;
+			}
+			else if(nop == 5) {
+				price = price + 30000;
+			}
+			else if(nop == 6) {
+				price = price + 40000;
+			}
+			else {
+				
+			}
+			//숙박일에 따른 가격
 			long result_ = price * days;
 			//데이터 포맷(콤마생성하기)
 			NumberFormat numberFormat = NumberFormat.getInstance();
@@ -62,10 +82,7 @@ public class OrderController extends HttpServlet {
 			req.setAttribute("address", req.getParameter("reservationPhone"));
 			//화면으로 넘겨주기
 			req.getRequestDispatcher("/views/order/orderForm.jsp").forward(req, resp);
-		} else {
-			List<CouponVo> couponList = new CouponService().selectCouponList("0");
-			req.setAttribute("couponList", couponList); //유저쿠폰리스트
-		}
+		}	
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -96,7 +113,7 @@ public class OrderController extends HttpServlet {
 			req.setAttribute("orderVo", orderVo);
 			req.setAttribute("reservationVo", reservationVo);
 			req.setAttribute("zoneName", req.getParameter("zoneName"));
-			req.setAttribute("alertMsg", "결제 성공");
+			req.getSession().setAttribute("alertMsg", "결제 성공");
 			req.getRequestDispatcher("/views/order/orderSuccess.jsp").forward(req, resp);
 		} else {
 			req.setAttribute("errorMsg", "결제실패");
