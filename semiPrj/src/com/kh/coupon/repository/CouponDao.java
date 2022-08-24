@@ -12,38 +12,6 @@ import com.kh.coupon.vo.CouponVo;
 
 public class CouponDao {
 
-	//유저 쿠폰리스트 조회하기
-	public List<CouponVo> selectCouponList(Connection conn, String no) {
-		//기본작업
-		List<CouponVo> couponList = new ArrayList<CouponVo>();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		//sql 작성하기
-		String sql = "SELECT C.NAME AS NAME , C.DISCOUNT AS COST, C.CODE AS CODE FROM USER_COUPON_LIST U JOIN COUPON_LIST C ON U.C_CODE = C.CODE "
-				+ "WHERE U.U_STATUS = 'N' AND U.USER_NO = ?";
-		System.out.println("쿠폰조회 sql :::" + sql);
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, no);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				String name = rs.getString("NAME");
-				String cost = rs.getString("COST");
-				String code = rs.getString("CODE");
-				CouponVo vo = new CouponVo();
-				vo.setCouponName(name);
-				vo.setCouponDiscount(cost);
-				vo.setCouponCode(code);
-				couponList.add(vo);
-			}		
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(pstmt);
-			JDBCTemplate.close(rs);
-		}
-		return couponList;
-	}
 	//유저 쿠폰 사용
 	public int useCoupon(Connection conn, String no, String couponCode) {	
 		PreparedStatement pstmt = null;
@@ -64,7 +32,8 @@ public class CouponDao {
 		return result;
 	}
 
-	public List<CouponVo> selectCouponListInfo(Connection conn, String no) {
+	//유저 쿠폰 리스트 조회하기
+	public List<CouponVo> selectCouponList(Connection conn, String no) {
 		
 		List<CouponVo> list = new ArrayList<CouponVo>();
 		PreparedStatement pstmt = null;

@@ -11,17 +11,6 @@ import com.kh.member.vo.MemberVo;
 
 public class CouponService {
 
-	//유저 쿠폰리스트 보여주기
-	public List<CouponVo> selectCouponList (String no) {
-		//커넥션 얻기
-		Connection conn = null;
-		conn = JDBCTemplate.getConnection();
-		//유저 쿠폰리스트 조회하기
-		List<CouponVo> couponList = new ArrayList<CouponVo>();
-		couponList = new CouponDao().selectCouponList(conn, no);
-		return couponList;
-	}
-
 	//유저 쿠폰 사용
 	public int useCoupon(String no, String couponCode) {
 		//커넥션 얻기
@@ -36,10 +25,11 @@ public class CouponService {
 		return result;
 	}
 
-	public List<CouponVo> selectCouponListInfo(String no) {
+	//유저 쿠폰리스트 보여주기
+	public List<CouponVo> selectCouponList(String no) {
 
 		Connection conn = JDBCTemplate.getConnection();
-		List<CouponVo> list = new CouponDao().selectCouponListInfo(conn, no);
+		List<CouponVo> list = new CouponDao().selectCouponList(conn, no);
 		
 		JDBCTemplate.close(conn);
 		
