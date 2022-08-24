@@ -6,9 +6,6 @@
 <meta charset="UTF-8">
 <title>낭만캠핑</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/memberCommon.css" type="text/css">
-<style>
-
-</style>
 </head>
 <body>
 	<%@ include file="/views/common/header.jsp" %>
@@ -44,7 +41,7 @@
 	                </div>
                 <%} %>
                 <div class="location-center">
-                    <button type="reset" class="basic-btn" onclick="genderCheck();">초기화</button>
+                    <button id="resetBtn" type="reset" class="basic-btn">초기화</button>
                     <button type="submit" class="basic-btn">수정완료</button>
                 </div>
                 <div class="location-right mt-3">
@@ -128,6 +125,18 @@
 				return false;
 			}
 		}
+		
+		$("#resetBtn").click(function() {       
+	        this.form.reset();                    
+	        
+	        $('input[name=gender]').each(function(){
+				if(this.value =='${loginMember.gender}') {
+					this.checked = true;
+				}
+			});    
+
+	         return false;
+	    });
 		
 	</script>
 
