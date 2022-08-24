@@ -87,7 +87,7 @@ public class MemberBoardDao {
 
 	public List<ReviewVo> getReview(Connection conn, String no) {
 
-		String sql = "SELECT R.R_NO, R.R_DATE, SUBSTR(R.R_CONTENT, 1, 30) CONTENT, R.R_NUM, R.RE_NO, C.CAMP_NAME FROM REVIEW R JOIN RESERVATION RE ON R.RE_NO = RE.NO JOIN CAMP_INFO C ON R.CAMP_CODE = C.CAMP_CODE WHERE RE.USER_NO = ? AND R.R_STATUS = 'Y' ORDER BY R_DATE DESC ";
+		String sql = "SELECT R.R_NO, R.R_DATE, SUBSTR(R.R_CONTENT, 1, 30) CONTENT, R.R_NUM, R.RE_NO, C.CAMP_NAME, R.CAMP_CODE FROM REVIEW R JOIN RESERVATION RE ON R.RE_NO = RE.NO JOIN CAMP_INFO C ON R.CAMP_CODE = C.CAMP_CODE WHERE RE.USER_NO = ? AND R.R_STATUS = 'Y' ORDER BY R_DATE DESC ";
 		
 		List<ReviewVo> list = new ArrayList<ReviewVo>();
 		PreparedStatement pstmt = null;
@@ -108,6 +108,7 @@ public class MemberBoardDao {
 				vo.setEnrollDate(rs.getString("R_DATE"));
 				vo.setReservationNo(rs.getString("RE_NO"));
 				vo.setCampName(rs.getString("CAMP_NAME"));
+				vo.setCampCode(rs.getString("CAMP_CODE"));
 				
 				list.add(vo);
 			}
