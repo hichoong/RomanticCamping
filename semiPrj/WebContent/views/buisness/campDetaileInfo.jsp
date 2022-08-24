@@ -81,8 +81,8 @@
 	BsCampVo bsvo = (BsCampVo)request.getAttribute("bsVo");
 	System.out.println("bsvo"+bsvo);
 	
-	String kk =(bsvo.getCampImgPath()).replaceAll("''\'", "/");
-	String mainImgPath = kk.substring(41);
+/* 	String kk =(bsvo.getCampImgPath()).replaceAll("''\'", "/");
+	String mainImgPath = kk.substring(41); */
 	
 %>
 <head>
@@ -226,8 +226,8 @@
 						<label for="campRepImg" class="form-label">* 대표이미지:</label> 
 						<input type="hidden" value="<%=bsvo.getCampImgPath()%>" name="campMainImgPath">
 						
-						<%System.out.println(contextPath+mainImgPath); %>
-						<img alt="" src="<%=contextPath%><%=mainImgPath %>" width="200px" height="200px"> 
+						<%-- <%System.out.println(contextPath+mainImgPath); %> --%>
+						<img alt="" src="<%=bsvo.getCampImgPath() %>" width="200px" height="200px"> 
 					</div>
 
 
