@@ -2,16 +2,16 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%
-    List<CampZoneVo> zoneList = (List<CampZoneVo>)request.getAttribute("zoneList");
-    
-    %>
+<%
+    List<CampZoneVo> zoneList = (List<CampZoneVo>)request.getAttribute("zoneList");    
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>낭만캠핑</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/campZoneList.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/memberCommon.css">
 </head>
 <body>
 
@@ -21,9 +21,15 @@
         <section>
             <div id="info-box">
               <div class="camp-name">${campInfoVo.campName}</div>
-              <img id="camp-zone-img" src="/semiPrj/resource/img/test.jpg" alt="캠핑장 대표 이미지">
+              <img id="camp-zone-img" src="<%=contextPath%>/resource/img/test.jpg" alt="캠핑장 대표 이미지">
               <div id="camp-addr">${campInfoVo.city} ${campInfoVo.district} ${campInfoVo.campAddress}</div>  
               <div id="camp-phone">${campInfoVo.campPhone}</div>
+	          <c:if test="${not empty loginMember}">
+	          	<div align="center">       		
+		          	<button id="doFav" class="basic-btn" onclick="setFav();">찜하기</button>
+	          		<button id="cancleFav" class="basic-btn" onclick="deleteFav();">찜취소</button>
+		         </div>
+	          </c:if>
             </div>
 
             <div class="camp-list">
@@ -62,6 +68,66 @@
     </div>
     
     <%@include file="/views/common/footer.jsp" %>
+    
+    <script>
+    
+	    function setFav() {
+			var code = ${campInfoVo.campCode};
+			
+			$.ajax({
+				url : "<%=contextPath%>/member/setFavorite",
+				method : "GET",
+				data : {campCode : code},
+				success : function(data){ 
+					if(data == 'T'){
+						$("#doFav").css('display','none');
+						$("#cancleFav").css('display','block');
+					} else {
+						alert("오류가 발생했습니다. 나중에 다시 시도해주세요.")
+					}
+				},
+				error : function(eee){
+					alert("오류가 발생했습니다. 나중에 다시 시도해주세요.");
+				}
+			});
+		}
+    
+	    function deleteFav() {
+	    	var code = ${campInfoVo.campCode};
+	    	
+	    	$.ajax({
+				url : "<%=contextPath%>/member/deleteFavorite",
+				method : "POST",
+				data : {campCode : code},
+				success : function(data){ 
+					if(data == 'T'){
+						$("#cancleFav").css('display','none');
+						$("#doFav").css('display','block');
+					} else {
+						alert("오류가 발생했습니다. 나중에 다시 시도해주세요.")
+					}
+				},
+				error : function(eee){
+					alert("오류가 발생했습니다. 나중에 다시 시도해주세요.");
+				}
+			});
+		}
+	    
+	    $(function(){
+	    	var check = ${check};
+	    	
+	    	if(check == 0) {
+	    		$("#doFav").css('display','block');
+				$("#cancleFav").css('display','none');
+	    	} else if(check == 1) {
+				$("#doFav").css('display','none');
+	    		$("#cancleFav").css('display','block');
+	    	} else {
+	    		$("#doFav").css('display','none');
+				$("#cancleFav").css('display','none');
+	    	}
+	    });
+    </script>
     
 </body>
 </html>

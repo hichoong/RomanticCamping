@@ -17,16 +17,18 @@ public class SetFavoriteController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String campCode = req.getParameter("campNo");
+		String campCode = req.getParameter("campCode");
 		String no = ((MemberVo)req.getSession().getAttribute("loginMember")).getNo();
+		int result = -1;
+		if(campCode != null) {			
+			result = new MemberFavoriteService().setFavorite(campCode, no);
+		}
 		
-		int result = new MemberFavoriteService().setFavorite(campCode, no);
 		
 		if(result == 1) {
-			resp.sendRedirect(req.getContextPath()+"/zone/list?campCode="+campCode);
+			resp.getWriter().write("T");
 		} else {
-			req.getSession().setAttribute("alertMsg", "찜 설정에 실패했습니다. 나중에 다시 시도해주세요");
-			resp.sendRedirect(req.getContextPath()+"/zone/list?campCode="+campCode);
+			resp.getWriter().write("F");
 		}
 		
 	}

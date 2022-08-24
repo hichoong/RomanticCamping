@@ -92,7 +92,7 @@
     	}
     	
     	function deleteFavorite() {
-    		location.href="<%=contextPath%>/member/deleteFavorite?campNo="+campNo;
+    		location.href="<%=contextPath%>/member/deleteFavorite?campCode="+campNo;
     	}
     </script>
     
