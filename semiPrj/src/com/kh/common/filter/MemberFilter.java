@@ -21,6 +21,7 @@ public class MemberFilter implements Filter{
 		if(((HttpServletRequest)request).getSession().getAttribute("loginMember") != null) {
 			chain.doFilter(request, response);
 		} else {
+			((HttpServletRequest)request).getSession().setAttribute("alertMsg", "로그인 후 이용해주세요.");
 			request.getRequestDispatcher("/").forward(request, response);
 		}
 		
