@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kh.campdetail.vo.CampDetailVo;
+import com.kh.review.vo.ReviewVo;
 import com.sjy.buisness.camp.vo.CampAttachmentVo;
 
 public class CampDetailDao {
@@ -219,6 +220,48 @@ public class CampDetailDao {
 		}
 		
 		return facList;
+	}
+
+	public ReviewVo selectReview(Connection conn, String campCode) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ReviewVo reviewVo = null;
+		
+		String sql = "SELECT R.R_NO ,R.RE_NO ,R.R_DATE ,R.R_CONTENT ,R.R_NUM ,R.R_UPDATED ,RV.NAME FROM REVIEW R JOIN RESERVATION RV ON R.RE_NO = RV.NO WHERE R.CAMP_CODE=?";
+		
+		
+		try{
+		
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, campCode);
+		
+		rs = pstmt.executeQuery();
+		
+		//rs -> obj로 바꿔주는 작업 필요
+		while(rs.next()) {
+			
+			//vo객체에 담아주기
+			reviewVo = new ReviewVo();
+			
+			reviewVo.setReviewNo(rs.getString("R_NO"));
+			reviewVo.setReviewContent(rs.getString("RE_NO"));
+			reviewVo.setEnrollDate(rs.getString("R_DATE"));
+			reviewVo.setReviewContent(rs.getString("R_CONTENT"));
+			reviewVo.setStarScore(rs.getString("R_NUM"));
+			reviewVo.setReviewUpdated(rs.getString("NAME"));
+			
+			}
+		
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return reviewVo;
 	}
 
 }//class

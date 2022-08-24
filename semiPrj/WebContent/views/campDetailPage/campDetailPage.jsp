@@ -223,68 +223,41 @@
 
                 <section>
                         
+                        
+                    <c:if test="${empty reviewVo}">
+                    	<h2 style="text-align:center; color:lightgray;"> 리뷰를 기다리고 있습니다. </h2>
+                    </c:if>    
+                        
+                        
+                        
+                        
                     <div class="camp-review-result">
                         <div class="camp-review-scope">
                             <span class="star">★</span>
-                            <span class="star-scope-avg">4.16</span>
+                            <span class="star-scope-avg">${reviewVo.starScore}</span>
                         </div>
-                        <div>리뷰 수</div>
+                    </div>
+					
+					
+					
+                    <div class="camp-review-list">
+                        <div class="camp-review">
+                            <div class="star-scope">
+                              ★ ${reviewVo.starScore} 점
+                            </div>
+                            <div class="name-date">
+                                ${reviewVo.reviewUpdated}<br>
+                                <fmt:parseDate value="${reviewVo.enrollDate}" var="reviewDate" pattern="yyyy-MM-dd HH:mm:ss"></fmt:parseDate>
+								<fmt:formatDate value="${reviewDate}" pattern="yyyy년 MM월 dd일" />
+                            </div>
+                            <div class="review-text">
+                                ${reviewVo.reviewContent}
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="camp-review-list">
-                        <div class="camp-review">
-                            <div class="star-scope">
-                                ★★★★★
-                            </div>
-                            <div class="name-date">
-                                김 **  2022.08.07
-                            </div>
-                            <div class="review-text">
-                                캠핑장이 좋네요 짱짱 굿 
-                            </div>
-                        </div>
-                    </div>
 
-
-                    <div class="camp-review-list">
-                        <div class="camp-review">
-                            <div class="star-scope">
-                                ★★★★★
-                            </div>
-                            <div class="name-date">
-                                김 **  2022.08.07
-                            </div>
-                            <div class="review-text">
-                                캠핑장이 좋네요 짱짱 굿 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="camp-review-list">
-                        <div class="camp-review">
-                            <div class="star-scope">
-                                ★★★★★
-                            </div>
-                            <div class="name-date">
-                                김 **  2022.08.07
-                            </div>
-                            <div class="review-text">
-                                캠핑장이 좋네요 짱짱 굿 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="camp-review-list">
-                        <div class="camp-review">
-                            <div class="star-scope">
-                                ★★★★★
-                            </div>
-                            <div class="name-date">
-                                김 **  2022.08.07
-                            </div>
-                            <div class="review-text">
-                                캠핑장이 좋네요 짱짱 굿 
-                            </div>
-                        </div>
-                    </div>
+              
 
                 </section>
 
