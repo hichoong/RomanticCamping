@@ -99,7 +99,7 @@
 		<div id="content">
 
 			<form action="<%=contextPath %>/bscamp/update" method="post" enctype="multipart/form-data">
-				<h2>캠핑장 조회및 수정(데이터 가져와서 value값 넣기)</h2>
+				<h2>캠핑장 조회및 수정</h2>
 				
 				<hr>
 				<div style="overflow-x: hidden; width: 100%; height: 700px; padding-right: 10%">
@@ -143,24 +143,24 @@
 							placeholder="와이파이 전기 온수 반려견동반 매점 장작판매 운동장 산책로 물놀이장" name="camp"
 							>
 								
-							    <input type="checkbox" name="facility" id="ft1" class="facility" value="w" >
+							    <input type="checkbox" name="facility" id="ft1" class="facility" value="w" onclick="getftNum();">
 							    <label for="ft1" >와이파이</label>
-							    <input type="checkbox" name="facility" id="ft2" class="facility" value="e" >
+							    <input type="checkbox" name="facility" id="ft2" class="facility" value="e" onclick="getftNum();">
 							    <label for="ft2">전기</label>
-							    <input type="checkbox" name="facility" id="ft3" class="facility" value="h" >
+							    <input type="checkbox" name="facility" id="ft3" class="facility" value="h" onclick="getftNum();">
 							    <label for="ft3">온수</label>
-							    <input type="checkbox" name="facility" id="ft4" class="facility" value="p" >
+							    <input type="checkbox" name="facility" id="ft4" class="facility" value="p" onclick="getftNum();">
 							    <label for="ft4">반려견동반</label>
-							    <input type="checkbox" name="facility" id="ft5" class="facility" value="s" >
+							    <input type="checkbox" name="facility" id="ft5" class="facility" value="s" onclick="getftNum();">
 							    <label for="ft5">매점</label>
 							    
-							    <input type="checkbox" name="facility" id="ft6" class="facility" value="f" >
+							    <input type="checkbox" name="facility" id="ft6" class="facility" value="f" onclick="getftNum();">
 							    <label for="ft6">장작판매</label>
-							    <input type="checkbox" name="facility" id="ft7" class="facility" value="g" >
+							    <input type="checkbox" name="facility" id="ft7" class="facility" value="g" onclick="getftNum();">
 							    <label for="ft7">운동장</label>
-							    <input type="checkbox" name="facility" id="ft8" class="facility" value="t" >
+							    <input type="checkbox" name="facility" id="ft8" class="facility" value="t" onclick="getftNum();">
 							    <label for="ft8">산책로</label>
-							    <input type="checkbox" name="facility" id="ft9" class="facility" value="o" >
+							    <input type="checkbox" name="facility" id="ft9" class="facility" value="o" onclick="getftNum();">
 							    <label for="ft9">물놀이장</label>
 							    
 					</div>
@@ -214,9 +214,8 @@
 
 
 					<div class="mb-3">
-						<label for="campRepImg" class="form-label">* 대표이미지:</label> 
-						<%=bsvo.getCampImgPath()%>
-						<img alt="" src="<%=bsvo.getCampImgPath()%>" width="200px" height="200px">
+						<label for="campRepImg" class="form-label">* 대표이미지:</label> <br>
+						<img alt="" src="<%=bsvo.getCampImgPath()%>" width="500px" height="300px">
 						<br>
 						<label for="changeCampMainImg" class="form-label" >수정파일 선택</label>
 						<input class="form-control" type="file" id="changeCampMainImg" name="changeCampMainImg" accept="image/*">
@@ -239,7 +238,7 @@
 									</div>
 									<div class="mb-3 " style="width: 30%">
 										<label for="maxGusests" class="form-label">일별 예약가능수(:명)</label> 
-										<input class="form-control" type="number" id="maxGusests" name="zoneNor0" min="1" value="<%=vo.getZoneNor() %>"" >
+										<input class="form-control" type="number" id="maxGusests" name="zoneNor" min="1" value="<%=vo.getZoneNor() %>"" >
 									</div>	
 									<div class="mb-3 " style="width: 30%">
 										<label for="campAreaPrice" class="form-label">가격(:원)</label> 
@@ -247,14 +246,12 @@
 									</div>
 									<div class="mb-3">
 										<label for="campAreaImg" class="form-label">구역 이미지(현재)</label>
+										<input type="hidden" value="<%=vo.getZoneImg()%>" name="nowCampZoneImg">
 										<br>
-										<%=vo.getZoneImg() %>
-										<img src="<%=vo.getZoneImg() %>" width="100" height="100">
-										<img src="https://www.w3schools.com/images/lamp.jpg" width="100" height="100">
-										<img alt="" src="../resource/upload/campImg/test1.png" width="100" height="100">
+										<img src="<%=contextPath %><%=vo.getZoneImg()%>" width="400px" height="200px">
 										<br><br>
 										<label for="changeCampAreaImg" class="form-label">변경할 이미지</label>
-										<input class="form-control" type="file" id="changeCampAreaImg" name="changeCampAreaImg" accept="image/*">
+										<input class="form-control" type="file" id="changeCampAreaImg" name="changeCampZonImg" accept="image/*">
 										
 									</div>
 									<br>
@@ -271,7 +268,7 @@
 					</div>
 
 						<div id="end">
-							<button  id="upDate" >수정요청</button>
+							<input  type="submit" id="upDate" value="수정요청">
 						</div>
 				</div>
 
@@ -447,6 +444,23 @@
 		})
 		
 </script>
+<script>
+
+    function getHashNum() {
+        // 선택된 목록 가져오기
+        const query = 'input[name="hashTag"]:checked';
+        const selectedElements =
+            document.querySelectorAll(query);
+
+        // 선택된 목록의 갯수 세기
+        const selectedElementsCnt =
+            selectedElements.length;
+
+        // 출력
+
+        $('input[name=hashNum]').attr('value',selectedElementsCnt)
+    }
+</script>
 
 <script>
 		$(function() {
@@ -493,7 +507,7 @@
 
 <script>
 
-    function getHashNum() {
+    function getftNum() {
         // 선택된 목록 가져오기
         const query = 'input[name="facility"]:checked';
         const selectedElements =
@@ -509,16 +523,10 @@
     }
 </script>
 
-<script>
-		$(function(){
-			$('#upDate').click(function(){
-				//해당 번호로 요청 보내기
-				location.href="<%=contextPath%>/bscamp/update?campCode=" + <%=bsvo.getCampCode()%>;
-				
-				
-			});
-		})
-</script>
+
+
+
+
 
 
 

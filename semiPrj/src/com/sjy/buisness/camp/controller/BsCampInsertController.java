@@ -207,6 +207,7 @@ public class BsCampInsertController extends HttpServlet{
 			ahVo.setCampOrignName(originName);
 			ahVo.setCampChangeName(changeName);
 			ahVo.setCampPath(realPath);
+			System.out.println("rP::"+realPath);
 		}
 		
         // 해시태그 맵핑테이블에 현재 입력하는 캠핑장 번호와 해쉬태그 번호 입력
@@ -318,21 +319,21 @@ public class BsCampInsertController extends HttpServlet{
 			//result = new BsCampService().campZoneInsert(zoneVo[i],i, ahVo2);
 		
 		}//FOR (i <zonNum)
+
 		resultCamp = new BsCampService().camp( campVo,ahVo,  hashNum ,hashTag, mvo.getNo(), zoneVo, ahVo2, zonNum, faVo);
 		System.out.println("결과 숫자::"+resultCamp);
-        //캠핑장 테이블 inserts
-        //resultCamp = new BsCampService().camp( campVo,ahVo,  hashNum ,hashTag, mvo.getNo());
-        if (resultCamp != 1) {
+		//캠핑장 테이블 inserts
+		//resultCamp = new BsCampService().camp( campVo,ahVo,  hashNum ,hashTag, mvo.getNo());
+		if (resultCamp != 1) {
 			System.out.println("캠핑장 등록오류");
 			req.getSession().setAttribute("alertMsg", "등록실패..");
 			req.getRequestDispatcher(req.getContextPath()).forward(req, resp);
 		}else {
 			//모든 등록이 완료되면 화면이동
 			req.getSession().setAttribute("alertMsg", "등록완료");
-			req.getRequestDispatcher("").forward(req, resp);
+			req.getRequestDispatcher("/").forward(req, resp);
 			//resp.sendRedirect(req.getContextPath());
 		}
 		
 	}
 }	
-

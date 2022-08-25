@@ -76,7 +76,7 @@
 	
 	//캠핑장 구역 정보가져오기
 	List<BsCampZoneVo> zoneList = (List<BsCampZoneVo>)request.getAttribute("zoneList");
-	
+	System.out.println(zoneList);
 	
 	BsCampVo bsvo = (BsCampVo)request.getAttribute("bsVo");
 	System.out.println("bsvo"+bsvo);
@@ -106,10 +106,10 @@
 
 		<div id="content">
 
-
-			<form action="<%=contextPath %>/bscamp/update" method="get">
+			<%System.out.println(bsvo.getCampCode());%>
+			<form action="<%=contextPath %>/bscamp/update" method="post">
 				<h2>캠핑장 조회 </h2>
-				
+				<input type="hidden" value="<%=bsvo.getCampCode()%>" name="campCode">
 				<hr>
 				<div style="overflow-x: hidden; width: 100%; height: 700px; padding-right: 10%">
 					<div><%=bsvo.getCampName() %></div>
@@ -223,11 +223,11 @@
 
 
 					<div class="mb-3">
-						<label for="campRepImg" class="form-label">* 대표이미지:</label> 
+						<label for="campRepImg" class="form-label">* 대표이미지:</label> <br>
 						<input type="hidden" value="<%=bsvo.getCampImgPath()%>" name="campMainImgPath">
 						
 						<%-- <%System.out.println(contextPath+mainImgPath); %> --%>
-						<img alt="" src="<%=bsvo.getCampImgPath() %>" width="200px" height="200px"> 
+						<img alt="" src="<%=bsvo.getCampImgPath() %>" width="500px" height="300px"> 
 					</div>
 
 
@@ -235,6 +235,7 @@
 					<div class="mb-3">
 						<div class="addInput">
 								<%System.out.println("zoneList"+zoneList);
+								
 								for(BsCampZoneVo vo : zoneList) { %>
 									<hr>
 									<input type="hidden" value="<%=zoneList.size() %>" name="zoneNum">
@@ -257,24 +258,25 @@
 									<div class="mb-3">
 										<label for="campAreaImg" class="form-label">구역이미지</label>
 										<br>
-										<%=vo.getZoneImg() %>
 										<hr>
-										<%=contextPath %>
 										<input type="hidden" value="<%=vo.getZoneImg() %>" name="zoneImgPath"> 
-										<img src="<%=vo.getZoneImg() %>" width="100" height="100">
+										<img src="<%=contextPath %><%=vo.getZoneImg()%>" width="400px" height="200px">
+								
 											
 									</div>
 									<br>
 								<%} %>
+						
 							<br>
 
 						</div>
 					</div>
-
+						
+					
 					<div class="md-3">
 						<label for="" class="form-label">* 등록일:</label> <input
 							type="datetime-local" class="form-control" id=""
-							placeholder="등록일" name="" value="<%=toDay%>" disabled>
+							placeholder="등록일" name="" value="<%=bsvo.getRgDate() %>" disabled>
 					</div>
 
 						<div id="end">
@@ -421,6 +423,8 @@
 		})
 	</script>
 
+
+	
 </body>
 
 </html>

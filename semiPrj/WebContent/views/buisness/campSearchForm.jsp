@@ -73,15 +73,16 @@
 			<h2>My camping</h2>
 			<span style="color:gray">&nbsp;&Tab;-&nbsp;내 캠핑장 조회 </span>
 			<hr>
-
+			
 			<div id="wrap"  style="overflow-y:scroll;">
                     <!-- 접속id에 맞는 회원의 캠핑장  -->
                      <!-- <article class=" shadow"><a href="campDetaileInfo.jsp"><img src="캠핑장메인이미지" alt=""><span>캠핑장이름</span></a></article> -->
-                     
                      <%if(!bsvo.isEmpty()){ %>
                      <%for(BsCampVo vo : bsvo){%>
+                     <%-- <%=vo.getCampImgPath() %> --%>
+                     
                     <article class=" shadow">
-                    	<img src="https://placehold.jp/200x200.png" alt="">
+                    	<img src=<%=vo.getCampImgPath() %> alt="" width="200px" height="200px">
                     	<input type="hidden" value="<%=vo.getCampCode()%>">
                     	<span><%=vo.getCampName() %></span>
                     </article>

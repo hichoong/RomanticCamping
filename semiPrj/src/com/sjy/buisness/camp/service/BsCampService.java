@@ -137,6 +137,9 @@ public class BsCampService {
 		int resultZone =0;
 		int resultZoneImg =0;
 		
+		System.out.println("campvo"+campVo);
+		System.out.println("ahvo"+ahVo);
+		System.out.println("mbNo"+mbNo);
 		result1 = new BsCampDao().campInsert(conn, campVo, ahVo, mbNo);
 		if (result1 != 1) {
 			System.out.println("캠핑장 등록오류");
@@ -291,6 +294,15 @@ public class BsCampService {
 		}else {rollback(conn);}
 		
 		return result;
+	}
+	
+	//캠핑장에 구역개수 가져오기
+	public int selectZoneCount(String code) {
+		Connection conn = null;
+		conn =  getConnection();
+		
+		int result =  dao.selectZoneCount(conn, code);
+		return 0;
 	}
 
 
