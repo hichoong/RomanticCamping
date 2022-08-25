@@ -38,7 +38,7 @@
 		<c:forEach items="${favoriteList}" var="favorite">
 	        <div class="contentBox">
 	            <div class="content">
-	                <img class="favoriteImg" src="<%=request.getContextPath()%>/resource/img/test.jpg">
+	                <img class="favoriteImg" src="${favorite.campImgpath}" alt="캠핑장 대표 이미지">
 	                <div class="mb-4">
 	                    <span>캠핑장 : ${favorite.campName}</span>
 	                    <span>전화번호 : ${favorite.campPhone}</span>
