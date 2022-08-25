@@ -31,13 +31,22 @@ public class ReservationController extends HttpServlet{
 		//캠핑장 정보 가져오기
 		List<BsCampVo> bsVo = new BsCampService().selectAllCamp(mvo.getNo());
 		
-		for(BsCampVo vo : bsVo) {
+		List<ReservationVo> rvList = null;
+		
 			//모든 예약 정보 가져오기
-			ReservationVo rgVo = new ReservationService().selectAllRsv(mvo.getNo());
+			
+			
+			for (int i = 1; i <=CampNum ; i++) {
+				System.out.println("i::" +i);
+				rvList= new ReservationService().selectAllRsv(i);
+				
+			}
 			//예약정보 개수가져오기
 			
-		}
 		
+		System.out.println(rvList);
+		
+		req.setAttribute("rvList", rvList);
 		req.getRequestDispatcher("/views/buisness/campRsvForm.jsp").forward(req, resp);
 	}
 }
