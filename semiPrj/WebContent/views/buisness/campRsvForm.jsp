@@ -1,5 +1,24 @@
+<%@page import="java.sql.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.sjy.buisness.reservation.vo.ReservationVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+//오늘 날짜 구하기
+
+SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+SimpleDateFormat time = new SimpleDateFormat("HH:mm");
+
+
+List<ReservationVo> rvList = (ArrayList<ReservationVo>)request.getAttribute("rvList");
+for(ReservationVo vo : rvList){
+	System.out.println("no::"+vo.getNo());
+	System.out.println("name::"+vo.getName());
+}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,30 +54,16 @@
 							</thead>
 							<tbody>
 								<!-- 예약상세보기 페이지를 요청하는 서블릿으로 이동 -->
+								<%for(ReservationVo vo : rvList){ %>
 								<tr  >
 									<input type="hidden" value="예약자의 회원번호">
-									<th scope="row">1</th>
+									<th scope="row"><%=vo.getNo() %></th>
 									
-									<td>Mark</td>
-									<td>_ _ _캠프</td>
-									<td>22-08-01~22-08-03</td>
+									<td><%=vo.getName() %></td>
+									<td><%=vo.getCampCode()%></td>
+									<td><%=vo.getCheckin() %>~<%=vo.getCheckout() %></td>
 								</tr>
-
-								<tr >
-									<input type="hidden" value="예약자의 회원번호">
-									<th scope="row">2</th>
-									<td>Mark</td>
-									<td>_ _ _캠프</td>
-									<td>22-08-01~22-08-03</td>
-								</tr>
-
-								<tr  >
-									<input type="hidden" value="예약자의 회원번호">
-									<th scope="row">3</th>
-									<td>Mark</td>
-									<td>_ _ _캠프</td>
-									<td>22-08-01~22-08-03</td>
-								</tr>
+								<%} %>
 							</tbody>
 						</table>
 

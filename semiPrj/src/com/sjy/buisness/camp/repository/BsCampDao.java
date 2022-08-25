@@ -101,10 +101,10 @@ public class BsCampDao {
 						,rs.getString("CAMP_ADDRESS")
 						,rs.getString("CAMP_PHONE")
 						,rs.getString("CAMP_INTRO")
+						,rs.getString("THEME_CODE")
 						,rs.getString("RG_DATE")
 						,rs.getString("CAMP_REFUND")
 						,rs.getString("CAMP_IMGPATH")
-						,rs.getString("THEME_CODE")
 						,rs.getString("THEME_CODE")
 						,rs.getString("CAMP_UPDATED")
 						,rs.getString("CAMP_STATUS")
@@ -226,7 +226,7 @@ public class BsCampDao {
 			pstmt.setString(6, campVo.getCampPhone());
 			pstmt.setString(7, campVo.getCampIntro());
 			pstmt.setString(8, campVo.getCampRefund());
-			pstmt.setString(9, ahVo.getCampPath() + "\\" + ahVo.getCampChangeName());//이미지는 업로드된파일에서 
+			pstmt.setString(9, (ahVo.getCampPath().substring(41) + "\\" + ahVo.getCampChangeName()));//이미지는 업로드된파일에서 
 			pstmt.setString(10, campVo.getTheme());
 			
 			//SQL 실행 및 결과 저장
@@ -258,7 +258,7 @@ public class BsCampDao {
 			pstmt.setString(2, zoneVo.getZonePrice());
 			pstmt.setString(3, zoneVo.getZoneName());
 			pstmt.setString(4, zoneVo.getZoneNor());
-			pstmt.setString(5, ahVo2.getCampPath()+ "\\" + ahVo2.getCampChangeName());
+			pstmt.setString(5, (ahVo2.getCampPath().substring(41)+  "\\" + ahVo2.getCampChangeName()));
 			//SQL 실행 및 결과 저장
 			result =  pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -548,6 +548,34 @@ public class BsCampDao {
 			
 			//SQL 실행 및 결과 저장
 			result =  pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		//결과리턴
+		return result;
+	}
+
+	//구역 개수
+	public int selectZoneCount(Connection conn, String code) {
+		
+		String sql = "SELECT COUNT(CAMP_CODE)AS \"C\"  FROM CAMP_ZONE WHERE CAMP_CODE=?";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		try {
+			//SQL 객체 담기 및 완성
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, code);
+			
+			//SQL 실행 및 결과 저장
+			rs =  pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result =Integer.parseInt(rs.getString("C"));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {

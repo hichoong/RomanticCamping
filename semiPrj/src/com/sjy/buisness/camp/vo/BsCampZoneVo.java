@@ -1,5 +1,8 @@
 package com.sjy.buisness.camp.vo;
 
+import java.security.Timestamp;
+import java.sql.Date;
+
 public class BsCampZoneVo {
 
 	private String zoneNo ; //구역번호
@@ -78,12 +81,18 @@ public class BsCampZoneVo {
 
 
 
+
+
+
 	@Override
 	public String toString() {
 		return "BsCampZoneVo [zoneNo=" + zoneNo + ", zoneStayMax=" + zoneStayMax + ", zonePrice=" + zonePrice
-				+ ", zoneName=" + zoneName + ", zoneNor=" + zoneNor + ", zoneImg=" + zoneImg + "]";
+				+ ", zoneName=" + zoneName + ", zoneNor=" + zoneNor + ", zoneImg=" + zoneImg 
+				+ "]";
 	}
 
+	
+	
 
 
 	
