@@ -11,6 +11,8 @@
 	List<String> hashTag = (List<String>)request.getAttribute("hashTag");
 	List<String> facList = (List<String>)request.getAttribute("facList");
 	LocalDate todayDate = LocalDate.now();
+	
+	
 %>    
     
 <!DOCTYPE html>
@@ -59,19 +61,10 @@
                     </div>
                         
                     <!-- The slideshow/carousel -->
-                    <div class="carousel-inner" style="width:100%; height:100%" >
-                        <%-- <div class="carousel-item active">
-                                <img src="<%=contextPath %>/resource/img/gsTest1.jpg" class="img-thumbnail" alt="Los Angeles" class="d-block" style="width:100%; height: 650px;">
-                        </div>
-                        <div class="carousel-item">
-                                <img  src="<%=contextPath %>/resource/img/gsTest2.jpg" class="img-thumbnail" alt="Chicago" class="d-block" style="width:100%; height: 650px;">
-                        </div>
-                         --%>
-                         <!-- 경로 수정되면 이걸로 사용하기 -->
-                        <div class="carousel-item">
-                        	<img  src="<%=contextPath %>/resource/img/upload/campImg/${campAttachVo.campChangeName}" class="img-thumbnail" alt="New York" class="d-block" style="width:100%; height: 650px;">
-                        	<%-- <img  src="${campVo.imgePath }" class="img-thumbnail" alt="New York" class="d-block" style="width:100%; height: 650px;"> --%>
-                        </div> 
+                    <div class="carousel-inner" style="width:100%; height:100%;" >
+                       
+                        	<img  src="${campVo.imgPath}" class="img-thumbnail" alt="New York" class="d-block" style="width:100%; height: 650px;">
+                         
                     </div>
                         
                     <!-- Left and right controls/icons -->
