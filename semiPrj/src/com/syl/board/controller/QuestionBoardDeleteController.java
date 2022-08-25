@@ -34,8 +34,4 @@ public class QuestionBoardDeleteController extends HttpServlet{
 			}
 		}
 
-	
-	
-	
-	
 }//class

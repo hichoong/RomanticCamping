@@ -17,7 +17,7 @@ public class QuestionBoardDao {
 	public ArrayList<QuestionBoardVo> selectList(Connection conn){
 		
 		//SQL
-		String sql = "SELECT * FROM QUESTIONBOARD WHERE Q_FREQ  = 'N'";
+		String sql = "SELECT Q_NO ,Q_TITLE , M.NAME AS Q_WRITER , Q_CNT , Q_UPDATE_DATE FROM QUESTIONBOARD Q JOIN MEMBER M ON Q_WRITER = M.NO WHERE Q_FREQ = 'N'";
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -43,7 +43,6 @@ public class QuestionBoardDao {
 				vo.setqUpdateDate(updateDate);
 				
 				list.add(vo);
-				
 			}
 			
 		}catch(Exception e) {
@@ -195,8 +194,40 @@ public class QuestionBoardDao {
 				close(pstmt);
 			}
 			return result;
-		}		
+		}
 		
+		
+		
+		/*
+		 * 게시글 총 갯수 조회
+		 */
+		public int getCount(Connection conn) {
+			
+			//SQL
+			String sql = "SELECT COUNT(Q_NO) AS COUNT FROM QUESTIONBOARD WHERE Q_FREQ = 'N'";
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			int count = 0;
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					count = rs.getInt("COUNT");
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+				close(rs);
+			}
+			
+			return count;
+			
+		}
 		
 	
 }//class

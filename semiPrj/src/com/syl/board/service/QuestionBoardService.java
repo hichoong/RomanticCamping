@@ -4,8 +4,11 @@ import static com.kh.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.kh.common.JDBCTemplate;
+import com.kh.common.PageVo;
+import com.kh.freeboard.vo.FreeBoardTradeVo;
 import com.syl.board.repository.QuestionBoardDao;
 import com.syl.board.vo.QuestionBoardVo;
 
@@ -163,5 +166,8 @@ public class QuestionBoardService {
 		}
 		
 		
+		
+		
+
 	
 }//class
