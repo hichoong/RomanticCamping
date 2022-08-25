@@ -1,4 +1,4 @@
-package com.syl.board.controller;
+package com.kh.camprequest.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,23 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.common.PageVo;
+import com.kh.camprequest.service.CampRequestService;
+import com.sjy.buisness.camp.vo.BsCampVo;
 import com.syl.board.service.QuestionBoardService;
 import com.syl.board.vo.QuestionBoardVo;
 
-@WebServlet (urlPatterns = "/question/list")
-public class QuestionBoardList extends HttpServlet {
+@WebServlet(urlPatterns = "/request/list")
+public class CampRequestList extends HttpServlet  {
 
-	private static final Object PageVo = null;
-
-	//글 목록 
+	//캠핑장 등록 요청 목록
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			
-		ArrayList<QuestionBoardVo> voList = new QuestionBoardService().selectList();
+		
+		ArrayList<BsCampVo> voList = new CampRequestService().selectList();
 		
 		req.setAttribute("voList", voList);
-		req.getRequestDispatcher("/views/board/questionBoard.jsp").forward(req, resp);
+		req.getRequestDispatcher("/views/campRequest/campDetailRequest.jsp").forward(req, resp);
 		
 	}
 	

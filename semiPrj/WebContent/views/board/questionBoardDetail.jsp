@@ -25,7 +25,7 @@
                   </tr>
                   <tr>
                     <th>작성자</th>
-                    <td><%=vo.getqWriter()%><</td>
+                    <td><%=vo.getqWriter()%></td>
                     <th>작성일</th>
                     <td><%=vo.getqUpdateDate()%></td>
                   </tr>

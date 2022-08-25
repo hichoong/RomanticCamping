@@ -125,7 +125,7 @@
 	        <li><hr class="dropdown-divider"></hr></li>
 	        <li><a class="dropdown-item" href="<%=contextPath%>/member/logout">로그아웃</a></li>
         <%} else if(loginMember.getType().equals("A")) { %>  
-        	<li><a class="dropdown-item" href="<%=contextPath%>/views/campRequest/campDetailRequest.jsp">캠핑장 등록 확인</a></li>
+        	<li><a class="dropdown-item" href="<%=contextPath%>/request/list">캠핑장 등록 확인</a></li>
         	<li><a class="dropdown-item" href="<%=contextPath%>">문의글 확인</a></li>
         	<li><hr class="dropdown-divider"></hr></li>
 	        <li><a class="dropdown-item" href="<%=contextPath%>/member/logout">로그아웃</a></li>
