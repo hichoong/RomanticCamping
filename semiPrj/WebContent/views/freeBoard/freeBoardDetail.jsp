@@ -70,7 +70,7 @@
 				
 				
 			
-				<!-- 버튼 영역 -- 글 작성자와 로그인한 사람이 같으면 글 수정/삭제 버튼 보여주기 -->	
+				<!-- 버튼 영역 - 글 작성자와 로그인한 사람이 같으면 글 수정/삭제 버튼 보여주기 -->	
 				<c:if test="${loginMember.name eq fvo.writer}">
 					<a href="<%= contextPath %>/freeBoard/edit?num=${fvo.no}"  class="btn btn-outline-info">게시글 수정하기</a>
 					<a href="<%= contextPath %>/freeBoard/delete?num=${fvo.no}"  class="btn btn-outline-danger">게시글 삭제하기</a>
@@ -102,7 +102,7 @@
 				<div class="select-reple">
 	
 					<div class="reple-id">
-						<!-- 로그인한 사람과 현재 보는 글 보는 사람이 같으면 수정 / 삭제 버튼 보이도록 해주기  -->
+						<!-- 로그인한 사람과 현재 보는 글 보는 사람이 같으면 삭제 버튼 보이도록 해주기  -->
 						<p>
 							<c:if test="${loginMember.name eq fr.writer}">
 								<a href="<%= contextPath %>/freeBoard/reple/delete?num=${fr.no}&pageNo=${fvo.no}"  class="btn btn-outline-danger">삭제하기</a>

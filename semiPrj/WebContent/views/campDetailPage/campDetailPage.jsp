@@ -37,6 +37,8 @@
 		
 		<!-- 선 추가 -->
 	    <div class="campDetail-line container"></div>
+	    
+	    <!-- 0. 헤더부분 캠핑장 구역이름 보여주기 -->
         <header class="container">
             <div id="cd-back"><button type="button" id="btn-back" name="btn-back" class="btn btn-outline-warning" onclik="history.back()" >&lt;</button></div>
             <div id="cd-name"><p class="btn btn-outline-warning" >${campVo.name} - ${campVo.getzName() }</p></div>
@@ -68,6 +70,7 @@
                          <!-- 경로 수정되면 이걸로 사용하기 -->
                         <div class="carousel-item">
                         	<img  src="<%=contextPath %>/resource/img/upload/campImg/${campAttachVo.campChangeName}" class="img-thumbnail" alt="New York" class="d-block" style="width:100%; height: 650px;">
+                        	<%-- <img  src="${campVo.imgePath }" class="img-thumbnail" alt="New York" class="d-block" style="width:100%; height: 650px;"> --%>
                         </div> 
                     </div>
                         
@@ -101,6 +104,8 @@
                     <p class="campDetail-sub-font-style"> 구역 최대 숙박인원 - ${campVo.stayMax} 명 </p>
                     <p class="campDetail-sub-font-style"> 일별 예약가능 팀 수 - ${campVo.getzNor()} 팀</p>
                 </div>
+                
+                <!-- 해시태그 불러오기 -->
                 <div id="campDetail-introduce-3">
                    
                     <%for(int i=0; i<hashTag.size(); i++) {%>
@@ -131,7 +136,8 @@
                 </div>
             </div>    
         </div>
-
+        
+		<!-- 선추가 -->
         <div class="campDetail-line container"></div>
         
         <!-- 4. 캠핑장 시설소개 부분 -->
@@ -150,6 +156,8 @@
                     <div style="border-top: 5px dashed darkkhaki; margin-bottom:20px;"></div>
                     <div id="campDetail-facility-2-2">
                         <div class="info-title">부가시설</div>
+                        
+                        <!--시설이름에 맞춰 이미지 보여주기  -->
                         <div class="fac-content-outer">
                         	<%for(int i=0; i<facList.size(); i++) {
                         		String facImgName = "";
@@ -173,7 +181,10 @@
             </div>  
         </div>
         
+        
+        <!-- 선추가 -->
         <div class="campDetail-line container"></div>
+        
         <!-- 5. 캠핑장 운영정책 부분 -->
         <div id="campDetail-policy" class="container ">
             <div id="campDetail-policy-d">
@@ -189,8 +200,9 @@
         </div>
 
         
-
+		<!-- 선추가 -->
         <div class="campDetail-line container"></div>
+        
         <!-- 6. 캠핑장 예약하기 -->
         <div id="campDetail-reservation" class="container ">
             <div id="campDetail-reservation-d">
@@ -211,8 +223,9 @@
         
 
 
-
+		<!-- 선추가 -->
         <div class="campDetail-line container"></div>	
+        
         <!-- 9. 리뷰페이지 -->
         <div id="campDetail-review-section" class="container">
             <div class="container">
@@ -220,42 +233,43 @@
                 <div class="review-title">
                     review
                 </div>
-
+				
+				<!-- 리뷰 보여주기 -->
                 <section>
                         
-                        
+                    <!-- 리뷰 없으면 안내 글  -->    
                     <c:if test="${empty reviewVo}">
                     	<h2 style="text-align:center; color:lightgray;"> 리뷰를 기다리고 있습니다. </h2>
                     </c:if>    
                         
                         
-                        
-                        
-                    <div class="camp-review-result">
-                        <div class="camp-review-scope">
-                            <span class="star">★</span>
-                            <span class="star-scope-avg">${reviewVo.starScore}</span>
-                        </div>
-                    </div>
-					
-					
-					
-                    <div class="camp-review-list">
-                        <div class="camp-review">
-                            <div class="star-scope">
-                              ★ ${reviewVo.starScore} 점
-                            </div>
-                            <div class="name-date">
-                                ${reviewVo.reviewUpdated}<br>
-                                <fmt:parseDate value="${reviewVo.enrollDate}" var="reviewDate" pattern="yyyy-MM-dd HH:mm:ss"></fmt:parseDate>
-								<fmt:formatDate value="${reviewDate}" pattern="yyyy년 MM월 dd일" />
-                            </div>
-                            <div class="review-text">
-                                ${reviewVo.reviewContent}
-                            </div>
-                        </div>
-                    </div>
-
+                    <!-- 리뷰 있으면 리뷰 모두 보여주기 -->    
+                    <c:if test="${not empty reviewVo }">
+	                    <div class="camp-review-result">
+	                        <div class="camp-review-scope">
+	                            <span class="star">★</span>
+	                            <span class="star-scope-avg">${reviewVo.starScore}</span>
+	                        </div>
+	                    </div>
+						
+						
+						
+	                    <div class="camp-review-list">
+	                        <div class="camp-review">
+	                            <div class="star-scope">
+	                              ★ ${reviewVo.starScore} 점
+	                            </div>
+	                            <div class="name-date">
+	                                ${reviewVo.reviewUpdated}<br>
+	                                <fmt:parseDate value="${reviewVo.enrollDate}" var="reviewDate" pattern="yyyy-MM-dd HH:mm:ss"></fmt:parseDate>
+									<fmt:formatDate value="${reviewDate}" pattern="yyyy년 MM월 dd일" />
+	                            </div>
+	                            <div class="review-text">
+	                                ${reviewVo.reviewContent}
+	                            </div>
+	                        </div>
+	                    </div>
+					</c:if>
 
               
 
@@ -348,7 +362,7 @@
 			</div>
 			
 			
-			<!-- 추가한 내용  -->
+			<!-- 결제에 필요한 정보들 넘겨주기  -->
 			<form action="<%=contextPath %>/order/orderForm" method="get">
 			  <div style="width:100%; height:auto; border-bottom: 2px dashed lightgray; border-top: 2px dashed lightgray;">
 				  가는날 선택 : <input type="date" value="<%= todayDate%>" min="<%= todayDate%>" max="2022-10-16" name="checkin">
@@ -361,11 +375,11 @@
 			  	<input type="hidden" value="${campVo.name}" name="campName">
 			  	<input type="hidden" value="${campVo.getzName()}" name="zoneName">
 			    <label for="reser-name" class="form-label">예약자명:</label>
-			    <input type="text" class="form-control" id="reser-name" placeholder="예약자분 이름을 입력해 주세요" name="reservationName">
+			    <input type="text" class="form-control" id="reser-name" placeholder="예약자분 이름을 입력해 주세요" name="reservationName" required>
 			  </div>
 			  <div class="mb-3">
 			    <label for="reser-phone" class="form-label">전화번호:</label>
-			    <input type="password" class="form-control" id="reser-phone" placeholder="예시) 01012345678" name="reservationPhone">
+			    <input type="text" class="form-control" id="reser-phone" placeholder="예시) 01012345678" name="reservationPhone" required>
 			  </div>
 			  
 			  
