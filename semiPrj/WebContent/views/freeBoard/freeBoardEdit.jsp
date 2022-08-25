@@ -20,7 +20,11 @@
 	
 	<div id="freeboard-edit-outer" class="container">
 
-
+		<!-- 선추가 -->
+		<div class="fbt-top-line"></div>
+		
+		<h1 style="text-align:center;">게시글 수정하기 페이지</h1>
+		
 		<!-- 선추가 -->
 		<div class="fbt-top-line"></div>
 

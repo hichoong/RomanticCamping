@@ -25,8 +25,8 @@ public class CampDetailController extends HttpServlet{
 		String zoneNo = req.getParameter("zoneNo");
 		
 		//데이터 받아오면 삭제할 부분
-//		campCode = "2";
-//		zoneNo = "2";
+//		campCode = "1";
+//		zoneNo = "1";
 		
 		//캠핑장 화면 표현 필요한 정보 얻어오기 
 		CampDetailVo campVo = new CampDetailService().selectOne(campCode,zoneNo);

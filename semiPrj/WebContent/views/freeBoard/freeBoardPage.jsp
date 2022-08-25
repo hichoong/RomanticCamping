@@ -58,7 +58,7 @@
 						<div class ="menu-items">
 						<a href="<%=contextPath %>/freeBoard/trade/detail?num2=${fblist.no}">
 						
-							<div id="tradeBoard-img-outer"><img src="<%=contextPath %>/resource/img/freeBoardTrade/${fblist.changeName}" alt=""></div>
+							<div id="tradeBoard-img-outer"><img src="<%=contextPath %>/resource/img/freeBoardTrade/${fblist.changeName}" alt="이미지 불러오기 실패" "></div>
 							<div >
 								<div class="tradeBoard-comment-outer"><span>${fblist.title}</span></div>
 								<p id="tradeBoard-subtitle1">${fblist.writer}</p>

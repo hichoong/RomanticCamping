@@ -13,7 +13,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	
 	<%@ include file="/resource/css/freeBoardCSS/freeBoardTradeDetail.css" %>
 </style>
 </head>
@@ -31,7 +30,7 @@
 		<div id="tradeBoard-img-outer" class="container">
 		
 		
-			<!-- Carousel -->
+			<!-- 지금은 이미지 1장. 나중에 이미지 여러장 대비 캐러셀 스타일 적용 -->
 			<div id="demo" class="carousel container " data-bs-ride="carousel">
 	
 				<!-- Indicators/dots -->
@@ -68,10 +67,13 @@
 
 		</div>
 
+
+
 		<!-- 선추가 -->
 		<div class="fbt-top-line"></div>
 
-
+	
+		<!-- 게시글관련 기본 정보 보여주는 곳 -->
 		<div id="tradeBoard-section-info" class="container">
 
 			<div id="tradeBoard-section-info-items">
@@ -95,6 +97,7 @@
 		<!-- 선추가 -->
 		<div class="fbt-top-line"></div>
 
+		<!-- 게시글 제목 / 내용 보여주기 -->
 		<div id="tradeBoard-section-content" class="container">
 
 
@@ -119,8 +122,6 @@
 
 		<div id="tradeBoard-reple-outer" class="container">
 
-			
-			
 	
 			<!-- 작성된 댓글 가져와서 보여주기 ( 댓글목록이 없는경우와 있는경우로 구분해서 처리 )-->
 			<h2>댓글 목록</h2>
@@ -150,15 +151,16 @@
 				
 			</c:forEach>
 			
-
 			
 		</div>
+		
 		
 		
 		<!-- 선추가 -->
 		<div class="fbt-top-line"></div>
 		
-		<!-- 내가 댓글작성하기 -->
+		
+		<!-- 댓글작성하기 영역 ( 로그인 유저만 댓글 작성가능하도록 처리 ) -->
 		<div class="container mt-3">
 			<h2>댓글 작성하기</h2>
 			<form action="<%=contextPath%>/freeBoard/trade/reple/insert" method="post">

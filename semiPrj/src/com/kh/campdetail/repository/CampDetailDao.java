@@ -221,7 +221,11 @@ public class CampDetailDao {
 		
 		return facList;
 	}
-
+	
+	
+	/*
+	 * 리뷰 목록 가져오기
+	 */
 	public ReviewVo selectReview(Connection conn, String campCode) {
 
 		PreparedStatement pstmt = null;
